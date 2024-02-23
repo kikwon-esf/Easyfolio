@@ -13,4 +13,9 @@ public class MainpageController {
     public String mainpage(){
         return "content/indexpage/mainpage";
     }
+
+    @GetMapping("/test")
+    public String testpage(){
+        return "content/indexpage/testpage";
+    }
 }
