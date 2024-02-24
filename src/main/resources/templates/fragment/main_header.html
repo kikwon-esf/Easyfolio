@@ -11,7 +11,7 @@
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/fragment/main_header.css">
         <div id="wrap">
-            <div class="inner">
+            <div class="h_inner">
                 <div class="headtop">
                     <div class="tap">
                         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="rgb(243,192,83)"
@@ -19,6 +19,9 @@
                             <path fill-rule="evenodd"
                                 d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                         </svg>
+                        <div class="popupTap">
+                            메뉴팝업
+                        </div>
                     </div>
                     <div class="logoblock">
                         <div class="logo">
@@ -41,31 +44,42 @@
                     </div>
                     <div class="iconsblock">
                         <div class="icons">
-                            <div class="icon">
+                            <div class="icon cs">
                                 <div class="iconImg">
-                                    <svg style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="rgb(243,192,83)"
-                                        class="bi bi-headset" viewBox="0 0 16 16">
+                                    <svg style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="27"
+                                        height="27" fill="rgb(243,192,83)" class="bi bi-headset" viewBox="0 0 16 16">
                                         <path
                                             d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5" />
                                     </svg>
                                 </div>
+                                <div class="popup cs">
+                                    <div class="mymenubox csCenter">고객센터</div>
+                                </div>
                             </div>
-                            <div class="icon">
+                            <div class="icon heart">
                                 <div class="iconImg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="rgb(243,192,83)"
-                                        class="bi bi-bag-heart" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27"
+                                        fill="rgb(243,192,83)" class="bi bi-bag-heart" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1M8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132" />
                                     </svg>
                                 </div>
+                                <div class="popup heart">
+                                    <div class="mymenubox heart">즐겨찾기</div>
+                                </div>
                             </div>
-                            <div class="icon">
+                            <div class="icon login">
                                 <div class="iconImg">
-                                    <svg style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="rgb(243,192,83)"
-                                        class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                    <svg style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="27"
+                                        height="27" fill="rgb(243,192,83)" class="bi bi-person-lines-fill"
+                                        viewBox="0 0 16 16">
                                         <path
                                             d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                     </svg>
+                                </div>
+                                <div class="popup login">
+                                    <div class="mymenubox login">로그인</div>
+                                    <div class="mymenubox join">회원가입</div>
                                 </div>
                             </div>
                         </div>
