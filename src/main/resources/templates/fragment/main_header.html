@@ -4,14 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
 </head>
 
 <body>
-<th:block th:fragment="mainHeaderFragment">
-    <div id="wrap">
-        헤더입니다
-    </div>
-</th:block>
+    <th:block th:fragment="mainHeaderFragment">
+        <link rel="stylesheet" href="/css/fragment/main_header.css">
+        <div id="wrap">
+            <div class="inner">
+                <div class="headtop">
+                    <div class="logoblock">
+                        <div class="logo">logo</div>
+                    </div>
+                    <div class="iconsblock">
+                        <div class="icons">
+                            <div class="icon">icon
+                            </div>
+                            <div class="icon">icon</div>
+                            <div class="icon">icon</div>
+                            <div class="icon">
+                                <div class="iconImg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="#000" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+                                      </svg>
+                                </div>
+                                <div class="iconText">MY</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="headbot">
+                    <div class="tapsblock">
+                        <div class="taps">
+                            <div class="tap">tap</div>
+                            <div class="tap">tap</div>
+                            <div class="tap">tap</div>
+                            <div class="tap">tap</div>
+                            <div class="tap">tap</div>
+                            <div class="tap">tap</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
 </body>
 
 </html>
