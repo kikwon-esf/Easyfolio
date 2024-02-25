@@ -30,14 +30,14 @@ textarea{
     overflow: hidden;
 }
 #wrap{
+    z-index: 400;
     width: 100%;
-    border-bottom: 2px solid #f4f4f4;
+    border-bottom: 2px solid #eee;
 }
 
 .h_inner{
     position: relative;
     width: 1200px;
-    height: auto;
     height: auto;
     margin: 0 auto;
 
@@ -131,6 +131,7 @@ textarea{
     fill: rgb(242,146,33);
 }
 .popup{
+    z-index: 500;
     display: none;
     position: absolute;
     top: 40px;
@@ -143,6 +144,7 @@ textarea{
     height: auto;
 }
 .popupTap{
+    z-index: 500;
     display: none;
     position: absolute;
     background-color: #fff;
