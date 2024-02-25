@@ -40,7 +40,11 @@ textarea {
 }
 
 .f_inner {
-    padding: 40px 0 60px 0;
+    position: relative;
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+
 }
 .f_menu {
     width: 100%;
