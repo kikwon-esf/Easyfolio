@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragment/main_layout}">
 
 <head>
- <meta charset="UTF-8">
- <title>Title</title>
+      <meta charset="UTF-8">
+      <title>Title</title>
 
 </head>
 
 <body>
+<<<<<<< HEAD
 <th:block layout:fragment="content">
  <div style="width: 500px; height: 300px;">테스트화면입니다</div>
  <div class="m1_slide">
@@ -41,6 +40,54 @@
       </div>
   </div>
 </th:block>
+=======
+      <link rel="stylesheet" href="/css/content/mainpage.css">
+      <div id="wrap">
+            <div class="c_inner main1">
+                  <div class="main1">
+                        <div class="m1_slide">
+                              <div class="slide one">
+                                    <div class="slideImg">
+                                          <img src="/img/main1_img1.jpg" alt="" class="m1_img">
+                                    </div>
+                                    <div class="slideText">
+                                          <p class="slideT one">쉽게.</p>
+                                          <p class="slideT two">간편하게.</p>
+                                    </div>
+                              </div>
+                              <div class="slide two">
+                                    <div class="slideImg">
+                                          <img src="/img/main1_img2.jpg" alt="" class="m1_img">
+                                    </div>
+                                    <div class="slideText">
+                                          <p class="slideT one">쉽게.</p>
+                                          <p class="slideT two">간편하게.</p>
+                                    </div>
+                              </div>
+                              <div class="slide three">
+                                    <div class="slideImg">
+                                          <img src="/img/main1_img3.jpg" alt="" class="m1_img">
+                                    </div>
+                                    <div class="slideText">
+                                          <p class="slideT one">쉽게.</p>
+                                          <p class="slideT two">간편하게.</p>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="m_remote">
+                              <p class="slide_prev"><span>이전으로</span></p>
+                              <p class="slide_next"><span>다음으로</span></p>
+                              <p class="m_pause"><span class="hide">일시정지</span></p>
+                              <p class="m_play"><span class="hide">재생</span></p>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="/js/slick.min.js"></script>
+      <script src="/js/content/mainpage.js"></script>
+>>>>>>> 6565282b6cad6e079dc84ab74b81f5a2f4b81088
 </body>
 
 </html>

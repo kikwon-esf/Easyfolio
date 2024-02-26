@@ -45,30 +45,22 @@ textarea {
 
 .c_inner {
     position: relative;
-    width: 1200px;
+    width: 1260px;
     height: auto;
     margin: 0 auto;
 }
-
-.c_inner.main1 {
-    width: 1260px;
-}
-
-
-.slide {
-    width: 1260px;
-    height: 500px;
+.main1{
     overflow: hidden;
+    width: 1260px;
     position: relative;
 }
-
-.m1_slide{
-    width: 100%;
-    height: 500px;
+.slide1{
+    position: relative;
 }
 .slideImg img {
-    width: 100%;
-    height: auto;
+    width: 1260px;
+    height: 500px;
+    object-fit: cover;
 }
 .slideText{
     position: absolute;
@@ -76,17 +68,35 @@ textarea {
     left: 50%;
     margin-left: -560px;
 }
+.slide1.two > .slideText{
+    font-size: 75px;
+    margin-left: 271px;
+    top: 200px;
+}
+.slide1.three > .slideText{
+    margin-left: 160px;
+}
 .slideT{
     font-size: 90px;
     color: #fff;
     font-weight: 700;
 }
-.m1_slide .slick-slide {
+.slide1.two > .slideText{
+    margin-left: 271px;
+    top: 200px;
+}
+.slide1.two > .slideText>.slideT{
+    font-size: 75px;
+}
+.slide1.three > .slideText{
+    margin-left: 160px;
+}
+.slick-list {
+    height: 500px; /* 또는 다른 값을 시도해보세요. */
+ }
+ .slick-track{
     display: flex;
-    flex-direction: row;
-}
-
-.m1_slide .slide {
-    width: auto;
-    height: auto; /* 높이를 원하는 크기로 조절 */
-}
+ }
+ .btn{
+    cursor: pointer;
+ }
