@@ -16,5 +16,11 @@ public class CscController {
         return "content/csc/csc_main";
     }
 
+    @GetMapping("/annForm")
+    public String annForm(){
+
+        return "content/csc/csc_ann";
+    }
+
 
 }
