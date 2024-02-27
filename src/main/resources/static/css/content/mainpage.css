@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#wrap {
+    width: 100%;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+.c_inner {
+    position: relative;
+    width: 1260px;
+    height: auto;
+    margin: 0 auto;
+}
+.main1{
+    overflow: hidden;
+    width: 1260px;
+    position: relative;
+}
+.slide1{
+    position: relative;
+}
+.slideImg img {
+    width: 1260px;
+    height: 500px;
+    object-fit: cover;
+}
+.slideText{
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    margin-left: -560px;
+}
+.slide1.two > .slideText{
+    font-size: 75px;
+    margin-left: 271px;
+    top: 200px;
+}
+.slide1.three > .slideText{
+    margin-left: 160px;
+}
+.slideT{
+    font-size: 90px;
+    color: #fff;
+    font-weight: 700;
+}
+.slide1.two > .slideText{
+    margin-left: 271px;
+    top: 200px;
+}
+.slide1.two > .slideText>.slideT{
+    font-size: 75px;
+}
+.slide1.three > .slideText{
+    margin-left: 160px;
+}
+.slick-list {
+    height: 500px; /* 또는 다른 값을 시도해보세요. */
+ }
+ .slick-track{
+    display: flex;
+ }
+ .btn{
+    cursor: pointer;
+ }
+.m_remote{
+    position: absolute;
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 30px;
+    z-index: 1;
+    left: 10px;
+    bottom: 10px;
+    padding: 5px 15px;
+}
+.btn{
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #f4f4f4;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 5px;
+}
+.btn:hover {
+    border: 2px solid #ffd57a;
+}
+.btn > span > .bi{
+    margin-top: 3px;
+}
+.btn.next{
+    margin-right: 20px;
+}
+.btn.next > span > .bi{
+    margin-left: 2px;
+}
+.btn.prev > span > .bi{
+    margin-right: 2px;
+}
+.btn.play{
+    display: none;
+}
