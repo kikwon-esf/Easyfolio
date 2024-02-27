@@ -1,32 +1,28 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="UTF-8">
-<title></title>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<!-- css 영역 -->
-<th:block layout:fragment="content_css">
-</th:block>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+    </th:block>
 
 </head>
 
 <body>
     <th:block th:fragment="cscSideFragment">
-        <div id="wrap">
-            <div class="csc_title">
-                <h1>고객센터 사이드입니다람쥐</h1>
-            </div>
+        <link rel="stylesheet" href="/css/content/csc/csc_side.css">
+        <div class="wrap">
             <div id="w_in">
+                <p class="side_tilte">MENU</p>
                 <div class="side_menu">
-                    <div class="side_inner">
-                        <div class="csc_side">
-                            <p class="sideForm ann"><a href="">공지사항</a></p>
-                            <p class="sideForm inquire"><a href="">문의하기</a></p>
-                            <p class="sideForm inquireList"><a href="">문의내역</a></p>
-                            <p class="sideForm qnaList menu_last"><a href="">자주 찾는 질문</a></p>
-                        </div>
-                    </div>
+                    <p class="sideForm csc"><a href="">고객센터</a></p>
+                    <p class="sideForm ann"><a href="">공지사항</a></p>
+                    <p class="sideForm inquire"><a href="">문의하기</a></p>
+                    <p class="sideForm inquireList"><a href="">문의내역</a></p>
+                    <p class="sideForm qnaList menu_last"><a href="">자주 찾는 질문</a></p>
                 </div>
             </div>
         </div>

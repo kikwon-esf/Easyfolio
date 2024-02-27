@@ -1,0 +1,75 @@
+@charset "UTF-8";
+/* 기본셋팅, 공통값 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+
+textarea{
+    resize: none;
+}
+
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.wrap{
+    width: 200px;
+    height: auto;
+}
+.w_in{
+    width: 100%;
+    height: auto;
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+.side_tilte{
+    font-size: 25px;
+    font-weight: 700;
+}
+.sideForm:first-child::before,.sideForm:last-child::after{
+    content: "";
+    display: block;
+    width: 170px;
+    height: 2px;
+    background-color: #000;
+}
+.sideForm:first-child::before{
+    margin-bottom: 20px;
+}
+.sideForm:last-child::after{
+    margin-top: 20px;
+}
+.sideForm{
+    width: 130px;
+    border-bottom: 1px solid #333;
+}
+.sideForm:last-child{
+    border: 0;
+}
+.sideForm{
+    padding: 20px 0;
+}
+.sideForm a{
+    color: #333;
+}
+.sideForm:hover a{
+    color: #f3c053;
+}
