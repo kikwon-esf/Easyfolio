@@ -37,5 +37,107 @@ textarea {
     height: 0;
     overflow: hidden;
 }
-
+.csc_title{
+    margin-top: -10px;
+    display: -webkit-inline-box;
+    position: relative;
+}
+/* .csc_title::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 900px;
+    height: 4px;
+    bottom: -2px;
+    background-color: #dadada;
+} */
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+/* .titleLine::before{
+    margin-left: 10px;
+    margin-top: 25px;
+    content: "";
+    display: block;
+    width: 700px;
+    height: 3px;
+    background-color: #dadada;
+} */
+.csc_inner{
+    width: 900px;
+    height: auto;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+.csc_searchBox{
+    width: 750px;
+    margin: 0 auto;
+}
+.csc_searchBlock{
+    position: relative;
+    box-sizing: border-box;
+    padding: 14px 0px 7px 20px;
+    width: 750px;
+    height: 60px;
+    border-radius: 50px;
+    border: 2px solid #ffd57a;
+    background-color: #fff;
+    margin-bottom: 20px;
+    transition: border 0.2s ease;
+}
+.csc_search{
+    width: 700px;
+    height: 26px;
+    font-size: 25px;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    color: #999;
+}
+.csc_searchBtn{
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 13px;
+}
+.bi.bi-search{
+    transition: fill 0.3s ease;
+}
+.csc_searchBtn:hover .bi.bi-search{
+    fill: rgb(242,146,33);
+}
+.searchTipBox{
+    display: flex;
+}
+.searchTipTitle{
+    margin: 3px 10px 0 -10px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #333;
+}
+.searchTips{
+    display: flex;
+}
+.searchTip{
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #f3c053;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+.searchTip:hover{
+    background-color: #f29221;
+}
 

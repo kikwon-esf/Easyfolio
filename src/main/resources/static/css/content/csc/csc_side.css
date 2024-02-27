@@ -40,9 +40,19 @@ textarea{
     padding: 10px 10px;
     box-sizing: border-box;
 }
-.side_tilte{
+.side_title{
+    display: flex;
+}
+.side_tilte1{
     font-size: 25px;
     font-weight: 700;
+}
+.side_tilte2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffd57a;
 }
 .sideForm:first-child::before,.sideForm:last-child::after{
     content: "";
@@ -66,6 +76,9 @@ textarea{
 }
 .sideForm{
     padding: 20px 0;
+}
+.sideForm:first-child{
+    padding: 10px 0 20px 0;
 }
 .sideForm a{
     color: #333;
