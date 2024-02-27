@@ -183,7 +183,7 @@ textarea {
     left: 8px;
 }
 
-.btn.pause {
+.btn.pause, .btn.play {
     margin-right: 10px;
 }
 
