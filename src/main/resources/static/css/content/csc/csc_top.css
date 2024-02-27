@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+.csc_wrap{
+    border: 0;
+}
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+.w_in{
+    width: 1260px;
+    margin: 0 auto;
+}
+.cscMain{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.w_in{
+    background-color: #fff;
+}
+.csc_in{
+    margin-top: 0;
+}
+.cscMain::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1)), url(/img/csc/cscMain.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.cscTitle{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+.cscTitle1{
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+}
+.cscTitle2{
+    font-size: 25px;
+    font-weight: 700;
+    color: #f3c053;
+    margin: -7px 0 0 50px;
+}
