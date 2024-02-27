@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+.w_in{
+    width: 1260px;
+    margin: 0 auto;
+}
+.cscMain{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+.cscMain img{
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+.w_in{
+    background-color: #fff;
+}
+.csc_in{
+    margin-top: 0;
+}

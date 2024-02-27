@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-<meta charset="UTF-8">
-<title></title>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<!-- css 영역 -->
-<th:block layout:fragment="content_css">
-</th:block>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+    </th:block>
 
 </head>
 
 <body>
     <th:block th:fragment="cscTopFragment">
-        <div class="csc_title">
-            <h1>고객센터 상단메뉴입니다람쥐</h1>
-        </div>
+        <link rel="stylesheet" href="/css/content/csc/csc_top.css">
         <div id="wrap">
             <div id="w_in">
-                <div class="">
-
+                <div class="cscMain">
+                    <img src="/img/csc/cscMain.jpg" alt="">
                 </div>
             </div>
         </div>
