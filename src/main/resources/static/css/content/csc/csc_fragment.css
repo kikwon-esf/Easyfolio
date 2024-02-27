@@ -43,6 +43,16 @@ textarea {
     margin: 50px auto;
 }
 
+.csc_m{
+    margin-bottom: 50px;
+}
+
+.csc_m::after{
+    display: block;
+    content: "";
+    clear: both;
+}
+
 .csc_title{
     padding-bottom: 15px;
 }
@@ -58,7 +68,7 @@ textarea {
 
 .csc_content{
     float: right;
-    width: 83%;
+    width: 80%;
 }
 
 .csc_footer{
