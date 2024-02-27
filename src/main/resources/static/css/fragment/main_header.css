@@ -51,10 +51,9 @@ textarea{
 .tap{
     width: 40px;
     height: 45px;
-    margin-top: 2px;
     border-radius: 4px;
     cursor: pointer;
-    margin-right: 7px;
+    margin: 2px 7px 0 5px;
 }
 
 .tap:hover .bi.bi-justify-left{
@@ -113,6 +112,7 @@ textarea{
     /* box-shadow: 0 5px 8px 0 rgba(68,68,68,.04); */
 }
 .searchText{
+    margin-top: -2px;
     width: 380px;
     height: 26px;
     font-size: 16px;
