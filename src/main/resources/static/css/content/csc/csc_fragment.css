@@ -46,13 +46,19 @@ textarea {
 .csc_m{
     display: flex;
 }
-
+.csc_col.csc_side{
+    margin-right: 50px;
+}
 
 .csc_top{
     margin-bottom: 50px;
 }
 
 
+.csc_bottom{
+    width: 1200px;
+    margin: 0 auto;
+}
 .csc_footer{
     padding-top: 50px;
 }

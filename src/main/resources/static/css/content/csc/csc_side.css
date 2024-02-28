@@ -86,3 +86,7 @@ textarea{
 .sideForm:hover a{
     color: #f3c053;
 }
+.sideForm.active-sideForm a{
+    color: #f3c053;
+    font-weight: 700;
+}

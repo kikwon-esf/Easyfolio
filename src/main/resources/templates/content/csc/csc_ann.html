@@ -1,25 +1,82 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/csc_layout}">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" href="/css/content/csc/csc_ann.css">
+    <meta charset="UTF-8">
+    <title></title>
+
 
 </head>
 
 <body>
     <th:block layout:fragment="content">
-        <div id="wrap">
+        <link rel="stylesheet" href="/css/content/csc/csc_ann.css">
+        <div class="wrap">
             <div class="csc_title">
-                <h1>고객센터 공지사항 페이지입니다람쥐</h1>
+                <p class="csc_title1">공지사항</p>
+                <p class="csc_title2">NOTICE</p>
             </div>
-            <div class="w_in">
-                <div class="main"></div>
+            <div class="csc_inner">
+                <div class="main">
+                    <div class="csc_ann">
+                        <div class="annSearchBlock">
+                            <input type="text" class="annSearch" placeholder="공지사항 검색">
+                            <div class="annSearchBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffd57a"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="csc_annBlock">
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">일반</p>
+                                    <p class="slash">]</p>
+                                </div>
+                                <p class="annTitle">
+                                    워자이윤 이자식아
+                                </p>
+                            </div>
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">서비스</p>
+                                    <p class="slash">]</p>
+                                </div>
+                                <p class="annTitle">
+                                    워자이윤 으이구그냥
+                                </p>
+                            </div>
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">당첨자 발표</p>
+                                    <p class="slash">]</p>
+                                </div>
+                                <p class="annTitle">
+                                    워자이윤 즉결처형 오체분시
+                                </p>
+                            </div>
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">버러지같은</p>
+                                    <p class="slash">]</p>
+                                </div>
+                                <p class="annTitle">
+                                    워자이윤 즉결처형 오체분시해야한다고 생각합니다
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
+
         <script src="/js/fragment/csc_ann.js"></script>
     </th:block>
 </body>
