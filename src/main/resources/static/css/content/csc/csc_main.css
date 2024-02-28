@@ -257,6 +257,7 @@ textarea {
     position: relative;
 }
 .qnaBox:hover .qnaText{
+    font-weight: 700;
     color: #333;
 }
 .qnaText >span{
