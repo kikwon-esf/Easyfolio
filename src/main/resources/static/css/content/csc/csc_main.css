@@ -244,6 +244,12 @@ textarea {
     background-color: #f5f7f8;
     box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
 }
+.qnaBox:hover{
+    background-color: #f2f2f2f5;
+}
+.qnaIcon svg{
+    transition: fill 0.2s ease;
+}
 .qnaBox:hover .qnaIcon svg{
     fill: #f29221;
 }
@@ -252,6 +258,7 @@ textarea {
     color: #666;
     display: inline;
     line-height: 35px;
+    transition: color 0.2s ease; 
 }
 .qnaTextBox{
     position: relative;
@@ -274,7 +281,8 @@ textarea {
 .qnaGo p{
     color: #666;
     font-size: 13px; 
-    font-weight: 700;   
+    font-weight: 700;
+    transition: color 0.1s ease;   
 }
 .qnaGoIcon{
     margin : 2px 0 0 3px;
