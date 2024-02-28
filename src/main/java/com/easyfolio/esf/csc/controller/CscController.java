@@ -22,5 +22,24 @@ public class CscController {
         return "content/csc/csc_ann";
     }
 
+    @GetMapping("/inqForm")
+    public String inqForm(){
+
+        return "content/csc/csc_inq";
+    }
+
+    @GetMapping("/inqListForm")
+    public String inqListForm(){
+
+        return "content/csc/csc_inqList";
+    }
+
+    @GetMapping("/qnaForm")
+    public String qnaForm(){
+
+        return "content/csc/csc_qna";
+    }
+
+
 
 }
