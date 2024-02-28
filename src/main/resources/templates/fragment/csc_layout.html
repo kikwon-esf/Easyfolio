@@ -37,26 +37,37 @@
                 </div>
 
                 <div class="csc_m">
+
                     <!-- 사이드 메뉴 영역 -->
-                    <div class="col-2 csc_side">
+                    <div class="csc_col csc_side">
                         <th:block th:replace="~{fragment/csc_side :: cscSideFragment}"></th:block>
                     </div>
+
                     <!-- 컨텐츠 영역 -->
-                    <div class="col-10 csc_content">
+                    <div class="csc_col csc_content">
                         <th:block layout:fragment="content"></th:block>
                     </div>
+                    
+
                 </div>
 
-                <div class="csc_b">
-                    <!-- 하단 메뉴 영역 -->
-                    <div class="col-2 csc_top">
-                        <th:block th:replace="~{fragment/csc_bottom :: cscBottomFragment}"></th:block>
-                    </div>
-                </div>
+
+
             </div>
 
-            <!-- 푸터 메뉴 영역 -->
+            <div class="csc_b">
+
+                <!-- 하단 메뉴 영역 -->
+                <div class="col-2 csc_bottom">
+                    <th:block th:replace="~{fragment/csc_bottom :: cscBottomFragment}"></th:block>
+                </div>
+                
+            </div>
+
+
         </div>
+
+            <!-- 푸터 메뉴 영역 -->
         <div class="col-2 csc_footer">
             <th:block th:replace="~{fragment/main_footer :: mainFooterFragment}"></th:block>
         </div>
