@@ -41,6 +41,7 @@ textarea {
     margin-top: -10px;
     display: -webkit-inline-box;
     position: relative;
+
 }
 /* .csc_title::after{
     content: "";
@@ -80,7 +81,7 @@ textarea {
 }
 .csc_searchBox{
     width: 750px;
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
 }
 .csc_searchBlock{
     position: relative;
@@ -140,4 +141,158 @@ textarea {
 .searchTip:hover{
     background-color: #f29221;
 }
+/* 공지사항 */
+.csc_ann{
+    margin-bottom: 30px;
+}
+.csc_annTitle{
+    text-align: center;
+    position: relative;
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+.csc_annTitle1{
+    font-size: 25px;
+    font-weight: 700;
+    color: #333;
+    padding-bottom: 5px;
+    margin: 0 auto;
+}
+.csc_annPlus{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    bottom: -17px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+}
+.csc_annPlus1{
+    margin-right: 2px;
+}
+.csc_annPlus2{
+    margin-top: 2px;
+}
+.csc_annPlus:hover .csc_annPlus1{
+    color: #f29221;
+}
+.csc_annPlus:hover .csc_annPlus2 svg{
+    fill: #f29221;
+}
+.csc_annBlock{
+    border: 1px solid #dadada;
+    border-radius: 9px;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.csc_annBox{
+    cursor: pointer;
+    padding: 15px 10px;
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.csc_annBox:last-child{
+    border: 0;
+}
+.annTypeBox{
+    width: 130px;
+    display: flex;
+}
+.annTypeBox p{
+    font-size: 13px;
+    color: #f3c053;
+    margin: 0 5px;
+}
+.slash{
+    font-weight: 700;
+}
+.annType{
+    text-align: center;
+    width: 80px;
+}
+.annTitle{
+    margin-top: 1px;
+    font-size: 13px;
+    color: #666;
+}
+.csc_annBox:hover .annTypeBox p{
+    color: #f29221;
+}
+.csc_annBox:hover .annTitle{
+    color: #333;
+}
+/* 자주 찾는 질문 */
+.qnaBlock{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 280px 280px 280px;
+    grid-template-rows: 150px 150px;
+    gap: 10px;
 
+}
+.qnaIcon{
+    position: absolute;
+    top: 2px;
+    display: inline-block;
+}
+.qnaBox{
+    position: relative;
+    cursor: pointer;
+    padding: 17px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #f5f7f8;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.qnaBox:hover .qnaIcon svg{
+    fill: #f29221;
+}
+.qnaText{
+    font-size: 18px;
+    color: #666;
+    display: inline;
+    line-height: 35px;
+}
+.qnaTextBox{
+    position: relative;
+}
+.qnaBox:hover .qnaText{
+    color: #333;
+}
+.qnaText >span{
+    display: inline-block;
+    width: 40px;
+}
+.qnaGo{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 14px;
+    display: inline-flex;
+}
+.qnaGo p{
+    color: #666;
+    font-size: 13px; 
+    font-weight: 700;   
+}
+.qnaGoIcon{
+    margin : 2px 0 0 3px;
+}
+.qnaGo::before{
+    position: absolute;
+    bottom: -7px;
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: transparent;
+}
+.qnaBox:hover .qnaGo::before{
+    background-color: #333;
+}
+.qnaBox:hover .qnaGo p{
+    color: #333;
+}
+.qnaBox:hover .qnaGoIcon svg{
+    fill: #333;
+}
