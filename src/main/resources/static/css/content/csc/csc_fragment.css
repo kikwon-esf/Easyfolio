@@ -46,9 +46,15 @@ textarea {
 .csc_m{
     margin-bottom: 50px;
 }
+.csc_m::before{
+    display: inline-block;
+    content: "";
+    clear: both;
+
+}
 
 .csc_m::after{
-    display: block;
+    display: inline-block;
     content: "";
     clear: both;
 }
