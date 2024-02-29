@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    display: -webkit-inline-box;
+    position: relative;
+    margin: -10px 0 20px 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+}
+.inq_checkBlock{
+    background-color: #f4f4f4;
+    width: 650px;
+    border-radius: 20px;
+    padding: 20px 24px;
+    box-sizing: border-box;
+    margin: 30px auto;
+}
+.inqStop{
+    display: flex;
+    margin-bottom: 20px;
+}
+.inqStopText{
+    font-size: 30px;
+    font-weight: 700;
+    color: #f29221;
+    margin-right: 10px;
+    margin: 0 10px 0 17px;
+}
+.inqStopText1{
+    font-size: 21px;
+    color: #333;
+    margin-top: 13px;
+}
+.inq_stopTextBox{
+    display: ruby-text;
+}
+.inq_stopTextBox p{
+    color: #333;
+    font-size: 18px;
+    margin: 15px 0;
+}
+.inq_stopTextBox span{
+    font-size: 20px;
+    font-weight: 700;
+}
+.qnaGo:hover{
+    font-weight: 700;
+    color: #000;
+    border-bottom: 2px solid #000;
+}
+.qnaGo{
+    cursor: pointer;
+}
