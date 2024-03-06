@@ -1,0 +1,177 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    margin-top: -10px;
+    display: -webkit-inline-box;
+    position: relative;
+    margin-left: 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+}
+.csc_ann{
+    margin: 30px 0;
+}
+/* 공지사항 검색 */
+.annSearchBlock{
+    position: relative;
+    box-sizing: border-box;
+    padding: 6px 0px 6px 15px;
+    width: 250px;
+    height: 35px;
+    border-radius: 50px;
+    border: 2px solid #ffd57a;
+    background-color: #fff;
+    transition: border 0.2s ease;
+}
+.annSearch{
+    width: 195px;
+    height: 19px;
+    font-size: 15px;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    color: #999;
+}
+.annSearchBtn{
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+}
+.bi.bi-search{
+    transition: fill 0.3s ease;
+}
+.annSearchBtn:hover .bi.bi-search{
+    fill: rgb(242,146,33);
+}
+.annHeader{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+}
+.qnaBlock{
+    border: 1px solid #dadada;
+    border-radius: 9px;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+    width: 100%;
+    box-sizing: border-box;
+}
+.qnaInner{
+    border-bottom: 1px solid #dadada;
+}
+.qnaInner:last-child{
+    border: 0;
+}
+.qnaBox{
+    padding: 10px;
+    position: relative;
+    display: flex;
+    font-size: 20px;
+}
+.qnaIcon{
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+.qnaIcon svg{
+    transition: fill 0.5s ease;
+}
+.qnaText{
+    box-sizing: border-box;
+    height: 32px;
+    width: 770px;
+    margin-right: 25px;
+    transition: color 0.5s ease;
+}
+.qnaBox.on > .qnaText p{
+    font-weight: 700;
+    color: #333;
+    transition: color 0.5s ease;
+}
+.qnaBox.on > .qnaIcon svg{
+    fill: #f29221;
+    transition: fill 0.5s ease;
+}
+.qnaText p{
+    margin-top: 2px;
+    color: #666;
+    font-size: 17px;
+}
+.qnaArrow{
+    box-sizing: border-box;
+    width: 30px;
+    padding: 1px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+.qnaArrow:hover svg{
+    fill: #333;
+}
+.ansBox{
+    display: none;
+    padding: 0px 48px 10px 48px;
+}
+.ansText p{
+    font-size: 16px;
+    color: #666;
+}
+.rotate{
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
+}

@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    margin-top: -10px;
+    display: -webkit-inline-box;
+    position: relative;
+    margin-left: 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    width: 900px;
+    height: auto;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+.csc_ann{
+    margin: 30px 0;
+}
+.inq_checkBlock{
+    background-color: rgba(244,244,244,.5);
+    width: 650px;
+    height: 222px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin: 30px auto 50px auto;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.inqStop{
+    display: flex;
+    margin-bottom: 20px;
+}
+.inqStopText{
+    font-size: 30px;
+    font-weight: 700;
+    color: #f29221;
+    margin-right: 10px;
+    margin: 0 10px 0 17px;
+}
+.inqStopText1{
+    font-size: 21px;
+    color: #666;
+    margin-top: 13px;
+}
+.inq_stopTextBox{
+    display: ruby-text;
+}
+.inq_stopTextBox p{
+    color: #666;
+    font-size: 18px;
+    margin: 15px 0;
+}
+.inq_stopTextBox span{
+    color: #555;
+    font-size: 20px;
+    font-weight: 700;
+}
+.qnaGo:hover{
+    font-weight: 700;
+    color: #333;
+    border-bottom: 2px solid #555;
+}
+.inq_stopTextBox > .qnaGo{
+    cursor: pointer;
+    color: #555;
+}
+/* 문의내역 목록 */
+.csc_annBlock{
+    border: 1px solid #dadada;
+    border-radius: 9px;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.csc_annBox{
+    cursor: pointer;
+    padding: 15px 10px;
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.csc_annBox:last-child{
+    border: 0;
+}
+.annTypeBox{
+    width: 130px;
+    display: flex;
+}
+.annTypeBox p{
+    font-size: 13px;
+    color: #f3c053;
+    margin: 0 5px;
+}
+.slash{
+    font-weight: 700;
+}
+.annType{
+    text-align: center;
+    width: 80px;
+}
+.annTitle{
+    margin-top: 1px;
+    font-size: 13px;
+    color: #666;
+}
+.csc_annBox:hover .annTypeBox p{
+    color: #f29221;
+}
+.csc_annBox:hover .annTitle{
+    color: #333;
+}
+.qnaGo:hover svg{
+    fill: #000;
+}
