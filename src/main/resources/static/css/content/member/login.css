@@ -71,7 +71,7 @@ textarea {
     padding: 30px;
     position: relative;
     z-index: 1;
-    margin: 0 auto;
+    margin: 30px auto 70px auto;
     width: 460px;
     border: 1px solid #dadada;
     border-radius: 6px;
