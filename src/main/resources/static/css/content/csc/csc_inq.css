@@ -185,7 +185,7 @@ select:hover{
 .subBtn{
     border: 1px solid #f4f4f4;
     border-radius: 5px;
-    background-color: #f3c053;
+    background-color: #ffa43b;
     width: 200px;
     height: 50px;
     color: #fff;
@@ -193,7 +193,7 @@ select:hover{
     transition: background-color 0.5s ease;
 }
 .subBtn:hover{
-    background-color: #f29221;
+    background-color: #f08509;
     transition: background-color 0.5s ease;
 }
 .inputBox.img input{
@@ -220,21 +220,21 @@ select:hover{
 
 .inputBox.img label {
     display: inline-block;
-    padding: 4px 3px 5px 10px;
+    padding: 7px 0px 2px 15px;
     border-radius: 5px;
     width: 68px;
     border: 1px solid #ffd57a;
-    font-size: 17px;
+    font-size: 14px;
     color: #fff;
     vertical-align: middle;
-    background-color: #f3c053;
+    background-color: #ffa43b;
     cursor: pointer;
     height: 25px;
     margin: 18px 0;
     transition: background-color 0.5s ease;
 }
 .inputBox.img label:hover{
-    background-color: #f29221;
+    background-color: #f08509;
     transition: background-color 0.5s ease;
 }
 .inputBox.img input[type="file"] {
