@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-    layout:decorate="~{fragment/member_layout}">
+<html lang="ko" xlmns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" href="/css/content/member/login.css">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/content/member/login.css">
 
-<!-- css 영역 -->
-<th:block layout:fragment="content_css">
-
-</th:block>
 </head>
+
+
 <body>
-<th:block layout:fragment="content">
     <div id="wrap">
         <div class="inner">
             <div class="logoBlock">
@@ -63,11 +59,8 @@
             </div>
         </div>
     </div>
-</th:block>
 </body>
-<!-- js 영역 -->
-<th:block layout:fragment="content_js">
-
-</th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/content/member/login.js"></script>
+
 </html>
