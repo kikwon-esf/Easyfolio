@@ -63,12 +63,13 @@ textarea {
     box-sizing: border-box;
 }
 .inq_checkBlock{
-    background-color: #f4f4f4;
+    background-color: rgba(244,244,244,.5);
     width: 650px;
     border-radius: 20px;
     padding: 20px 24px;
     box-sizing: border-box;
-    margin: 30px auto;
+    margin: 30px auto 50px auto;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
 }
 .inqStop{
     display: flex;
@@ -83,26 +84,172 @@ textarea {
 }
 .inqStopText1{
     font-size: 21px;
-    color: #333;
+    color: #666;
     margin-top: 13px;
 }
 .inq_stopTextBox{
     display: ruby-text;
 }
 .inq_stopTextBox p{
-    color: #333;
+    color: #666;
     font-size: 18px;
     margin: 15px 0;
 }
 .inq_stopTextBox span{
+    color: #555;
     font-size: 20px;
     font-weight: 700;
 }
 .qnaGo:hover{
     font-weight: 700;
-    color: #000;
-    border-bottom: 2px solid #000;
+    color: #333;
+    border-bottom: 2px solid #555;
 }
-.qnaGo{
+.inq_stopTextBox > .qnaGo{
     cursor: pointer;
+    color: #555;
+}
+.inqBlock{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.inqBlock .box{
+    width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #dadada;
+}
+.inputBox{
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.inputBox:last-child{
+    border-bottom: 0;
+}
+.label{
+    font-size: 18px;
+    color: #333;
+    width: 100px;
+    text-align: center;
+    padding: 20px 0;
+    border-right: 1px solid #dadada;
+}
+select{
+    font-size: 18px;
+    width: 100px;
+    padding: 5px 5px;
+    height: 35px;
+    margin: 16px 10px;
+    border: 2px solid #dadada;
+    border-radius: 10px;
+    outline: 0;
+}
+select:hover{
+    border: 2px solid #f3c053;
+}
+.inputBox input{
+    border: 0;
+    box-sizing: border-box;
+    outline: 0;
+    width: 690px;
+    padding: 5px 10px;
+    font-size: 17px;
+    color: #333;
+}
+.inputBox.content > .label{
+    height: 300px;
+    line-height: 300px;
+}
+.inputBox.content textarea{
+    width: 690px;
+    font-size: 20px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+}
+.label.imgLook{
+    height: 100px;
+    padding: 60px 0 25px 0;
+}
+.btnBox{
+    width: 200px;
+    margin: 0 auto;
+}
+.subBtn{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #f3c053;
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    cursor: pointer;
+}
+.subBtn:hover{
+    background-color: #f29221;
+}
+.inputBox.img input{
+    width: 100px;
+}
+
+/* 사진 미리보기 */
+.inqImg{
+    color: #fff;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    background-color: #03c75a;
+
+}
+.inputBox.img .upload-name {
+    border-radius: 5px;
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 585px;
+    color: #999999;
+    margin: 16px 10px;
+}
+
+.inputBox.img label {
+    display: inline-block;
+    padding: 4px 3px 5px 10px;
+    border-radius: 5px;
+    width: 68px;
+    border: 1px solid #ffd57a;
+    font-size: 17px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #f3c053;
+    cursor: pointer;
+    height: 25px;
+    margin: 18px 0;
+}
+.inputBox.img label:hover{
+    background-color: #f29221;
+}
+.inputBox.img input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.imgSlideList{
+    width: 120px;
+    height: 120px;
+    margin: 10px 5px;
+}
+.imgSlideList:first-child{
+    margin-left: 10px;
+}
+.imgSlideList img{
+    width: 100%;
+    height: 100%;
+}
+.inputBox.imgLook > .label{
+    padding: 20px 0;
 }
