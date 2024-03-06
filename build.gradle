@@ -35,6 +35,9 @@ dependencies {
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' //fragment 사용을 위해 추가
 	compileOnly("org.springframework.boot:spring-boot-devtools") //html새로고침
 
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc' // oracle jdbc
+	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
+
 }
 
 tasks.named('test') {
