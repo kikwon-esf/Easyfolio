@@ -30,7 +30,7 @@ textarea{
     overflow: hidden;
 }
 
-.wrap{
+#side_wrap{
     width: 200px;
     height: auto;
 }
@@ -75,9 +75,12 @@ textarea{
     border: 0;
 }
 .sideForm{
+    height: 65px;
+    box-sizing: border-box;
     padding: 20px 0;
 }
 .sideForm:first-child{
+    height: 77px;
     padding: 10px 0 20px 0;
 }
 .sideForm a{
@@ -87,6 +90,6 @@ textarea{
     color: #f3c053;
 }
 .sideForm.active-sideForm a{
-    color: #f3c053;
-    font-weight: 700;
+    color: #f29221;
+    font-size: 16px;
 }

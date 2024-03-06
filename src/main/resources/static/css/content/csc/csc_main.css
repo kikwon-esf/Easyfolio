@@ -37,10 +37,14 @@ textarea {
     height: 0;
     overflow: hidden;
 }
+#csc_wrap{
+    width: 950px;
+}
 .csc_title{
     margin-top: -10px;
     display: -webkit-inline-box;
     position: relative;
+    margin-left: 20px;
 
 }
 /* .csc_title::after{
