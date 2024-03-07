@@ -39,7 +39,6 @@ dependencies {
 	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
 }
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
