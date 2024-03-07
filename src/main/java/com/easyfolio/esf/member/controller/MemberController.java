@@ -15,5 +15,10 @@ public class MemberController {
 
         return "content/member/login";
     }
+    @GetMapping("/joinForm")
+    public String joinForm(){
+
+        return "content/member/join";
+    }
 
 }

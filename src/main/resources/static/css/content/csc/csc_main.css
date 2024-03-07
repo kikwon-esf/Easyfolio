@@ -138,12 +138,12 @@ textarea {
     border-radius: 50px;
     font-size: 18px;
     color: #fff;
-    background-color: #f3c053;
+    background-color: #ffa43b;
     margin: 0 10px;
     transition: background-color 0.3s ease;
 }
 .searchTip:hover{
-    background-color: #f29221;
+    background-color: #f08509;
 }
 /* 공지사항 */
 .csc_ann{
