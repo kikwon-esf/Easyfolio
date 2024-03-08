@@ -55,44 +55,14 @@
                         </div>
                     </div>
                     <div class="csc_annBlock">
-                        <div class="csc_annBox">
+                        <div class="csc_annBox" th:each="ann, state : ${annList}">
                             <div class="annTypeBox">
                                 <p class="slash">[</p>
-                                <p class="annType">일반</p>
+                                <p class="annType">[[${ann.annCateList.cateName}]]</p>
                                 <p class="slash">]</p>
                             </div>
                             <p class="annTitle">
-                                워자이윤 이자식아
-                            </p>
-                        </div>
-                        <div class="csc_annBox">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">서비스</p>
-                                <p class="slash">]</p>
-                            </div>
-                            <p class="annTitle">
-                                워자이윤 으이구그냥
-                            </p>
-                        </div>
-                        <div class="csc_annBox">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">당첨자 발표</p>
-                                <p class="slash">]</p>
-                            </div>
-                            <p class="annTitle">
-                                워자이윤 즉결처형 오체분시
-                            </p>
-                        </div>
-                        <div class="csc_annBox">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">버러지같은</p>
-                                <p class="slash">]</p>
-                            </div>
-                            <p class="annTitle">
-                                워자이윤 즉결처형 오체분시해야한다고 생각합니다
+                                [[${ann.annTitle}]]
                             </p>
                         </div>
                     </div>
