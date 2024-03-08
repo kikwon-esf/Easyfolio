@@ -1,7 +1,10 @@
 package com.easyfolio.esf.csc.controller;
 
+import com.easyfolio.esf.csc.service.CscService;
+import com.easyfolio.esf.search.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,17 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class CscController {
 
-    @GetMapping("/cscForm")
-    public String cscForm(){
+    private final CscService cscService;
 
+    @GetMapping("/cscForm")
+    public String cscForm(Model model){
+        model.addAttribute("annList", cscService.mainAnnList());
         return "content/csc/csc_main";
     }
 
-    @GetMapping("/annForm")
-    public String annForm(){
-
+    @RequestMapping("/annForm")
+    public String annForm(Model model){
+        model.addAttribute("annList", cscService.annList());
         return "content/csc/csc_ann";
     }
+
+
 
     @GetMapping("/inqForm")
     public String inqForm(){
