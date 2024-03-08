@@ -47,7 +47,7 @@ textarea {
 }
 .inner{
     padding: 15px 0 0 0;
-    width: 900px;
+    width: 100%;
     margin: 0 auto;
 }
 .sns_icons{
@@ -87,4 +87,14 @@ textarea {
     font-size: 13px;
     color: #999;
     text-align: center;
+}
+.inputBox.fail{
+    background-color: #fff;
+    border: 1px solid #ff3f3f;
+}
+.inputBox.fail svg{
+    fill: #ff3f3f;
+}
+.inputBox.fail .inputMem::placeholder{
+    color: #ff3f3f;
 }

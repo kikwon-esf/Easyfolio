@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/member_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <link rel="stylesheet" href="/css/content/member/find_member.css">
+        <form action="/member/joinMember" method="post" id="joinForm">
+            <div id="wrap">
+                <div id="inner">
+                    <div class="logoBlock">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="/img/logo1.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div id="container">
+                        <div class="findHeader">
+                            <p class="findHeaderTap id on">아이디 찾기</p>
+                            <p class="findHeaderTap pw">비밀번호 찾기</p>
+                        </div>
+                        <div class="findBlock id on">
+                            <div class="inputBox name">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                        class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                    </svg>
+                                </div>
+                                <input type="text" class="inputMem name" id="memberName" name="memberName"
+                                    placeholder="이름" required>
+                            </div>
+                            <div class="inputBox phoneNum">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#dadada"
+                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                                    </svg>
+                                </div>
+                                <input type="text" class="inputMem phoneNum" id="memberTel" name="memberTel"
+                                    placeholder="전화번호" required>
+                            </div>
+                            <div class="findBtnForm">
+                                <input class="findBtn" type="button" value="아이디 찾기" onclick="findId()">
+                            </div>
+                            <div class="findResult">
+                                <div class="resultFail">
+                                    <p>해당 정보와 일치하는 계정 없습니다.</p>
+                                </div>
+                            </div>
+                            <div class="findFooter">
+                                <p><a href="/member/loginForm">로그인</a></p>
+                                <p><a href="/member/joinForm">회원가입</a></p>
+                            </div>
+                        </div>
+                        <div class="findBlock pw">
+                            <div class="inputBox memberId">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                </div>
+                                <input type="text" class="inputMem id" id="memberId" name="memberId"
+                                    placeholder="아이디">
+                            </div>
+                            <div class="inputBox phoneNum">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#dadada"
+                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                                    </svg>
+                                </div>
+                                <input type="text" class="inputMem tel" id="memberTel" name="memberTel"
+                                    placeholder="전화번호" required>
+                            </div>
+                            <div class="findBtnForm">
+                                <input class="findBtn" type="button" value="인증" onclick="findPw()">
+                            </div>
+                            <div class="findResult pw">
+                                <div class="resultFail pw">
+                                    <p>해당 정보와 일치하는 계정이 없습니다.</p>
+                                </div>
+                            </div>
+                            <div class="findFooter">
+                                <p><a href="/member/loginForm">로그인</a></p>
+                                <p><a href="/member/joinForm">회원가입</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/content/member/find_member.js"></script>
+    </th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+
+</th:block>
+
+</html>

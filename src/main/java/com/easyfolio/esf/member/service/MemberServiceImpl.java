@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
@@ -19,5 +21,17 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int join(MemberVO memberVO){
         return sqlSession.insert("memberMapper.join", memberVO);
+    }
+
+    // 아이디 찾기
+    @Override
+    public List<MemberVO> findId(MemberVO memberVO) {
+        return sqlSession.selectList("memberMapper.findId", memberVO);
+    }
+
+    // 비밀번호 찾기
+    @Override
+    public List<MemberVO> findPw(MemberVO memberVO) {
+        return sqlSession.selectList("memberMapper.findPw", memberVO);
     }
 }
