@@ -126,6 +126,7 @@ textarea {
 }
 /* 공지사항 목록 */
 .csc_annBlock{
+    margin-bottom: 50px;
     border: 1px solid #dadada;
     border-radius: 6px;
     box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
@@ -168,4 +169,25 @@ textarea {
 }
 .qnaGo:hover svg{
     fill: #000;
+}
+.btnForm{
+    width: 200px;
+    margin: 0 auto;
+}
+.btnForm p{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    text-align: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+.btnForm p:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
 }

@@ -116,7 +116,7 @@ textarea {
 }
 .inqBlock{
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 .inqBlock .box{
     width: 800px;
@@ -133,7 +133,7 @@ textarea {
     border-bottom: 0;
 }
 .label{
-    font-size: 18px;
+    font-size: 15px;
     color: #333;
     width: 100px;
     text-align: center;
@@ -150,7 +150,7 @@ select{
     border-radius: 10px;
     outline: 0;
 }
-select:hover{
+select:focus, select:hover{
     border: 1px solid #f3c053;
 }
 .inputBox input{
@@ -187,7 +187,7 @@ select:hover{
     border-radius: 5px;
     background-color: #ffa43b;
     width: 200px;
-    height: 50px;
+    height: 45px;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.5s ease;
@@ -259,5 +259,7 @@ select:hover{
     height: 100%;
 }
 .inputBox.imgLook > .label{
-    padding: 20px 0;
+    height: 140px;
+    box-sizing: border-box;
+    padding: 40px 0;
 }

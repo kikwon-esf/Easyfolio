@@ -1,80 +1,134 @@
 @charset "UTF-8";
 
-.ann a{
-    color: #1db954;
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    display: -webkit-inline-box;
+    position: relative;
+    margin: -10px 0 20px 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+}
+.inqBlock{
+    width: 100%;
+    margin: 30px auto 50px auto;
+}
+.inqBlock .box{
+    width: 800px;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.04);
+    border: 1px solid #dadada;
 }
 .inputBox{
     display: flex;
-    padding: 20px 30px;
     border-bottom: 1px solid #dadada;
 }
 .label{
-    text-align: center;
-    width: 80px;
-    font-size: 20px;
-    margin-right: 30px;
-    color: #888;
-}
-.cateCode:focus{
-    border: 1px solid #1ab752;
-}
-.cateCode{
+    font-size: 15px;
+    color: #333;
     width: 100px;
-    border-radius: 5px;
-
-    outline: none;
-    border: 1px solid #dadada;
+    text-align: center;
+    padding: 20px 0;
+    border-right: 1px solid #dadada;
+}
+.inputBox.annTitle{
+    border-bottom: 0;
+}
+select{
     font-size: 18px;
-    color: #666;
-}
-textarea{
-    font-size: 18px;
-    color: #666;
-    outline: none;
-    border: 0;
-}
-.title{
-    width: 150px;
-    font-size: 22px;
-    font-weight: 700;
-    color: #444;
-    border-bottom: 5px solid #dadada;
-    margin-bottom: 20px;
-}
-.textBlock{
-    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
-    border-radius: 7px;
+    width: 100px;
+    padding: 5px 5px;
+    height: 35px;
+    margin: 16px 10px;
     border: 1px solid #dadada;
+    border-radius: 10px;
+    outline: 0;
 }
-input{
-    outline: none;
+select:focus, select:hover{
+    border: 1px solid #f3c053;
+}
+.inputBox input{
     border: 0;
-    font-size: 20px;
-    color: #666;
+    box-sizing: border-box;
+    outline: 0;
+    width: 690px;
+    padding: 5px 10px;
+    font-size: 17px;
+    color: #333;
 }
-.label.content{
-    padding: 20px 30px;
-}
-.note-placeholder{
-    font-size: 20px;
-}
-.note-editing-area{
-    font-size: 20px;
-    color: #666;
-}
-.input{
-    font-size: 20px;
-    color: #666;
+.btnBox{
+    width: 200px;
+    margin: 0 auto;
 }
 .subBtn{
-    cursor: pointer;
-    margin-bottom: 50px;
-    margin-top: 30px;
-    border: 1px solid #dadada;
+    border: 1px solid #f4f4f4;
     border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
     color: #fff;
-    background-color: #03c75a;
-    width: 400px;
-    height: 50px;
-    margin-left: 298px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+.subBtn:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
 }
