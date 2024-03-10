@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csc_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 작성</title>
+
+    <!-- css영역 -->
+    <th:block layout:fragment="content_css">      
+        <link rel="stylesheet" href="/css/content/csc/insert_ann.css"> 
+    </th:block> 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">  
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <form action="" method="post">
+            <div class="wrap">
+                <div class="w_in">
+                    <div class="title">공지사항 등록</div>
+                    <div class="textBlock">
+                        <div class="inputBox">
+                            <div class="label">제목</div>
+                            <input type="text" name="annTitle">
+                        </div>
+                        <div class="inputBox">
+                            <div class="label">카테고리</div>
+                            <select class="cateCode" name="annCate">
+                                <option value="CATE_001">일반</option>
+                                <option value="CATE_002">오픈소식</option>
+                                <option value="CATE_003">서비스</option>
+                                <option value="CATE_004">당첨자발표</option>
+                                <option value="CATE_005">이벤트</option>
+                            </select>
+                        </div>
+                        <div class="inputBoxContent">
+                            <div class="label content">내용</div>
+                            <textarea id="summernote" name="annContent"></textarea>
+                        </div>
+                    </div>
+                    <input class="subBtn" type="submit" value="작성완료">
+                </div>
+            </div>
+
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js" defer></script>
+    
+            <!-- 썸머노트 적용 -->
+            <script>
+                $(document).ready(function () {
+                    $('#summernote').summernote({
+                        placeholder: '내용을 작성해주세요.',
+                        tabsize: 2,
+                        height: 500,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'underline', 'clear']],
+                            ['fontname', ['fontname']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']]
+                        ],
+                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체'],
+                        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72']
+                    });
+                });
+            </script>
+        
+        </form>
+        <script src="/js/content/csc/insert_ann.js"></script>
+    </th:block>
+    <th:block layout:fragment="content_js">
+
+    </th:block>
+</body>
+
+</html>

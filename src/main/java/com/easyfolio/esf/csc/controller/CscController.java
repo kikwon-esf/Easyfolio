@@ -27,8 +27,6 @@ public class CscController {
         return "content/csc/csc_ann";
     }
 
-
-
     @GetMapping("/inqForm")
     public String inqForm(){
 
@@ -45,6 +43,12 @@ public class CscController {
     public String qnaForm(){
 
         return "content/csc/csc_qna";
+    }
+
+    @GetMapping("/insertAnnForm")
+    public String insertAnnForm(){
+
+        return "content/csc/insert_ann";
     }
 
 
