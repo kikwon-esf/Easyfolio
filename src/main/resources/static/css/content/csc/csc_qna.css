@@ -113,6 +113,7 @@ textarea {
     box-sizing: border-box;
 }
 .qnaInner{
+    cursor: pointer;
     border-bottom: 1px solid #dadada;
 }
 .qnaInner:last-child{

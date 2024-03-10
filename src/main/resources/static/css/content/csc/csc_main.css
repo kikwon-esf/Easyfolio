@@ -299,7 +299,7 @@ textarea {
 .qnaGoIcon{
     margin : 2px 0 0 3px;
 }
-.qnaGo::before{
+/* .qnaGo::before{
     position: absolute;
     bottom: -7px;
     content: "";
@@ -310,10 +310,10 @@ textarea {
 }
 .qnaBox:hover .qnaGo::before{
     background-color: #333;
-}
+} */
 .qnaBox:hover .qnaGo p{
-    color: #333;
+    color: #000;
 }
 .qnaBox:hover .qnaGoIcon svg{
-    fill: #333;
+    fill: #000;
 }

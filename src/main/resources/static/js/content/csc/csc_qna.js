@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var qnaArrows = document.querySelectorAll('.qnaArrow');
-    var qnaArrowArray = Array.from(qnaArrows);
+    var qnaInners = document.querySelectorAll('.qnaInner');
+    var qnaInnerArray = Array.from(qnaInners);
 
-    qnaArrowArray.forEach(function (arrow) {
-        arrow.addEventListener('click', function () {
-            $(arrow).closest('.qnaInner').find('.ansBox').slideToggle();
-            $(arrow).closest('.qnaInner').find('.qnaBox').toggleClass('on');
-            $(arrow).toggleClass('rotate');
+    qnaInnerArray.forEach(function (qnaInner) {
+        qnaInner.addEventListener('click', function () {
+            $(qnaInner).find('.ansBox').slideToggle();
+            $(qnaInner).find('.qnaBox').toggleClass('on');
+            $(qnaInner).find('.qnaArrow').toggleClass('rotate');
         });
     });
-});var annSearch = document.querySelector('.annSearch');
+});
+var annSearch = document.querySelector('.annSearch');
 var annSearchBlock = document.querySelector('.annSearchBlock');
 
 annSearch.addEventListener("click", function () {
