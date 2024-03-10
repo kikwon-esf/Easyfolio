@@ -172,6 +172,7 @@ textarea {
     display: flex;
 }
 .csc_annPlus1{
+    color: #333;
     margin-right: 2px;
 }
 .csc_annPlus2{
@@ -214,7 +215,8 @@ textarea {
     width: 80px;
 }
 .annTitle{
-    margin-top: 1px;
+    width: 640px;
+    margin: 1 10px 0 0;
     font-size: 13px;
     color: #666;
 }
@@ -222,7 +224,13 @@ textarea {
     color: #f29221;
 }
 .csc_annBox:hover .annTitle{
-    color: #333;
+    color: #000;
+}
+.annDate{
+    color: #666;
+}
+.csc_annBox:hover .annDate{
+    color: #000;
 }
 /* 자주 찾는 질문 */
 .qnaBlock{

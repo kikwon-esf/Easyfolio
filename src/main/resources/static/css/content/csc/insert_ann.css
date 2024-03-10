@@ -99,7 +99,7 @@ select{
     height: 35px;
     margin: 16px 10px;
     border: 1px solid #dadada;
-    border-radius: 10px;
+    border-radius: 6px;
     outline: 0;
 }
 select:focus, select:hover{
