@@ -48,6 +48,37 @@
         OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
     </select>
 
+    <!--  공지 사항 세부 조회  -->
+    <select id="annDetail" resultMap="announcement">
+        SELECT ANN_NUM
+            , CATE_CODE
+            , CATE_NAME
+            , ANN_WRITER
+            , ANN_TITLE
+            , ANN_CONTENT
+            , TO_CHAR(ANN_DATE, 'YYYY-MM-DD') AS ANN_DATE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        AND ANN_NUM = #{annNum}
+    </select>
+
+    <!--  공지 사항 작성  -->
+    <insert id="insertAnn">
+        INSERT INTO ANNOUNCEMENT (
+        ANN_NUM
+        , ANN_CATE
+        , ANN_TITLE
+        , ANN_CONTENT
+        )
+        VALUES (
+        (SELECT 'ANN_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ANN_NUM, 5))),0) + 1, 3, '0')
+        FROM ANNOUNCEMENT)
+        , #{annCate}
+        , #{annTitle}
+        , #{annContent}
+        )
+    </insert>
+
 
 
 </mapper>

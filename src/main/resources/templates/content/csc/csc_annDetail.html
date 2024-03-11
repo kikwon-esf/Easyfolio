@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{fragment/csc_layout}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+
+</th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div>
+        <div>
+            [[${annDetail.annCateList.cateName}]]
+            [[${annDetail.annTitle}]]
+            [[${annDetail.annDate}]]
+        </div>
+        <div th:utext="${annDetail.annContent}">
+            내용출력
+        </div>
+    </div>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+
+</th:block>
+</html>

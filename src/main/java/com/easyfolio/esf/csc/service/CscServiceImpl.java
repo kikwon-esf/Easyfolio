@@ -23,4 +23,14 @@ public class CscServiceImpl implements CscService{
     public List<AnnVO> mainAnnList() {
         return sqlSession.selectList("cscMapper.mainAnnList");
     }
+
+    @Override
+    public AnnVO annDetail(AnnVO annVO) {
+        return sqlSession.selectOne("cscMapper.annDetail", annVO);
+    }
+
+    @Override
+    public int insertAnn(AnnVO annVO) {
+        return sqlSession.insert("cscMapper.insertAnn", annVO);
+    }
 }
