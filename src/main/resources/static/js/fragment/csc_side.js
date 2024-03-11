@@ -8,5 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentPage.startsWith(link)) {
             element.classList.add('active-sideForm'); 
         }
+
+        if (currentPage === '/csc/insertAnnForm' && link === '/csc/annForm') {
+            element.classList.add('active-sideForm'); 
+        }
     });
 });

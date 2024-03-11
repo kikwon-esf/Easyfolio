@@ -141,13 +141,13 @@ textarea {
     border-right: 1px solid #dadada;
 }
 select{
-    font-size: 18px;
+    font-size: 15px;
     width: 100px;
     padding: 5px 5px;
-    height: 35px;
+    height: 30px;
     margin: 16px 10px;
     border: 1px solid #dadada;
-    border-radius: 10px;
+    border-radius: 6px;
     outline: 0;
 }
 select:focus, select:hover{

@@ -157,18 +157,25 @@ textarea {
     width: 80px;
 }
 .annTitle{
-    margin-top: 1px;
+    width: 640px;
+    margin: 1 10px 0 0;
     font-size: 13px;
+    color: #666;
+}
+.annDate{
     color: #666;
 }
 .csc_annBox:hover .annTypeBox p{
     color: #f29221;
 }
 .csc_annBox:hover .annTitle{
-    color: #333;
+    color: #000;
 }
 .qnaGo:hover svg{
     fill: #000;
+}
+.csc_annBox:hover .annDate{
+    color: #000;
 }
 .btnForm{
     width: 200px;
