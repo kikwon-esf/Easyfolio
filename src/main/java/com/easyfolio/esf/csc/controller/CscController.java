@@ -24,7 +24,7 @@ public class CscController {
     @RequestMapping("/annForm")
     public String annForm(Model model){
         model.addAttribute("annList", cscService.annList());
-        return "content/csc/csc_ann";
+        return "content/csc/csc_annList";
     }
 
     @GetMapping("/inqForm")
