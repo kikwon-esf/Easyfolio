@@ -151,6 +151,7 @@ textarea{
     z-index: 500;
     display: none;
     position: absolute;
+    left: -30px;
     background-color: #fff;
     box-shadow: -1px 1px 8px 0px rgba(68,68,68,.3);
     border-radius: 5px;
@@ -177,4 +178,36 @@ textarea{
 }
 .mymenubox:last-child p{
     margin-bottom: 0;
+}
+/* 팝업 */
+.popupInner{
+    width: 100%;
+}
+.popupTitle{
+    margin-bottom: 20px;
+}
+.popupTitle p{
+    font-size: 17px;
+    font-weight: 700;
+}
+.popupBlock{
+    margin-bottom: 20px;
+}
+.popupBoxTitle{
+    position: relative;
+}
+.popupBoxTitle p{
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+}
+.popupBoxTitle::before{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    top: 11px;
+    height: 2px;
+    background-color: #dadada;
 }
