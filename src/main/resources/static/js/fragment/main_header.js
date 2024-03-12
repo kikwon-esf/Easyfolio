@@ -65,3 +65,20 @@ document.addEventListener("mouseover", function (event) {
         }
     });
 })
+
+//로그아웃
+const logout = document.getElementById("logout");
+logout.addEventListener("click",(e)=>{
+    e.preventDefault();
+    url = "/logout"
+    data = {
+//        "_csrf" : [[${_csrf}]]
+    }
+    fetch(url,data)
+    .then((resp)=>{console.log(resp)
+        resp.text;
+    }).then((data)=>{
+        console.log(data);
+        alert("로그아웃이 완료되었습니다!")
+    })
+})
