@@ -55,19 +55,21 @@
                         </div>
                     </div>
                     <div class="csc_annBlock">
-                        <div class="csc_annBox" th:each="ann, state : ${annList}">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">[[${ann.annCateList.cateName}]]</p>
-                                <p class="slash">]</p>
+                        <a th:href="@{/csc/annDetailForm(annNum=${ann.annNum})}" th:each="ann, state : ${annList}">
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">[[${ann.annCateList.cateName}]]</p>
+                                    <p class="slash">]</p>
+                                </div>
+                                <p class="annTitle">
+                                    [[${ann.annTitle}]]
+                                </p>
+                                <div class="annDateBox">
+                                    <p class="annDate">[[${ann.annDate}]]</p>
+                                </div>
                             </div>
-                            <p class="annTitle">
-                                [[${ann.annTitle}]]
-                            </p>
-                            <div class="annDateBox">
-                                <p class="annDate">[[${ann.annDate}]]</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="csc_qna">
