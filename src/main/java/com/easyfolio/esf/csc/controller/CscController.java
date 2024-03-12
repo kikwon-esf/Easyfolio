@@ -44,7 +44,7 @@ public class CscController {
     @GetMapping("/insertAnnForm")
     public String insertAnnForm(){
 
-        return "content/csc/insert_ann";
+        return "content/csc/csc_insertAnn";
     }
     
     // 공지 사항 작성 후 목록 이동
@@ -52,6 +52,13 @@ public class CscController {
     public String insertAnn(AnnVO annVO){
         cscService.insertAnn(annVO);
         return "redirect:/csc/annForm";
+    }
+
+    // 공지 사항 수정 페이지
+    @GetMapping("/updateAnn")
+    public String updateAnn(){
+
+        return "content/csc/update_ann";
     }
 
 
