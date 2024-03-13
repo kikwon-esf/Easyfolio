@@ -103,17 +103,17 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                                     </svg>
                                 </div>
                                 <div class="popup login">
-                                    <a sec:authorize="isAnonymous()" class="mymenubox login" href="/member/loginForm">
-                                        <p sec:authorize="isAnonymous()">로그인</p>
+                                    <a th:if="${!isAuthenticated}"  class="mymenubox login" href="/member/loginForm">
+                                        <p>로그인</p>
                                     </a>
-                                    <a sec:authorize="isAuthenticated()" class="mymenubox login" href="/logout">
-                                        <p id="logout" sec:authorize="isAuthenticated()">로그아웃</p>
+                                     <a th:if="${isAuthenticated}" class="mymenubox login" href="/logout">
+                                        <p id="logout">로그아웃</p>
+                                     </a>
+                                    <a th:if="${!isAuthenticated}" class="mymenubox join" href="/member/joinForm">
+                                        <p>회원가입</p>
                                     </a>
-                                    <a sec:authorize="isAnonymous()" class="mymenubox join" href="/member/joinForm">
-                                        <p sec:authorize="isAnonymous()" >회원가입</p>
-                                    </a>
-                                    <a sec:authorize="isAuthenticated()" class="mymenubox join" href="/member/joinForm">
-                                        <p sec:authorize="isAuthenticated()">개인 페이지</p>
+                                    <a th:if="${isAuthenticated}" class="mymenubox join" href="/member/joinForm">
+                                        <p>마이페이지</p>
                                     </a>
                                 </div>
 
