@@ -137,7 +137,7 @@ textarea {
     display: flex;
     border-bottom: 1px solid #dadada;
 }
-.csc_annBox:last-child{
+.csc_annLink:last-child .csc_annBox {
     border: 0;
 }
 .annTypeBox{

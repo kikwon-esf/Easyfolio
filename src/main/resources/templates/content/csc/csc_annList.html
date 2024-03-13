@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="csc_annBlock">
-                            <a th:href="@{/csc/annDetailForm(annNum=${ann.annNum})}" th:each="ann, state : ${annList}">
+                            <a th:href="@{/csc/annDetailForm(annNum=${ann.annNum})}" th:each="ann, state : ${annList}" class="csc_annLink">
                                 <div class="csc_annBox">
                                     <div class="annTypeBox">
                                         <p class="slash">[</p>
