@@ -65,3 +65,14 @@ document.addEventListener("mouseover", function (event) {
         }
     });
 })
+
+//로그아웃
+const logout = document.getElementById("logout");
+logout.addEventListener("click",(e)=>{
+    let active = confirm("로그아웃을 하시겠습니까?");
+    if(!active){
+        e.preventDefault();
+    }
+    
+    //dd
+})

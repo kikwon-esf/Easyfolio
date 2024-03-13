@@ -26,11 +26,11 @@
         , #{memberGender}
         )
     </insert>
-
+<!--로그인-->
     <select id="login" resultMap="member">
         SELECT MEMBER_ID
         , MEMBER_PW
-        , MEMBER_ROLL
+        , MEMBER_ROLE
         FROM DISH_MEMBER
         WHERE MEMBER_ID = #{memberId}
 
