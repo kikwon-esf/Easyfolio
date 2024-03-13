@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 <head>
     <meta charset="UTF-8">
@@ -101,13 +103,20 @@
                                     </svg>
                                 </div>
                                 <div class="popup login">
-                                    <a class="mymenubox login" href="/member/loginForm">
-                                        <p>로그인</p>
+                                    <a sec:authorize="isAnonymous()" class="mymenubox login" href="/member/loginForm">
+                                        <p sec:authorize="isAnonymous()">로그인</p>
                                     </a>
-                                    <a class="mymenubox join" href="/member/joinForm">
-                                        <p>회원가입</p>
+                                    <a sec:authorize="isAuthenticated()" class="mymenubox login" href="/logout">
+                                        <p id="logout" sec:authorize="isAuthenticated()">로그아웃</p>
+                                    </a>
+                                    <a sec:authorize="isAnonymous()" class="mymenubox join" href="/member/joinForm">
+                                        <p sec:authorize="isAnonymous()" >회원가입</p>
+                                    </a>
+                                    <a sec:authorize="isAuthenticated()" class="mymenubox join" href="/member/joinForm">
+                                        <p sec:authorize="isAuthenticated()">개인 페이지</p>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>

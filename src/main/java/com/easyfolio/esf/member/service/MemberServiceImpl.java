@@ -3,6 +3,7 @@ package com.easyfolio.esf.member.service;
 import com.easyfolio.esf.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     private final SqlSessionTemplate sqlSession;
+    private final PasswordEncoder passwordEncoder;
     // 아이디 중복 체크
     @Override
     public boolean checkId(String memberId) {
@@ -34,4 +36,11 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberVO> findPw(MemberVO memberVO) {
         return sqlSession.selectList("memberMapper.findPw", memberVO);
     }
+
+    @Override
+    public MemberVO findMemberById(String memberId) {
+        return sqlSession.selectOne("memberMapper.login",memberId);
+    }
+
+
 }
