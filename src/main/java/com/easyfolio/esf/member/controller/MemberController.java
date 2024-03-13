@@ -90,11 +90,5 @@ public class MemberController {
         return members;
     }
 
-    //로그아웃 성공
-    @GetMapping(value = "/logout/success")
-    public @ResponseBody ResponseEntity<String> logoutSuccess() throws UnsupportedEncodingException {
-
-        return new ResponseEntity<>("로그인이 완료되었습니다.", HttpStatus.OK) ;
-    }
 
 }
