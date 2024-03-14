@@ -19,7 +19,6 @@ public class CscController {
     @GetMapping("/cscForm")
     public String cscForm(Model model){
         model.addAttribute("annList", cscService.mainAnnList());
-
         return "content/csc/csc_main";
     }
     
