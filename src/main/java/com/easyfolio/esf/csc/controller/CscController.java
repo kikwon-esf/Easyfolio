@@ -61,6 +61,8 @@ public class CscController {
         return "content/csc/update_ann";
     }
 
+    // 공지 사항 수정 후 목록 상세 페이지 이동
+
 
 
     @GetMapping("/inqForm")

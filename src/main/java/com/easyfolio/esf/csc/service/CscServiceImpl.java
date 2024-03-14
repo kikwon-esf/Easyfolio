@@ -33,4 +33,14 @@ public class CscServiceImpl implements CscService{
     public int insertAnn(AnnVO annVO) {
         return sqlSession.insert("cscMapper.insertAnn", annVO);
     }
+
+    @Override
+    public int updateAnn(AnnVO annVO) {
+        return sqlSession.update("cscMapper.updateAnn", annVO);
+    }
+
+    @Override
+    public int deleteAnn(AnnVO annVO) {
+        return sqlSession.delete("cscMapper.deleteAnn", annVO);
+    }
 }

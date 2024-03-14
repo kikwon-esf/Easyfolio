@@ -15,4 +15,8 @@ public interface CscService {
 
     public int insertAnn(AnnVO annVO);
 
+    public int updateAnn(AnnVO annVO);
+
+    public int deleteAnn(AnnVO annVO);
+
 }
