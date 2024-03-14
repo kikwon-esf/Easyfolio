@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    display: -webkit-inline-box;
+    position: relative;
+    margin: -10px 0 20px 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+}
+.annHeader1{
+    display: flex;
+}
+.annCate{
+    margin-right: 20px;
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+}
+.cateText{
+    font-size: 15px;
+    color: #f29221;
+}
+.annTitle{
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+}
