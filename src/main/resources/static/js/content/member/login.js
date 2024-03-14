@@ -19,3 +19,11 @@ document.addEventListener("click", function (event) {
     }
 
 });
+
+// window.addEventListener('DOMContentLoaded', ()=>{
+//     var loginError = document.getElementById('loginError').textContent;
+//     if(loginError != null && loginError !== ''){
+//         alert('아이디와 비밀번호를 확인 해주세요.');
+//         return;
+//     }
+// });

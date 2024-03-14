@@ -2,7 +2,6 @@ package com.easyfolio.esf.csc.controller;
 
 import com.easyfolio.esf.csc.service.CscService;
 import com.easyfolio.esf.csc.vo.AnnVO;
-import com.easyfolio.esf.search.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +19,7 @@ public class CscController {
     @GetMapping("/cscForm")
     public String cscForm(Model model){
         model.addAttribute("annList", cscService.mainAnnList());
+
         return "content/csc/csc_main";
     }
     

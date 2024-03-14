@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 <head>
     <meta charset="UTF-8">
@@ -101,13 +103,20 @@
                                     </svg>
                                 </div>
                                 <div class="popup login">
-                                    <a class="mymenubox login" href="/member/loginForm">
+                                    <a th:if="${!isAuthenticated}"  class="mymenubox login" href="/member/loginForm">
                                         <p>로그인</p>
                                     </a>
-                                    <a class="mymenubox join" href="/member/joinForm">
+                                     <a th:if="${isAuthenticated}" class="mymenubox login" href="/logout">
+                                        <p id="logout">로그아웃</p>
+                                     </a>
+                                    <a th:if="${!isAuthenticated}" class="mymenubox join" href="/member/joinForm">
                                         <p>회원가입</p>
                                     </a>
+                                    <a th:if="${isAuthenticated}" class="mymenubox join" href="/member/joinForm">
+                                        <p>마이페이지</p>
+                                    </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>

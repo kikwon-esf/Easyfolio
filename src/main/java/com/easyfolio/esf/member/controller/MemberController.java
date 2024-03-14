@@ -3,11 +3,20 @@ package com.easyfolio.esf.member.controller;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +27,21 @@ public class MemberController {
     @Resource
     private final MemberService memberService;
 
-    @GetMapping("/loginForm")
-    public String loginForm(){
+    private final PasswordEncoder passwordEncoder;
 
+    //로그인 페이지 이동
+    @GetMapping("/loginForm")
+    public String loginForm(Principal principal){
+        if(principal != null && principal.getName() !=null){
+            return "redirect:/";
+        }
+        return "content/member/login";
+    }
+
+    //로그인 에러
+    @GetMapping("/loginForm/error")
+    public String loginForm(Model model){
+        model.addAttribute("loginError","아이디와 비밀번호를 확인해주세요.");
         return "content/member/login";
     }
     @GetMapping("/joinForm")
@@ -44,6 +65,7 @@ public class MemberController {
     // 회원가입
     @PostMapping("/joinMember")
     public String joinMember(MemberVO memberVo){
+        memberVo.setMemberPw(passwordEncoder.encode(memberVo.getMemberPw()));
         memberService.join(memberVo);
         return "redirect:/member/loginForm";
     }
@@ -67,5 +89,6 @@ public class MemberController {
         System.out.println(members);
         return members;
     }
+
 
 }
