@@ -16,6 +16,7 @@ public class CscController {
 
     private final CscService cscService;
 
+    // 고객 센터 메인 페이지
     @GetMapping("/cscForm")
     public String cscForm(Model model){
         model.addAttribute("annList", cscService.mainAnnList());
@@ -54,14 +55,25 @@ public class CscController {
     }
 
     // 공지 사항 수정 페이지
-    @GetMapping("/updateAnn")
-    public String updateAnn(){
+    @GetMapping("/updateAnnForm")
+    public String updateAnnForm(){
 
         return "content/csc/update_ann";
     }
 
     // 공지 사항 수정 후 목록 상세 페이지 이동
+    @PostMapping("/updateAnn")
+    public String updateAnn(AnnVO annVO){
+        cscService.updateAnn(annVO);
+        return "redirect:/csc/annForm?annNum=\" + annVO.getAnnNum();";
+    }
 
+    // 공지 사항 삭제
+    @GetMapping("/deleteAnn")
+    public String deleteAnn(AnnVO annVO){
+        cscService.deleteAnn(annVO);
+        return "redirect:/csc/annForm";
+    }
 
 
     @GetMapping("/inqForm")
