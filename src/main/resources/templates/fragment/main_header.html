@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
 >
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title></title>-->
 
-</head>
+<!--</head>-->
 
 <body>
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/fragment/main_header.css">
-        <div id="wrap">
+        <div id="wrap" >
             <div class="h_inner">
                 <div class="headtop">
                     <div class="tap">
@@ -21,7 +22,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                             <path fill-rule="evenodd"
                                 d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                         </svg>
-                        <div class="popupTap">
+                        <div  class="popupTap">
                             <div class="popupInner">
                                 <div class="popupTitle">
                                     <p>전체메뉴</p>
@@ -51,7 +52,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                             </a>
                         </div>
                     </div>
-                    <div class="searchblock">
+                    <div sec:authorize="isAuthenticated()" class="searchblock">
                         <div class="searchbox">
                             <input type="text" class="searchText" value="원하는 모든 레시피">
                         </div>
@@ -113,7 +114,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                                         <p sec:authorize="isAnonymous()" >회원가입</p>
                                     </a>
                                     <a sec:authorize="isAuthenticated()" class="mymenubox join" href="/member/joinForm">
-                                        <p sec:authorize="isAuthenticated()">개인 페이지</p>
+                                        <p sec:authorize="isAuthenticated()">마이페이지</p>
                                     </a>
                                 </div>
 

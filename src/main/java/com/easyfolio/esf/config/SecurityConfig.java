@@ -29,19 +29,24 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
 
         http.csrf(csrf-> csrf.disable()) // 임시 csrf설정 -- > 끔
-
         .formLogin(formLogin->formLogin
                 .loginPage("/member/login")
                 .usernameParameter("memberId")
                 .passwordParameter("memberPw")
                 .successHandler(successHandler)
                 .failureHandler(failureHandler)
-
         ).logout(Customizer ->{
             Customizer.logoutUrl("/logout")
                     .logoutSuccessUrl("/")
                     .logoutSuccessHandler(logoutSuccessHandler);
                 });
+        http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
+                .requestMatchers("/css/**","/js/**", "/img/**").permitAll()
+                        .requestMatchers("/","/**","/members/**","/item/**","/images/**", "/extras/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                );
+
 
         return http.build();
     }
