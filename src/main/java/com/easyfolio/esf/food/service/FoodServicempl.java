@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class FoodServicempl {
+public class FoodServicempl implements FoodService{
     private final SqlSessionTemplate sqlSession;
 
     // 음식 전체 목록 조회
@@ -29,6 +29,41 @@ public class FoodServicempl {
     // 음식 타입 조회
     public List<FoodVO> foodTypeList(FoodVO foodVO) {
         return sqlSession.selectList("foodMapper.foodTypeList", foodVO);
+    }
+
+    @Override
+    public List<FoodVO> foodMTRLList(FoodVO foodVO) {
+        return null;
+    }
+
+    @Override
+    public List<FoodVO> foodKindList(FoodVO foodVO) {
+        return null;
+    }
+
+    @Override
+    public List<FoodVO> foodServeList(FoodVO foodVO) {
+        return null;
+    }
+
+    @Override
+    public List<FoodVO> foodDifficultList(FoodVO foodVO) {
+        return null;
+    }
+
+    @Override
+    public List<FoodVO> foodTimeList(FoodVO foodVO) {
+        return null;
+    }
+
+    @Override
+    public List<FoodVO> foodREGDTList(FoodVO foodVO) {
+        return null;
+    }
+
+    @Override
+    public List<FoodVO> foodUsageList(FoodVO foodVO) {
+        return null;
     }
 
     // 음식 등록
