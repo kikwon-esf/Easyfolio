@@ -7,10 +7,10 @@
     <title>공지사항 작성</title>
 
     <!-- css영역 -->
-    <th:block layout:fragment="content_css">      
-        <link rel="stylesheet" href="/css/content/csc/csc_insertAnn.css"> 
-    </th:block> 
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">  
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/content/csc/csc_insertAnn.css">
+    </th:block>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,6 +30,7 @@
                                     <option value="CATE_000">선택</option>
                                     <option value="CATE_001">이벤트</option>
                                     <option value="CATE_002">서비스</option>
+                                    <option value="CATE_002">당첨자 발표</option>
                                     <option value="CATE_004">점검</option>
                                 </select>
                             </div>
@@ -42,7 +43,9 @@
                             </div>
                         </div>
                     </div>
-                    <input class="subBtn" type="submit" value="작성완료">
+                    <div class="btnBox">
+                        <input class="subBtn" type="submit" value="작성완료">
+                    </div>
                 </div>
             </div>
 
@@ -51,7 +54,7 @@
                 integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
                 crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js" defer></script>
-    
+
             <!-- 썸머노트 적용 -->
             <script>
                 $(document).ready(function () {
@@ -75,7 +78,7 @@
                     });
                 });
             </script>
-        
+
         </form>
         <script src="/js/content/csc/csc_insertAnn.js"></script>
     </th:block>
