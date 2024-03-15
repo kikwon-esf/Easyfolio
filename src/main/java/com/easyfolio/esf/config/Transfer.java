@@ -21,12 +21,24 @@ public class Transfer {
         return list;
     }
     // ,이 있는 문자열을 리스트로 반환
-    static public <T>List<T> asList(String str){
-        List<T> list = new ArrayList<>();
+    static public List<String> asList(String str){
+        List<String> list = new ArrayList<>();
         while(str.contains(",")){
-
+            int index = str.indexOf(',');
+            list.add(0,str.substring(index));
+            str = str.substring(index+1);
         }
-
+        list.add(str);
+        return list;
+    }
+    //,이 있는 문자열을 리스트에 추가
+    static public List<String> asList(List<String> list, String str){
+        while(str.contains(",")){
+            int index = str.indexOf(',');
+            list.add(0,str.substring(index));
+            str = str.substring(index+1);
+        }
+        list.add(str);
         return list;
     }
 
