@@ -28,16 +28,25 @@
                     </p>
                     <p class="annTitle">[[${annDetail.annTitle}]]</p>
                 </div>
-                <p class="annWriter">관리자</p>
-                <p class="annDate">[[${annDetail.annDate}]]</p>
+                <div class="annHeader2">
+                    <p class="annDate">
+                        <span>작성일 : </span>
+                        <span>[[${annDetail.annDate}]]</span>
+                    </p>
+                    <p class="annWriter">
+                        <span>작성자 : </span>
+                        <span>관리자</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="annContent">
+                <p th:utext="${annDetail.annContent}"></p>
             </div>
         </div>
-        <div class="annContent">
-            <p th:utext="${annDetail.annContent}"></p>
-        </div>
-        <div class="btn">
-            <a th:href="@{/csc/deleteAnn(annNum=${annDetail.annNum})}"><p>삭제하기</p></a>
-            <a th:href="@{/csc/updateAnnForm(annNum=${annDetail.annNum})}"><p>수정하기</p></a>
+        <div class="btnBlock">
+            <a th:href="@{/csc/updateAnnForm(annNum=${annDetail.annNum})}" class="btn"><p>수정하기</p></a>
+            <a th:href="@{/csc/deleteAnn(annNum=${annDetail.annNum})}" class="btn"><p>삭제하기</p></a>
         </div>
     </div>
 </th:block>
