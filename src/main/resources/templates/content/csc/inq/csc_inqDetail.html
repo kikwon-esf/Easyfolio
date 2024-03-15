@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{fragment/csc_layout}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+
+</th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <link rel="stylesheet" href="/css/content/csc/ann/csc_inqDetail.css">
+    <div class="csc_wrap">
+        <div class="csc_title">
+            <p class="csc_title1">공지사항</p>
+            <p class="csc_title2">NOTICE</p>
+        </div>
+        <div class="csc_inner">
+            <div class="annDetailHeader">
+                <div class="annHeader1">
+                    <p class="annCate">
+                        <span class="cateText">[</span>
+                        <span class="cateText">ddd</span>
+                        <span class="cateText">]</span>
+                    </p>
+                    <p class="annTitle">ddd</p>
+                </div>
+                <div class="annHeader2">
+                    <p class="annDate">
+                        <span>작성일 : </span>
+                        <span>ddd</span>
+                    </p>
+                    <p class="annWriter">
+                        <span>작성자 : </span>
+                        <span>관리자</span>
+                    </p>
+                </div>
+            </div>
+            <!-- <div class="annContent">
+                <p th:utext="${annDetail.annContent}"></p>
+            </div>
+        </div>
+        <div class="btnBlock">
+            <a th:href="@{/csc/updateAnnForm(annNum=${annDetail.annNum})}" class="btn"><p>수정하기</p></a>
+            <a th:href="@{/csc/deleteAnn(annNum=${annDetail.annNum})}" class="btn"><p>삭제하기</p></a>
+        </div> -->
+    </div>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/csc/ann/csc_inqDetail.js"></script>
+</th:block>
+</html>
