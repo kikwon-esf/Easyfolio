@@ -55,9 +55,9 @@ public class CscController {
 
     // 공지 사항 수정 페이지
     @GetMapping("/updateAnnForm")
-    public String updateAnnForm(){
-
-        return "content/csc/update_ann";
+    public String updateAnnForm(Model model, AnnVO annVO){
+        model.addAttribute("annDetail", cscService.annDetail(annVO));
+        return "content/csc/csc_updateAnn";
     }
 
     // 공지 사항 수정 후 목록 상세 페이지 이동
@@ -71,7 +71,6 @@ public class CscController {
     @GetMapping("/deleteAnn")
     public String deleteAnn(AnnVO annVO){
         cscService.deleteAnn(annVO);
-        System.out.println(cscService.deleteAnn(annVO));
         return "redirect:/csc/annForm";
     }
 
