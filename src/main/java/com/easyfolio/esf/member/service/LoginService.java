@@ -17,10 +17,7 @@ public class LoginService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username){
-        System.err.println(username);
         MemberVO memberVO = memberService.findMemberById(username);
-        System.err.println(memberVO);
-
         if(memberVO == null){
             throw new UsernameNotFoundException(username);
         }
