@@ -33,8 +33,8 @@
             <p th:utext="${annDetail.annContent}"></p>
         </div>
         <div class="btn">
-            <a href="/csc/deleteAnn"><p>삭제하기</p></a>
-            <a href="/csc/updateann"><p>수정하기</p></a>
+            <a th:href="@{/csc/deleteAnn(annNum=${annDetail.annNum})}"><p>삭제하기</p></a>
+            <a th:href="@{/csc/updateann(annNum=${annDetail.annNum})}"><p>수정하기</p></a>
         </div>
     </div>
 </th:block>
