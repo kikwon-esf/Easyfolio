@@ -12,14 +12,32 @@
 </head>
 <body>
 <th:block layout:fragment="content">
-    <div>
-        <div>
-            [[${annDetail.annCateList.cateName}]]
-            [[${annDetail.annTitle}]]
-            [[${annDetail.annDate}]]
+    <link rel="stylesheet" href="/css/content/csc/csc_annDetail.css">
+    <div class="csc_wrap">
+        <div class="csc_title">
+            <p class="csc_title1">공지사항</p>
+            <p class="csc_title2">NOTICE</p>
         </div>
-        <div th:utext="${annDetail.annContent}">
-            내용출력
+        <div class="csc_inner">
+            <div class="annDetailHeader">
+                <div class="annHeader1">
+                    <p class="annCate">
+                        <span class="cateText">[</span>
+                        <span class="cateText">[[${annDetail.annCateList.cateName}]]</span>
+                        <span class="cateText">]</span>
+                    </p>
+                    <p class="annTitle">[[${annDetail.annTitle}]]</p>
+                </div>
+                <p class="annWriter">관리자</p>
+                <p class="annDate">[[${annDetail.annDate}]]</p>
+            </div>
+        </div>
+        <div class="annContent">
+            <p th:utext="${annDetail.annContent}"></p>
+        </div>
+        <div class="btn">
+            <a th:href="@{/csc/deleteAnn(annNum=${annDetail.annNum})}"><p>삭제하기</p></a>
+            <a th:href="@{/csc/updateann(annNum=${annDetail.annNum})}"><p>수정하기</p></a>
         </div>
     </div>
 </th:block>

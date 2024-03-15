@@ -2,7 +2,6 @@ package com.easyfolio.esf.csc.controller;
 
 import com.easyfolio.esf.csc.service.CscService;
 import com.easyfolio.esf.csc.vo.AnnVO;
-import com.easyfolio.esf.search.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +16,7 @@ public class CscController {
 
     private final CscService cscService;
 
+    // 고객 센터 메인 페이지
     @GetMapping("/cscForm")
     public String cscForm(Model model){
         model.addAttribute("annList", cscService.mainAnnList());
@@ -36,7 +36,6 @@ public class CscController {
     @GetMapping("/annDetailForm")
     public String annDetailForm(Model model, AnnVO annVO){
         model.addAttribute("annDetail", cscService.annDetail(annVO));
-        System.out.println(cscService.annDetail(annVO));
         return "content/csc/csc_annDetail";
     }
 
@@ -55,13 +54,26 @@ public class CscController {
     }
 
     // 공지 사항 수정 페이지
-    @GetMapping("/updateAnn")
-    public String updateAnn(){
+    @GetMapping("/updateAnnForm")
+    public String updateAnnForm(){
 
         return "content/csc/update_ann";
     }
 
+    // 공지 사항 수정 후 목록 상세 페이지 이동
+    @PostMapping("/updateAnn")
+    public String updateAnn(AnnVO annVO){
+        cscService.updateAnn(annVO);
+        return "redirect:/csc/annForm?annNum=\" + annVO.getAnnNum();";
+    }
 
+    // 공지 사항 삭제
+    @GetMapping("/deleteAnn")
+    public String deleteAnn(AnnVO annVO){
+        cscService.deleteAnn(annVO);
+        System.out.println(cscService.deleteAnn(annVO));
+        return "redirect:/csc/annForm";
+    }
 
     @GetMapping("/inqForm")
     public String inqForm(){
