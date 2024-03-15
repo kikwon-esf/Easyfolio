@@ -13,6 +13,7 @@
 <body>
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/fragment/main_header.css">
+        <h1 sec:authorize="isAuthenticated()" th:text="${#authentication.name}"></h1>
         <div id="wrap" >
             <div class="h_inner">
                 <div class="headtop">
@@ -52,7 +53,7 @@
                             </a>
                         </div>
                     </div>
-                    <div sec:authorize="isAuthenticated()" class="searchblock">
+                    <div class="searchblock">
                         <div class="searchbox">
                             <input type="text" class="searchText" value="원하는 모든 레시피">
                         </div>
