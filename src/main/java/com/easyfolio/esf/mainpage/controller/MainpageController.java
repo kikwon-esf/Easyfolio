@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainpageController {
     @GetMapping("/main")
     public String mainpage(HttpServletRequest request){
-        System.err.println("session : " + request.getSession().getAttribute("UserName"));
         return "content/indexpage/mainpage";
     }
 

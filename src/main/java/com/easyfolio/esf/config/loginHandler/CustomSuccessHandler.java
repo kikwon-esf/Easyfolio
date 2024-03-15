@@ -23,13 +23,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
         HttpSession session = request.getSession(); // 세션 영역 불러오기
-        session.setAttribute("userName", authentication.getName()); // 인증 객체의 name을 세션에 넣어주기
-        System.err.println(authentication.getName());
-        session.setAttribute("userAuthorities", authentication.getAuthorities()); // 인증 객체의 권한 세션에 넣어주기
-
-
         response.sendRedirect("/"); // 로그인 성공시 url
     }
 
