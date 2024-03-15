@@ -4,46 +4,49 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>공지사항 작성</title>
-
-    <!-- css영역 -->
+    <title></title>
+    <!-- css 영역 -->
     <th:block layout:fragment="content_css">
-        <link rel="stylesheet" href="/css/content/csc/csc_insertAnn.css">
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/content/csc/csc_updateAnn.css">
     </th:block>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 
 <body>
     <th:block layout:fragment="content">
-        <form action="/csc/insertAnn" method="post">
+        <form action="/csc/updateAnn" method="post">
             <div class="csc_wrap">
                 <div class="csc_title">
-                    <p class="csc_title1">공지사항 작성</p>
-                    <p class="csc_title2">NOTICE WRITE</p>
+                    <p class="csc_title1">공지사항 수정</p>
+                    <p class="csc_title2">NOTICE UPDATE</p>
                 </div>
                 <div class="csc_inner">
                     <div class="inqBlock">
                         <div class="box">
                             <div class="inputBox">
                                 <div class="label">카테고리</div>
-                                <select class="cateCode" name="annCate" id="">
+                                <select class="cateCode" name="annCate">
+                                    <option th:value=${annDetail.annCateList.cateCode}>
+                                        [[${annDetail.annCateList.cateName}]]
+                                    </option>
                                     <option value="CATE_000">선택</option>
                                     <option value="CATE_001">이벤트</option>
                                     <option value="CATE_002">서비스</option>
-                                    <option value="CATE_002">당첨자 발표</option>
+                                    <option value="CATE_003">당첨자 발표</option>
                                     <option value="CATE_004">점검</option>
                                 </select>
                             </div>
                             <div class="inputBox annTitle">
                                 <div class="label">제목</div>
-                                <input type="text" name="annTitle">
+                                <input type="text" name="annTitle" th:value="${annDetail.annTitle}">
                             </div>
                             <div class="inputBoxContent">
-                                <textarea id="summernote" name="annContent"></textarea>
+                                <textarea id="summernote" name="annContent">[[${annDetail.annContent}]]</textarea>
                             </div>
                         </div>
                     </div>
                     <div class="btnBox">
+                        <input type="hidden" name="annNum" th:value="${annVO.annNum}">
                         <input class="subBtn" type="submit" value="작성완료">
                     </div>
                 </div>
@@ -78,13 +81,12 @@
                     });
                 });
             </script>
-
         </form>
-        <script src="/js/content/csc/csc_insertAnn.js"></script>
-    </th:block>
-    <th:block layout:fragment="content_js">
-
     </th:block>
 </body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/csc/csc_updateAnn.js"></script>
+</th:block>
 
 </html>

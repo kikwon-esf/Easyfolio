@@ -73,6 +73,6 @@ logout.addEventListener("click",(e)=>{
     if(!active){
         e.preventDefault();
     }
-    
-    //dd
 })
+
+// Principal 객체 검사

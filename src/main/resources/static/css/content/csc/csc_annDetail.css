@@ -62,25 +62,124 @@ textarea {
     color: #f3c053;
 }
 .csc_inner{
+    margin: -5px auto 30px auto;
     width: 900px;
     height: auto;
     box-sizing: border-box;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
 }
 .annHeader1{
+    padding: 20px 10px;
     display: flex;
 }
 .annCate{
     margin-right: 20px;
     display: flex;
-    width: 100px;
+    width: 130px;
     justify-content: space-between;
 }
 .cateText{
-    font-size: 15px;
+    font-size: 22px;
     color: #f29221;
 }
 .annTitle{
-    font-size: 15px;
+    font-size: 22px;
     color: #333;
-    font-weight: 500;
+}
+.annDate span, .annWriter span{
+    color: #555;
+    font-size: 15px;
+}
+.annDate{
+    margin-right: 30px;
+}
+.annHeader2{
+    padding: 10px 10px 15px 10px;
+    display: flex;
+}
+.annDetailHeader{
+    border-bottom: 1px solid #dadada;
+}
+.annContent{
+    padding: 20px 10px;
+}
+.annContent p{
+    color: #555;
+}
+.annContent tbody{
+    border-radius: 5px;
+}
+.annContent table{
+    margin:10px 0
+}
+.annContent tr{
+    border-bottom: 1px solid #dadada;
+}
+.annContent tr:first-child{
+    color: #fff;
+    background-color: #ffaf4c;
+}
+.annContent tr:first-child > td{
+    padding: 10px 5px;
+    border-right: 1px solid #fff;
+}
+.annContent td{
+    text-align: center;
+    min-width: 100px;
+    max-width: 200px;
+    width: auto;
+    padding: 10px 5px;
+    border-right: 1px solid #dadada;
+}
+.annContent td:last-child{
+    padding: 10px 4px;
+}
+.annContent td:first-child{
+    margin-left: 1px;
+    padding: 10px 4px;
+    border-left: 1px solid #dadada;
+}
+.annContent tr:first-child > td:first-child{
+    border-radius: 5px 0 0 0;
+    padding: 10px 5px;
+    border: 0;
+    width: 101px;
+    border-right: 1px solid #fff;
+}
+.annContent tr:first-child > td:last-child{
+    border-radius: 0 5px 0 0;
+    border: 0;
+}
+.annContent tr:last-child > td:first-child{
+    border-radius: 0 0 0 5px;
+}
+.annContent tr:last-child > td:last-child{
+    border-radius: 0 0 5px 0;
+}
+.annContent tr:last-child{
+    border-radius: 0 0 5px 5px;
+}
+.btnBlock{
+    display: flex;
+    width: 450px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.btn{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 11px
+}
+.btn:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
 }
