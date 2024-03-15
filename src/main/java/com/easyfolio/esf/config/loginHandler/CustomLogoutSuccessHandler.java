@@ -14,8 +14,8 @@ import java.io.IOException;
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        System.err.println("user : "+request.getSession().getAttribute("userName"));
-        System.err.println("user : "+request.getSession().getAttribute("userAuthorities"));
+        log.info("logoutSuccess.ip");
+        System.out.println(request.getHeader("Referer"));
         response.sendRedirect("/");
     }
 }
