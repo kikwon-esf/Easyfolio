@@ -75,4 +75,5 @@ logout.addEventListener("click",(e)=>{
     }
 })
 
+
 // Principal 객체 검사

@@ -1,5 +1,6 @@
 package com.easyfolio.esf.config.loginHandler;
 
+import com.easyfolio.esf.config.Transfer;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,16 +28,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         HttpSession session = request.getSession(); // 세션 영역 불러오기
-        String referer = request.getHeader("Referer");
-        log.info("loginSuccess.ip");
-        System.out.println(referer);
-
-
+        System.err.println("user : "+request.getRemoteUser());
+        System.err.println("user : "+request.getRemoteAddr());
+        System.err.println("user : "+request.getRemoteHost());
+        System.err.println("user : "+request.getRemotePort());
         response.sendRedirect("/"); // 로그인 성공시 url
     }
-    public void makeSession(HttpServletRequest request, List<String> keyList,Objects... valueList){
 
-    }
 
 
 }
