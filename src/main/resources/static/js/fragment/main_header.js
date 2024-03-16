@@ -68,12 +68,15 @@ document.addEventListener("mouseover", function (event) {
 
 //로그아웃
 var logout = document.getElementById("logout");
-logout.addEventListener("click",(e)=>{
-    let active = confirm("로그아웃을 하시겠습니까?");
-    if(!active){
-        e.preventDefault();
-    }
-})
+if(logout != null ){
+    logout.addEventListener("click",(e)=>{
+        let active = confirm("로그아웃을 하시겠습니까?");
+        if(!active){
+            e.preventDefault();
+        }
+    })
+}
+
 
 
 // Principal 객체 검사
