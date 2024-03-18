@@ -2,12 +2,18 @@ package com.easyfolio.esf.csc.controller;
 
 import com.easyfolio.esf.csc.service.CscService;
 import com.easyfolio.esf.csc.vo.AnnVO;
+import com.easyfolio.esf.csc.vo.InqImgVO;
+import com.easyfolio.esf.csc.vo.InqVO;
+import com.easyfolio.esf.util.UploadUtillCsc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/csc")
@@ -77,10 +83,18 @@ public class CscController {
     // 문의 사항 //
 
     // 문의 사항 목록 페이지
-    @GetMapping("/inqListForm")
-    public String inqListForm(){
-
+    @RequestMapping("/inqListForm")
+    public String inqListForm(Model model){
+        model.addAttribute("inqList", cscService.inqList());
         return "content/csc/inq/csc_inqList";
+    }
+
+    // 문의 사항 세부 페이지
+    @GetMapping("/inqDetailForm")
+    public String inqDetailForm(Model model, String inqCode){
+        model.addAttribute("inqDetail", cscService.inqDetail(inqCode));
+        model.addAttribute("inqImgList", cscService.inqImgList(inqCode));
+        return "content/csc/inq/csc_inqDetail";
     }
 
     // 문의 사항 작성 페이지
@@ -92,16 +106,28 @@ public class CscController {
 
     // 문의 사항 작성 후 목록 페이지 이동
     @PostMapping("/insertInq")
-    public String insertInq(){
+    public String insertInq(InqVO inqVO, MultipartFile[] inqImg){
+        System.out.println(inqVO);
+        //--- 상품 이미지 등록 ---//
+        //0. 다음에 들어가야 할 ITEM_CODE를 조회
+        String inqCode = cscService.nextInqCode();
 
+        //2. 이미지 정보 하나가 들어갈 수 있는 통!
+
+        //첨부파일 기능 다중
+        List<InqImgVO> imgList = UploadUtillCsc.multiFileUpload(inqImg);
+
+
+        for(InqImgVO inqImgVO : imgList){
+            inqImgVO.setInqCode(inqCode);
+        }
+
+        inqVO.setInqImgList(imgList);
+
+        //상품 등록  + 이미지 등록 쿼리
+        inqVO.setInqCode(inqCode);
+        cscService.insertInq(inqVO);
         return "redirect:/csc/inqListForm";
-    }
-    
-    // 문의 사항 상세 페이지
-    @GetMapping("/inqDetailForm")
-    public String inqDetailForm(){
-
-        return "content/csc/inq/csc_inqDetail";
     }
 
     // 자주 찾는 질문 //

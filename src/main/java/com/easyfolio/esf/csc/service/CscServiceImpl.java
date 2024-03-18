@@ -2,9 +2,12 @@ package com.easyfolio.esf.csc.service;
 
 import com.easyfolio.esf.csc.vo.AnnCateVO;
 import com.easyfolio.esf.csc.vo.AnnVO;
+import com.easyfolio.esf.csc.vo.InqImgVO;
+import com.easyfolio.esf.csc.vo.InqVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -43,4 +46,34 @@ public class CscServiceImpl implements CscService{
     public int deleteAnn(AnnVO annVO) {
         return sqlSession.delete("cscMapper.deleteAnn", annVO);
     }
+
+    @Override
+    public List<InqVO> inqList() {
+        return sqlSession.selectList("cscMapper.inqList");
+    }
+
+    @Override
+    public InqVO inqDetail(String inqCode) {
+        return sqlSession.selectOne("cscMapper.inqDetail", inqCode);
+    }
+
+    @Override
+    public List<InqImgVO> inqImgList(String inqCode) {
+        return sqlSession.selectList("cscMapper.inqImgList", inqCode);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void insertInq(InqVO inqVO) {
+        sqlSession.insert("cscMapper.insertInq", inqVO);
+        if (!inqVO.getInqImgList().isEmpty()){
+            sqlSession.insert("cscMapper.insertInqImgs", inqVO);
+        }
+    }
+
+    @Override
+    public String nextInqCode() {
+        return sqlSession.selectOne("cscMapper.nextInqCode");
+    }
+
 }

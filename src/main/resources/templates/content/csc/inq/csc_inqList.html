@@ -39,45 +39,27 @@
                         </div>
                     </div>
                     <div class="csc_annBlock">
-                        <div class="csc_annBox">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">일반</p>
-                                <p class="slash">]</p>
+                        <a th:href="@{/csc/inqDetailForm(inqCode=${inq.inqCode})}" th:each="inq, state : ${inqList}" class="csc_annLink">
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">[[${inq.inqCateList.cateName}]]</p>
+                                    <p class="slash">]</p>
+                                </div>
+                                <p class="annTitle">
+                                    [[${inq.inqTitle}]]
+                                </p>
+                                <div class="annDateBox">
+                                    <p class="annDate">[[${inq.inqDate}]]</p>
+                                </div>
                             </div>
-                            <p class="annTitle">
-                                워자이윤 이자식아
-                            </p>
-                        </div>
-                        <div class="csc_annBox">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">서비스</p>
-                                <p class="slash">]</p>
-                            </div>
-                            <p class="annTitle">
-                                워자이윤 으이구그냥
-                            </p>
-                        </div>
-                        <div class="csc_annBox">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">당첨자 발표</p>
-                                <p class="slash">]</p>
-                            </div>
-                            <p class="annTitle">
-                                워자이윤 즉결처형 오체분시
-                            </p>
-                        </div>
-                        <div class="csc_annBox">
-                            <div class="annTypeBox">
-                                <p class="slash">[</p>
-                                <p class="annType">버러지같은</p>
-                                <p class="slash">]</p>
-                            </div>
-                            <p class="annTitle">
-                                워자이윤 즉결처형 오체분시해야한다고 생각합니다
-                            </p>
+                        </a>
+                    </div>
+                    <div class="btnForm">
+                        <div>
+                            <a class="btnBox" href="/csc/insertInqForm">
+                                <p>글쓰기</p>
+                            </a>
                         </div>
                     </div>
                 </div>
