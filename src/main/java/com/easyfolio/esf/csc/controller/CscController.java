@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -91,9 +92,9 @@ public class CscController {
 
     // 문의 사항 세부 페이지
     @GetMapping("/inqDetailForm")
-    public String inqDetailForm(Model model, String inqCode){
-        model.addAttribute("inqDetail", cscService.inqDetail(inqCode));
-        model.addAttribute("inqImgList", cscService.inqImgList(inqCode));
+    public String inqDetailForm(Model model, InqVO inqVO){
+        model.addAttribute("inqDetail", cscService.inqDetail(inqVO.inqCode));
+        model.addAttribute("inqImgList", cscService.inqImgList(inqVO.inqCode));
         return "content/csc/inq/csc_inqDetail";
     }
 
@@ -106,7 +107,7 @@ public class CscController {
 
     // 문의 사항 작성 후 목록 페이지 이동
     @PostMapping("/insertInq")
-    public String insertInq(InqVO inqVO, MultipartFile[] inqImg){
+    public String insertInq(InqVO inqVO,  @RequestParam("inqImg") MultipartFile[] inqImg){
         System.out.println(inqVO);
         //--- 상품 이미지 등록 ---//
         //0. 다음에 들어가야 할 ITEM_CODE를 조회
