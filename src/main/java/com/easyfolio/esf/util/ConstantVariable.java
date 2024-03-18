@@ -5,7 +5,7 @@ public class ConstantVariable {
 
     // 파일 업로드 경로
 
-        public static final String UPLOAD_PATH_CSC="D:\\dev\\WorkspaceSpring\\EasyFolio\\esf\\src\\main\\resources\\static\\img\\csc\\inq\\";
+        public static final String UPLOAD_PATH_CSC="D:\\dev\\WorkspaceSpring\\EasyFolio\\src\\main\\resources\\static\\img\\csc\\inq\\";
 
 
 }

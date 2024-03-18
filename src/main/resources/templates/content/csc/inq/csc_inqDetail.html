@@ -41,6 +41,11 @@
             <div class="annContent">
                 <p th:utext="${inqDetail.inqContent}"></p>
             </div>
+            <div class="imgBox">
+                <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
+                    <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
+                </div>
+            </div>
         </div>
         <div class="btnBlock">
             <a th:href="@{/csc/updateInqForm(inqCode=${inqDetail.inqCode})}" class="btn"><p>수정하기</p></a>
