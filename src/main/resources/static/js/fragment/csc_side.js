@@ -8,16 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentPage === link) {
             element.classList.add('active-sideForm'); 
         }
-
-        if (currentPage === '/csc/insertAnnForm' && link === '/csc/annForm') {
-            element.classList.add('active-sideForm'); 
-        }
-
-        if (currentPage.includes('/csc/annDetailForm') && link === '/csc/annForm') {
-            element.classList.add('active-sideForm'); 
-        }
-        if (currentPage.includes('/csc/updateAnnForm') && link === '/csc/annForm') {
-            element.classList.add('active-sideForm'); 
+        if (currentPage.includes('/csc/updateAnnForm') || currentPage.includes('/csc/annDetailForm') || currentPage === '/csc/insertAnnForm' || link === '/csc/annForm') {
+            document.querySelector('.sideForm.ann').classList.add('active-sideForm'); 
         }
     });
+
 });
