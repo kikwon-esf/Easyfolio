@@ -53,8 +53,8 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
-    public InqVO inqDetail(InqVO inqVO) {
-        return sqlSession.selectOne("cscMapper.inqDetail", inqVO);
+    public InqVO inqDetail(String inqCode) {
+        return sqlSession.selectOne("cscMapper.inqDetail", inqCode);
     }
 
     @Override

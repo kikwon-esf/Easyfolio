@@ -23,7 +23,7 @@ public interface CscService {
 
     public List<InqVO> inqList();
 
-    public InqVO inqDetail(InqVO inqVO);
+    public InqVO inqDetail(String inqCode);
 
     public List<InqImgVO> inqImgList(String inqCode);
 

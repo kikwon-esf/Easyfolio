@@ -93,7 +93,7 @@ public class CscController {
     @GetMapping("/inqDetailForm")
     public String inqDetailForm(Model model, InqVO inqVO){
         System.out.println(inqVO);
-        model.addAttribute("inqDetail", cscService.inqDetail(inqVO));
+        model.addAttribute("inqDetail", cscService.inqDetail(inqVO.inqCode));
         System.out.println(1);
         model.addAttribute("inqImgList", cscService.inqImgList(inqVO.inqCode));
         return "content/csc/inq/csc_inqDetail";
