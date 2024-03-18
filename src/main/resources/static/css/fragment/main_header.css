@@ -211,3 +211,8 @@ textarea{
     height: 2px;
     background-color: #dadada;
 }
+.inner{
+    width: 1260px;
+    margin: 0 auto;
+    position: relative;
+}

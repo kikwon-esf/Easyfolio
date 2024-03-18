@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/main_layout}">
+    layout:decorate="~{fragment/food_layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -12,8 +12,11 @@
     <th:block layout:fragment="content">
         <link rel="stylesheet" href="/css/content/food/food_main.css">
         <div id="wrap">
-            <div class="c_inner">
-                <p>음식 페이지</p>
+            <div class="inner">
+                <a th:each="food, state : ${foodList}" class="csc_annLink">
+                    <p>[[${food.foodCode}]]</p>
+                    <p>[[${food.foodName}]]</p>
+                </a>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

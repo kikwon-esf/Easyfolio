@@ -4,19 +4,20 @@ import lombok.Data;
 
 @Data
 public class FoodVO {
-    private String foodNum;
-    private String foodTTL;
+    private String foodCode;
+    private String foodTtl;
     private String foodName;
+    private String memberName;
+    private int foodInqCnt;
+    private int foodRcmmCnt;
     private String foodType;
-    private int inqCNT;
-    private int foodRCMM;
     private String foodUsage;
-    private String foodMTRL;
+    private String foodMtrl;
     private String foodKind;
-    private String foodIntroduce;
-    private String foodMTRLCN;
+    private String foodIndc;
+    private String foodMtrlCn;
     private String foodServe;
-    private String foodDifficult;
+    private String foodDif;
     private String foodTime;
-    private String foodREGDT;
+    private String foodRegDt;
 }
