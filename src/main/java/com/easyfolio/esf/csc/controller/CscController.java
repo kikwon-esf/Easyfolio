@@ -91,9 +91,11 @@ public class CscController {
 
     // 문의 사항 세부 페이지
     @GetMapping("/inqDetailForm")
-    public String inqDetailForm(Model model, String inqCode){
-        model.addAttribute("inqDetail", cscService.inqDetail(inqCode));
-        model.addAttribute("inqImgList", cscService.inqImgList(inqCode));
+    public String inqDetailForm(Model model, InqVO inqVO){
+        System.out.println(inqVO);
+        model.addAttribute("inqDetail", cscService.inqDetail(inqVO));
+        System.out.println(1);
+        model.addAttribute("inqImgList", cscService.inqImgList(inqVO.inqCode));
         return "content/csc/inq/csc_inqDetail";
     }
 
