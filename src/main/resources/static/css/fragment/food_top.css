@@ -23,7 +23,8 @@ button {
 a {
     text-decoration: none;
 }
-.top_wrap{
+#top_wrap{
+    height: 300px;
     border: 0;
 }
 textarea {
@@ -39,20 +40,20 @@ textarea {
     height: 0;
     overflow: hidden;
 }
-.w_in{
-    width: 1260px;
+#w_in{
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
+    position: relative;
 }
 .foodMain{
     cursor: pointer;
     position: relative;
-    width: 100%;
+    width: 1200px;
     height: 250px;
+    margin: 0 auto;
     box-sizing: border-box;
     overflow: hidden;
-}
-#w_in{
-    position: relative;
 }
 .food_in{
     margin-top: 0;
@@ -83,10 +84,9 @@ textarea {
     margin: -7px 0 0 50px;
 }
 .menuBtnBox{
+    width: 1200px;
+    margin: 0 auto;
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -114,6 +114,7 @@ textarea {
 }
 .menuBtnBox:hover .menuBtnText{
     color: #333;
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 .menuBtn svg{
@@ -122,7 +123,76 @@ textarea {
 .menuBtnBox:hover .menuBtn svg{
     fill:#ffa43b;
 }
-.menuBtnBox:hover .menuBtn{
+.menuBlock{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+}
+.menuInner{
+    display: none;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
     box-shadow: 0px 5px 10px 0px rgba(68,68,68,0.15);
-
+}
+.menuLabelBox{
+    padding: 10px 10px;
+}
+.menuLabelBox p{
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    padding: 18px 20px;
+    position: relative;
+}
+.menuLabelBox p::after{
+    position: absolute;
+    top: 25px;
+    right: 0;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 12px;
+    background-color: #dadada;
+}
+.menuBox{
+    display: flex;
+    width: 1200px;
+    height: 250px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.menuTextBlock{
+    padding: 10px 0;
+}
+.menuTextBox{
+    width: 1100px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 18px 0;
+    display: flex;
+}
+.menuTextBox p{
+    cursor: pointer;
+    margin: 0 10px;
+    color: #888;
+}
+.menuTextBox p:hover{
+    color: #f3c053;
+    font-weight: 500;
+}
+.menuTextBox > .menuTextAll{
+    line-height: 20px;
+    color: #ffa43b;
+    font-size: 15px;
+}
+.menuTextBox > .menuTextAll:hover{
+    color: #f29221;
+    font-weight: 500;
+}
+.menuother{
+    position: absolute;
+    right: 28px;
 }
