@@ -2,6 +2,7 @@ package com.easyfolio.esf.food.controller;
 
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
+import com.easyfolio.esf.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
