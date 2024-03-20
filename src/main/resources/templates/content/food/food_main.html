@@ -11,7 +11,7 @@
 <body>
     <th:block layout:fragment="content">
         <link rel="stylesheet" href="/css/content/food/food_main.css">
-        <div id="wrap">
+        <div class="wrap">
             <div class="inner">
                 <a th:each="food, state : ${foodList}" class="csc_annLink">
                     <p>[[${food.foodCode}]]</p>
