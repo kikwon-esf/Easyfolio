@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentPage.includes('/csc/updateAnnForm') || currentPage.includes('/csc/annDetailForm') || currentPage === '/csc/insertAnnForm' || link === '/csc/annForm') {
             document.querySelector('.sideForm.ann').classList.add('active-sideForm'); 
         }
+        if (currentPage.includes('/csc/inqDetailForm')) {
+            document.querySelector('.sideForm.inquireList').classList.add('active-sideForm'); 
+        }
     });
 
 });

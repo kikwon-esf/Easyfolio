@@ -42,7 +42,7 @@
                 <div class="annContent">
                     <p th:utext="${inqDetail.inqContent}"></p>
                 </div>
-                <div class="imgBox">
+                <div class="imgBox" th:if="${inqImgList != null and inqImgList.size() > 0}">
                     <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
                         <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
                     </div>
