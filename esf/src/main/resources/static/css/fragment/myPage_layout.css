@@ -1,0 +1,11 @@
+
+.myPage_side{
+    float:left;
+
+}
+.myPage_side>div{
+    display : flex;
+    flex-flow : column;
+    width : 200px;
+
+}

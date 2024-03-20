@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPageMapper">
+    <resultMap id="member" type="com.easyfolio.esf.member.vo.MemberVO">
+        <result column="MEMBER_ID"      property="memberId" />
+        <result column="FOOD_CODE"      property="foodCode" />
+
+    </resultMap>
+    <resultMap id="food" type="com.easyfolio.esf.myPage.vo.FavoriteOutVO">
+        <id column="FOOD_CODE" property="foodCode" />
+        <result column="MEMBER_ID" property="memberId" />
+        <result column="FOOD_TTL" property="foodTtl" />
+        <result column="FOOD_NAME" property="foodName" />
+        <result column="FAVORITE_DATE" property="favoriteDate" />
+
+    </resultMap>
+
+    <insert id="addFavorite">
+        INSERT INTO FAVORITE (
+        MEMBER_ID
+        , FOOD_CODE
+
+        ) VALUES (
+        #{memberId}
+        , #{foodCode}
+        )
+    </insert>
+    <select id="favoriteList" resultMap="food">
+        SELECT FA.FOOD_CODE
+        , FA.MEMBER_ID
+        , FOOD_TTL
+        , FOOD_NAME
+        , FAVORITE_DATE
+
+        FROM FAVORITE FA
+        INNER JOIN DISH_MEMBER MEM
+        ON FA.MEMBER_ID = MEM.MEMBER_ID
+        INNER JOIN FOOD F
+        ON F.FOOD_CODE = FA.FOOD_CODE;
+        WHERE FA.MEMBER_ID = #{memberId}
+        ORDER BY FAVORITE_DATE DESC
+        OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
+    </select>
+
+</mapper>
