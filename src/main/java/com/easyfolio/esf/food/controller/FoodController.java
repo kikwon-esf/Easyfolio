@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/food")
@@ -20,15 +21,91 @@ public class FoodController {
     public String cscForm(Model model){
         // 여기에 음식정보 가져와야함
         model.addAttribute("foodList", foodService.allFoodList());
-        System.out.println(model);
         return "content/food/food_main";
     }
 
+//    // 음식명 조회
+//    @GetMapping("/foodNameList")
+//    public String foodNameList(String foodName, Model model){
+//        model.addAttribute("foodNameList", foodService.FoodNameList(foodName));
+//        return "content/food/food_nameList";
+//    }
+//
 //    // 음식 상세 조회 페이지
 //    @GetMapping("/foodDetailForm")
 //    public String foodDetailForm(Model model, FoodVO foodVO){
 //        model.addAttribute("foodDetail", foodService.foodDetail(foodVO));
 //        return "content/food/food_detail";
+//    }
+//
+//    // 음식 타입 검색 api
+//    @GetMapping("/foodTypeList")
+//    public String foodTypeList(String foodType, Model model){
+//        model.addAttribute("foodTypeList", foodService.foodTypeList(foodType));
+//        return "content/food/food_typeList";
+//    }
+//
+//    // 음식 재료 검색 api
+//    @GetMapping("/foodMtrlList")
+//    public String foodMtrlList(String foodMtrlCn, Model model){
+//        model.addAttribute("foodMtrlList", foodService.foodMtrlList(foodMtrlCn));
+//        return "content/food/food_mtrlList";
+//    }
+//
+//    // 음식 용도 검색 api
+//    @GetMapping("/foodUsageList")
+//    public String foodUsageList(String foodUsage, Model model){
+//        model.addAttribute("foodUsageList", foodService.foodUsageList(foodUsage));
+//        return "content/food/food_usageList";
+//    }
+//
+//    // 음식 종류별 검색 api
+//    @GetMapping("/foodKindList")
+//    public String foodKindList(String foodKind, Model model){
+//        model.addAttribute("foodKindList", foodService.foodKindList(foodKind));
+//        return "content/food/food_kindList";
+//    }
+//
+//    // 음식 난이도별 검색 api
+//    @GetMapping("/foodDifList")
+//    public String foodDifList(String foodDif, Model model){
+//        model.addAttribute("foodDifList", foodService.foodDifList(foodDif));
+//        return "content/food/food_difList";
+//    }
+//
+//    // 음식 양별 검색 api
+//    @GetMapping("/foodServeList")
+//    public String foodServeList(String foodServe, Model model){
+//        model.addAttribute("foodServeList", foodService.foodServeList(foodServe));
+//        return "content/food/food_serveList";
+//    }
+//
+//    // 음식 조리시간별 검색 api
+//    @GetMapping("/foodTimeList")
+//    public String foodTimeList(String foodTime, Model model){
+//        model.addAttribute("foodTimeList", foodService.foodTimeList(foodTime));
+//        return "content/food/food_timeList";
+//    }
+//
+//    // 음식 등록일별 검색 api
+//    @GetMapping("/foodRegDtList")
+//    public String foodRegDtList(String foodRegDt, Model model){
+//        model.addAttribute("foodRegDtList", foodService.foodRegDtList(foodRegDt));
+//        return "content/food/food_regDtList";
+//    }
+//
+//    // 추천수별 음식 목록
+//    @GetMapping("/foodRcmmCntList")
+//    public String foodRcmmCntList(String foodRcmmCnt, Model model){
+//        model.addAttribute("foodRcmmCntList", foodService.foodRcmmCntList(foodRcmmCnt));
+//        return "content/food/food_rcmmList";
+//    }
+//
+//    // 음식 조회수별 검색
+//    @GetMapping("/foodInqCntList")
+//    public String foodInqList(String foodInqCnt, Model model){
+//        model.addAttribute("foodInqCntList", foodService.foodInqCntList(foodInqCnt));
+//        return "content/food/food_inqList";
 //    }
 //
 //    // 음식 등록 페이지
@@ -46,7 +123,8 @@ public class FoodController {
 //
 //    // 음식 수정 페이지
 //    @GetMapping("/updateFoodForm")
-//    public String updateFoodForm(){
+//    public String updateFoodForm(Model model, FoodVO foodVO){
+//        model.addAttribute("foodDetail", foodService.foodDetail(foodVO));
 //        return "content/food/food_update";
 //    }
 //
@@ -58,74 +136,42 @@ public class FoodController {
 //    }
 //
 //    // 음식 삭제
-//    @PostMapping("/deleteFood")
+//    @GetMapping("/deleteFood")
 //    public String deleteFood(FoodVO foodVO){
 //        foodService.deleteFood(foodVO);
 //        return "redirect:/food/foodMain";
 //    }
 //
-//    // 음식명 조회
-//    @GetMapping("/foodNameList")
-//    public String foodNameList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodNameList", foodService.foodNameList(foodVO));
-//        return "content/food/food_nameList";
+//    // 음식 조회수 증가
+//    @PostMapping("/updateFoodInqCnt")
+//    public String updateFoodInqCnt(FoodVO foodVO){
+//        foodService.updateFoodInqCnt(foodVO);
+//        return "redirect:/food/foodMain";
 //    }
 //
-//    // 음식 타입 조회
-//    @GetMapping("/foodTypeList")
-//    public String foodTypeList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodTypeList", foodService.foodTypeList(foodVO));
-//        return "content/food/food_typeList";
+//    // 음식 조회수 감소
+//    @PostMapping("/updateFoodInqCntDown")
+//    public String updateFoodInqCntDown(FoodVO foodVO){
+//        foodService.updateFoodInqCntDown(foodVO);
+//        return "redirect:/food/foodMain";
 //    }
 //
-//    // 음식 재료 조회
-//    @GetMapping("/foodMTRLList")
-//    public String foodMTRLList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodMTRLList", foodService.foodMTRLList(foodVO));
-//        return "content/food/food_mtrlList";
+//    // 음식 추천수 증가
+//    @PostMapping("/updateFoodRcmmCnt")
+//    public String updateFoodRcmmCnt(FoodVO foodVO){
+//        foodService.updateFoodRcmmCnt(foodVO);
+//        return "redirect:/food/foodMain";
 //    }
 //
-//    // 음식 종류 조회
-//    @GetMapping("/foodKindList")
-//    public String foodKindList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodKindList", foodService.foodKindList(foodVO));
-//        return "content/food/food_kindList";
+//
+//    // 음식 추천수 감소
+//    @PostMapping("/updateFoodRcmmCntDown")
+//    public String updateFoodRcmmCntDown(FoodVO foodVO){
+//        foodService.updateFoodRcmmCntDown(foodVO);
+//        return "redirect:/food/foodMain";
 //    }
 //
-//    // 음식 양 조회
-//    @GetMapping("/foodServeList")
-//    public String foodServeList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodServeList", foodService.foodServeList(foodVO));
-//        return "content/food/food_serveList";
-//    }
 //
-//    // 음식 조리 난이도 조회
-//    @GetMapping("/foodDifficultList")
-//    public String foodDifficultList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodDifficultList", foodService.foodDifficultList(foodVO));
-//        return "content/food/food_difficultList";
-//    }
-//
-//    // 음식 조리 시간 조회
-//    @GetMapping("/foodTimeList")
-//    public String foodTimeList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodTimeList", foodService.foodTimeList(foodVO));
-//        return "content/food/food_timeList";
-//    }
-//
-//    // 음식 등록일 조회
-//    @GetMapping("/foodREGDTList")
-//    public String foodREGDTList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodREGDTList", foodService.foodREGDTList(foodVO));
-//        return "content/food/food_regdtList";
-//    }
-//
-//    // 음식 용도 조회
-//    @GetMapping("/foodUsageList")
-//    public String foodUsageList(Model model, FoodVO foodVO){
-//        model.addAttribute("foodUsageList", foodService.foodUsageList(foodVO));
-//        return "content/food/food_usageList";
-//    }
 
 
 }
