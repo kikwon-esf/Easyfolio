@@ -1,0 +1,200 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    margin-top: -10px;
+    display: -webkit-inline-box;
+    position: relative;
+    margin-left: 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    width: 900px;
+    height: auto;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+.csc_ann{
+    margin: 30px 0;
+}
+/* 공지사항 검색 */
+.annSearchBlock{
+    position: relative;
+    box-sizing: border-box;
+    padding: 6px 0px 6px 15px;
+    width: 250px;
+    height: 35px;
+    border-radius: 6px;
+    border: 2px solid #ffd57a;
+    background-color: #fff;
+    transition: border 0.2s ease;
+}
+.annSearch{
+    width: 195px;
+    height: 19px;
+    font-size: 15px;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    color: #999;
+}
+.annSearchBtn{
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+}
+.bi.bi-search{
+    transition: fill 0.3s ease;
+}
+.annSearchBtn:hover .bi.bi-search{
+    fill: rgb(242,146,33);
+}
+.annHeader{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.annChoiceBlock{
+    display: flex;
+    margin-top: 8px;
+}
+.annChoice{
+    cursor: pointer;
+    text-align: center;
+    width: 70px;
+    margin: 0 10px;
+    font-size: 18px;
+    color: #666;
+}
+.annChoice.active{
+    color: #f29221;
+    font-size: 20px;
+}
+.annChoice:hover{
+    color: #f3c053;
+}
+/* 공지사항 목록 */
+.csc_annBlock{
+    margin-bottom: 50px;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.csc_annBox{
+    cursor: pointer;
+    padding: 15px 10px;
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.csc_annLink:last-child .csc_annBox {
+    border: 0;
+}
+.annTypeBox{
+    width: 130px;
+    display: flex;
+}
+.annTypeBox p{
+    font-size: 13px;
+    color: #f3c053;
+    margin: 0 5px;
+}
+.slash{
+    font-weight: 700;
+}
+.annType{
+    text-align: center;
+    width: 80px;
+}
+.annTitle{
+    width: 640px;
+    margin: 1 10px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+.annDate{
+    color: #666;
+}
+.csc_annBox:hover .annTypeBox p{
+    color: #f29221;
+}
+.csc_annBox:hover .annTitle{
+    color: #000;
+}
+.qnaGo:hover svg{
+    fill: #000;
+}
+.csc_annBox:hover .annDate{
+    color: #000;
+}
+.btnForm{
+    width: 200px;
+    margin: 0 auto;
+}
+.btnForm p{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    text-align: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+.btnForm p:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
+}

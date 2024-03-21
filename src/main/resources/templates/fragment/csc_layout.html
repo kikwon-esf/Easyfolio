@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- 스타일 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/fragment/csc_layout.css">
+
+    <!-- css -->
+    <th:block layout:fragment="content_css"></th:block>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row mb-3">
+            <!-- 헤더 영역 -->
+            <div class="col">
+                <th:block th:replace="~{fragment/main_header :: mainHeaderFragment}"></th:block>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="csc_in">
+                <div class="csc_t">
+                    <!-- 상단 메뉴 영역 -->
+                    <div class="col-2 csc_top">
+                        <th:block th:replace="~{fragment/csc_top :: cscTopFragment}"></th:block>
+                    </div>
+                </div>
+
+                <div class="csc_m">
+
+                    <!-- 사이드 메뉴 영역 -->
+                    <div class="csc_col csc_side">
+                        <th:block th:replace="~{fragment/csc_side :: cscSideFragment}"></th:block>
+                    </div>
+
+                    <!-- 컨텐츠 영역 -->
+                    <div class="csc_col csc_content">
+                        <th:block layout:fragment="content"></th:block>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="csc_b">
+                <!-- 하단 메뉴 영역 -->
+                <div class="col-2 csc_bottom">
+                    <th:block th:replace="~{fragment/csc_bottom :: cscBottomFragment}"></th:block>
+                </div>
+            </div>
+            
+        </div>
+
+            <!-- 푸터 메뉴 영역 -->
+        <div class="col-2 csc_footer">
+            <th:block th:replace="~{fragment/main_footer :: mainFooterFragment}"></th:block>
+        </div>
+    </div>
+
+    <!-- js -->
+   <th:block layout:fragment="content_js"></th:block>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csc_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/content/csc/ann/csc_updateAnn.css">
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <form action="/csc/updateAnn" method="post">
+            <div class="csc_wrap">
+                <div class="csc_title">
+                    <p class="csc_title1">공지사항 수정</p>
+                    <p class="csc_title2">NOTICE UPDATE</p>
+                </div>
+                <div class="csc_inner">
+                    <div class="inqBlock">
+                        <div class="box">
+                            <div class="inputBox">
+                                <div class="label">카테고리</div>
+                                <select class="cateCode" name="annCate">
+                                    <option th:value=${annDetail.annCateList.cateCode}>
+                                        [[${annDetail.annCateList.cateName}]]
+                                    </option>
+                                    <option value="CATE_000">선택</option>
+                                    <option value="CATE_001">이벤트</option>
+                                    <option value="CATE_002">서비스</option>
+                                    <option value="CATE_003">당첨자 발표</option>
+                                    <option value="CATE_004">점검</option>
+                                </select>
+                            </div>
+                            <div class="inputBox annTitle">
+                                <div class="label">제목</div>
+                                <input type="text" name="annTitle" th:value="${annDetail.annTitle}">
+                            </div>
+                            <div class="inputBoxContent">
+                                <textarea id="summernote" name="annContent">[[${annDetail.annContent}]]</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnBox">
+                        <input type="hidden" name="annNum" th:value="${annVO.annNum}">
+                        <input class="subBtn" type="submit" value="작성완료">
+                    </div>
+                </div>
+            </div>
+            <!-- 썸머노트 적용 -->
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js" defer></script>
+        </form>
+    </th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/csc/use_summernote.js"></script>
+    <script src="/js/content/csc/ann/csc_updateAnn.js"></script>
+</th:block>
+
+</html>

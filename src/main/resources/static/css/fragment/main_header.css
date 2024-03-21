@@ -1,0 +1,219 @@
+@charset "UTF-8";
+/* 기본셋팅, 공통값 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+
+textarea{
+    resize: none;
+}
+
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+.wrap{
+    z-index: 400;
+    position: relative;
+    width: 100%;
+    border-bottom: 2px solid #eee;
+}
+
+.h_inner{
+    position: relative;
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+
+}
+.headtop{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 22px 20px 0 20px;
+    display: flex;
+}
+.tap{
+    width: 40px;
+    height: 45px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 2px 7px 0 5px;
+}
+
+.tap:hover .bi.bi-justify-left{
+    fill: rgb(242,146,33);
+    background-color: #f4f4f4;
+    border-radius: 6px;
+}
+.logo{
+    margin-top: 7px;
+    cursor: pointer;
+    text-align: center;
+}
+.logoblock{
+    width: 100px;
+    height: 40px;
+}
+.logoblock .logo img{
+    width: 100%;
+    height: 100%;
+}
+.icons{
+    padding: 5px;
+    display: flex;
+}
+.icon{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.iconImg{
+    width: 27px;
+    height: 27px;
+    margin: 0 auto;
+}
+.icon:hover .iconImg svg{
+    fill: rgb(242,146,33);
+}
+.iconText{
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.searchblock{
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    padding: 7px 15px;
+    width: 450px;
+    height: 40px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-color: #f4f4f4;
+    transition: border 0.2s ease;
+    /* box-shadow: 0 5px 8px 0 rgba(68,68,68,.04); */
+}
+.searchText{
+    margin-top: -2px;
+    width: 380px;
+    height: 26px;
+    font-size: 16px;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    color: #999;
+}
+.searchIcon{
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+.searchIcon svg{
+    transition: fill 0.2s ease;
+}
+.searchIcon:hover >svg{
+    fill: rgb(242,146,33);
+}
+.popup{
+    z-index: 500;
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: -33px;
+    background-color: #fff;
+    box-shadow: -1px 1px 8px 0px rgba(68,68,68,.3);
+    border-radius: 5px;
+    padding: 20px 10px;
+    width: 100px;
+    height: auto;
+}
+.popupTap{
+    z-index: 500;
+    display: none;
+    position: absolute;
+    left: -30px;
+    background-color: #fff;
+    box-shadow: -1px 1px 8px 0px rgba(68,68,68,.3);
+    border-radius: 5px;
+    padding: 20px 10px;
+    width: 300px;
+    height: auto;
+}
+.mymenubox p{
+    z-index: 500;
+    border-radius: 4px;
+    border: 1px solid #ffd57a;
+    color: #f3c053;
+    width: 100px;
+    height: 30px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+    margin-bottom: 10px;
+}
+.mymenubox:hover p{
+    border: 0;
+    color: #fff;
+    background-color: #f3c053;
+}
+.mymenubox:last-child p{
+    margin-bottom: 0;
+}
+/* 팝업 */
+.popupInner{
+    width: 100%;
+}
+.popupTitle{
+    margin-bottom: 20px;
+}
+.popupTitle p{
+    font-size: 17px;
+    font-weight: 700;
+}
+.popupBlock{
+    margin-bottom: 20px;
+}
+.popupBoxTitle{
+    position: relative;
+}
+.popupBoxTitle p{
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    background-color: #fff;
+}
+.popupBoxTitle::before{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    top: 11px;
+    height: 2px;
+    background-color: #dadada;
+}
+.inner{
+    width: 1260px;
+    margin: 0 auto;
+    position: relative;
+}

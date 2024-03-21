@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    display: -webkit-inline-box;
+    position: relative;
+    margin: -10px 0 20px 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    margin: -5px auto 30px auto;
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+.annHeader1{
+    padding: 20px 10px;
+    display: flex;
+}
+.annCate{
+    margin-right: 20px;
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+}
+.cateText{
+    font-size: 22px;
+    color: #f29221;
+}
+.annTitle{
+    font-size: 22px;
+    color: #333;
+}
+.annDate span, .annWriter span{
+    color: #555;
+    font-size: 15px;
+}
+.annDate{
+    margin-right: 30px;
+}
+.annHeader2{
+    padding: 10px 10px 15px 10px;
+    display: flex;
+}
+.annDetailHeader{
+    border-bottom: 1px solid #dadada;
+}
+.annContent{
+    padding: 20px 10px;
+}
+.annContent p{
+    color: #555;
+}
+.annContent tbody{
+    border-radius: 5px;
+}
+.annContent table{
+    margin:10px 0
+}
+.annContent tr{
+    border-bottom: 1px solid #dadada;
+}
+.annContent tr:first-child{
+    color: #fff;
+    background-color: #ffaf4c;
+}
+.annContent tr:first-child > td{
+    padding: 10px 5px;
+    border-right: 1px solid #fff;
+}
+.annContent td{
+    text-align: center;
+    min-width: 100px;
+    max-width: 200px;
+    width: auto;
+    padding: 10px 5px;
+    border-right: 1px solid #dadada;
+}
+.annContent td:last-child{
+    padding: 10px 4px;
+}
+.annContent td:first-child{
+    margin-left: 1px;
+    padding: 10px 4px;
+    border-left: 1px solid #dadada;
+}
+.annContent tr:first-child > td:first-child{
+    border-radius: 5px 0 0 0;
+    padding: 10px 5px;
+    border: 0;
+    width: 101px;
+    border-right: 1px solid #fff;
+}
+.annContent tr:first-child > td:last-child{
+    border-radius: 0 5px 0 0;
+    border: 0;
+}
+.annContent tr:last-child > td:first-child{
+    border-radius: 0 0 0 5px;
+}
+.annContent tr:last-child > td:last-child{
+    border-radius: 0 0 5px 0;
+}
+.annContent tr:last-child{
+    border-radius: 0 0 5px 5px;
+}
+.btnBlock{
+    display: flex;
+    width: 450px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.btn{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 11px
+}
+.btn:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
+}
+.imgBox{
+    padding: 20px 0;
+    display: flex;
+    border-top: 1px solid #dadada;
+}
+.inqImgBlock{
+    cursor: pointer;
+    margin: 0 20px;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 200px;
+    height: auto;
+    transition: padding 0.3s ease;
+}
+.inqImgBlock:hover{
+    padding: 0;
+    transition: padding 0.3s ease;
+}
+.inqImgBlock img{
+    border-radius: 4px;
+    width: 100%;
+    height: auto;
+}
+.bigImgBlock{
+    display: none; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 9999; 
+    overflow: auto;
+}
+.bigImgBox{
+    position: relative;
+    width: 700px;
+    margin: 20vh auto;
+}
+.bigImg{
+    width: 100%;
+    height: auto;
+    margin-right: -20vh;
+}
+.close{
+    position: absolute;
+    right: -42px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 2px 5px;
+}

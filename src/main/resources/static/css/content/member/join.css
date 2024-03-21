@@ -1,0 +1,264 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#wrap {
+    position: relative;
+}
+.inner{
+    width: 900px;
+    margin: 0 auto;
+}
+.logoBlock{
+    width: 100%;
+    margin: 80px auto 30px auto;
+}
+.logo{
+    margin: 0 auto;
+    width: 250px;
+    height: auto;
+}
+.logo a{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.logo a img{
+    width: 100%;
+    height: auto;
+}
+.joinBlock{
+    box-sizing: border-box;
+    padding: 40px 15px 30px 15px;
+    position: relative;
+    z-index: 1;
+    margin: 30px auto 25px auto;
+    width: 500px;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 5px 3px 0 rgba(68,68,68,.04);
+}
+.idBox{
+    width: 450px;
+    display: flex;
+    margin: 0 auto 20px auto;
+}
+.inputBox{
+    display: flex;
+    width: 450px;
+    height: 36px;
+    padding: 6px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    border-radius: 6px;
+    border: 1px solid #f4f4f4;
+}
+.inputBox.memberId{
+    width: 380px;
+    border-radius: 6px 0 0 6px;
+}
+.icon{
+    width: 26px;
+    height: 26px;
+    margin-right: 6px;
+}
+.inputBox.on{
+    background-color: #fff;
+    border: 1px solid #f29221;
+}
+.inputBox.on svg{
+    fill: #f29221;
+}
+.idBox.fail .inputBox{
+    background-color: #fff;
+    border: 1px solid #ff3f3f;
+}
+.idBox.fail svg{
+    fill: #ff3f3f;
+}
+.idBox.fail .inputMem::placeholder{
+    color: #ff3f3f;
+}
+.idBox.fail .idBtn{
+    background-color: #dadada;
+    border: 1px solid #f4f4f4;
+}
+.inputBox input{
+    margin-top: 1px;
+    width: 405px;
+    font-size: 12px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+}
+.inputBox.memberId input{
+    width: 405px;
+}
+.idBtn{
+    cursor: pointer;
+    height: 36px;
+    box-sizing: border-box;
+    background-color: #ffa43b;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 0 6px 6px 0;
+    border: 1px solid #f29221;
+}
+.idBtn:hover{
+    background-color: #f08509;
+}
+.inputBox.memberPw{
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #e9e9e9;
+}
+.inputBox.memberPw.on{
+    background-color: #fff;
+    border-bottom: 1px solid #f29221;
+}
+.inputBox.pwch.on > .inputBox.memberPw{
+    border-bottom: 1px solid #f29221;
+} 
+.inputBox.pwch{
+    border-radius: 0 0 6px 6px;
+    margin-bottom: 20px;
+}
+.inputBox.name{
+    margin-bottom: 20px;
+}
+.joinBtnForm{
+    width: 480px;
+    margin: 0 auto 50px auto;
+}
+.joinBtn{
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    background-color: #ffa43b;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    box-shadow: 0 5px 8px 0 rgba(68,68,68,.04);
+}
+.joinBtn:hover{
+    background-color: #f08509;
+}
+.input.gender {
+    display: flex;
+    width: 220px;
+    box-sizing: border-box;
+}
+
+.gender_check input[type="radio"] {
+    display: none;
+}
+
+.gender_check input[type="radio"]+span {
+    display: inline-block;
+    background: none;
+    border: 1px solid #dadada;
+    padding: 0px 10px;
+    text-align: center;
+    width: 90px;
+    height: 35px;
+    line-height: 33px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.gender_check.male input[type="radio"]+span {
+    border-radius: 5px 0 0 5px;
+}
+
+.gender_check.female input[type="radio"]+span {
+    border-radius: 0 5px 5px 0;
+}
+
+.gender_check input[type="radio"]:checked+span {
+    border: 1px solid #ffa43b;
+    background: #ffa43b;
+    color: #fff;
+}
+.gender_check input[type="radio"]:checked+span:hover, .gender_check input[type="radio"]+span:hover{
+    background-color: #f29221;
+    border: 1px solid #f29221;
+    color: #fff;
+}
+.pngBox{
+    width: 450px;
+    margin: 0 auto 20px auto;
+    display: flex;
+}
+.inputBox.phoneNum{
+    width: 215px;
+    margin: 0 10px 0 0;
+}
+.inputBox.phoneNum > input{
+    width: 170px;
+}
+.loginFooter{
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin: 0 auto;
+}
+.loginFooter p{
+    margin: 0;
+}
+.loginFooter p a{
+    color: #888;
+}
+.loginFooter p:hover a{
+    color: #f29221;
+}
+.inputBox.fail{
+    background-color: #fff;
+    border: 1px solid #ff3f3f;
+}
+.inputBox.fail svg{
+    fill: #ff3f3f;
+}
+.inputBox.fail .inputMem::placeholder{
+    color: #ff3f3f;
+}
