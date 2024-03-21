@@ -37,7 +37,7 @@ public class CscController {
     public String annForm(Model model, AnnVO annVO){
         annVO.setTotalDataCnt(cscService.annCnt());
         annVO.setPageInfo();
-        model.addAttribute("annList", cscService.annList());
+        model.addAttribute("annList", cscService.annList(annVO));
         return "content/csc/ann/csc_annList";
     }
 

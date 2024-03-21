@@ -1,5 +1,8 @@
 package com.easyfolio.esf.csc.vo;
 
+import lombok.Data;
+
+@Data
 public class PageVO {
     private int nowPage; // 현재 페이지 번호
     private int totalDataCnt; // 전체 데이터 수

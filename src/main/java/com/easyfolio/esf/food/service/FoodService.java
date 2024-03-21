@@ -5,7 +5,7 @@ import com.easyfolio.esf.food.vo.FoodVO;
 import java.util.List;
 
 public interface FoodService {
-    public List<FoodVO> allFoodList(); // 음식 전체 목록
+    public List<FoodVO> allFoodList(FoodVO foodVO); // 음식 전체 목록
 
     public int foodCnt(FoodVO foodVO);
 //    public FoodVO foodDetail(FoodVO foodVO); // 음식 상세정보

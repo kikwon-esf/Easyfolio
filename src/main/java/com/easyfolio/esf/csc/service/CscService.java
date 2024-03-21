@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CscService {
 
-    public List<AnnVO> annList();
+    public List<AnnVO> annList(AnnVO annVO);
 
     public List<AnnVO> mainAnnList();
 

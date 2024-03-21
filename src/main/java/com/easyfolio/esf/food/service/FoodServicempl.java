@@ -13,8 +13,8 @@ public class FoodServicempl implements FoodService{
     private final SqlSessionTemplate sqlSession;
 
     @Override
-    public List<FoodVO> allFoodList() {
-        return sqlSession.selectList("foodMapper.allFoodList");
+    public List<FoodVO> allFoodList(FoodVO foodVO) {
+        return sqlSession.selectList("foodMapper.allFoodList", foodVO);
     }
 
     @Override

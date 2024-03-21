@@ -46,7 +46,7 @@
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
         ORDER BY ANN_NUM DESC
-<!--        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY-->
+        OFFSET (#{nowPage} -1) * 10 ROWS FETCH FIRST 10 ROWS ONLY
     </select>
 
     <select id="annCnt" resultType="int">

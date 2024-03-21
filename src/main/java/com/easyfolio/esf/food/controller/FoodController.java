@@ -23,7 +23,7 @@ public class FoodController {
         foodVO.setTotalDataCnt(foodService.foodCnt(foodVO));
         foodVO.setPageInfo();
         // 여기에 음식정보 가져와야함
-        model.addAttribute("foodList", foodService.allFoodList());
+        model.addAttribute("foodList", foodService.allFoodList(foodVO));
         return "content/food/food_main";
     }
 

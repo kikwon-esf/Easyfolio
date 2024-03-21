@@ -15,8 +15,8 @@ public class CscServiceImpl implements CscService{
 
 
     @Override
-    public List<AnnVO> annList() {
-        return sqlSession.selectList("cscMapper.annList");
+    public List<AnnVO> annList(AnnVO annVO) {
+        return sqlSession.selectList("cscMapper.annList", annVO);
     }
 
     @Override
