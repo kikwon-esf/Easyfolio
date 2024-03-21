@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csc_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <link rel="stylesheet" href="/css/content/csc/csc_main.css">
+        <div id="csc_wrap">
+            <div class="csc_title">
+                <p class="csc_title1">고객센터</p>
+                <p class="csc_title2">HOME</p>
+                <!-- <p class="titleLine"></p> -->
+            </div>
+            <div class="csc_inner">
+                <div class="csc_searchBox">
+                    <div class="csc_searchBlock">
+                        <input type="text" class="csc_search" placeholder="궁금한 점을 간단하게">
+                        <div class="csc_searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffd57a"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="searchTipBox">
+                        <p class="searchTipTitle">추천 검색어</p>
+                        <div class="searchTips">
+                            <p class="searchTip">비밀번호 찾기/변경</p>
+                            <p class="searchTip">회원가입</p>
+                            <p class="searchTip">선재윤은</p>
+                            <p class="searchTip">에휴 그냥</p>
+                            <p class="searchTip">말 아낀다</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="csc_ann">
+                    <div class="csc_annTitle">
+                        <p class="csc_annTitle1">공지사항</p>
+                        <div class="csc_annPlus">
+                            <a href="/csc/annForm"><p class="csc_annPlus1">더보기</p></a>
+                            <p class="csc_annPlus2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#333"
+                                    class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="csc_annBlock">
+                        <a th:href="@{/csc/annDetailForm(annNum=${ann.annNum})}" th:each="ann, state : ${annList}" class="csc_annLink">
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">[[${ann.annCateList.cateName}]]</p>
+                                    <p class="slash">]</p>
+                                </div>
+                                <p class="annTitle">
+                                    [[${ann.annTitle}]]
+                                </p>
+                                <div class="annDateBox">
+                                    <p class="annDate">[[${ann.annDate}]]</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="csc_qna">
+                    <div class="csc_annTitle">
+                        <p class="csc_annTitle1">자주 찾는 질문</p>
+                        <div class="csc_annPlus">
+                            <a href="/csc/qnaForm"><p class="csc_annPlus1">더보기</p></a>
+                            <p class="csc_annPlus2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#333"
+                                    class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="qnaBlock">
+                        <div class="qnaBox">
+                            <div class="qnaTextBox">
+                                <span class="qnaIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
+                                        class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                    </svg>
+                                </span>
+                                <p class="qnaText">
+                                    <span></span>재윤이를 죽이려면 어떻게 해야 하나요?
+                                </p>
+                            </div>
+                            <div class="qnaGo">
+                                <p>바로가기</p>
+                                <p class="qnaGoIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#666"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="qnaBox">
+                            <div class="qnaTextBox">
+                                <span class="qnaIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
+                                        class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                    </svg>
+                                </span>
+                                <p class="qnaText">
+                                    <span></span>재윤이를 죽이려면 어떻게 해야 하나요?
+                                </p>
+                            </div>
+                            <div class="qnaGo">
+                                <p>바로가기</p>
+                                <p class="qnaGoIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#666"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="qnaBox">
+                            <div class="qnaTextBox">
+                                <span class="qnaIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
+                                        class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                    </svg>
+                                </span>
+                                <p class="qnaText">
+                                    <span></span>재윤이를 죽이려면 어떻게 해야 하나요?
+                                </p>
+                            </div>
+                            <div class="qnaGo">
+                                <p>바로가기</p>
+                                <p class="qnaGoIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#666"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="qnaBox">
+                            <div class="qnaTextBox">
+                                <span class="qnaIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
+                                        class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                    </svg>
+                                </span>
+                                <p class="qnaText">
+                                    <span></span>재윤이를 죽이려면 어떻게 해야 하나요?
+                                </p>
+                            </div>
+                            <div class="qnaGo">
+                                <p>바로가기</p>
+                                <p class="qnaGoIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#666"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="qnaBox">
+                            <div class="qnaTextBox">
+                                <span class="qnaIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
+                                        class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                    </svg>
+                                </span>
+                                <p class="qnaText">
+                                    <span></span>재윤이를 죽이려면 어떻게 해야 하나요?
+                                </p>
+                            </div>
+                            <div class="qnaGo">
+                                <p>바로가기</p>
+                                <p class="qnaGoIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#666"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="qnaBox">
+                            <div class="qnaTextBox">
+                                <span class="qnaIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
+                                        class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                    </svg>
+                                </span>
+                                <p class="qnaText">
+                                    <span></span>재윤이를 죽이려면 어떻게 해야 하나요?
+                                </p>
+                            </div>
+                            <div class="qnaGo">
+                                <p>바로가기</p>
+                                <p class="qnaGoIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="#666"
+                                        class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/content/csc/csc_main.js"></script>
+    </th:block>
+</body>
+
+</html>

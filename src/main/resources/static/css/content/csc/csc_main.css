@@ -1,0 +1,319 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 950px;
+}
+.csc_title{
+    margin-top: -10px;
+    display: -webkit-inline-box;
+    position: relative;
+    margin-left: 20px;
+
+}
+/* .csc_title::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 900px;
+    height: 4px;
+    bottom: -2px;
+    background-color: #dadada;
+} */
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+/* .titleLine::before{
+    margin-left: 10px;
+    margin-top: 25px;
+    content: "";
+    display: block;
+    width: 700px;
+    height: 3px;
+    background-color: #dadada;
+} */
+.csc_inner{
+    width: 900px;
+    height: auto;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+.csc_searchBox{
+    width: 750px;
+    margin: 0 auto 30px auto;
+}
+.csc_searchBlock{
+    position: relative;
+    box-sizing: border-box;
+    padding: 14px 0px 7px 20px;
+    width: 750px;
+    height: 60px;
+    border-radius: 50px;
+    border: 2px solid #ffd57a;
+    background-color: #fff;
+    margin-bottom: 20px;
+    transition: border 0.2s ease;
+}
+.csc_search{
+    width: 700px;
+    height: 26px;
+    font-size: 25px;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    color: #999;
+}
+.csc_searchBtn{
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 13px;
+}
+.bi.bi-search{
+    transition: fill 0.3s ease;
+}
+.csc_searchBtn:hover .bi.bi-search{
+    fill: rgb(242,146,33);
+}
+.searchTipBox{
+    display: flex;
+}
+.searchTipTitle{
+    margin: 3px 10px 0 -10px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #333;
+}
+.searchTips{
+    display: flex;
+}
+.searchTip{
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #ffa43b;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+.searchTip:hover{
+    background-color: #f08509;
+}
+/* 공지사항 */
+.csc_ann{
+    margin-bottom: 30px;
+}
+.csc_annTitle{
+    text-align: center;
+    position: relative;
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+.csc_annTitle1{
+    font-size: 25px;
+    font-weight: 700;
+    color: #333;
+    padding-bottom: 5px;
+    margin: 0 auto;
+}
+.csc_annPlus{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    bottom: -17px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+}
+.csc_annPlus1{
+    color: #333;
+    margin-right: 2px;
+}
+.csc_annPlus2{
+    margin-top: 2px;
+}
+.csc_annPlus:hover .csc_annPlus1{
+    color: #f29221;
+}
+.csc_annPlus:hover .csc_annPlus2 svg{
+    fill: #f29221;
+}
+.csc_annBlock{
+    border: 1px solid #dadada;
+    border-radius: 9px;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.csc_annBox{
+    cursor: pointer;
+    padding: 15px 10px;
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.csc_annLink:last-child .csc_annBox {
+    border: 0;
+}
+.annTypeBox{
+    width: 130px;
+    display: flex;
+}
+.annTypeBox p{
+    font-size: 13px;
+    color: #f3c053;
+    margin: 0 5px;
+}
+.slash{
+    font-weight: 700;
+}
+.annType{
+    text-align: center;
+    width: 80px;
+}
+.annTitle{
+    width: 640px;
+    margin: 1 10px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+.csc_annBox:hover .annTypeBox p{
+    color: #f29221;
+}
+.csc_annBox:hover .annTitle{
+    color: #000;
+}
+.annDate{
+    color: #666;
+}
+.csc_annBox:hover .annDate{
+    color: #000;
+}
+/* 자주 찾는 질문 */
+.qnaBlock{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 280px 280px 280px;
+    grid-template-rows: 150px 150px;
+    gap: 10px;
+    padding: 0 9px;
+}
+.qnaIcon{
+    position: absolute;
+    top: 2px;
+    display: inline-block;
+}
+.qnaBox{
+    position: relative;
+    cursor: pointer;
+    padding: 17px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #f5f7f8;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.qnaBox:hover{
+    background-color: #f2f2f2f5;
+}
+.qnaIcon svg{
+    transition: fill 0.2s ease;
+}
+.qnaBox:hover .qnaIcon svg{
+    fill: #f29221;
+}
+.qnaText{
+    font-size: 18px;
+    color: #666;
+    display: inline;
+    line-height: 35px;
+    transition: color 0.2s ease; 
+}
+.qnaTextBox{
+    position: relative;
+}
+.qnaBox:hover .qnaText{
+    font-weight: 700;
+    color: #333;
+}
+.qnaText >span{
+    display: inline-block;
+    width: 40px;
+}
+.qnaGo{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 14px;
+    display: inline-flex;
+}
+.qnaGo p{
+    color: #666;
+    font-size: 13px; 
+    font-weight: 700;
+    transition: color 0.1s ease;   
+}
+.qnaGoIcon{
+    margin : 2px 0 0 3px;
+}
+/* .qnaGo::before{
+    position: absolute;
+    bottom: -7px;
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: transparent;
+}
+.qnaBox:hover .qnaGo::before{
+    background-color: #333;
+} */
+.qnaBox:hover .qnaGo p{
+    color: #000;
+}
+.qnaBox:hover .qnaGoIcon svg{
+    fill: #000;
+}

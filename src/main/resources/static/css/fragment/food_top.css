@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+#top_wrap{
+    height: 300px;
+    border: 0;
+}
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#w_in{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.foodMain{
+    cursor: pointer;
+    position: relative;
+    width: 1260px;
+    height: 250px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.food_in{
+    margin-top: 0;
+}
+.foodMain::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 101%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1)), url(/img/food/food_top_image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.foodTitle{
+    position: absolute;
+    top: 20px;
+    left: 60px;
+}
+.foodTitle1{
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+}
+.foodTitle2{
+    font-size: 25px;
+    font-weight: 700;
+    color: #f3c053;
+    margin: -7px 0 0 50px;
+}
+.menuBtnBox{
+    width: 1200px;
+    margin: 0 auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+.menuBtn{
+    z-index: 1;
+    width: 100px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 0 0 20px 20px;
+    display: flex;
+    box-shadow: 0px 5px 10px 0px rgba(68,68,68,0.1);
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 4px 15px;
+    transition: box-shadow 0.3s ease;
+}
+.menuBtnText{
+    
+    font-size: 13px;
+    color: #888;
+    transition: color 0.3s ease;
+}
+.menuBtn svg{
+    margin-top: 2px;
+}
+.menuBtnBox:hover .menuBtnText{
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.menuBtn svg{
+    transition: color 0.3s ease;
+}
+.menuBtnBox:hover .menuBtn svg{
+    fill:#ffa43b;
+}
+.menuBlock{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+}
+.menuInner{
+    display: none;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0px 5px 10px 0px rgba(68,68,68,0.15);
+}
+.menuLabelBox{
+    padding: 10px 10px;
+}
+.menuLabelBox p{
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    padding: 18px 20px;
+    position: relative;
+}
+.menuLabelBox p::after{
+    position: absolute;
+    top: 25px;
+    right: 0;
+    content: "";
+    display: block;
+    width: 1px;
+    height: 12px;
+    background-color: #dadada;
+}
+.menuBox{
+    display: flex;
+    width: 1200px;
+    height: 250px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.menuTextBlock{
+    padding: 10px 0;
+}
+.menuTextBox{
+    width: 1100px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 18px 0;
+    display: flex;
+}
+.menuTextBox p{
+    cursor: pointer;
+    margin: 0 10px;
+    color: #888;
+}
+.menuTextBox p:hover{
+    color: #f3c053;
+    font-weight: 500;
+}
+.menuTextBox > .menuTextAll{
+    line-height: 20px;
+    color: #ffa43b;
+    font-size: 15px;
+}
+.menuTextBox > .menuTextAll:hover{
+    color: #f29221;
+    font-weight: 500;
+}
+.menuother{
+    position: absolute;
+    right: 28px;
+}

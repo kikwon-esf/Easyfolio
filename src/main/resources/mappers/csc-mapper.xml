@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="cscMapper">
+
+    <!--  공지사항  -->
+
+    <resultMap id="announcement" type="com.easyfolio.esf.csc.vo.AnnVO">
+        <id column="ANN_NUM" property="annNum" />
+        <result column="ANN_CATE" property="annCate" />
+        <result column="ANN_WRITER" property="annWriter" />
+        <result column="ANN_TITLE" property="annTitle" />
+        <result column="ANN_CONTENT" property="annContent"/>
+        <result column="ANN_DATE" property="annDate"/>
+        <collection property="annCateList" resultMap="annCate"/>
+    </resultMap>
+
+    <resultMap id="annCate" type="com.easyfolio.esf.csc.vo.AnnCateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+    <!--  공지사항 메인 페이지 조회  -->
+    <select id="mainAnnList" resultMap="announcement">
+        SELECT ANN_NUM
+        , ANN_CATE
+        , CATE_NAME
+        , ANN_TITLE
+        , ANN_CONTENT
+        , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        ORDER BY ANN_NUM DESC
+        OFFSET 0 ROWS FETCH FIRST 4 ROWS ONLY
+    </select>
+
+    <!--  공지사항 목록 조회  -->
+    <select id="annList" resultMap="announcement">
+        SELECT ANN_NUM
+            , ANN_CATE
+            , CATE_NAME
+            , ANN_TITLE
+            , ANN_CONTENT
+            , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        ORDER BY ANN_NUM DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="annCnt" resultType="int">
+        SELECT COUNT(ANN_NUM)
+        FROM ANNOUNCEMENT
+    </select>
+
+    <!--  공지 사항 세부 조회  -->
+    <select id="annDetail" resultMap="announcement">
+        SELECT ANN_NUM
+            , CATE_CODE
+            , CATE_NAME
+            , ANN_WRITER
+            , ANN_TITLE
+            , ANN_CONTENT
+            , TO_CHAR(ANN_DATE, 'YYYY-MM-DD') AS ANN_DATE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        AND ANN_NUM = #{annNum}
+    </select>
+
+    <!--  공지 사항 작성  -->
+    <insert id="insertAnn">
+        INSERT INTO ANNOUNCEMENT (
+        ANN_NUM
+        , ANN_CATE
+        , ANN_TITLE
+        , ANN_CONTENT
+        )
+        VALUES (
+        (SELECT 'ANN_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ANN_NUM, 5))),0) + 1, 3, '0')
+        FROM ANNOUNCEMENT)
+        , #{annCate}
+        , #{annTitle}
+        , #{annContent}
+        )
+    </insert>
+
+    <update id="updateAnn">
+        UPDATE ANNOUNCEMENT
+        SET
+        ANN_CATE = #{annCate}
+        , ANN_TITLE = #{annTitle}
+        , ANN_CONTENT = #{annContent}
+        WHERE ANN_NUM = #{annNum}
+    </update>
+
+    <delete id="deleteAnn">
+        DELETE ANNOUNCEMENT
+        WHERE ANN_NUM = #{annNum}
+    </delete>
+
+    <!--  문의 사항  -->
+
+    <resultMap id="inquire" type="com.easyfolio.esf.csc.vo.InqVO">
+        <id column="INQ_CODE" property="inqCode"/>
+        <result column="INQ_CATE" property="inqCate"/>
+        <result column="INQ_WRITER" property="inqWriter"/>
+        <result column="INQ_TITLE" property="inqTitle"/>
+        <result column="INQ_CONTENT" property="inqContent"/>
+        <result column="INQ_RESPONSE" property="inqResponse"/>
+        <result column="INQ_DATE" property="inqDate"/>
+        <collection property="inqCateList" resultMap="inqCate"/>
+        <collection property="inqImgList" resultMap="inqImg"/>
+    </resultMap>
+
+    <resultMap id="inqCate" type="com.easyfolio.esf.csc.vo.InqCateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+    <resultMap id="inqImg" type="com.easyfolio.esf.csc.vo.InqImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="INQ_CODE" property="inqCode"/>
+    </resultMap>
+
+    <!--  문의 사항 목록 조회  -->
+    <select id="inqList" resultMap="inquire">
+        SELECT INQ_CODE
+            , INQ_CATE
+            , CATE_NAME
+            , INQ_WRITER
+            , INQ_TITLE
+            , INQ_RESPONSE
+            , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE
+        WHERE INQ.INQ_CATE = CATE.CATE_CODE
+        ORDER BY INQ_CODE DESC
+        OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
+    </select>
+
+    <!--  문의 사항 세부 페이지  -->
+    <select id="inqDetail" resultMap="inquire">
+        SELECT INQ_CODE
+            , INQ_CATE
+            , CATE_NAME
+            , INQ_WRITER
+            , INQ_TITLE
+            , INQ_CONTENT
+            , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
+            , INQ_RESPONSE
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE
+        WHERE INQ.INQ_CATE = CATE.CATE_CODE
+        AND INQ_CODE = #{inqCode}
+    </select>
+
+    <!--  문의 사항 사진 조회  -->
+    <select id="inqImgList" resultMap="inqImg">
+        SELECT *
+        FROM INQ_IMG
+        WHERE INQ_CODE = #{inqCode}
+    </select>
+
+    <!--  문의 사항 목록 추가  -->
+    <insert id="insertInq">
+        INSERT INTO INQUIRE (
+        INQ_CODE
+        , INQ_CATE
+        , INQ_TITLE
+        , INQ_CONTENT
+        )
+        VALUES (
+        (SELECT 'INQ_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(INQ_CODE, 5))),0) + 1, 3, '0')
+        FROM INQUIRE)
+        , #{inqCate}
+        , #{inqTitle}
+        , #{inqContent}
+        )
+    </insert>
+
+    <!--  문의
+    사항 사진 추가  -->
+    <insert id="insertInqImgs">
+        INSERT INTO INQ_IMG (
+        IMG_CODE
+        , ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        , INQ_CODE
+        )
+        <foreach collection="inqImgList" item="inqImg" separator="UNION ALL" index="idx">
+            SELECT (SELECT 'IMG_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5))),0) + 1 + #{idx}, 3, '0')
+            FROM INQ_IMG)
+            , #{inqImg.originFileName}
+            , #{inqImg.attachedFileName}
+            , #{inqImg.inqCode}
+            FROM DUAL
+        </foreach>
+    </insert>
+
+    <!-- 아이템 코드 호출 -->
+    <select id="nextInqCode" resultType="String">
+        SELECT 'INQ_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(INQ_CODE, 5))),0) + 1, 3, '0')
+        FROM INQUIRE
+    </select>
+
+    <!--  문의 사항 삭제  -->
+    <delete id="deleteInq">
+        DELETE INQUIRE
+        WHERE INQ_CODE = #{inqCode}
+    </delete>
+
+    <!--  문의 사항 사진 삭제  -->
+    <delete id="deleteInqImg">
+        DELETE INQ_IMG
+        WHERE INQ_CODE = #{inqCode}
+    </delete>
+
+    <!--  자주 찾는 질문  -->
+
+    <resultMap id="qna" type="com.easyfolio.esf.csc.vo.QnaVO">
+        <id column="QNA_CODE" property="qnaCode"/>
+        <result column="QNA_QUESTION" property="qnaQuestion"/>
+        <result column="QNA_ANSWER" property="qnaAnswer"/>
+    </resultMap>
+
+    <!--  자주 찾는 질문 목록 조회 -->
+
+    <select id="qnaList" resultMap="qna">
+        SELECT QNA_CODE
+            , QNA_QUESTION
+            , QNA_ANSWER
+        FROM QNA
+        ORDER BY QNA_CODE DESC
+        OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
+    </select>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

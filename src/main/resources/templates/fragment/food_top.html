@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+    </th:block>
+
+</head>
+
+<body>
+    <th:block th:fragment="foodTopFragment">
+        <link rel="stylesheet" href="/css/fragment/food_top.css">
+        <div id="top_wrap">
+            <div id="w_in">
+                <a href="/food/foodMain">
+                    <div class="foodMain">
+                        <div class="foodTitle">
+                            <p class="foodTitle1">레시피</p>
+                            <p class="foodTitle2">Recipe</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="menuBlock">
+                    <div class="menuInner">
+                        <div class="menuBox">
+                            <div class="menuLabelBox">
+                                <p>종류별</p>
+                                <p>상황별</p>
+                                <p>재료별</p>
+                                <p>방법별</p>
+                            </div>
+                            <div class="menuTextBlock">
+                                <div class="menuTextBox">
+                                    <p class="menuTextAll">전체</p>
+                                    <p>밑반찬</p>
+                                    <p>메인반찬</p>
+                                    <p>국/탕</p>
+                                    <p>찌개</p>
+                                    <p>디저트</p>
+                                    <p>면/만두</p>
+                                    <p>밥/죽/떡</p>
+                                    <p>퓨전</p>
+                                    <p>김치/젓갈/장류</p>
+                                    <p>양념/소스/잼</p>
+                                    <p>양식</p>
+                                    <p>샐러드</p>
+                                    <p>스프</p>
+                                    <p>빵</p>
+                                    <p>과자</p>
+                                    <p>차/음료/술</p>
+                                    <p class="menuother">기타</p>
+                                </div>
+                                <div class="menuTextBox">
+                                    <p class="menuTextAll">전체</p>
+                                    <p>일상</p>
+                                    <p>초스피드</p>
+                                    <p>손님접대</p>
+                                    <p>술안주</p>
+                                    <p>다이어트</p>
+                                    <p>도시락</p>
+                                    <p>영양식</p>
+                                    <p>간식</p>
+                                    <p>야식</p>
+                                    <p>푸드스타일링</p>
+                                    <p>해장</p>
+                                    <p>명절</p>
+                                    <p>이유식</p>
+                                    <p class="menuother">기타</p>
+                                </div>
+                                <div class="menuTextBox">
+                                    <p class="menuTextAll">전체</p>
+                                    <p>소고기</p>
+                                    <p>돼지고기</p>
+                                    <p>닭고기</p>
+                                    <p>육류</p>
+                                    <p>채소류</p>
+                                    <p>해물류</p>
+                                    <p>달걀/유제품</p>
+                                    <p>가공식품류</p>
+                                    <p>쌀</p>
+                                    <p>밀가루</p>
+                                    <p>건어물류</p>
+                                    <p>버섯류</p>
+                                    <p>과일류</p>
+                                    <p>콩/견과류</p>
+                                    <p>곡류</p>
+                                    <p class="menuother">기타</p>
+                                </div>
+                                <div class="menuTextBox">
+                                    <p class="menuTextAll">전체</p>
+                                    <p>볶음</p>
+                                    <p>끓이기</p>
+                                    <p>부침</p>
+                                    <p>조림</p>
+                                    <p>무침</p>
+                                    <p>비빔</p>
+                                    <p>찜</p>
+                                    <p>절임</p>
+                                    <p>튀김</p>
+                                    <p>삶기</p>
+                                    <p>굽기</p>
+                                    <p>굽기</p>
+                                    <p>데치기</p>
+                                    <p>회</p>
+                                    <p class="menuother">기타</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menuBtnBox">
+                        <div class="menuBtn no">
+                            <p class="menuBtnText">
+                                전체 메뉴
+                            </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#f3c053"
+                                class="bi bi-grid-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/fragment/food_top.js"></script>
+    </th:block>
+</body>
+
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+</th:block>
+
+</html>

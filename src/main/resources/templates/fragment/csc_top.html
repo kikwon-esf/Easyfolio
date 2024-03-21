@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+    </th:block>
+
+</head>
+
+<body>
+    <th:block th:fragment="cscTopFragment">
+        <link rel="stylesheet" href="/css/fragment/csc_top.css">
+        <div id="top_wrap">
+            <div id="w_in">
+                <a href="/csc/cscForm">
+                    <div class="cscMain">
+                        <div class="cscTitle">
+                            <p class="cscTitle1">고객센터</p>
+                            <p class="cscTitle2">CS Center</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+</th:block>
+
+</html>
