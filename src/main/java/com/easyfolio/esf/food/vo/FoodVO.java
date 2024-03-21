@@ -1,9 +1,10 @@
 package com.easyfolio.esf.food.vo;
 
+import com.easyfolio.esf.csc.vo.PageVO;
 import lombok.Data;
 
 @Data
-public class FoodVO {
+public class FoodVO extends PageVO {
     private String foodCode;
     private String foodTtl;
     private String foodName;

@@ -61,6 +61,18 @@
                             </a>
                         </div>
                     </div>
+                    <div class="btn_group">
+                        <div class="pageBtn" th:if="${#lists.size(annList) != 0}">
+                            <a class="page_prevBtn"
+                                th:href="@{/csc/annListForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">이전</span></a>
+                            <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
+                                <a class="page_numBtn"
+                                    th:href="@{/csc/annListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                            </th:block>
+                            <a class="page_nextBtn"
+                                th:href="@{/csc/annListForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">다음</span></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

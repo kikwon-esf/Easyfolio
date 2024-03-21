@@ -43,6 +43,14 @@ public class PageVO {
 
     }
 
+    public void setNowPage(Integer nowPage) {
+        if (nowPage != null) {
+            this.nowPage = nowPage;
+        } else {
+            this.nowPage = 1; // 혹은 다른 기본값으로 설정
+        }
+    }
+
     // 전체 데이터 수 setter (게시글의 개수가 계속 변하기 때문에 초기값을 잡을수가 없음)
     public void setTotalDataCnt(int totalDataCnt){
         this.totalDataCnt = totalDataCnt;

@@ -10,6 +10,8 @@ public interface CscService {
 
     public List<AnnVO> mainAnnList();
 
+    public int annCnt();
+
     public AnnVO annDetail(AnnVO annVO);
 
     public int insertAnn(AnnVO annVO);

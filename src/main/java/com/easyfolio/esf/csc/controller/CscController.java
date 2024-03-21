@@ -34,7 +34,9 @@ public class CscController {
 
     // 공지 사항 목록 조회 페이지
     @RequestMapping("/annListForm")
-    public String annForm(Model model){
+    public String annForm(Model model, AnnVO annVO){
+        annVO.setTotalDataCnt(cscService.annCnt());
+        annVO.setPageInfo();
         model.addAttribute("annList", cscService.annList());
         return "content/csc/ann/csc_annList";
     }

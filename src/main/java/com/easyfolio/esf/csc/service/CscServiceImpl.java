@@ -25,6 +25,11 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
+    public int annCnt() {
+        return sqlSession.selectOne("cscMapper.annCnt");
+    }
+
+    @Override
     public AnnVO annDetail(AnnVO annVO) {
         return sqlSession.selectOne("cscMapper.annDetail", annVO);
     }

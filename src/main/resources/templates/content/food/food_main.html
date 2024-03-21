@@ -55,7 +55,18 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="btn_group">
+                    <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
+                        <a class="page_prevBtn"
+                            th:href="@{/food/foodMain(nowPage=${foodVO.beginPage - 1})}"><span th:if="${foodVO.prev}">이전</span></a>
+                        <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
+                            <a class="page_numBtn"
+                                th:href="@{/food/foodMain(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                        </th:block>
+                        <a class="page_nextBtn"
+                            th:href="@{/food/foodMain(nowPage=${foodVO.endPage + 1})}"><span th:if="${foodVO.next}">다음</span></a>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
