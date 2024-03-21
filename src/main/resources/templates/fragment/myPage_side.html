@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+    </th:block>
+
+</head>
+
+<body>
+<th:block th:fragment="myPageSideFragment">
+    <div>
+        <a href="/myPage/favorite"><p>즐겨찾기</p></a>
+        <a href="/myPage/myContent"><p>내가 쓴 글</p></a>
+        <a href="/myPage/myDetails"><p>개인정보 수정</p></a>
+        <a href="#">???뭐 만들지</a>
+    </div>
+</th:block>
+</body>
+
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+</th:block>
+
+</html>
