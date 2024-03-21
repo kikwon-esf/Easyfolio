@@ -4,7 +4,7 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="foodMapper">
 
-    <!--  공지사항  -->
+    <!--  음식 검색 api  -->
 
     <resultMap id="food" type="com.easyfolio.esf.food.vo.FoodVO">
         <id column="FOOD_CODE" property="foodCode" />
@@ -25,10 +25,165 @@
         <result column="FOOD_REG_DT" property="foodRegDt"/>
     </resultMap>
 
-    <!--  공지사항 목록 조회  -->
+    <!--  음식 전체 조회  -->
     <select id="allFoodList" resultMap="food">
         SELECT FOOD_NAME
+        , FOOD_DIF
+        , FOOD_INQ_CNT
+        , FOOD_RCMM_CNT
         FROM FOOD
-        WHERE FOOD_CODE = 'FOOD_000043'
+        WHERE FOOD_CODE = 'FOOD_118335'
     </select>
+
+<!--    &lt;!&ndash;  음식명 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodNameList" resultMap="food">-->
+<!--        SELECT FOOD_NAME-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_NAME LIKE '%'||#{foodName}||'%'-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 상세 조회 api  &ndash;&gt;-->
+<!--    <select id="foodDetail" resultMap="food">-->
+<!--        SELECT *-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_CODE = #{foodCode}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 타입 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodTypeList" resultMap="food">-->
+<!--        SELECT FOOD_NAME-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_TYPE = #{foodType}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 종류 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodKindList" resultMap="food">-->
+<!--        SELECT FOOD_KIND-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_KIND = #{foodKind}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 용도 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodUsageList" resultMap="food">-->
+<!--        SELECT FOOD_USAGE-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_USAGE = #{foodUsage}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 재료별 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodMtrlList" resultMap="food">-->
+<!--        SELECT FOOD_MTRL_CN-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_MTRL_CN = #{foodMtrlCn}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 난이도별 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodDifList" resultMap="food">-->
+<!--        SELECT FOOD_DIF-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_DIF = #{foodDif}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 양별 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodServeList" resultMap="food">-->
+<!--        SELECT FOOD_SERVE-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_SERVE = #{foodServe}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 조리시간별 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodTimeList" resultMap="food">-->
+<!--        SELECT FOOD_TIME-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_TIME = #{foodTime}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 등록일별 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodRegDtList" resultMap="food">-->
+<!--        SELECT FOOD_REG_DT-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_REG_DT = #{foodRegDt}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 조회수별 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodInqCntList" resultMap="food">-->
+<!--        SELECT FOOD_INQ_CNT-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_INQ_CNT = #{foodInqCnt}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;  음식 추천수별 검색 api  &ndash;&gt;-->
+<!--    <select id="FoodRcmmCntList" resultMap="food">-->
+<!--        SELECT FOOD_RCMM_CNT-->
+<!--        FROM FOOD-->
+<!--        WHERE FOOD_RCMM_CNT = #{foodRcmmCnt}-->
+<!--    </select>-->
+
+
+<!--    &lt;!&ndash;  음식 등록 api  &ndash;&gt;-->
+<!--    <insert id="insertFood">-->
+<!--        INSERT INTO FOOD (-->
+<!--        FOOD_CODE-->
+<!--        , FOOD_TTL-->
+<!--        , FOOD_NAME-->
+<!--        , MEMBER_NAME-->
+<!--        , FOOD_INQ_CNT-->
+<!--        , FOOD_RCMM_CNT-->
+<!--        , FOOD_TYPE-->
+<!--        , FOOD_USAGE-->
+<!--        , FOOD_MTRL-->
+<!--        , FOOD_KIND-->
+<!--        , FOOD_INDC-->
+<!--        , FOOD_MTRL_CN-->
+<!--        , FOOD_SERVE-->
+<!--        , FOOD_DIF-->
+<!--        , FOOD_TIME-->
+<!--        , FOOD_REG_DT-->
+<!--        )-->
+<!--        VALUES (-->
+<!--        (SELECT 'FOOD_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(FOOD_CODE, 5))),0) + 1, 3, '0')-->
+<!--        FROM FOOD)-->
+<!--        , #{foodTtl}-->
+<!--        , #{foodName}-->
+<!--        , #{memberName}-->
+<!--        , 0-->
+<!--        , 0-->
+<!--        , #{foodType}-->
+<!--        , #{foodUsage}-->
+<!--        , #{foodMtrl}-->
+<!--        , #{foodKind}-->
+<!--        , #{foodIndc}-->
+<!--        , #{foodMtrlCn}-->
+<!--        , #{foodServe}-->
+<!--        , #{foodDif}-->
+<!--        , #{foodTime}-->
+<!--        , SYSDATE-->
+<!--        )-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash;  음식 수정 api  &ndash;&gt;-->
+<!--    <update id="updateFood">-->
+<!--        UPDATE FOOD-->
+<!--        SET FOOD_TTL = #{foodTtl}-->
+<!--        , FOOD_NAME = #{foodName}-->
+<!--        , FOOD_TYPE = #{foodType}-->
+<!--        , FOOD_USAGE = #{foodUsage}-->
+<!--        , FOOD_MTRL = #{foodMtrl}-->
+<!--        , FOOD_KIND = #{foodKind}-->
+<!--        , FOOD_INDC = #{foodIndc}-->
+<!--        , FOOD_MTRL_CN = #{foodMtrlCn}-->
+<!--        , FOOD_SERVE = #{foodServe}-->
+<!--        , FOOD_DIF = #{foodDif}-->
+<!--        , FOOD_TIME = #{foodTime}-->
+<!--        WHERE FOOD_CODE = #{foodCode}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash;  음식 삭제 api  &ndash;&gt;-->
+<!--    <delete id="deleteFood">-->
+<!--        DELETE FROM FOOD-->
+<!--        WHERE FOOD_CODE = #{foodCode}-->
+<!--    </delete>-->
+
+
+
 </mapper>

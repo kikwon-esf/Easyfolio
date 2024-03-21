@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/csc_layout}">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
-<!-- css 영역 -->
-<th:block layout:fragment="content_css">
-    <link rel="stylesheet" href="/css/content/csc/inq/csc_inqDetail.css">
-</th:block>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/content/csc/inq/csc_inqDetail.css">
+    </th:block>
 </head>
+
 <body>
+<<<<<<< HEAD
 <th:block layout:fragment="content">
     <div class="csc_wrap">
         <div class="csc_title">
@@ -26,36 +28,73 @@
                         <span class="cateText">]</span>
                     </p>
                     <p class="annTitle">[[${inqDetail.inqTitle}]]</p>
+=======
+    <th:block layout:fragment="content">
+        <div class="csc_wrap">
+            <div class="csc_title">
+                <p class="csc_title1">문의사항</p>
+                <p class="csc_title2">INQUIRE</p>
+            </div>
+            <div class="csc_inner">
+                <div class="annDetailHeader">
+                    <div class="annHeader1">
+                        <p class="annCate">
+                            <span class="cateText">[</span>
+                            <span class="cateText">[[${inqDetail.inqCateList.cateName}]]</span>
+                            <span class="cateText">]</span>
+                        </p>
+                        <p class="annTitle">[[${inqDetail.inqTitle}]]</p>
+                    </div>
+                    <div class="annHeader2">
+                        <p class="annDate">
+                            <span>작성일 : </span>
+                            <span>[[${inqDetail.inqDate}]]</span>
+                        </p>
+                        <p class="annWriter">
+                            <span>작성자 : </span>
+                            <span>관리자</span>
+                        </p>
+                    </div>
+>>>>>>> d022d12d7814869881d97ec33a4e7231f77619dd
                 </div>
-                <div class="annHeader2">
-                    <p class="annDate">
-                        <span>작성일 : </span>
-                        <span>[[${inqDetail.inqDate}]]</span>
-                    </p>
-                    <p class="annWriter">
-                        <span>작성자 : </span>
-                        <span>관리자</span>
-                    </p>
+                <div class="annContent">
+                    <p th:utext="${inqDetail.inqContent}"></p>
+                </div>
+                <div class="imgBox" th:if="${inqImgList != null and inqImgList.size() > 0}">
+                    <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
+                        <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
+                    </div>
                 </div>
             </div>
-            <div class="annContent">
-                <p th:utext="${inqDetail.inqContent}"></p>
+            <div class="btnBlock">
+                <a th:href="@{/csc/updateInqForm(inqCode=${inqDetail.inqCode})}" class="btn">
+                    <p>수정하기</p>
+                </a>
+                <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn">
+                    <p>삭제하기</p>
+                </a>
             </div>
-            <div class="imgBox">
-                <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
-                    <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
+            <div class="bigImgBlock">
+                <div class="bigImgBox">
+                    <img class="bigImg" id="img01">
+                    <span class="close">&times;</span>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="btnBlock">
             <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}" class="btn"><p>답변하기</p></a>
             <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn"><p>삭제하기</p></a>
         </div>
     </div>
 </th:block>
+=======
+    </th:block>
+>>>>>>> d022d12d7814869881d97ec33a4e7231f77619dd
 </body>
 <!-- js 영역 -->
 <th:block layout:fragment="content_js">
-    <script src="/js/content/csc/ann/csc_inqDetail.js"></script>
+    <script src="/js/content/csc/inq/csc_inqDetail.js"></script>
 </th:block>
+
 </html>

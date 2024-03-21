@@ -38,29 +38,28 @@
                             </a>
                         </div>
                     </div>
-                    <div class="csc_annBlock">
-                        <a th:href="@{/csc/inqDetailForm(inqCode=${inq.inqCode})}" th:each="inq, state : ${inqList}" class="csc_annLink">
-                            <div class="csc_annBox">
-                                <div class="annTypeBox">
+                    <div class="csc_inqBlock">
+                        <a th:href="@{/csc/inqDetailForm(inqCode=${inq.inqCode})}" th:each="inq, state : ${inqList}"
+                            class="csc_inqLink">
+                            <div class="csc_inqBox">
+                                <div class="inqTypeBox">
                                     <p class="slash">[</p>
-                                    <p class="annType">[[${inq.inqCateList.cateName}]]</p>
+                                    <p class="inqType">[[${inq.inqCateList.cateName}]]</p>
                                     <p class="slash">]</p>
                                 </div>
-                                <p class="annTitle">
+                                <p class="inqTitle">
                                     [[${inq.inqTitle}]]
                                 </p>
-                                <div class="annDateBox">
-                                    <p class="annDate">[[${inq.inqDate}]]</p>
+                                <div class="inqDateBox">
+                                    <p class="inqDate">[[${inq.inqDate}]]</p>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="btnForm">
-                        <div>
-                            <a class="btnBox" href="/csc/insertInqForm">
-                                <p>글쓰기</p>
-                            </a>
-                        </div>
+                    <div class="btnBox">
+                        <a class="btnBox" href="/csc/insertInqForm">
+                            <p class="subBtn">문의하기</p>
+                        </a>
                     </div>
                 </div>
             </div>

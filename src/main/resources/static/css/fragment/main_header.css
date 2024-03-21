@@ -29,8 +29,9 @@ textarea{
     height: 0;
     overflow: hidden;
 }
-#wrap{
+.wrap{
     z-index: 400;
+    position: relative;
     width: 100%;
     border-bottom: 2px solid #eee;
 }
