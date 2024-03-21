@@ -14,11 +14,21 @@
         <div class="wrap">
             <div class="inner">
                 <div class="recipeBlock">
-                    <div class="food_title">
-                        <p class="food_title1">전체</p>
-                        <p class="food_title2">HOME</p>
-                        <!-- <p class="titleLine"></p> -->
+                    <div class="recipeHeader">
+                        <div class="food_title">
+                            <p class="food_title1">전체</p>
+                            <p class="food_title2">HOME</p>
+                            <!-- <p class="titleLine"></p> -->
+                        </div>
+                        <div class="foodSearchBlock">
+
+                        </div>
+                        <div class="foodTag">
+                            <p>조회순</p>
+                            <p>최신순</p>
+                        </div>
                     </div>
+                    
                     <div class="recipeBox">
                         <div class="recipes">
                             <a th:each="food, state : ${foodList}" class="recipe">
@@ -58,13 +68,21 @@
                 <div class="btn_group">
                     <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
                         <a class="page_prevBtn"
-                            th:href="@{/food/foodMain(nowPage=${foodVO.beginPage - 1})}"><span th:if="${foodVO.prev}">이전</span></a>
+                            th:href="@{/food/foodMain(nowPage=${foodVO.beginPage - 1})}"><span th:if="${foodVO.prev}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                                  </svg>
+                            </span></a>
                         <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
                             <a class="page_numBtn"
                                 th:href="@{/food/foodMain(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
                         </th:block>
                         <a class="page_nextBtn"
-                            th:href="@{/food/foodMain(nowPage=${foodVO.endPage + 1})}"><span th:if="${foodVO.next}">다음</span></a>
+                            th:href="@{/food/foodMain(nowPage=${foodVO.endPage + 1})}"><span th:if="${foodVO.next}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                  </svg>
+                            </span></a>
                     </div>
                 </div>
             </div>
