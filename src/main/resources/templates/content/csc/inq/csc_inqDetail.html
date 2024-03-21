@@ -12,23 +12,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<th:block layout:fragment="content">
-    <div class="csc_wrap">
-        <div class="csc_title">
-            <p class="csc_title1">문의내역</p>
-            <p class="csc_title2">INQUIRE LIST</p>
-        </div>
-        <div class="csc_inner">
-            <div class="annDetailHeader">
-                <div class="annHeader1">
-                    <p class="annCate">
-                        <span class="cateText">[</span>
-                        <span class="cateText">[[${inqDetail.inqCateList.cateName}]]</span>
-                        <span class="cateText">]</span>
-                    </p>
-                    <p class="annTitle">[[${inqDetail.inqTitle}]]</p>
-=======
     <th:block layout:fragment="content">
         <div class="csc_wrap">
             <div class="csc_title">
@@ -55,7 +38,6 @@
                             <span>관리자</span>
                         </p>
                     </div>
->>>>>>> d022d12d7814869881d97ec33a4e7231f77619dd
                 </div>
                 <div class="annContent">
                     <p th:utext="${inqDetail.inqContent}"></p>
@@ -81,16 +63,7 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-        <div class="btnBlock">
-            <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}" class="btn"><p>답변하기</p></a>
-            <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn"><p>삭제하기</p></a>
-        </div>
-    </div>
-</th:block>
-=======
     </th:block>
->>>>>>> d022d12d7814869881d97ec33a4e7231f77619dd
 </body>
 <!-- js 영역 -->
 <th:block layout:fragment="content_js">
