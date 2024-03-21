@@ -31,7 +31,12 @@ import java.util.Set;
         //preHandle controller 동작 전 실행
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+            Principal principal = request.getUserPrincipal();
+            if(!checkLogin(principal)){
+                response.sendError(400,"로그인 후 이용해주세요.");
+                log.warn("잘못된 접근");
+                return false;
+            }
             return HandlerInterceptor.super.preHandle(request, response, handler);
         }
 
@@ -39,12 +44,7 @@ import java.util.Set;
         public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
 
-            Principal principal = request.getUserPrincipal();
-            if(checkLogin(principal)){
-                modelAndView.getModel().put("isAuthenticated",true);
-            }else{
-                modelAndView.getModel().put("isAuthenticated",false);
-            }
+
             HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
         }
 

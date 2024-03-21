@@ -18,9 +18,14 @@
     <h1>
         favorite
     </h1>
-</th:block>
-<th:block layout:fragment="content_js">
+    <th:block th:each="each, status:${list}">
+        <p th:text="${each}">
 
+        </p>
+    </th:block>
+</th:block>
+
+<th:block layout:fragment="content_js">
 </th:block>
 </body>
 
