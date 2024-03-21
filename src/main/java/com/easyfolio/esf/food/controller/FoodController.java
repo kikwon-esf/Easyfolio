@@ -22,7 +22,6 @@ public class FoodController {
     public String cscForm(Model model, FoodVO foodVO){
         foodVO.setTotalDataCnt(foodService.foodCnt(foodVO));
         foodVO.setPageInfo();
-        // 여기에 음식정보 가져와야함
         model.addAttribute("foodList", foodService.allFoodList());
         return "content/food/food_main";
     }
