@@ -199,6 +199,38 @@
         FROM INQUIRE
     </select>
 
+    <!--  문의 사항 삭제  -->
+    <delete id="deleteInq">
+        DELETE INQUIRE
+        WHERE INQ_CODE = #{inqCode}
+    </delete>
+
+    <!--  문의 사항 사진 삭제  -->
+    <delete id="deleteInqImg">
+        DELETE INQ_IMG
+        WHERE INQ_CODE = #{inqCode}
+    </delete>
+
+    <!--  자주 찾는 질문  -->
+
+    <resultMap id="qna" type="com.easyfolio.esf.csc.vo.QnaVO">
+        <id column="QNA_CODE" property="qnaCode"/>
+        <result column="QNA_QUESTION" property="qnaQuestion"/>
+        <result column="QNA_ANSWER" property="qnaAnswer"/>
+    </resultMap>
+
+    <!--  자주 찾는 질문 목록 조회 -->
+
+    <select id="qnaList" resultMap="qna">
+        SELECT QNA_CODE
+            , QNA_QUESTION
+            , QNA_ANSWER
+        FROM QNA
+        ORDER BY QNA_CODE DESC
+        OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
+    </select>
+
+
 
 
 </mapper>

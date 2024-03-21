@@ -14,8 +14,8 @@
 <th:block layout:fragment="content">
     <div class="csc_wrap">
         <div class="csc_title">
-            <p class="csc_title1">공지사항</p>
-            <p class="csc_title2">NOTICE</p>
+            <p class="csc_title1">문의내역</p>
+            <p class="csc_title2">INQUIRE LIST</p>
         </div>
         <div class="csc_inner">
             <div class="annDetailHeader">
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="btnBlock">
-            <a th:href="@{/csc/updateInqForm(inqCode=${inqDetail.inqCode})}" class="btn"><p>수정하기</p></a>
+            <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}" class="btn"><p>답변하기</p></a>
             <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn"><p>삭제하기</p></a>
         </div>
     </div>

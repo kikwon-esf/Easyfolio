@@ -1,9 +1,6 @@
 package com.easyfolio.esf.csc.service;
 
-import com.easyfolio.esf.csc.vo.AnnCateVO;
-import com.easyfolio.esf.csc.vo.AnnVO;
-import com.easyfolio.esf.csc.vo.InqImgVO;
-import com.easyfolio.esf.csc.vo.InqVO;
+import com.easyfolio.esf.csc.vo.*;
 
 import java.util.List;
 
@@ -30,6 +27,12 @@ public interface CscService {
     public void insertInq(InqVO inqVO);
 
     public String nextInqCode();
+
+    public int deleteInq(InqVO inqVO);
+
+    public int deleteInqImg(InqVO inqVO);
+
+    public List<QnaVO> qnaList();
 
 
 }

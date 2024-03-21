@@ -1,9 +1,6 @@
 package com.easyfolio.esf.csc.service;
 
-import com.easyfolio.esf.csc.vo.AnnCateVO;
-import com.easyfolio.esf.csc.vo.AnnVO;
-import com.easyfolio.esf.csc.vo.InqImgVO;
-import com.easyfolio.esf.csc.vo.InqVO;
+import com.easyfolio.esf.csc.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -74,6 +71,21 @@ public class CscServiceImpl implements CscService{
     @Override
     public String nextInqCode() {
         return sqlSession.selectOne("cscMapper.nextInqCode");
+    }
+
+    @Override
+    public int deleteInq(InqVO inqVO) {
+        return sqlSession.delete("cscMapper.deleteInq", inqVO);
+    }
+
+    @Override
+    public int deleteInqImg(InqVO inqVO) {
+        return sqlSession.delete("cscMapper.deleteInqImg", inqVO);
+    }
+
+    @Override
+    public List<QnaVO> qnaList() {
+        return sqlSession.selectList("cscMapper.qnaList");
     }
 
 }

@@ -74,7 +74,7 @@ public class CscController {
         return "redirect:/csc/annListForm?annNum=\" + annVO.getAnnNum();";
     }
 
-    // 공지 사항 삭제
+    // 공지 사항 삭제 후 목록 페이지 이동
     @GetMapping("/deleteAnn")
     public String deleteAnn(AnnVO annVO){
         cscService.deleteAnn(annVO);
@@ -131,12 +131,36 @@ public class CscController {
         return "redirect:/csc/inqListForm";
     }
 
+    // 문의 사항 삭제 후 목록 페이지 이동
+    @GetMapping("/deleteInq")
+    public String deleteInq(InqVO inqVO){
+        cscService.deleteInqImg(inqVO);
+        cscService.deleteInq(inqVO);
+        return "redirect:/csc/inqListForm";
+    }
+    
+    // 문의 사항 답변 페이지
+    @GetMapping("/responseInqForm")
+     public String responseInqForm(){
+
+        return "content/csc/inq/csc_responseInq";
+     }
+    
+    // 문의 사항 답변 후 상세 페이지 이동
+    @PostMapping("/responseInq")
+    public String responseInq(){
+
+        return "redirect:/csc/inqDetailForm";
+    }
+    
+    
+    
     // 자주 찾는 질문 //
 
-    @GetMapping("/qnaForm")
-    public String qnaForm(){
-
-        return "content/csc/qna/csc_qna";
+    @GetMapping("/qnaListForm")
+    public String qnaListForm(Model model){
+        model.addAttribute("qnaList", cscService.qnaList());
+        return "content/csc/qna/csc_qnaList";
     }
 
     @GetMapping("/insertQnaForm")

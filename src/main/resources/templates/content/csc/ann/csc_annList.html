@@ -1,73 +1,74 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
     layout:decorate="~{fragment/csc_layout}">
-
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-
-
+<meta charset="UTF-8">
+<title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/content/csc/ann/csc_annList.css">
+</th:block>
 </head>
-
 <body>
-    <th:block layout:fragment="content">
-        <link rel="stylesheet" href="/css/content/csc/ann/csc_annList.css">
-        <div id="csc_wrap">
-            <div class="csc_title">
-                <p class="csc_title1">공지사항</p>
-                <p class="csc_title2">NOTICE</p>
-            </div>
-            <div class="csc_inner">
-                <div class="main">
-                    <div class="csc_ann">
-                        <div class="annHeader">
-                            <div class="annChoiceBlock">
-                                <p class="annChoice all active">전체</p>
-                                <p class="annChoice check">점검</p>
-                                <p class="annChoice service">서비스</p>
-                            </div>
-                            <div class="annSearchBlock">
-                                <input type="text" class="annSearch" placeholder="공지사항 검색">
-                                <div class="annSearchBtn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
-                                        class="bi bi-search" viewBox="0 0 16 16">
-                                        <path
-                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                    </svg>
-                                </div>
+<th:block layout:fragment="content">
+    <div id="csc_wrap">
+        <div class="csc_title">
+            <p class="csc_title1">공지사항</p>
+            <p class="csc_title2">NOTICE</p>
+        </div>
+        <div class="csc_inner">
+            <div class="main">
+                <div class="csc_ann">
+                    <div class="annHeader">
+                        <div class="annChoiceBlock">
+                            <p class="annChoice all active">전체</p>
+                            <p class="annChoice check">점검</p>
+                            <p class="annChoice service">서비스</p>
+                        </div>
+                        <div class="annSearchBlock">
+                            <input type="text" class="annSearch" placeholder="공지사항 검색">
+                            <div class="annSearchBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
                             </div>
                         </div>
-                        <div class="csc_annBlock">
-                            <a th:href="@{/csc/annDetailForm(annNum=${ann.annNum})}" th:each="ann, state : ${annList}" class="csc_annLink">
-                                <div class="csc_annBox">
-                                    <div class="annTypeBox">
-                                        <p class="slash">[</p>
-                                        <p class="annType">[[${ann.annCateList.cateName}]]</p>
-                                        <p class="slash">]</p>
-                                    </div>
-                                    <p class="annTitle">
-                                        [[${ann.annTitle}]]
-                                    </p>
-                                    <div class="annDateBox">
-                                        <p class="annDate">[[${ann.annDate}]]</p>
-                                    </div>
+                    </div>
+                    <div class="csc_annBlock">
+                        <a th:href="@{/csc/annDetailForm(annNum=${ann.annNum})}" th:each="ann, state : ${annList}" class="csc_annLink">
+                            <div class="csc_annBox">
+                                <div class="annTypeBox">
+                                    <p class="slash">[</p>
+                                    <p class="annType">[[${ann.annCateList.cateName}]]</p>
+                                    <p class="slash">]</p>
                                 </div>
+                                <p class="annTitle">
+                                    [[${ann.annTitle}]]
+                                </p>
+                                <div class="annDateBox">
+                                    <p class="annDate">[[${ann.annDate}]]</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="btnForm">
+                        <div>
+                            <a class="btnBox" href="/csc/insertAnnForm">
+                                <p>글쓰기</p>
                             </a>
-                        </div>
-                        <div class="btnForm">
-                            <div>
-                                <a class="btnBox" href="/csc/insertAnnForm">
-                                    <p>글쓰기</p>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <script src="/js/content/csc/ann/csc_annList.js"></script>
-    </th:block>
+    </div>
+</th:block>
 </body>
-
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/csc/ann/csc_annList.js"></script>
+</th:block>
 </html>

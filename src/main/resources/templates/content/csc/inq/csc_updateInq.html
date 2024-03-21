@@ -12,7 +12,79 @@
 </head>
 <body>
 <th:block layout:fragment="content">
-
+    <form action="/csc/insertInq" method="post" enctype="multipart/form-data">
+        <div id="csc_wrap">
+            <div class="csc_title">
+                <p class="csc_title1">1:1 문의하기</p>
+                <p class="csc_title2">INQUIRE</p>
+            </div>
+            <div class="csc_inner">
+                <div class="main">
+                    <div class="inq_checkBlock">
+                        <div class="inqStop">
+                            <p class="inqStopText">STOP !</p>
+                            <p class="inqStopText1">1:1 문의 전에 확인해 주세요</p>
+                        </div>
+                        <div class="inq_stopTextBox">
+                            <p><span>자주 찾는 질문</span>을 통해 간편하고 빠르게 궁금한 점을 해결 하실 수 있습니다.</p>
+                            <p>확인 해 보고 싶다면?</p>
+                            <a href="/csc/qnaForm">
+                                <p class="qnaGo">
+                                    자주 찾는 질문 바로가기
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#333"
+                                        class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                    </svg>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="inqBlock">
+                        <div class="box">
+                            <div class="inputBox">
+                                <div class="label">문의유형</div>
+                                <select class="" name="inqCate" id="">
+                                    <option th:value="th:value=${inqDetail.inqCateList.cateCode}">
+                                        [[${inqDetail.inqCateList.cateName}]]
+                                    </option>
+                                    <option value="CATE_000">선택</option>
+                                    <option value="CATE_001">카테고리1</option>
+                                    <option value="CATE_002">카테고리2</option>
+                                    <option value="CATE_003">카테고리3</option>
+                                    <option value="CATE_004">카테고리4</option>
+                                    <option value="CATE_005">카테고리5</option>
+                                </select>
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">제목</div>
+                                <input type="text" name="inqTitle" th:value="${inqDetail.inqTitle}">
+                            </div>
+                            <div class="inputBox content">
+                                <div class="label">내용</div>
+                                <textarea name="inqContent" id="" cols="60" rows="10">
+                                    [[${inqDetail.inqContent}]]
+                                </textarea>
+                            </div>
+                            <div class="inputBox img">
+                                <div class="label">사진</div>
+                                <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                                <label for="file">파일찾기</label>
+                                <input type="file" id="file" name="inqImg" onchange="readURL(this);" multiple>
+                            </div>
+                            <div class="inputBox imgLook">
+                                <div class="label imgLook">사진<br>미리보기</div>
+                                <div class="imgLookBox"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btnBox">
+                        <input class="subBtn" type="submit" value="등록">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </th:block>
 </body>
 <!-- js 영역 -->
