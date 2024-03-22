@@ -59,4 +59,10 @@
         AND MEMBER_TEL = #{memberTel}
     </select>
 
+    <select id="selectMemberInfo" resultMap="member">
+        SELECT
+        , FOOD_NAME
+        FROM DISH_MEMBER
+        WHERE MEMBER_ID = ${memberId}
+    </select>
 </mapper>

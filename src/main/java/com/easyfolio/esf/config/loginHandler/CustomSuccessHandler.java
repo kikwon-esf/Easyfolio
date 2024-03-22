@@ -27,11 +27,11 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        HttpSession session = request.getSession(); // 세션 영역 불러오기
-        System.err.println("user : "+request.getRemoteUser());
-        System.err.println("user : "+request.getRemoteAddr());
-        System.err.println("user : "+request.getRemoteHost());
-        System.err.println("user : "+request.getRemotePort());
+//        HttpSession session = request.getSession(); // 세션 영역 불러오기
+//        System.err.println("user : "+request.getRemoteUser());
+//        System.err.println("user : "+request.getRemoteAddr());
+//        System.err.println("user : "+request.getRemoteHost());
+//        System.err.println("user : "+request.getRemotePort());
         response.sendRedirect("/"); // 로그인 성공시 url
     }
 

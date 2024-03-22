@@ -5,13 +5,14 @@ import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
+import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Member;
 import java.security.Principal;
 import java.util.List;
 
@@ -25,18 +26,20 @@ public class MyPageController {
     private final MyPageService myPageService;
 
     @GetMapping(value = "/favorite")
-    public String favoritePage(Principal principal, Model model){
-
-        MemberVO memberVO = new MemberVO();
+    public String favoritePage(Principal principal, Model model, MemberVO memberVO){
         memberVO.setMemberId(principal.getName());
-        System.err.println("memberId : " + memberVO.getMemberId());
-        List list = myPageService.getFavoriteListByMember(memberVO);
-        for(int i = 0 ; i < list.size() ; i++){
-            System.err.println(list.get(i));
-        }
+        List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(memberVO);
 
-        model.addAttribute("myFavorite", list);
+        model.addAttribute("myFavorite", favorite);
         return "content/myPage/myPage_favorite";
+    }
+    @ResponseBody
+    @PostMapping(value = "/deleteFav")
+    public ResponseEntity<String> deleteFavorite(Principal principal, @RequestBody String foodCode, FavoriteVO favoriteVO){
+        favoriteVO.setFoodCode(foodCode);
+        favoriteVO.setMemberId(principal.getName());
+
+        return new ResponseEntity<>("삭제되었습니다.", HttpStatus.OK);
     }
     @GetMapping(value = "/myContent")
     public String myContent(Principal principal, Model model){
@@ -47,12 +50,12 @@ public class MyPageController {
     }
     @GetMapping(value = "/myDetails")
     public String myInform(Principal principal, Model model){
+
         String user = principal.getName();
 
 
         return "content/myPage/myPage_myDetails";
     }
-
 
 
 }

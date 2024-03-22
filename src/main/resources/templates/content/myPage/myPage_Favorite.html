@@ -14,18 +14,43 @@
 
 <body>
 <th:block layout:fragment="content">
-
+    <link rel="stylesheet" href="/css/content/myPage/myPage_favorite.css">
     <h1>
         favorite
     </h1>
-    <th:block th:each="each, status:${list}">
-        <p th:text="${each}">
-
+    <div id="wrap">
+        <div class="fav_search">
+            <input class="fav_search_input" type="text" placeholder="검색">
+            <input class="fav_search_submit" id="fav_search_submit" type="submit" value="이미지넣어줘">
+        </div>
+        <p class="col_header">
+            <span class="fav_col_head col_1st">음식코드(실제로는 안보이게)</span>
+            <span class="fav_col_head col_2nd">제목</span>
+            <span class="fav_col_head col_3rd">음식 이름</span>
+            <span class="fav_col_head col_4th">조회수</span>
+            <span class="fav_col_head col_5th">즐겨찾기 등록수</span>
+            <span class="fav_col_head col_6th">등록 날짜</span>
+            <span class="fav_col_head col_7th"></span>
         </p>
-    </th:block>
+        <th:block th:each="favorite, status:${myFavorite}">
+            <div class="favorite">
+                <p class="col_content">
+                    <a><span class="fav_col col_1st">[[${favorite.foodCode}]]</span></a>
+                    <a><span class="fav_col col_2nd" th:text="${favorite.foodVO.foodTtl}"></span></a>
+                    <a><span class="fav_col col_3rd" th:text="${favorite.foodVO.foodName}"></span></a>
+                    <a><span class="fav_col col_4th" th:text="${favorite.foodVO.foodInqCnt}"></span></a>
+                    <a><span class="fav_col col_5th" th:text="${favorite.foodVO.foodRcmmCnt}"></span></a>
+                    <a><span class="fav_col col_6th" th:text="${favorite.favoriteDate}"></span></a>
+                    <span onclick="deleteFav(this)" class="fav_col col_7th">X</span>
+                </p>
+            </div>
+        </th:block>
+    </div>
+    <script src="/js/content/myPage/favorite.js"></script>
 </th:block>
 
 <th:block layout:fragment="content_js">
+
 </th:block>
 </body>
 

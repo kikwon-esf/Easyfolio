@@ -1,7 +1,10 @@
-
+.myPage_m{
+    display : flex;
+    margin : 0 auto;
+}
 .myPage_side{
     float:left;
-
+    height : 1000px;
 }
 .myPage_side>div{
     display : flex;

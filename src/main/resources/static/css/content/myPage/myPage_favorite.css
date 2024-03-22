@@ -1,0 +1,50 @@
+#wrap{
+    display : flex;
+    flex-flow : column;
+}
+
+.favorite{
+    margin-top : 20px;
+}
+.col_1st .fav_col{
+    margin-right : 10px;
+    width : 300px;
+}
+span{
+    display : inline-block;
+    margin-bottom : 5px;
+
+}
+.fav_col{
+    display : inline-block;
+    width : 200px;
+}
+.fav_col_head{
+    display : inline-block;
+    width : 200px
+}
+.col_header{
+    border-bottom : 2px solid black;
+
+}
+.col_content{
+    border-bottom : 1px solid black;
+}
+
+/* 검색 */
+.fav_search{
+    position : relative;
+    left : 940px;
+    display : inline;
+    width : 270px;
+    float : right;
+    border : 1px solid black;
+    border-radius : 3px;
+}
+.fav_search_input{
+    border : none;
+}
+.fav_search_submit{
+    border : none;
+    background-color: white;
+}

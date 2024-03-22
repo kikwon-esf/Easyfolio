@@ -1,7 +1,7 @@
 package com.easyfolio.esf.crud;
 
 import com.easyfolio.esf.myPage.service.MyPageService;
-import com.easyfolio.esf.myPage.vo.FavoriteInputVO;
+import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,8 +16,8 @@ public class FavoriteTest {
     private MyPageService myPageService;
 
 
-    public FavoriteInputVO addFavoriteTest(String foodCode, String memberId){
-        FavoriteInputVO input = new FavoriteInputVO();
+    public FavoriteVO addFavoriteTest(String foodCode, String memberId){
+        FavoriteVO input = new FavoriteVO();
         input.setFoodCode(foodCode);
         input.setMemberId(memberId);
         return input;
@@ -26,7 +26,7 @@ public class FavoriteTest {
     @Transactional
     public void readFavorite(){
 
-        FavoriteInputVO input = new FavoriteInputVO();
+        FavoriteVO input = new FavoriteVO();
         String foodCode = "FOOD_000055";
         String first = "FOOD_";
         String second = "0000";
