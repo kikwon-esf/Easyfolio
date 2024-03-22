@@ -18,11 +18,19 @@
                         <div class="food_title">
                             <p class="food_title1">전체</p>
                             <p class="food_title2">RECIPE</p>
+                            <div class="allCountBox">
+                                <p class="allcount">
+                                    <span>(</span>
+                                    <span th:text="${searchFoodCnt}"></span>
+                                    <span>개</span>
+                                    <span>)</span>
+                                </p>
+                            </div>
                         </div>
                         <div class="searchAndBtn">
                             <form action="/food/searchFood" class="searchFoodForm" method="post">
                                 <div class="foodSearchBlock">
-                                    <input type="text" name="searchFoodValue" class="searchFoodValue" placeholder="레시피 검색">
+                                    <input type="text" name="searchFoodValue" class="searchFoodValue" th:placeholder="${searchFoodValue}">
                                     <div class="foodSearchBtn" onclick="searchFood()">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
                                             class="bi bi-search" viewBox="0 0 16 16">
@@ -79,7 +87,7 @@
                 </div>
                 <div class="btn_group">
                     <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
-                        <a class="page_prevBtn" th:href="@{/food/foodMain(nowPage=${foodVO.beginPage - 1})}"><span
+                        <a class="page_prevBtn" th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue})}"><span
                                 th:if="${foodVO.prev}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -88,10 +96,10 @@
                                 </svg>
                             </span></a>
                         <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
-                            <a class="page_numBtn" th:href="@{/food/foodMain(nowPage=${pageNum})}"><span
+                            <a class="page_numBtn" th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue})}"><span
                                     th:text="${pageNum}"></span></a>
                         </th:block>
-                        <a class="page_nextBtn" th:href="@{/food/foodMain(nowPage=${foodVO.endPage + 1})}"><span
+                        <a class="page_nextBtn" th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue})}"><span
                                 th:if="${foodVO.next}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-caret-right-fill" viewBox="0 0 16 16">

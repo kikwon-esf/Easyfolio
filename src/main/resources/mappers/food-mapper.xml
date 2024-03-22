@@ -28,7 +28,7 @@
     <!--  음식 전체 조회  -->
     <select id="allFoodList" resultMap="food">
         SELECT FOOD_CODE
-        , FOOD_NAME
+        , FOOD_TTL
         , FOOD_DIF
         , FOOD_INQ_CNT
         , FOOD_RCMM_CNT
@@ -41,13 +41,25 @@
         SELECT COUNT(FOOD_CODE)
         FROM FOOD
     </select>
+    <select id="searchFoodCnt" resultType="int">
+        SELECT COUNT(FOOD_CODE)
+        FROM FOOD
+        WHERE FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+    </select>
 
-<!--    &lt;!&ndash;  음식명 검색 api  &ndash;&gt;-->
-<!--    <select id="FoodNameList" resultMap="food">-->
-<!--        SELECT FOOD_NAME-->
-<!--        FROM FOOD-->
-<!--        WHERE FOOD_NAME LIKE '%'||#{foodName}||'%'-->
-<!--    </select>-->
+    <!--  음식명 검색 api  -->
+    <select id="searchFoodAll" resultMap="food">
+        SELECT FOOD_CODE
+        , FOOD_TTL
+        , FOOD_DIF
+        , FOOD_INQ_CNT
+        , FOOD_RCMM_CNT
+        FROM FOOD
+        WHERE FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+        ORDER BY FOOD_INQ_CNT DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
 
 <!--    &lt;!&ndash;  음식 상세 조회 api  &ndash;&gt;-->
 <!--    <select id="foodDetail" resultMap="food">-->

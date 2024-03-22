@@ -33,7 +33,7 @@ textarea{
     z-index: 400;
     position: relative;
     width: 100%;
-    border-bottom: 2px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 
 .h_inner{

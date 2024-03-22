@@ -21,4 +21,5 @@ public class FoodVO extends PageVO {
     private String foodDif;
     private String foodTime;
     private String foodRegDt;
+    private String searchFoodValue;
 }

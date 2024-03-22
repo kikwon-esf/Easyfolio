@@ -7,9 +7,11 @@ import java.util.List;
 public interface FoodService {
     public List<FoodVO> allFoodList(FoodVO foodVO); // 음식 전체 목록
 
-    public int foodCnt(FoodVO foodVO);
+    public int foodCnt();
+
+    public int searchFoodCnt(FoodVO foodVO);
 //    public FoodVO foodDetail(FoodVO foodVO); // 음식 상세정보
-//    public List<FoodVO> FoodNameList(String foodName); // 음식 이름 검색
+    public List<FoodVO> searchFoodAll(FoodVO foodVO); // 음식 이름 검색
 //    public List<FoodVO> foodTypeList(String foodType); // 음식 타입 검색
 //    public List<FoodVO> foodMtrlList(String foodMtrl); // 음식 재료 검색
 //    public List<FoodVO> foodUsageList(String foodUsage); // 음식 용도 검색

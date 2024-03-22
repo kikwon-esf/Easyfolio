@@ -20,7 +20,7 @@ public class FoodController {
 //    푸드 메인
     @GetMapping("/foodMain")
     public String foodMainForm(Model model, FoodVO foodVO){
-        foodVO.setTotalDataCnt(foodService.foodCnt(foodVO));
+        foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
         model.addAttribute("foodList", foodService.allFoodList(foodVO));
         return "/content/food/food_main";
@@ -30,6 +30,29 @@ public class FoodController {
         model.addAttribute("nowPage", foodVO.getNowPage());
         return "redirect:/food/foodMain?nowPage=" + foodVO.getNowPage();
     }
+
+    @PostMapping("/searchFood")
+    public String searchFoodAll(Model model, FoodVO foodVO){
+        foodVO.setTotalDataCnt(foodService.foodCnt());
+        foodVO.setPageInfo();
+        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
+        model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
+        return "/content/food/food_search";
+    }
+    @GetMapping("/searchFoodPage")
+    public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam("searchFoodValue") String searchFoodValue){
+        foodVO.setSearchFoodValue(searchFoodValue);
+        foodVO.setTotalDataCnt(foodService.foodCnt());
+        foodVO.setPageInfo();
+        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
+        model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
+        return "/content/food/food_search";
+    }
+
+    // 전체 검색
+
 
 //    // 음식명 조회
 //    @GetMapping("/foodNameList")

@@ -18,8 +18,18 @@ public class FoodServicempl implements FoodService{
     }
 
     @Override
-    public int foodCnt(FoodVO foodVO) {
-        return sqlSession.selectOne("foodMapper.foodCnt", foodVO);
+    public int foodCnt() {
+        return sqlSession.selectOne("foodMapper.foodCnt");
+    }
+
+
+    @Override
+    public List<FoodVO> searchFoodAll(FoodVO foodVO) {
+        return sqlSession.selectList("foodMapper.searchFoodAll", foodVO);
+    }
+    @Override
+    public int searchFoodCnt(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.searchFoodCnt", foodVO);
     }
 
 //    // 음식 상세정보

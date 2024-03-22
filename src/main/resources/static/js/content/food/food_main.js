@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-var foodSearch = document.querySelector('.foodSearch');
+var foodSearch = document.querySelector('.searchFoodValue');
 var foodSearchBlock = document.querySelector('.foodSearchBlock');
 
 foodSearch.addEventListener("click", function () {
@@ -29,3 +29,7 @@ document.addEventListener("click", function (event) {
     }
 
 });
+function searchFood(){
+    document.querySelector('.searchFoodForm').submit();
+}
+
