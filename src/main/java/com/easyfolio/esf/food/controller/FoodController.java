@@ -3,13 +3,18 @@ package com.easyfolio.esf.food.controller;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/food")
@@ -23,6 +28,7 @@ public class FoodController {
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
         model.addAttribute("foodList", foodService.allFoodList(foodVO));
+        model.addAttribute("foodCnt", foodService.foodCnt());
         return "/content/food/food_main";
     }
     @GetMapping("/foodMainPage1")
@@ -32,7 +38,7 @@ public class FoodController {
     }
 
     @PostMapping("/searchFood")
-    public String searchFoodAll(Model model, FoodVO foodVO){
+    public String searchFoodAll(Model model, FoodVO foodVO) {
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));

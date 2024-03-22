@@ -18,6 +18,14 @@
                         <div class="food_title">
                             <p class="food_title1">전체</p>
                             <p class="food_title2">RECIPE</p>
+                            <div class="allCountBox">
+                                <p class="allcount">
+                                    <span>(</span>
+                                    <span th:text="${foodCnt}"></span>
+                                    <span>개</span>
+                                    <span>)</span>
+                                </p>
+                            </div>
                         </div>
                         <div class="searchAndBtn">
                             <form action="/food/searchFood" class="searchFoodForm" method="post">
