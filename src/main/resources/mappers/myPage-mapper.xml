@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPageMapper">
+
+    <resultMap id="favoriteEach" type="com.easyfolio.esf.myPage.vo.FavoriteVO">
+        <result column="FOOD_CODE" property="foodCode" />
+        <result column="MEMBER_ID" property="memberId" />
+        <result column="FAVORITE_DATE" property="favoriteDate" />
+        <collection property="foodVO" resultMap="foodMapper.food"/>
+    </resultMap>
+
+    <insert id="addFavorite">
+        INSERT INTO FAVORITE (
+        MEMBER_ID
+        , FOOD_CODE
+
+        ) VALUES (
+        #{memberId}
+        , #{foodCode}
+        )
+    </insert>
+
+
+    <select id="favoriteList" resultMap="favoriteEach">
+        SELECT FA.FOOD_CODE
+        , FA.MEMBER_ID
+        , FO.FOOD_TTL
+        , FO.FOOD_NAME
+        , FO.FOOD_INQ_CNT
+        , FO.FOOD_RCMM_CNT
+        , TO_CHAR(FAVORITE_DATE,'YYYY-MM-DD') AS FAVORITE_DATE
+        FROM FAVORITE FA, FOOD FO
+        WHERE FA.MEMBER_ID = #{memberId}
+        AND FA.FOOD_CODE = FO.FOOD_CODE
+    </select>
+
+    <delete id="deleteFav">
+        DELETE FROM FAVORITE
+        WHERE MEMBER_ID = #{memberId}
+        AND FOOD_CODE = #{foodCode}
+    </delete>
+</mapper>
