@@ -35,12 +35,13 @@ function searchFood(){
 
 document.addEventListener("DOMContentLoaded", function() {
     var currentPageUrl = window.location.href;
-    if (currentPageUrl.endsWith("/food/searchFood")) {
+    if (currentPageUrl.endsWith("/food/searchFood")||currentPageUrl.endsWith("/food/searchFoodPage")) {
         var numBtnSpans = document.querySelectorAll(".page_numBtn span");
         numBtnSpans.forEach(function(span) {
             if (span.textContent.trim() === '1') {
                 span.closest('.page_numBtn').classList.add('active');
             }
         });
+        
     }
 });

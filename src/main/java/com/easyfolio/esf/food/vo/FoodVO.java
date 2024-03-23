@@ -11,9 +11,9 @@ public class FoodVO extends PageVO {
     private String memberName;
     private int foodInqCnt;
     private int foodRcmmCnt;
-    private String foodType;
-    private String foodUsage;
-    private String foodMtrl;
+    private String foodTypeCode;
+    private String foodUsageCode;
+    private String foodMtrlCode;
     private String foodKindCode;
     private String foodIndc;
     private String foodMtrlCn;
@@ -22,4 +22,8 @@ public class FoodVO extends PageVO {
     private String foodTime;
     private String foodRegDt;
     private String searchFoodValue;
+    private FoodKindVO foodKindVO;
+    private FoodUsageVO foodUsageVO;
+    private FoodMtrlVO foodMtrlVO;
+    private FoodTypeVO foodTypeVO;
 }

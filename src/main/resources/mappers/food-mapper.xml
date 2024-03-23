@@ -3,9 +3,6 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="foodMapper">
-
-    <!--  음식 검색 api  -->
-
     <resultMap id="food" type="com.easyfolio.esf.food.vo.FoodVO">
         <id column="FOOD_CODE" property="foodCode" />
         <result column="FOOD_TTL" property="foodTtl" />
@@ -15,7 +12,7 @@
         <result column="FOOD_RCMM_CNT" property="foodRcmmCnt"/>
         <result column="FOOD_TYPE" property="foodType"/>
         <result column="FOOD_USAGE" property="foodUsage"/>
-        <result column="FOOD_MTRL" property="foodMtrl"/>
+        <result column="FOOD_MTRL_CODE" property="foodMtrlCode"/>
         <result column="FOOD_KIND_CODE" property="foodKindCode"/>
         <result column="FOOD_INDC" property="foodIndc"/>
         <result column="FOOD_MTRL_CN" property="foodMtrlCn"/>
@@ -29,7 +26,24 @@
         <id column="FOOD_KIND_CODE" property="foodKindCode" />
         <result column="FOOD_KIND_TEXT" property="foodKindText" />
     </resultMap>
-<!--    음식 카테고리 조회-->
+
+    <resultMap id="foodUsage" type="com.easyfolio.esf.food.vo.FoodUsageVO">
+        <id column="FOOD_USAGE_CODE" property="foodUsageCode" />
+        <result column="FOOD_USAGE_TEXT" property="foodUsageText" />
+    </resultMap>
+
+    <resultMap id="foodMtrl" type="com.easyfolio.esf.food.vo.FoodMtrlVO">
+        <id column="FOOD_MTRL_CODE" property="foodMtrlCode" />
+        <result column="FOOD_MTRL_TEXT" property="foodMtrlText" />
+    </resultMap>
+
+    <resultMap id="foodType" type="com.easyfolio.esf.food.vo.FoodTypeVO">
+        <id column="FOOD_TYPE_CODE" property="foodTypeCode" />
+        <result column="FOOD_TYPE_TEXT" property="foodTypeText" />
+    </resultMap>
+
+
+<!--   종류별-->
     <select id="foodKindList" resultMap="foodKind">
         SELECT FOOD_KIND_TEXT
         , FOOD_KIND_CODE
@@ -41,28 +55,70 @@
         WHERE FOOD_KIND_CODE = #{foodKindCode}
     </select>
 
-    <!--  음식 전체 조회  -->
-    <select id="allFoodList" resultMap="food">
-        SELECT FOOD_CODE
-        , FOOD_TTL
-        , FOOD_DIF
-        , FOOD_INQ_CNT
-        , FOOD_RCMM_CNT
-        FROM FOOD
-        ORDER BY FOOD_INQ_CNT DESC
-        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+<!--    상황별-->
+    <select id="foodUsageList" resultMap="foodUsage">
+        SELECT FOOD_USAGE_CODE
+        , FOOD_USAGE_TEXT
+        FROM FOOD_USAGE
+    </select>
+    <select id="foodUsageText" resultMap="foodUsage">
+        SELECT FOOD_USAGE_TEXT
+        FROM FOOD_USAGE
+        WHERE FOOD_USAGE_CODE = #{foodUsageCode}
     </select>
 
+<!--    재료별-->
+    <select id="foodMtrlList" resultMap="foodMtrl">
+        SELECT FOOD_MTRL_CODE
+        , FOOD_MTRL_TEXT
+        FROM FOOD_MTRL
+    </select>
+    <select id="foodMtrlText" resultMap="foodMtrl">
+        SELECT FOOD_MTRL_TEXT
+        FROM FOOD_MTRL
+        WHERE FOOD_MTRL_CODE = #{foodMtrlCode}
+    </select>
+
+    <!--    방법별-->
+    <select id="foodTypeList" resultMap="foodType">
+        SELECT FOOD_TYPE_CODE
+        , FOOD_TYPE_TEXT
+        FROM FOOD_TYPE
+    </select>
+    <select id="foodTypeText" resultMap="foodType">
+        SELECT FOOD_TYPE_TEXT
+        FROM FOOD_TYPE
+        WHERE FOOD_TYPE_CODE = #{foodTypeCode}
+    </select>
+
+
+
+    <!-- 음식 개수 -->
     <select id="foodCnt" resultType="int">
         SELECT COUNT(FOOD_CODE)
         FROM FOOD
     </select>
+    <!-- 음식 조회  -->
     <select id="searchFoodCnt" resultType="int">
         SELECT COUNT(FOOD_CODE)
         FROM FOOD
-        <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">
-            WHERE FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
-        </if>
+        <where>
+            <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">
+                AND FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+            </if>
+            <if test="foodKindCode != null and not foodKindCode.isEmpty()">
+                AND FOOD_KIND_CODE = #{foodKindCode}
+            </if>
+            <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">
+                AND FOOD_USAGE_CODE = #{foodUsageCode}
+            </if>
+            <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">
+                AND FOOD_MTRL_CODE = #{foodMtrlCode}
+            </if>
+            <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">
+                AND FOOD_TYPE_CODE = #{foodTypeCode}
+            </if>
+        </where>
     </select>
 
     <!--  음식명 검색 api  -->
@@ -80,33 +136,20 @@
             <if test="foodKindCode != null and not foodKindCode.isEmpty()">
                 AND FOOD_KIND_CODE = #{foodKindCode}
             </if>
+            <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">
+                AND FOOD_USAGE_CODE = #{foodUsageCode}
+            </if>
+            <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">
+                AND FOOD_MTRL_CODE = #{foodMtrlCode}
+            </if>
+            <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">
+                AND FOOD_TYPE_CODE = #{foodTypeCode}
+            </if>
         </where>
         ORDER BY FOOD_INQ_CNT DESC
         OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
-
-
-<!--    &lt;!&ndash;  음식 상세 조회 api  &ndash;&gt;-->
-<!--    <select id="foodDetail" resultMap="food">-->
-<!--        SELECT *-->
-<!--        FROM FOOD-->
-<!--        WHERE FOOD_CODE = #{foodCode}-->
-<!--    </select>-->
-
-<!--    &lt;!&ndash;  음식 타입 검색 api  &ndash;&gt;-->
-<!--    <select id="FoodTypeList" resultMap="food">-->
-<!--        SELECT FOOD_NAME-->
-<!--        FROM FOOD-->
-<!--        WHERE FOOD_TYPE = #{foodType}-->
-<!--    </select>-->
-
-<!--    &lt;!&ndash;  음식 종류 검색 api  &ndash;&gt;-->
-<!--    <select id="FoodKindList" resultMap="food">-->
-<!--        SELECT FOOD_KIND-->
-<!--        FROM FOOD-->
-<!--        WHERE FOOD_KIND = #{foodKind}-->
-<!--    </select>-->
 
 <!--    &lt;!&ndash;  음식 용도 검색 api  &ndash;&gt;-->
 <!--    <select id="FoodUsageList" resultMap="food">-->

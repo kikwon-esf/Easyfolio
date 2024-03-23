@@ -1,7 +1,6 @@
 package com.easyfolio.esf.food.service;
 
-import com.easyfolio.esf.food.vo.FoodKindVO;
-import com.easyfolio.esf.food.vo.FoodVO;
+import com.easyfolio.esf.food.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -24,8 +23,39 @@ public class FoodServicempl implements FoodService{
     }
 
     @Override
-    public FoodKindVO foodKindText(FoodKindVO foodKindVO) {
-        return sqlSession.selectOne("foodMapper.foodKindText", foodKindVO);
+    public FoodKindVO foodKindText(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.foodKindText", foodVO);
+    }
+
+    @Override
+    public List<FoodUsageVO> foodUsageList() {
+        return sqlSession.selectList("foodMapper.foodUsageList");
+    }
+
+    @Override
+    public FoodUsageVO foodUsageText(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.foodUsageText", foodVO);
+    }
+
+    @Override
+    public List<FoodMtrlVO> foodMtrlList() {
+        return sqlSession.selectList("foodMapper.foodMtrlList");
+    }
+
+    @Override
+    public FoodMtrlVO foodMtrlText(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.foodMtrlText", foodVO);
+    }
+
+    // 방법별
+    @Override
+    public List<FoodTypeVO> foodTypeList() {
+        return sqlSession.selectList("foodMapper.foodTypeList");
+    }
+
+    @Override
+    public FoodTypeVO foodTypeText(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.foodTypeText", foodVO);
     }
 
     @Override

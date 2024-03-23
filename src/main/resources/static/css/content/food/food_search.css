@@ -17,13 +17,20 @@
     display: -webkit-inline-box;
     margin-left: 20px;
 }
-.food_title1{
-    color: #000;
+.food_title0{
+    color: #333;
     font-size: 23px;
     font-weight: 700;
+    margin-right: 10px;
+}
+.food_title1{
+    color: #333;
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 10px;
 }
 .food_title2{
-    margin: 8px 20px 3px 0;
+    margin: 8px 10px 3px 0;
     font-size: 17px;
     font-weight: 700;
     color: #f3c053;

@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="/css/fragment/food_top.css">
         <div id="top_wrap">
             <div id="w_in">
-                <a href="/food/foodMain">
+                <a href="/food/searchFoodPage">
                     <div class="foodMain">
                         <div class="foodTitle">
                             <p class="foodTitle1">레시피</p>
@@ -39,62 +39,35 @@
                                     </a>
                                     <a th:each="foodKind, state : ${foodKindList}"
                                         th:href="@{/food/searchFoodPage(foodKindCode=${foodKind.foodKindCode})}">
-                                        <p class="" th:text="${foodKind.foodKindText}"></p>
+                                        <p class="menuTextBtn" th:text="${foodKind.foodKindText}"></p>
                                     </a>
                                 </div>
                                 <div class="menuTextBox">
-                                    <p class="menuTextAll">전체</p>
-                                    <p>일상</p>
-                                    <p>초스피드</p>
-                                    <p>손님접대</p>
-                                    <p>술안주</p>
-                                    <p>다이어트</p>
-                                    <p>도시락</p>
-                                    <p>영양식</p>
-                                    <p>간식</p>
-                                    <p>야식</p>
-                                    <p>푸드스타일링</p>
-                                    <p>해장</p>
-                                    <p>명절</p>
-                                    <p>이유식</p>
-                                    <p class="menuother">기타</p>
+                                    <a th:href="@{/food/searchFoodPage}">
+                                        <p class="menuTextAll">전체</p>
+                                    </a>
+                                    <a th:each="foodUsage, state : ${foodUsageList}"
+                                        th:href="@{/food/searchFoodPage(foodUsageCode=${foodUsage.foodUsageCode})}">
+                                        <p class="menuTextBtn" th:text="${foodUsage.foodUsageText}"></p>
+                                    </a>
                                 </div>
                                 <div class="menuTextBox">
-                                    <p class="menuTextAll">전체</p>
-                                    <p>소고기</p>
-                                    <p>돼지고기</p>
-                                    <p>닭고기</p>
-                                    <p>육류</p>
-                                    <p>채소류</p>
-                                    <p>해물류</p>
-                                    <p>달걀/유제품</p>
-                                    <p>가공식품류</p>
-                                    <p>쌀</p>
-                                    <p>밀가루</p>
-                                    <p>건어물류</p>
-                                    <p>버섯류</p>
-                                    <p>과일류</p>
-                                    <p>콩/견과류</p>
-                                    <p>곡류</p>
-                                    <p class="menuother">기타</p>
+                                    <a th:href="@{/food/searchFoodPage}">
+                                        <p class="menuTextAll">전체</p>
+                                    </a>
+                                    <a th:each="foodMtrl, state : ${foodMtrlList}"
+                                        th:href="@{/food/searchFoodPage(foodMtrlCode=${foodMtrl.foodMtrlCode})}">
+                                        <p class="menuTextBtn" th:text="${foodMtrl.foodMtrlText}"></p>
+                                    </a>
                                 </div>
                                 <div class="menuTextBox">
-                                    <p class="menuTextAll">전체</p>
-                                    <p>볶음</p>
-                                    <p>끓이기</p>
-                                    <p>부침</p>
-                                    <p>조림</p>
-                                    <p>무침</p>
-                                    <p>비빔</p>
-                                    <p>찜</p>
-                                    <p>절임</p>
-                                    <p>튀김</p>
-                                    <p>삶기</p>
-                                    <p>굽기</p>
-                                    <p>굽기</p>
-                                    <p>데치기</p>
-                                    <p>회</p>
-                                    <p class="menuother">기타</p>
+                                    <a th:href="@{/food/searchFoodPage}">
+                                        <p class="menuTextAll">전체</p>
+                                    </a>
+                                    <a th:each="foodType, state : ${foodTypeList}"
+                                        th:href="@{/food/searchFoodPage(foodTypeCode=${foodType.foodTypeCode})}">
+                                        <p class="menuTextBtn" th:text="${foodType.foodTypeText}"></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>

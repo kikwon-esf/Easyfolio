@@ -10,13 +10,37 @@
 
 <body>
     <th:block layout:fragment="content">
-        <link rel="stylesheet" href="/css/content/food/food_main.css">
+        <link rel="stylesheet" href="/css/content/food/food_search.css">
         <div class="food_wrap">
             <div class="inner">
                 <div class="recipeBlock">
                     <div class="recipeHeader">
                         <div class="food_title">
-                            <p class="food_title1" th:th:text="${food}">전체</p>
+                            <th:block th:if="${(foodKind != null) or (foodUsage != null) or (foodMtrl != null) or (foodType != null)}">
+                                <th:block th:if="${(foodKind != null)}">
+                                    <p class="food_title1">종목별</p>
+                                    <p class="food_title1">></p>
+                                    <p class="food_title1" th:text="${foodKind.foodKindText}"></p>
+                                </th:block>
+                                <th:block th:if="${(foodUsage != null)}">
+                                    <p class="food_title1">상황별</p>
+                                    <p class="food_title1">></p>
+                                    <p class="food_title1" th:text="${foodUsage.foodUsageText}"></p>
+                                </th:block>
+                                <th:block th:if="${(foodMtrl != null)}">
+                                    <p class="food_title1">재료별</p>
+                                    <p class="food_title1">></p>
+                                    <p class="food_title1" th:text="${foodMtrl.foodMtrlText}"></p>
+                                </th:block>
+                                <th:block th:if="${(foodType != null)}">
+                                    <p class="food_title1">방법별</p>
+                                    <p class="food_title1">></p>
+                                    <p class="food_title1" th:text="${foodType.foodTypeText}"></p>
+                                </th:block>
+                            </th:block>
+                            <th:block th:if="${(foodKind == null) and (foodUsage == null) and (foodMtrl == null) and (foodType == null)}">
+                                <p class="food_title0">전체</p>
+                            </th:block>
                             <p class="food_title2">RECIPE</p>
                             <div class="allCountBox">
                                 <p class="allcount">
@@ -29,8 +53,17 @@
                         </div>
                         <div class="searchAndBtn">
                             <form action="/food/searchFood" class="searchFoodForm" method="post">
+                                <input type="hidden" name="foodKindCode" th:value="${foodKindCode}">
+                                <input type="hidden" name="foodUsageCode" th:value="${foodUsageCode}">
+                                <input type="hidden" name="foodMtrlCode" th:value="${foodMtrlCode}">
+                                <input type="hidden" name="foodTypeCode" th:value="${foodTypeCode}">
                                 <div class="foodSearchBlock">
-                                    <input type="text" name="searchFoodValue" class="searchFoodValue" th:placeholder="${searchFoodValue}">
+                                    <th:block th:if="${searchFoodValue != null}">
+                                        <input type="text" name="searchFoodValue" class="searchFoodValue" th:placeholder="${searchFoodValue}">
+                                    </th:block>
+                                    <th:block th:if="${searchFoodValue == null or searchFoodValue.isEmpty()}">
+                                        <input type="text" name="searchFoodValue" class="searchFoodValue" placeholder="레시피 검색">
+                                    </th:block>
                                     <div class="foodSearchBtn" onclick="searchFood()">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
                                             class="bi bi-search" viewBox="0 0 16 16">
@@ -87,7 +120,8 @@
                 </div>
                 <div class="btn_group">
                     <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
-                        <a class="page_prevBtn" th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue})}"><span
+                        <a class="page_prevBtn"
+                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue})}"><span
                                 th:if="${foodVO.prev}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -96,10 +130,12 @@
                                 </svg>
                             </span></a>
                         <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
-                            <a class="page_numBtn" th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue})}"><span
+                            <a class="page_numBtn"
+                                th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue})}"><span
                                     th:text="${pageNum}"></span></a>
                         </th:block>
-                        <a class="page_nextBtn" th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue})}"><span
+                        <a class="page_nextBtn"
+                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue})}"><span
                                 th:if="${foodVO.next}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-caret-right-fill" viewBox="0 0 16 16">
@@ -113,7 +149,7 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="/js/slick.min.js"></script>
-        <script src="/js/content/food/food_main.js"></script>
+        <script src="/js/content/food/food_search.js"></script>
     </th:block>
 </body>
 

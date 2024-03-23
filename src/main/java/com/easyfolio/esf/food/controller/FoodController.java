@@ -22,31 +22,49 @@ import java.io.IOException;
 public class FoodController {
 
     private final FoodService foodService;
-//    푸드 메인
-    @GetMapping("/foodMain")
-    public String foodMainForm(Model model, FoodVO foodVO){
-        foodService.foodKindList();
-        foodVO.setTotalDataCnt(foodService.foodCnt());
-        foodVO.setPageInfo();
-        model.addAttribute("foodList", foodService.allFoodList(foodVO));
-        model.addAttribute("foodCnt", foodService.foodCnt());
-        model.addAttribute("foodKindList", foodService.foodKindList());
-        return "/content/food/food_main";
-    }
-    @GetMapping("/foodMainPage1")
-    public String foodMainPage1(Model model, FoodVO foodVO) {
-        model.addAttribute("nowPage", foodVO.getNowPage());
-        return "redirect:/food/foodMain?nowPage=" + foodVO.getNowPage();
-    }
 
     @PostMapping("/searchFood")
-    public String searchFoodAll(Model model, FoodVO foodVO) {
+    public String searchFoodAll(Model model, FoodVO foodVO,  @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue) {
+        foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
-        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        //전체리스트
+        // 음식 검색어
         model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
+
+        // 검색 음식 개수
         model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
+
+        // 종류별 검색
         model.addAttribute("foodKindList", foodService.foodKindList());
+        model.addAttribute("foodKindCode", foodVO.getFoodKindCode());
+        if (foodVO.getFoodKindCode() != null) {
+            model.addAttribute("foodKind", foodService.foodKindText(foodVO));
+        }
+
+        // 상황별 검색
+        model.addAttribute("foodUsageList", foodService.foodUsageList());
+        model.addAttribute("foodUsageCode", foodVO.getFoodUsageCode());
+        if (foodVO.getFoodUsageCode() != null) {
+            model.addAttribute("foodUsage", foodService.foodUsageText(foodVO));
+        }
+
+        // 재료별 검색
+        model.addAttribute("foodMtrlList", foodService.foodMtrlList());
+        model.addAttribute("foodMtrlCode", foodVO.getFoodMtrlCode());
+        if (foodVO.getFoodMtrlCode() != null) {
+            model.addAttribute("foodMtrl", foodService.foodMtrlText(foodVO));
+        }
+
+        // 방법별 검색
+        model.addAttribute("foodTypeList", foodService.foodTypeList());
+        model.addAttribute("foodTypeCode", foodVO.getFoodTypeCode());
+        if (foodVO.getFoodMtrlCode() != null) {
+            model.addAttribute("foodType", foodService.foodTypeText(foodVO));
+        }
+
+        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+
         return "/content/food/food_search";
     }
     @GetMapping("/searchFoodPage")
@@ -54,12 +72,44 @@ public class FoodController {
         foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
+        // 음식 전체 리스트
+
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        // 음식 검색어
         model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
+
+        // 검색 음식 개수
         model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
+
+        // 종류별 개수
         model.addAttribute("foodKindList", foodService.foodKindList());
-        System.err.println(foodVO.getFoodKindCode());
         model.addAttribute("foodKindCode", foodVO.getFoodKindCode());
+        if (foodVO.getFoodKindCode() != null) {
+            model.addAttribute("foodKind", foodService.foodKindText(foodVO));
+        }
+
+        // 상황별 검색
+        model.addAttribute("foodUsageList", foodService.foodUsageList());
+        model.addAttribute("foodUsageCode", foodVO.getFoodUsageCode());
+
+        if (foodVO.getFoodUsageCode() != null) {
+            model.addAttribute("foodUsage", foodService.foodUsageText(foodVO));
+        }
+
+        // 재료별 검색
+        model.addAttribute("foodMtrlList", foodService.foodMtrlList());
+        model.addAttribute("foodMtrlCode", foodVO.getFoodMtrlCode());
+        if (foodVO.getFoodMtrlCode() != null) {
+            model.addAttribute("foodMtrl", foodService.foodMtrlText(foodVO));
+        }
+
+        // 방법별 검색
+        model.addAttribute("foodTypeList", foodService.foodTypeList());
+        model.addAttribute("foodTypeCode", foodVO.getFoodTypeCode());
+        if (foodVO.getFoodTypeCode() != null) {
+            model.addAttribute("foodType", foodService.foodTypeText(foodVO));
+        }
+
         return "/content/food/food_search";
     }
 

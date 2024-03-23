@@ -174,14 +174,13 @@ textarea {
     padding: 18px 0;
     display: flex;
 }
-.menuTextBox p{
+.menuTextBtn{
     cursor: pointer;
     margin: 0 10px;
     color: #888;
 }
-.menuTextBox p:hover{
+.menuTextBtn.on{
     color: #f3c053;
-    font-weight: 500;
 }
 .menuTextBox a> .menuTextAll{
     line-height: 20px;
@@ -192,7 +191,7 @@ textarea {
     color: #f29221;
     font-weight: 500;
 }
-.menuother{
+.menuTextBox a:last-child{
     position: absolute;
     right: 28px;
 }
