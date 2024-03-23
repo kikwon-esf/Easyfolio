@@ -34,24 +34,13 @@
                             </div>
                             <div class="menuTextBlock">
                                 <div class="menuTextBox">
-                                    <p class="menuTextAll">전체</p>
-                                    <p>밑반찬</p>
-                                    <p>메인반찬</p>
-                                    <p>국/탕</p>
-                                    <p>찌개</p>
-                                    <p>디저트</p>
-                                    <p>면/만두</p>
-                                    <p>밥/죽/떡</p>
-                                    <p>퓨전</p>
-                                    <p>김치/젓갈/장류</p>
-                                    <p>양념/소스/잼</p>
-                                    <p>양식</p>
-                                    <p>샐러드</p>
-                                    <p>스프</p>
-                                    <p>빵</p>
-                                    <p>과자</p>
-                                    <p>차/음료/술</p>
-                                    <p class="menuother">기타</p>
+                                    <a th:href="@{/food/searchFoodPage}">
+                                        <p class="menuTextAll">전체</p>
+                                    </a>
+                                    <a th:each="foodKind, state : ${foodKindList}"
+                                        th:href="@{/food/searchFoodPage(foodKindCode=${foodKind.foodKindCode})}">
+                                        <p class="" th:text="${foodKind.foodKindText}"></p>
+                                    </a>
                                 </div>
                                 <div class="menuTextBox">
                                     <p class="menuTextAll">전체</p>

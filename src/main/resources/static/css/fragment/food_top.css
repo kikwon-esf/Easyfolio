@@ -183,12 +183,12 @@ textarea {
     color: #f3c053;
     font-weight: 500;
 }
-.menuTextBox > .menuTextAll{
+.menuTextBox a> .menuTextAll{
     line-height: 20px;
     color: #ffa43b;
     font-size: 15px;
 }
-.menuTextBox > .menuTextAll:hover{
+.menuTextBox a> .menuTextAll:hover{
     color: #f29221;
     font-weight: 500;
 }

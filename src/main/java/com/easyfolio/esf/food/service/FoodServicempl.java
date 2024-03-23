@@ -1,5 +1,6 @@
 package com.easyfolio.esf.food.service;
 
+import com.easyfolio.esf.food.vo.FoodKindVO;
 import com.easyfolio.esf.food.vo.FoodVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,6 +16,16 @@ public class FoodServicempl implements FoodService{
     @Override
     public List<FoodVO> allFoodList(FoodVO foodVO) {
         return sqlSession.selectList("foodMapper.allFoodList", foodVO);
+    }
+
+    @Override
+    public List<FoodKindVO> foodKindList() {
+        return sqlSession.selectList("foodMapper.foodKindList");
+    }
+
+    @Override
+    public FoodKindVO foodKindText(FoodKindVO foodKindVO) {
+        return sqlSession.selectOne("foodMapper.foodKindText", foodKindVO);
     }
 
     @Override

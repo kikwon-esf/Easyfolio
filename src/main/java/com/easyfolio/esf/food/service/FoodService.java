@@ -1,12 +1,16 @@
 package com.easyfolio.esf.food.service;
 
+import com.easyfolio.esf.food.vo.FoodKindVO;
 import com.easyfolio.esf.food.vo.FoodVO;
 
 import java.util.List;
 
 public interface FoodService {
     public List<FoodVO> allFoodList(FoodVO foodVO); // 음식 전체 목록
-
+    // 음식 카테고리
+    public List<FoodKindVO> foodKindList();
+    // 카테고리 하나만 가져오기
+    public FoodKindVO foodKindText(FoodKindVO foodKindVO);
     public int foodCnt();
 
     public int searchFoodCnt(FoodVO foodVO);

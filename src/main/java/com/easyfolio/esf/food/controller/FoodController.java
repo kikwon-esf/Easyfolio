@@ -25,10 +25,12 @@ public class FoodController {
 //    푸드 메인
     @GetMapping("/foodMain")
     public String foodMainForm(Model model, FoodVO foodVO){
+        foodService.foodKindList();
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
         model.addAttribute("foodList", foodService.allFoodList(foodVO));
         model.addAttribute("foodCnt", foodService.foodCnt());
+        model.addAttribute("foodKindList", foodService.foodKindList());
         return "/content/food/food_main";
     }
     @GetMapping("/foodMainPage1")
@@ -44,16 +46,20 @@ public class FoodController {
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
         model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
         model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
+        model.addAttribute("foodKindList", foodService.foodKindList());
         return "/content/food/food_search";
     }
     @GetMapping("/searchFoodPage")
-    public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam("searchFoodValue") String searchFoodValue){
+    public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue){
         foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
         model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
         model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
+        model.addAttribute("foodKindList", foodService.foodKindList());
+        System.err.println(foodVO.getFoodKindCode());
+        model.addAttribute("foodKindCode", foodVO.getFoodKindCode());
         return "/content/food/food_search";
     }
 

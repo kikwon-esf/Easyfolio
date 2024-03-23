@@ -16,7 +16,7 @@
         <result column="FOOD_TYPE" property="foodType"/>
         <result column="FOOD_USAGE" property="foodUsage"/>
         <result column="FOOD_MTRL" property="foodMtrl"/>
-        <result column="FOOD_KIND" property="foodKind"/>
+        <result column="FOOD_KIND_CODE" property="foodKindCode"/>
         <result column="FOOD_INDC" property="foodIndc"/>
         <result column="FOOD_MTRL_CN" property="foodMtrlCn"/>
         <result column="FOOD_SERVE" property="foodServe"/>
@@ -24,6 +24,22 @@
         <result column="FOOD_TIME" property="foodTime"/>
         <result column="FOOD_REG_DT" property="foodRegDt"/>
     </resultMap>
+
+    <resultMap id="foodKind" type="com.easyfolio.esf.food.vo.FoodKindVO">
+        <id column="FOOD_KIND_CODE" property="foodKindCode" />
+        <result column="FOOD_KIND_TEXT" property="foodKindText" />
+    </resultMap>
+<!--    음식 카테고리 조회-->
+    <select id="foodKindList" resultMap="foodKind">
+        SELECT FOOD_KIND_TEXT
+        , FOOD_KIND_CODE
+        FROM FOOD_KIND
+    </select>
+    <select id="foodKindText" resultMap="foodKind">
+        SELECT FOOD_KIND_TEXT
+        FROM FOOD_KIND
+        WHERE FOOD_KIND_CODE = #{foodKindCode}
+    </select>
 
     <!--  음식 전체 조회  -->
     <select id="allFoodList" resultMap="food">
@@ -44,7 +60,9 @@
     <select id="searchFoodCnt" resultType="int">
         SELECT COUNT(FOOD_CODE)
         FROM FOOD
-        WHERE FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+        <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">
+            WHERE FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+        </if>
     </select>
 
     <!--  음식명 검색 api  -->
@@ -55,10 +73,18 @@
         , FOOD_INQ_CNT
         , FOOD_RCMM_CNT
         FROM FOOD
-        WHERE FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+        <where>
+            <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">
+                AND FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+            </if>
+            <if test="foodKindCode != null and not foodKindCode.isEmpty()">
+                AND FOOD_KIND_CODE = #{foodKindCode}
+            </if>
+        </where>
         ORDER BY FOOD_INQ_CNT DESC
-        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+        OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
+
 
 
 <!--    &lt;!&ndash;  음식 상세 조회 api  &ndash;&gt;-->
