@@ -93,4 +93,11 @@ public class CscServiceImpl implements CscService{
         return sqlSession.selectList("cscMapper.qnaList");
     }
 
+
+
+    @Override
+    public List<AnnVO> allSearchAnn(String allSearchKeyword) {
+        return sqlSession.selectList("cscMapper.allSearchAnn", allSearchKeyword);
+    }
+
 }

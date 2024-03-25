@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
->
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
@@ -13,57 +11,68 @@
 <body>
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/fragment/main_header.css">
-        <div class="wrap" >
+        <div class="wrap">
             <div class="h_inner">
                 <div class="headtop">
-                    <div class="tap">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="rgb(243,192,83)"
-                            class="bi bi-justify-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
-                        </svg>
-                        <div  class="popupTap">
-                            <div class="popupInner">
-                                <div class="popupTitle">
-                                    <p>전체메뉴</p>
-                                </div>
-                                <div class="popupBlock">
-                                    <div class="popupBoxTitle"><p>레시피</p></div>
-                                </div>
-                                <div class="popupBlock">
-                                    <div class="popupBoxTitle"><p>마이페이지</p></div>
-                                </div>
-                                <div class="popupBlock">
-                                    <div class="popupBoxTitle"><p>고객센터</p></div>
-                                    <div class="popupContent">
-                                        <p>공지사항</p>
-                                        <p>1:1 문의</p>
-                                        <p>문의 내역</p>
-                                        <p>자주 찾는 질문</p>
+                    <div class="headLeft">
+                        <div class="tap">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="rgb(243,192,83)"
+                                class="bi bi-justify-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+                            </svg>
+                            <div class="popupTap">
+                                <div class="popupInner">
+                                    <div class="popupTitle">
+                                        <p>전체메뉴</p>
+                                    </div>
+                                    <div class="popupBlock">
+                                        <div class="popupBoxTitle">
+                                            <p>레시피</p>
+                                        </div>
+                                    </div>
+                                    <div class="popupBlock">
+                                        <div class="popupBoxTitle">
+                                            <p>마이페이지</p>
+                                        </div>
+                                    </div>
+                                    <div class="popupBlock">
+                                        <div class="popupBoxTitle">
+                                            <p>고객센터</p>
+                                        </div>
+                                        <div class="popupContent">
+                                            <p>공지사항</p>
+                                            <p>1:1 문의</p>
+                                            <p>문의 내역</p>
+                                            <p>자주 찾는 질문</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="logoblock">
-                        <div class="logo">
-                            <a href="/">
-                                <img src="/img/logo1.png" alt="">
-                            </a>
+                        <div class="logoblock">
+                            <div class="logo">
+                                <a href="/">
+                                    <img src="/img/logo1.png" alt="">
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="searchblock">
-                        <div class="searchbox">
-                            <input type="text" class="searchText" value="원하는 모든 레시피">
+                    <form method="post" action="/mainpage/wideSearch" class="allSearchForm">
+                        <div class="searchblock">
+                            <div class="searchbox">
+                                <input type="text" name="allSearchKeyword" class="allSearchKeyword" value="원하는 모든 레시피">
+                            </div>
+
+                            <div class="searchIcon" onclick="allSearch()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="rgb(243,192,83)"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </div>
                         </div>
-                        <div class="searchIcon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="rgb(243,192,83)"
-                                class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                            </svg>
-                        </div>
-                    </div>
+                    </form>
                     <div class="iconsblock">
                         <div class="icons">
                             <div class="icon cs">
@@ -111,7 +120,7 @@
                                         <p id="logout" sec:authorize="isAuthenticated()">로그아웃</p>
                                     </a>
                                     <a sec:authorize="isAnonymous()" class="mymenubox join" href="/member/joinForm">
-                                        <p sec:authorize="isAnonymous()" >회원가입</p>
+                                        <p sec:authorize="isAnonymous()">회원가입</p>
                                     </a>
                                     <a sec:authorize="isAuthenticated()" class="mymenubox join" href="/myPage/favorite">
                                         <p sec:authorize="isAuthenticated()">마이페이지</p>

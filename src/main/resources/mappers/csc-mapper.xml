@@ -43,8 +43,8 @@
             , ANN_TITLE
             , ANN_CONTENT
             , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
-        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
-        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LI
+        WHERE ANN.ANN_CATE = LI.CATE_CODE
         ORDER BY ANN_NUM DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
@@ -235,7 +235,24 @@
         OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
     </select>
 
-
+    <!--  공지사항 검색  -->
+    <select id="allSearchAnn" resultMap="announcement">
+        <![CDATA[
+    SELECT *
+    FROM (
+        SELECT ANN_NUM
+        , CATE_NAME
+        , ANN_TITLE
+        , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LI
+        WHERE (ANN_TITLE LIKE '%' || #{allSearchKeyword} || '%' OR ANN_CONTENT LIKE '%' || #{allSearchKeyword} || '%')
+        AND ANN.ANN_CATE = LI.CATE_CODE
+        ORDER BY ANN_DATE DESC
+    )
+    WHERE ROWNUM <= 5
+    ]]>
+    </select>
+    <!--  자주 찾는 질문 검색  -->
 
 
 </mapper>

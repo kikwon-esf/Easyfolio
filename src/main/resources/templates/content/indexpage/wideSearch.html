@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <link rel="stylesheet" href="/css/content/indexpage/wideSearch.css">
+        <div class="as_food_wrap">
+            <div class="inner">
+                <p class="as_title0">
+                    <span>"</span>
+                    <span th:th:text="${allSearchKeyword}"></span>
+                    <span>"</span>
+                    <span>검색 결과</span>
+                </p>
+                <div class="recipeBlock">
+                    <div class="recipeHeader">
+                        <div class="food_title">
+                            <p class="food_title1">레시피</p>
+                            <p class="food_title2">RECIPE</p>
+                            <div class="allCountBox">
+                                <p class="allcount">
+                                    <span>(</span>
+                                    <span th:text="${asFoodCnt}"></span>
+                                    <span>개</span>
+                                    <span>)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipeBox">
+                        <div class="recipes">
+                            <a th:each="asfood, state : ${asFoodList}" class="recipe">
+                                <div class="recipeImgBox">
+                                    <img src="/img/food/examImg.jpg" alt="">
+                                </div>
+                                <div class="recipeTextBox">
+                                    <p>[[${asfood.foodTtl}]]</p>
+                                </div>
+                                <div class="recipeTextBox1">
+                                    <div class="recipeTextBox11">
+                                        <p class="foodDifBox">
+                                            <span>난이도</span>
+                                            <span>:</span>
+                                            <span>[[${asfood.foodDif}]]</span>
+                                        </p>
+                                        <p class="cntBox">
+                                            <span>조회수</span>
+                                            <span>[[${asfood.foodInqCnt}]]</span>
+                                        </p>
+                                    </div>
+                                    <div class="cartBox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff3f3f"
+                                            class="bi bi-heart" viewBox="0 0 16 16">
+                                            <path
+                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                        </svg>
+                                        <p>
+                                            <span>(</span>
+                                            <span>[[${asfood.foodRcmmCnt}]]</span>
+                                            <span>)</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="Ann_Wrap">
+            <div class="csc_ann">
+                <div class="csc_annTitle">
+                    <div class="food_title">
+                    <p class="food_title1">공지사항</p>
+                    <p class="food_title2">NOTICE</p>
+                    </div>
+                    <div class="csc_annPlus">
+                        <a href="/csc/annForm"><p class="csc_annPlus1">더보기</p></a>
+                        <p class="csc_annPlus2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#333"
+                                class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+                <div class="csc_annBlock">
+                    <a th:href="@{/csc/annDetailForm(annNum=${asAnn.annNum})}" th:each="asAnn, state : ${asAnnList}" class="csc_annLink">
+                        <div class="csc_annBox">
+                            <div class="annTypeBox">
+                                <p class="slash">[</p>
+                                <p class="annType">[[${asAnn.annCateList.cateName}]]</p>
+                                <p class="slash">]</p>
+                            </div>
+                            <p class="annTitle">
+                                [[${asAnn.annTitle}]]
+                            </p>
+                            <div class="annDateBox">
+                                <p class="annDate">[[${asAnn.annDate}]]</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="Qna_Wrap">
+            <div class="csc_in">
+                <div class="csc_t">
+                    <div class="csc_top">
+                        <div class="csc_topBox">
+                            <div class="csc_topBox1">
+                                <p class="csc_topBox">자주 찾는 질문
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="csc_m">
+                    <div class="csc_mBox">
+                        <div class="csc_mBox1">
+                            <div class="csc_mBox11">
+                                <p class="csc_mBox11">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/slick.min.js"></script>
+    </th:block>
+</body>
+
+</html>

@@ -7,4 +7,5 @@ public class QnaVO {
     public String qnaCode;
     public String qnaQuestion;
     public String qnaAnswer;
+    private String allSearchKeyword;
 }

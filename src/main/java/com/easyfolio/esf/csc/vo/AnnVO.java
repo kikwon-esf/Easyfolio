@@ -11,4 +11,5 @@ public class AnnVO extends PageVO{
     private String annContent;
     private String annDate;
     private AnnCateVO annCateList;
+    private String allSearchKeyword;
 }
