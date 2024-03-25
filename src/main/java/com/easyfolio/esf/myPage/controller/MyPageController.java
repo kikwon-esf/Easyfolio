@@ -7,6 +7,7 @@ import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -35,11 +37,18 @@ public class MyPageController {
     }
     @ResponseBody
     @PostMapping(value = "/deleteFav")
-    public ResponseEntity<String> deleteFavorite(Principal principal, @RequestBody String foodCode, FavoriteVO favoriteVO){
-        favoriteVO.setFoodCode(foodCode);
+    public ResponseEntity<String> deleteFavorite(Principal principal, @RequestBody Map<String, String> foodCode, FavoriteVO favoriteVO){
+
+        favoriteVO.setFoodCode(foodCode.get("foodCode"));
         favoriteVO.setMemberId(principal.getName());
 
-        return new ResponseEntity<>("삭제되었습니다.", HttpStatus.OK);
+        int result = myPageService.deleteFav(favoriteVO);
+        if(result == 1){
+            return new ResponseEntity<>("complete", HttpStatus.OK);
+        }else if(result == 0){
+            return new ResponseEntity<>("0", HttpStatus.GONE);
+        }
+        return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
     }
     @GetMapping(value = "/myContent")
     public String myContent(Principal principal, Model model){
