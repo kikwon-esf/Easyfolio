@@ -12,4 +12,6 @@ public interface MyPageService {
 
     //즐겨찾기 삭제
     public int deleteFav(FavoriteVO favoriteVO);
+
+    public int addFav(FavoriteVO favoriteVO);
 }
