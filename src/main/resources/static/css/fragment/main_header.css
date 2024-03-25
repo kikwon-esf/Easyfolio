@@ -43,7 +43,11 @@ textarea{
     margin: 0 auto;
 
 }
+.headLeft{
+    display: flex;
+}
 .headtop{
+    justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
     padding: 22px 20px 0 20px;
@@ -113,7 +117,7 @@ textarea{
     transition: border 0.2s ease;
     /* box-shadow: 0 5px 8px 0 rgba(68,68,68,.04); */
 }
-.searchText{
+.allSearchKeyword{
     margin-top: -2px;
     width: 380px;
     height: 26px;
@@ -211,9 +215,4 @@ textarea{
     top: 11px;
     height: 2px;
     background-color: #dadada;
-}
-.inner{
-    width: 1260px;
-    margin: 0 auto;
-    position: relative;
 }

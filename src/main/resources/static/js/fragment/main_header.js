@@ -1,16 +1,13 @@
-let searchText = document.querySelector('.searchText');
+let allSearchKeyword = document.querySelector('.allSearchKeyword');
 
-// $('.searchText').click(function () {
-//     document.querySelector('.searchblock').style.border = "2px solid #000";
-// })
 var wrap = document.querySelector('#wrap')
 var searchblock = document.querySelector('.searchblock')
 
-searchText.addEventListener("click", function () {
+allSearchKeyword.addEventListener("click", function () {
     searchblock.style.border = "2px solid rgb(242,146,33)";
     searchblock.style.backgroundColor = "transparent"
-    searchText.style.color = "#333";
-    searchText.value = '';
+    allSearchKeyword.style.color = "#333";
+    allSearchKeyword.value = '';
 })
 var tap = document.querySelector('.tap');
 var popupTap = document.querySelector('.popupTap');
@@ -37,11 +34,11 @@ popupTap.addEventListener("click", function (event) {
 });
 
 document.addEventListener("click", function (event) {
-    if (event.target !== searchText) {
+    if (event.target !== allSearchKeyword) {
         searchblock.style.border = "2px solid transparent";
         searchblock.style.backgroundColor = "#f4f4f4";
-        searchText.style.color = "#999";
-        searchText.value = '원하는 모든 레시피';
+        allSearchKeyword.style.color = "#999";
+        allSearchKeyword.value = '원하는 모든 레시피';
     }
     if (!event.target.closest('.tap') && !event.target.closest('.popupTap')) {
         popupTap.style.display = "none";
@@ -77,6 +74,6 @@ if(logout != null ){
     })
 }
 
-
-
-// Principal 객체 검사
+function allSearch(){
+    document.querySelector(".allSearchForm").submit();
+}

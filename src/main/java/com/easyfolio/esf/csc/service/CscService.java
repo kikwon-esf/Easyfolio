@@ -36,5 +36,10 @@ public interface CscService {
 
     public List<QnaVO> qnaList();
 
+    // 헤더 검색 QNA
+
+    // 헤더 검색 공지사항
+    public List<AnnVO> allSearchAnn(String allSearchKeyword);
+
 
 }
