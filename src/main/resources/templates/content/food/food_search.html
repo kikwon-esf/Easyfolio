@@ -54,6 +54,7 @@
                         </div>
                         <div class="searchAndBtn">
                             <form action="/food/searchFoodPage" class="searchFoodForm" method="post">
+                                <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
                                 <input type="hidden" name="foodKindCode" th:value="${foodKindCode}">
                                 <input type="hidden" name="foodUsageCode" th:value="${foodUsageCode}">
                                 <input type="hidden" name="foodMtrlCode" th:value="${foodMtrlCode}">
@@ -127,7 +128,7 @@
                 <div class="btn_group">
                     <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
                         <a class="page_prevBtn"
-                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue})}"><span
+                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
                                 th:if="${foodVO.prev}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -137,11 +138,11 @@
                             </span></a>
                         <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
                             <a class="page_numBtn"
-                                th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue})}"><span
+                                th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
                                     th:text="${pageNum}"></span></a>
                         </th:block>
                         <a class="page_nextBtn"
-                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue})}"><span
+                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue},foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
                                 th:if="${foodVO.next}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-caret-right-fill" viewBox="0 0 16 16">

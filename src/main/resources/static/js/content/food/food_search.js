@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var urlParams = new URLSearchParams(window.location.search);
-    var nowPage = urlParams.get('nowPage');
+    var nowPage = document.querySelector('#nowPage').value;
 
     var pageButtons = document.querySelectorAll('.page_numBtn');
 
@@ -35,7 +35,7 @@ function searchFood(){
 
 document.addEventListener("DOMContentLoaded", function() {
     var currentPageUrl = window.location.href;
-    if (currentPageUrl.endsWith("/food/searchFood")||currentPageUrl.endsWith("/food/searchFoodPage")) {
+    if (currentPageUrl.endsWith("/food/searchFoodPage")) {
         var numBtnSpans = document.querySelectorAll(".page_numBtn span");
         numBtnSpans.forEach(function(span) {
             if (span.textContent.trim() === '1') {
