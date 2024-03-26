@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csc_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/content/csc/inq/csc_responseInq.css">
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <form action="/csc/insertResponse" method="post" enctype="multipart/form-data">
+            <div class="csc_wrap">
+                <div class="csc_title">
+                    <p class="csc_title1">문의사항</p>
+                    <p class="csc_title2">INQUIRE</p>
+                </div>
+                <div class="csc_inner">
+                    <div class="annDetailHeader">
+                        <div class="annHeader1">
+                            <p class="annCate">
+                                <span class="cateText">[</span>
+                                <span class="cateText">[[${inqDetail.inqCateList.cateName}]]</span>
+                                <span class="cateText">]</span>
+                            </p>
+                            <p class="annTitle">[[${inqDetail.inqTitle}]]</p>
+                        </div>
+                        <div class="annHeader2">
+                            <p class="annDate">
+                                <span>작성일 : </span>
+                                <span>[[${inqDetail.inqDate}]]</span>
+                            </p>
+                            <p class="annWriter">
+                                <span>작성자 : </span>
+                                <span>관리자</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="annContent">
+                        <p th:utext="${inqDetail.inqContent}"></p>
+                    </div>
+                    <div class="imgBox" th:if="${inqImgList != null and inqImgList.size() > 0}">
+                        <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
+                            <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
+                        </div>
+                    </div>
+                    <div class="resBox">
+                        <div class="inputBox content">
+                            <div class="label">내용</div>
+                            <textarea name="resContent" id="" cols="60" rows="10"></textarea>
+                        </div>
+                        <div class="inputBox img">
+                            <div class="label">사진</div>
+                            <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                            <label for="file">파일찾기</label>
+                            <input type="file" id="file" name="resImg" onchange="readURL(this);" multiple>
+                        </div>
+                        <div class="inputBox imgLook">
+                            <div class="label imgLook">사진<br>미리보기</div>
+                            <div class="imgLookBox"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bigImgBlock">
+                    <div class="bigImgBox">
+                        <img class="bigImg" id="img01">
+                        <span class="close">&times;</span>
+                    </div>
+                </div>
+                <div class="btnBox">
+                    <input type="hidden" th:value="${inqDetail.inqCode}" name="inqCode">
+                    <input class="subBtn" type="submit" value="등록">
+                </div>
+            </div>
+        </form>
+    </th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/csc/inq/csc_responseInq.js"></script>
+</th:block>
+
+</html>

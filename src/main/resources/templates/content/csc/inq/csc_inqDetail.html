@@ -49,8 +49,8 @@
                 </div>
             </div>
             <div class="btnBlock">
-                <a th:href="@{/csc/updateInqForm(inqCode=${inqDetail.inqCode})}" class="btn">
-                    <p>수정하기</p>
+                <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}" th:if="${inqDetail.inqResponse == 'N'}" class="btn">
+                    <p>답변하기</p>
                 </a>
                 <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn">
                     <p>삭제하기</p>

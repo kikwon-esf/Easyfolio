@@ -56,11 +56,16 @@
                                 </div>
                                 <div class="ansBox">
                                     <div class="ansText">
-                                        <p>
-                                            [[${qna.qnaAnswer}]]
-                                        </p>
+                                        <p th:utext="${qna.qnaAnswer}"></p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="qnaBtnBox">
+                            <div>
+                                <a href="/csc/insertQnaForm">
+                                    <p>글 쓰기</p>
+                                </a>
                             </div>
                         </div>
                     </div>
