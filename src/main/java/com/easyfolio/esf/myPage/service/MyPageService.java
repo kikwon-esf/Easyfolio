@@ -6,7 +6,7 @@ import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import java.util.List;
 
 public interface MyPageService {
-    public List<FavoriteVO> getFavoriteListByMember(MemberVO memberVO);
+    public List<FavoriteVO> getFavoriteListByMember(FavoriteVO favoriteVO);
 
     public int addFavorite(FavoriteVO favoriteVO);
 
@@ -14,4 +14,6 @@ public interface MyPageService {
     public int deleteFav(FavoriteVO favoriteVO);
 
     public int addFav(FavoriteVO favoriteVO);
+
+    public int favoriteCnt(FavoriteVO favoriteVO);
 }

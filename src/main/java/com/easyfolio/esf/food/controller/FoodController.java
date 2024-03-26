@@ -38,7 +38,6 @@ public class FoodController {
         //전체리스트
         // 음식 검색어
         model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
-
         // 검색 음식 개수
         model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
 
@@ -80,7 +79,6 @@ public class FoodController {
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
         // 음식 전체 리스트
-
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
         // 음식 검색어
         model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());

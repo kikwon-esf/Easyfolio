@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+    </th:block>
+
+</head>
+
+<body>
+    <th:block th:fragment="myPageTopFragment">
+        <link rel="stylesheet" href="/css/fragment/myPage_top.css">
+        <div id="top_wrap">
+            <div id="w_in">
+                <a href="/myPage/favorite">
+                    <div class="myPageMain">
+                        <div class="myPageTitle">
+                            <p class="myPageTitle1">마이페이지</p>
+                            <p class="myPageTitle2">My Page</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+</th:block>
+
+</html>
