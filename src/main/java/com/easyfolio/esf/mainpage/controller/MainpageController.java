@@ -43,6 +43,7 @@ public class MainpageController {
             model.addAttribute("asAnnList", cscService.allSearchAnn(allSearchKeyword));
             model.addAttribute("asFoodList", foodService.allSearchFood(allSearchKeyword));
             model.addAttribute("asFoodCnt", foodService.allSearchFoodCnt(allSearchKeyword));
+            model.addAttribute("asQnaList", cscService.allSearchQna(allSearchKeyword));
             model.addAttribute("allSearchKeyword", allSearchKeyword);
             return "content/indexpage/wideSearch";
     }
