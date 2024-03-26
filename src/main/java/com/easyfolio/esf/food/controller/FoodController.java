@@ -6,6 +6,7 @@ import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -34,27 +35,29 @@ public class FoodController {
     //일단은 myPageService추가, 논의 후 foodService에 주입
     private final MyPageService myPageService;
 
-    @PostMapping("/searchFood")
-    public String searchFoodAll(Model model, FoodVO foodVO,  @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
-                                Principal principal, MemberVO memberVO) {
-
+    @GetMapping("/searchFoodPage")
+    public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
+                                    Principal principal, MemberVO memberVO) throws Exception{
         if(principal != null){
+            ObjectMapper objectMapper = new ObjectMapper();
             memberVO.setMemberId(principal.getName());
             List<String> list = myPageService.getFavoriteListString(memberVO);
-            model.addAttribute("favoriteList",list);
+            model.addAttribute("favoriteList",objectMapper.writeValueAsString(list));
         }
 
         foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
-        //전체리스트
+        // 음식 전체 리스트
+
+        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
         // 음식 검색어
         model.addAttribute("searchFoodValue", foodVO.getSearchFoodValue());
 
         // 검색 음식 개수
         model.addAttribute("searchFoodCnt", foodService.searchFoodCnt(foodVO));
 
-        // 종류별 검색
+        // 종류별 개수
         model.addAttribute("foodKindList", foodService.foodKindList());
         model.addAttribute("foodKindCode", foodVO.getFoodKindCode());
         if (foodVO.getFoodKindCode() != null) {
@@ -64,6 +67,7 @@ public class FoodController {
         // 상황별 검색
         model.addAttribute("foodUsageList", foodService.foodUsageList());
         model.addAttribute("foodUsageCode", foodVO.getFoodUsageCode());
+
         if (foodVO.getFoodUsageCode() != null) {
             model.addAttribute("foodUsage", foodService.foodUsageText(foodVO));
         }
@@ -78,21 +82,20 @@ public class FoodController {
         // 방법별 검색
         model.addAttribute("foodTypeList", foodService.foodTypeList());
         model.addAttribute("foodTypeCode", foodVO.getFoodTypeCode());
-        if (foodVO.getFoodMtrlCode() != null) {
+        if (foodVO.getFoodTypeCode() != null) {
             model.addAttribute("foodType", foodService.foodTypeText(foodVO));
         }
 
-        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
-
         return "/content/food/food_search";
     }
-    @GetMapping("/searchFoodPage")
-    public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
-                                    Principal principal, MemberVO memberVO){
+    @PostMapping("/searchFoodPage")
+    public String searchFoodAllPagePost(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
+                                    Principal principal, MemberVO memberVO) throws Exception{
         if(principal != null){
+            ObjectMapper objectMapper = new ObjectMapper();
             memberVO.setMemberId(principal.getName());
             List<String> list = myPageService.getFavoriteListString(memberVO);
-            model.addAttribute("favoriteList",list);
+            model.addAttribute("favoriteList",objectMapper.writeValueAsString(list));
         }
 
         foodVO.setSearchFoodValue(searchFoodValue);
@@ -300,8 +303,6 @@ public class FoodController {
         }
         favoriteVO.setFoodCode(foodCode.get("foodCode"));
         favoriteVO.setMemberId(principal.getName());
-        System.err.println(foodCode);
-        System.err.println(favoriteVO);
         try {
             myPageService.addFav(favoriteVO);
         }catch (DuplicateKeyException e){ //이미 add가 되어 있을 시 작동(즐겨찾기 삭제)
