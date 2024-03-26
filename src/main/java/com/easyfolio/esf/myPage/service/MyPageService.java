@@ -8,6 +8,8 @@ import java.util.List;
 public interface MyPageService {
     public List<FavoriteVO> getFavoriteListByMember(FavoriteVO favoriteVO);
 
+    public List<String> getFavoriteListString(MemberVO memberVO);
+
     public int addFavorite(FavoriteVO favoriteVO);
 
     //즐겨찾기 삭제
@@ -16,4 +18,5 @@ public interface MyPageService {
     public int addFav(FavoriteVO favoriteVO);
 
     public int favoriteCnt(FavoriteVO favoriteVO);
+
 }

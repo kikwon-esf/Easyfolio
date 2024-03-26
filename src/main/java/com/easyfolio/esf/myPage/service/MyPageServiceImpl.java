@@ -19,6 +19,11 @@ public class MyPageServiceImpl implements MyPageService{
     }
 
     @Override
+    public List<String> getFavoriteListString(MemberVO memberVO) {
+        return sqlSession.selectList("myPageMapper.favoriteListString", memberVO);
+    }
+
+    @Override
     public int addFavorite(FavoriteVO favoriteVO) {
         return sqlSession.insert("myPageMapper.addFavorite", favoriteVO);
     }
