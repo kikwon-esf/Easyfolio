@@ -28,11 +28,16 @@ public class MyPageController {
     private final MyPageService myPageService;
 
     @GetMapping(value = "/favorite")
-    public String favoritePage(Principal principal, Model model, MemberVO memberVO){
-        memberVO.setMemberId(principal.getName());
-        List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(memberVO);
+    public String favoritePage(@RequestParam(value = "searchFavoriteValue", required = false) String searchFavoriteValue,FavoriteVO favoriteVO,Principal principal, Model model, MemberVO memberVO){
 
+        favoriteVO.setMemberId(principal.getName());
+        favoriteVO.setSearchFavoriteValue(searchFavoriteValue);
+        favoriteVO.setTotalDataCnt(myPageService.favoriteCnt(favoriteVO));
+        favoriteVO.setPageInfo(8);
+        model.addAttribute("searchFavoriteCnt", favoriteVO.getTotalDataCnt());
+        List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(favoriteVO);
         model.addAttribute("myFavorite", favorite);
+
         return "content/myPage/myPage_favorite";
     }
     @ResponseBody

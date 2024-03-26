@@ -1,14 +1,61 @@
-.myPage_m{
-    display : flex;
-    margin : 0 auto;
-}
-.myPage_side{
-    float:left;
-    height : 1000px;
-}
-.myPage_side>div{
-    display : flex;
-    flex-flow : column;
-    width : 200px;
+@charset "UTF-8";
 
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.myPage_in{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.myPage_m{
+    display: flex;
+}
+.myPage_col.myPage_side{
+    margin-right: 50px;
+}
+
+.myPage_top{
+    margin-bottom: 50px;
+}
+
+
+.myPage_bottom{
+    width: 1200px;
+    margin: 0 auto;
 }

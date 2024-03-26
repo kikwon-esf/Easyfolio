@@ -39,6 +39,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc' // oracle jdbc
 	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
+	implementation 'com.google.code.gson:gson:2.8.9' //json 사용(gson)
 
 }
 tasks.named('test') {
