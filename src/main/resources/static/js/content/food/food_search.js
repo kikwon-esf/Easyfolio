@@ -52,9 +52,14 @@ document.addEventListener("DOMContentLoaded", function() {
 //* 즐겨찾기 추가
 const addFavBtn = document.querySelectorAll(".cartBox");
 const addFavURL = "/food/addFav";
-console.log(addFavBtn)
-for(i = 0 ; i < addFavBtn.length ; i++){
-    
+
+window.addEventListener('load',()=>{
+    for(i = 0 ; i < addFavBtn.length ; i++){
+
+    }
+})
+
+for(i = 0 ; i < addFavBtn.length ; i++){  
     addFavBtn[i].addEventListener('click', (e)=>{
         console.log(e.target)
         const heart =  e.target.querySelector("path")
@@ -75,7 +80,7 @@ for(i = 0 ; i < addFavBtn.length ; i++){
             console.log(resp);
             let status = resp["status"];
             console.log(status);
-            if(status == 502){
+            if(status == 502||status == 400){
                 alert("로그인을 해주세요!");
             }else if(status == 200){
                 console.log();
@@ -85,12 +90,12 @@ for(i = 0 ; i < addFavBtn.length ; i++){
             return resp.text();
         })
         .then((data)=>{
+            console.log(data);
             if(data == "addComplete"){
                 fullHeart(heart);
             }else if(data == "deleteComplete"){
                 emptyHeart(heart);
             }
-            console.log(data);
         })
 
     })

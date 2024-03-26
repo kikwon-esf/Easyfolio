@@ -34,6 +34,11 @@
         WHERE FA.MEMBER_ID = #{memberId}
         AND FA.FOOD_CODE = FO.FOOD_CODE
     </select>
+    <select id="favoriteListString" resultType="string">
+        SELECT FOOD_CODE
+        FROM FAVORITE
+        WHERE MEMBER_ID = #{memberId}
+    </select>
 
     <delete id="deleteFav">
         DELETE FROM FAVORITE

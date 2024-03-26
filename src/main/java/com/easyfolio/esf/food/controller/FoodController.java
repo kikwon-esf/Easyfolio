@@ -3,6 +3,7 @@ package com.easyfolio.esf.food.controller;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
+import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -31,7 +35,15 @@ public class FoodController {
     private final MyPageService myPageService;
 
     @PostMapping("/searchFood")
-    public String searchFoodAll(Model model, FoodVO foodVO,  @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue) {
+    public String searchFoodAll(Model model, FoodVO foodVO,  @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
+                                Principal principal, MemberVO memberVO) {
+
+        if(principal != null){
+            memberVO.setMemberId(principal.getName());
+            List<String> list = myPageService.getFavoriteListString(memberVO);
+            model.addAttribute("favoriteList",list);
+        }
+
         foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
@@ -75,7 +87,14 @@ public class FoodController {
         return "/content/food/food_search";
     }
     @GetMapping("/searchFoodPage")
-    public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue){
+    public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
+                                    Principal principal, MemberVO memberVO){
+        if(principal != null){
+            memberVO.setMemberId(principal.getName());
+            List<String> list = myPageService.getFavoriteListString(memberVO);
+            model.addAttribute("favoriteList",list);
+        }
+
         foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
@@ -284,10 +303,12 @@ public class FoodController {
         System.err.println(foodCode);
         System.err.println(favoriteVO);
         try {
-            System.err.println(myPageService.addFav(favoriteVO));
-        }catch (DuplicateKeyException e){
-            System.err.println(myPageService.deleteFav(favoriteVO));
+            myPageService.addFav(favoriteVO);
+        }catch (DuplicateKeyException e){ //이미 add가 되어 있을 시 작동(즐겨찾기 삭제)
+            myPageService.deleteFav(favoriteVO);
             return new ResponseEntity<>("deleteComplete",HttpStatus.OK);
+        }catch (Exception e){ //그 외 예외
+            return new ResponseEntity<>("something went wrong",HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return new ResponseEntity<>("addComplete", HttpStatus.OK);
