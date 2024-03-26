@@ -55,16 +55,19 @@ let list = null;
 window.addEventListener('load',()=>{
     const listdata = document.querySelector("#favoriteList").getAttribute("data-favorite-list");
     list = JSON.parse(listdata);
-    for(i = 0 ; i < addFavBtn.length ; i++){
-        const foodCode = addFavBtn[i].querySelector(".food_code").value;
-        const biHeart = addFavBtn[i].querySelector(".bi-heart");
-        const fillHeart = addFavBtn[i].querySelector(".bi-heart-fill");
-        if(list.includes(foodCode)){
-            onOff(fillHeart,biHeart);
-        }else{
-            onOff(biHeart,fillHeart);
+    if(list != null){
+        for(i = 0 ; i < addFavBtn.length ; i++){
+            const foodCode = addFavBtn[i].querySelector(".food_code").value;
+            const biHeart = addFavBtn[i].querySelector(".bi-heart");
+            const fillHeart = addFavBtn[i].querySelector(".bi-heart-fill");
+            if(list.includes(foodCode)){
+                onOff(fillHeart,biHeart);
+            }else{
+                onOff(biHeart,fillHeart);
+            }       
         }
     }
+    
 })  
 //* 즐겨찾기 추가
 function addOrDelFav(ele){
