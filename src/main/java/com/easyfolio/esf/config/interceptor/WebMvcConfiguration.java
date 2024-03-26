@@ -26,6 +26,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         //인터셉터 동작
         registry.addInterceptor(checkLoginInterceptor) // 해당 인터셉터 적용
                 .excludePathPatterns(exceptionPath) //list로 등록한 예외 적용
-                .addPathPatterns("/myPage/**"); //
+                .addPathPatterns("/myPage/**","/food/addFav"); //
     }
 }

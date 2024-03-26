@@ -6,7 +6,11 @@
 .favorite{
     margin-top : 20px;
 }
-.col_1st .fav_col{
+.col_1st{
+    margin-right : 10px;
+    width : 300px;
+}
+.col_2nd{
     margin-right : 10px;
     width : 300px;
 }
@@ -47,4 +51,10 @@ span{
 .fav_search_submit{
     border : none;
     background-color: white;
+}
+.fav_col.col_7th{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
 }
