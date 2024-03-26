@@ -33,7 +33,7 @@ public class MyPageController {
         favoriteVO.setMemberId(principal.getName());
         favoriteVO.setSearchFavoriteValue(searchFavoriteValue);
         favoriteVO.setTotalDataCnt(myPageService.favoriteCnt(favoriteVO));
-        favoriteVO.setPageInfo();
+        favoriteVO.setPageInfo(8);
         model.addAttribute("searchFavoriteCnt", favoriteVO.getTotalDataCnt());
         List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(favoriteVO);
         model.addAttribute("myFavorite", favorite);

@@ -29,6 +29,7 @@ public class PageVO {
         // 전체 페이지 수
         int totalPageCnt = (int)Math.ceil(totalDataCnt / (double)displayDataCnt);
 
+
         // next 버튼 유무
         if(endPage < totalPageCnt){
             next = true;
@@ -36,6 +37,34 @@ public class PageVO {
             next = false;
             endPage = totalPageCnt;
         }
+
+
+        // 이전 버튼 유무
+        if(beginPage == 1){
+            prev = false;
+        } else {
+            prev = true;
+        }
+
+
+
+    }
+    public void setPageInfo(int displayPageCnt8){
+        endPage = (int)Math.ceil(nowPage / (double)displayPageCnt) * displayPageCnt;
+        beginPage = endPage - displayPageCnt + 1;
+
+        // 전체 페이지 수
+        int totalPageCnt = (int)Math.ceil(totalDataCnt / (double)displayDataCnt8);
+
+
+        // next 버튼 유무
+        if(endPage < totalPageCnt){
+            next = true;
+        } else {
+            next = false;
+            endPage = totalPageCnt;
+        }
+
 
         // 이전 버튼 유무
         if(beginPage == 1){
