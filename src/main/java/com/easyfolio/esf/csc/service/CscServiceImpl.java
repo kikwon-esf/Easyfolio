@@ -89,10 +89,43 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
+    public int updateResponse(InqVO inqVO) {
+        return sqlSession.update("cscMapper.updateResponse", inqVO);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void insertResponse(ResVO resVO) {
+        sqlSession.insert("cscMapper.insertResponse", resVO);
+        if (!resVO.getResImgList().isEmpty()){
+            sqlSession.insert("cscMapper.insertResImg", resVO);
+        }
+    }
+
+    @Override
+    public String nextResCode() {
+        return sqlSession.selectOne("cscMapper.nextResCode");
+    }
+
+    @Override
+    public ResVO resInq(String resCode) {
+        return sqlSession.selectOne("cscMapper.resInq", resCode);
+    }
+
+    @Override
+    public List<ResImgVO> resImgList(String resCode) {
+        return sqlSession.selectList("cscMapper.resImgList", resCode);
+    }
+
+    @Override
     public List<QnaVO> qnaList() {
         return sqlSession.selectList("cscMapper.qnaList");
     }
 
+    @Override
+    public int insertQna(QnaVO qnaVO) {
+        return sqlSession.insert("cscMapper.insertQna", qnaVO);
+    }
 
 
     @Override

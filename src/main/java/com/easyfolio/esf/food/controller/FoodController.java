@@ -3,18 +3,23 @@ package com.easyfolio.esf.food.controller;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
+import com.easyfolio.esf.myPage.service.MyPageService;
+import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.security.Principal;
+import java.sql.SQLException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/food")
@@ -22,6 +27,8 @@ import java.io.IOException;
 public class FoodController {
 
     private final FoodService foodService;
+    //일단은 myPageService추가, 논의 후 foodService에 주입
+    private final MyPageService myPageService;
 
     @PostMapping("/searchFood")
     public String searchFoodAll(Model model, FoodVO foodVO,  @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue) {
@@ -265,5 +272,25 @@ public class FoodController {
 //
 //
 
+    //즐겨찾기 추가
+    @PostMapping(value = "/addFav")
+    @ResponseBody
+    public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> foodCode, FavoriteVO favoriteVO){
+        if(principal == null){ //로그인이 안되어 있을 시
+            return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
+        }
+        favoriteVO.setFoodCode(foodCode.get("foodCode"));
+        favoriteVO.setMemberId(principal.getName());
+        System.err.println(foodCode);
+        System.err.println(favoriteVO);
+        try {
+            System.err.println(myPageService.addFav(favoriteVO));
+        }catch (DuplicateKeyException e){
+            System.err.println(myPageService.deleteFav(favoriteVO));
+            return new ResponseEntity<>("deleteComplete",HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("addComplete", HttpStatus.OK);
+    }
 
 }

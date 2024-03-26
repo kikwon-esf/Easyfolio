@@ -28,4 +28,9 @@ public class MyPageServiceImpl implements MyPageService{
         return sqlSession.delete("myPageMapper.deleteFav", favoriteVO);
     }
 
+    @Override
+    public int addFav(FavoriteVO favoriteVO) {
+        return sqlSession.insert("myPageMapper.addFavorite", favoriteVO);
+    }
+
 }

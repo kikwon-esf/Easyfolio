@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface CscService {
 
+    // ANN
+
     public List<AnnVO> annList(AnnVO annVO);
 
     public List<AnnVO> mainAnnList();
@@ -19,6 +21,8 @@ public interface CscService {
     public int updateAnn(AnnVO annVO);
 
     public int deleteAnn(AnnVO annVO);
+
+    // INQ
 
     public List<InqVO> inqList();
 
@@ -34,12 +38,32 @@ public interface CscService {
 
     public int deleteInqImg(InqVO inqVO);
 
+    public ResVO resInq(String resCode);
+
+    public List<ResImgVO> resImgList(String resCode);
+
+    public int updateResponse(InqVO inqVO);
+
+    public void insertResponse(ResVO resVO);
+
+    public String nextResCode();
+
+
+
+
+    // QNA
+
     public List<QnaVO> qnaList();
 
-    // 헤더 검색 QNA
+    public int insertQna(QnaVO qnaVO);
+
+
+
 
     // 헤더 검색 공지사항
     public List<AnnVO> allSearchAnn(String allSearchKeyword);
+
+    // 헤더 검색 QNA
 
 
 }
