@@ -2,6 +2,8 @@ package com.easyfolio.esf.member.vo;
 
 import lombok.Data;
 
+import java.lang.reflect.Member;
+
 @Data
 public class MemberVO {
     private String memberId;
@@ -10,4 +12,9 @@ public class MemberVO {
     private String memberTel;
     private String memberGender;
     private String memberRole;
+
+    public MemberVO withMemberId(String memberId){
+        this.memberId = memberId;
+        return this;
+    }
 }

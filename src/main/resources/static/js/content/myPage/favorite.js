@@ -1,6 +1,6 @@
 const url = "/myPage/deleteFav"
 function deleteFav(ele){
-    const foodCode = ele.parentNode.querySelector(".col_1st").textContent;
+    const foodCode = ele.closest('a').querySelector(".foodCode").value;
     let data = {
         method: 'POST',
         cache: 'no-cache',
@@ -26,6 +26,68 @@ function deleteFav(ele){
         })
 }
 
+const addFavBtn = document.querySelectorAll(".cartBox");
+const addFavURL = "/food/addFav";
+let list = null;
+//페이지 로딩시 하트색칠
+window.addEventListener('load',()=>{
+    const listdata = document.querySelector("#favoriteList").getAttribute("data-favorite-list");
+    list = JSON.parse(listdata);
+    if(list != null){
+        for(i = 0 ; i < addFavBtn.length ; i++){
+            const foodCode = addFavBtn[i].closest('a').querySelector(".foodCode").value;
+            const biHeart = addFavBtn[i].closest('a').querySelector(".bi-heart");
+            const fillHeart = addFavBtn[i].closest('a').querySelector(".bi-heart-fill");
+            if(list.includes(foodCode)){
+                onOff(fillHeart,biHeart);
+            }else{
+                onOff(biHeart,fillHeart);
+            }       
+        }
+    }
+    
+})  
+function onOff(onEle, offEle){
+    onEle.classList.remove("heartOff");
+    offEle.classList.add("heartOff");
+}
 
+
+
+  
+//* 즐겨찾기 추가
+function addOrDelFav(ele){
+    const biHeart = ele.querySelector(".bi-heart");
+    const fillHeart = ele.querySelector(".bi-heart-fill");
+    const foodCode = ele.closest(".recipeTextBox1").querySelector(".foodCode").value;
+    let data = {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify({
+            "foodCode" : foodCode
+        })
+    }
+
+    fetch(addFavURL,data)
+    .then((resp)=>{
+        let status = resp["status"];
+        
+        if(status != 200) alert("로그인을 확인해주세요!");
+
+        return resp.text();
+    })
+    .then((data)=>{
+        console.log(data);
+        if(data == "addComplete"){
+            onOff(fillHeart,biHeart);
+        }else if(data == "deleteComplete"){
+            onOff(biHeart,fillHeart);
+        }
+    })
+
+}
 
 

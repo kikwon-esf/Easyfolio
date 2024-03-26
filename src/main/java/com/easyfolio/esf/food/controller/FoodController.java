@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -29,6 +30,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/food")
 @RequiredArgsConstructor
+@Slf4j
 public class FoodController {
 
     private final FoodService foodService;
@@ -39,14 +41,7 @@ public class FoodController {
     public String searchFoodAllPage(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
                                     @RequestParam(value = "foodMtrlCode", required = false) String foodMtrlCode,
                                     @RequestParam(value = "foodUsageCode", required = false) String foodUsageCode,
-                                    @RequestParam(value = "foodKindCode", required = false) String foodKindCode,
-                                    Principal principal, MemberVO memberVO) throws Exception{
-        if(principal != null){
-            ObjectMapper objectMapper = new ObjectMapper();
-            memberVO.setMemberId(principal.getName());
-            List<String> list = myPageService.getFavoriteListString(memberVO);
-            model.addAttribute("favoriteList",objectMapper.writeValueAsString(list));
-        }
+                                    @RequestParam(value = "foodKindCode", required = false) String foodKindCode){
 
         foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setFoodKindCode(foodKindCode);
@@ -55,8 +50,6 @@ public class FoodController {
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
 
-//        foodVO.getNowPage()
-        System.err.println(foodVO);
         // 음식 전체 리스트
 
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
@@ -99,14 +92,8 @@ public class FoodController {
         return "/content/food/food_search";
     }
     @PostMapping("/searchFoodPage")
-    public String searchFoodAllPagePost(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
-                                    Principal principal, MemberVO memberVO) throws Exception{
-        if(principal != null){
-            ObjectMapper objectMapper = new ObjectMapper();
-            memberVO.setMemberId(principal.getName());
-            List<String> list = myPageService.getFavoriteListString(memberVO);
-            model.addAttribute("favoriteList",objectMapper.writeValueAsString(list));
-        }
+    public String searchFoodAllPagePost(Model model,FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue){
+
 
         foodVO.setSearchFoodValue(searchFoodValue);
         foodVO.setTotalDataCnt(foodService.foodCnt());
@@ -155,6 +142,7 @@ public class FoodController {
     @PostMapping(value = "/addFav")
     @ResponseBody
     public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> foodCode, FavoriteVO favoriteVO){
+        log.info("addFav");
         if(principal == null){ //로그인이 안되어 있을 시
             return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
         }
@@ -171,5 +159,6 @@ public class FoodController {
 
         return new ResponseEntity<>("addComplete", HttpStatus.OK);
     }
+
 
 }
