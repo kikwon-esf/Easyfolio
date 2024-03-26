@@ -94,13 +94,14 @@ public class CscController {
     // 문의 사항 세부 페이지
     @GetMapping("/inqDetailForm")
     public String inqDetailForm(Model model, InqVO inqVO, ResVO resVO){
-        InqVO inq = cscService.inqDetail(inqVO.inqCode);
-        model.addAttribute("inqDetail", inq);
-        model.addAttribute("inqImgList", cscService.inqImgList(inqVO.inqCode));
+        InqVO inq = cscService.inqDetail(inqVO.getInqCode());
+        model.addAttribute("inqDetail", cscService.inqDetail(inqVO.getInqCode()));
+        model.addAttribute("inqImgList", cscService.inqImgList(inqVO.getInqCode()));
         if (inq.getInqResponse().equals("Y")){
-            ResVO res = cscService.resInq(resVO.resCode);
+            resVO.setResCode(inq.getInqCode());
+            ResVO res = cscService.resInq(resVO.getResCode());
             model.addAttribute("resInq", res);
-            model.addAttribute("resImgList", cscService.resImgList(resVO.resCode));
+            model.addAttribute("resImgList", cscService.resImgList(resVO.getResCode()));
         }
         return "content/csc/inq/csc_inqDetail";
     }
