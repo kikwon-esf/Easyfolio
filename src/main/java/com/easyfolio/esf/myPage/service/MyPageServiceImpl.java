@@ -14,8 +14,13 @@ public class MyPageServiceImpl implements MyPageService{
     private final SqlSessionTemplate sqlSession;
 
     @Override
-    public List<FavoriteVO> getFavoriteListByMember(MemberVO memberVO) {
-        return sqlSession.selectList("myPageMapper.favoriteList", memberVO);
+    public List<FavoriteVO> getFavoriteListByMember(FavoriteVO favoriteVO) {
+        return sqlSession.selectList("myPageMapper.favoriteList", favoriteVO);
+    }
+
+    @Override
+    public List<String> getFavoriteListString(MemberVO memberVO) {
+        return sqlSession.selectList("myPageMapper.favoriteListString", memberVO);
     }
 
     @Override
@@ -31,6 +36,11 @@ public class MyPageServiceImpl implements MyPageService{
     @Override
     public int addFav(FavoriteVO favoriteVO) {
         return sqlSession.insert("myPageMapper.addFavorite", favoriteVO);
+    }
+
+    @Override
+    public int favoriteCnt(FavoriteVO favoriteVO) {
+        return sqlSession.selectOne("myPageMapper.favoriteCnt", favoriteVO);
     }
 
 }

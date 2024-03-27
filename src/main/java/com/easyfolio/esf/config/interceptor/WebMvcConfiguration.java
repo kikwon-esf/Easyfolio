@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebMvcConfiguration implements WebMvcConfigurer {
     private final CheckLoginInterceptor checkLoginInterceptor;
-
+    private final MyfavoriteInterceptor myfavoriteInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -23,9 +23,13 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 //        exceptionPath.add("/**"); // -인터셉터 꺼놓기 힐요할때 확장
 
 
-        //인터셉터 동작
+        //인터셉터 동작 로그인 필요한 페이지 등록
         registry.addInterceptor(checkLoginInterceptor) // 해당 인터셉터 적용
+                .excludePathPatterns(exceptionPath)//list로 등록한 예외 적용
+                .addPathPatterns("/myPage/**","/food/addFav");
+        //model에 favorite list넣어주는 인터셉터(나중에 쿠키로 변경 - 시간 되면)
+        registry.addInterceptor(myfavoriteInterceptor) // favorite필요한
                 .excludePathPatterns(exceptionPath) //list로 등록한 예외 적용
-                .addPathPatterns("/myPage/**"); //
+                .addPathPatterns("/myPage/favorite","/food/**","/mainpage/wideSearch"); //
     }
 }

@@ -21,19 +21,22 @@ import java.util.Set;
     public class CheckLoginInterceptor implements HandlerInterceptor {
 
         //로그인 체크하는 메서드
-        public boolean checkLogin(Principal principal){
+        public boolean checkLogin(Principal principal) throws Exception{
             if(principal != null && principal.getName() !=null){
                 return true;
             }
-            return false;
+            throw new NullPointerException();
         }
 
         //preHandle controller 동작 전 실행
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-            Principal principal = request.getUserPrincipal();
-            if(!checkLogin(principal)){
-                response.sendError(400,"로그인 후 이용해주세요.");
+            try{
+                Principal principal = request.getUserPrincipal();
+                checkLogin(principal);
+            }catch (Exception e){
+                response.sendRedirect("/member/loginForm");
+                response.setHeader("Referer","/member/loginForm");
                 log.warn("잘못된 접근");
                 return false;
             }

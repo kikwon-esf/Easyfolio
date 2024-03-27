@@ -39,6 +39,22 @@
     ]]>
     </select>
 
+    <!--  자주 찾는 질문 검색  -->
+    <select id="allSearchQna" resultMap="qna">
+        <![CDATA[
+    SELECT *
+    FROM (
+        SELECT QNA_CODE
+        , QNA_QUESTION
+        , QNA_ANSWER
+        FROM QNA
+        WHERE (QNA_QUESTION LIKE '%' || #{allSearchKeyword} || '%' OR QNA_ANSWER LIKE '%' || #{allSearchKeyword} || '%')
+        ORDER BY QNA_CODE DESC
+    )
+    WHERE ROWNUM <= 5
+    ]]>
+    </select>
+
     <!--  공지사항 메인 페이지 조회  -->
     <select id="mainAnnList" resultMap="announcement">
         SELECT ANN_NUM
@@ -359,9 +375,6 @@
         , #{qnaAnswer}
         )
     </insert>
-
-
-    <!--  자주 찾는 질문 검색  -->
 
 
 </mapper>

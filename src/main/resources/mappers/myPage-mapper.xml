@@ -27,12 +27,37 @@
         , FA.MEMBER_ID
         , FO.FOOD_TTL
         , FO.FOOD_NAME
+        , FO.FOOD_DIF
         , FO.FOOD_INQ_CNT
         , FO.FOOD_RCMM_CNT
         , TO_CHAR(FAVORITE_DATE,'YYYY-MM-DD') AS FAVORITE_DATE
         FROM FAVORITE FA, FOOD FO
         WHERE FA.MEMBER_ID = #{memberId}
+        <if test="searchFavoriteValue != null and not searchFavoriteValue.isEmpty()">
+            AND FOOD_TTL LIKE '%' || #{searchFavoriteValue} || '%'
+        </if>
         AND FA.FOOD_CODE = FO.FOOD_CODE
+        ORDER BY FA.FAVORITE_DATE DESC
+        OFFSET ((#{nowPage} - 1) * #{displayDataCnt8}) ROWS FETCH FIRST #{displayDataCnt8} ROWS ONLY
+    </select>
+
+    <select id="favoriteCnt" resultType="int">
+        SELECT COUNT (FA.FOOD_CODE)
+        FROM FAVORITE FA, FOOD FO
+        <where>
+            <if test="memberId != null and not memberId.isEmpty()">
+                AND MEMBER_ID = #{memberId}
+            </if>
+            <if test="searchFavoriteValue != null and not searchFavoriteValue.isEmpty()">
+                AND FOOD_TTL LIKE '%' || #{searchFavoriteValue} || '%'
+            </if>
+            AND FA.FOOD_CODE = FO.FOOD_CODE
+        </where>
+    </select>
+    <select id="favoriteListString" resultType="string">
+        SELECT FOOD_CODE
+        FROM FAVORITE
+        WHERE MEMBER_ID = #{memberId}
     </select>
 
     <delete id="deleteFav">

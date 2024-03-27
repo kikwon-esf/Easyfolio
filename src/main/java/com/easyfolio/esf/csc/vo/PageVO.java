@@ -7,6 +7,7 @@ public class PageVO {
     private int nowPage; // 현재 페이지 번호
     private int totalDataCnt; // 전체 데이터 수
     private int displayDataCnt; // 한 페이지에 보여지는 데이터 수
+    private int displayDataCnt8; // 한 페이지에 보여지는 데이터 수
     private int beginPage; // 화면에 보이는 첫번째 페이지 번호
     private int endPage; // 화면에 보이는 마지막 페이지 번호
     private int displayPageCnt; // 한 번에 보여지는 페이지 수
@@ -17,6 +18,7 @@ public class PageVO {
         nowPage = 1;
         displayPageCnt = 5;
         displayDataCnt = 10;
+        displayDataCnt8 = 8;
     }
 
     // 페이징 처리를 하기 위한 모든 변수의 값을 세팅하는 메소드
@@ -27,6 +29,7 @@ public class PageVO {
         // 전체 페이지 수
         int totalPageCnt = (int)Math.ceil(totalDataCnt / (double)displayDataCnt);
 
+
         // next 버튼 유무
         if(endPage < totalPageCnt){
             next = true;
@@ -34,6 +37,34 @@ public class PageVO {
             next = false;
             endPage = totalPageCnt;
         }
+
+
+        // 이전 버튼 유무
+        if(beginPage == 1){
+            prev = false;
+        } else {
+            prev = true;
+        }
+
+
+
+    }
+    public void setPageInfo(int displayPageCnt8){
+        endPage = (int)Math.ceil(nowPage / (double)displayPageCnt) * displayPageCnt;
+        beginPage = endPage - displayPageCnt + 1;
+
+        // 전체 페이지 수
+        int totalPageCnt = (int)Math.ceil(totalDataCnt / (double)displayDataCnt8);
+
+
+        // next 버튼 유무
+        if(endPage < totalPageCnt){
+            next = true;
+        } else {
+            next = false;
+            endPage = totalPageCnt;
+        }
+
 
         // 이전 버튼 유무
         if(beginPage == 1){

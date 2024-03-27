@@ -14,6 +14,10 @@
     <th:block th:fragment="foodTopFragment">
         <link rel="stylesheet" href="/css/fragment/food_top.css">
         <div id="top_wrap">
+            <input type="hidden" id="foodKindCode" th:value="${foodKindCode}">
+            <input type="hidden" id="foodUsageCode" th:value="${foodMtrlCode}">
+            <input type="hidden" id="foodMtrlCode" th:value="${foodUsageCode}">
+            <input type="hidden" id="foodTypeCode" th:value="${foodTypeCode}">
             <div id="w_in">
                 <a href="/food/searchFoodPage">
                     <div class="foodMain">
@@ -40,6 +44,7 @@
                                     <a th:each="foodKind, state : ${foodKindList}"
                                         th:href="@{/food/searchFoodPage(foodKindCode=${foodKind.foodKindCode})}">
                                         <p class="menuTextBtn" th:text="${foodKind.foodKindText}"></p>
+                                        <input type="hidden" class="searchMenu" th:value="${foodKind.foodKindCode}">
                                     </a>
                                 </div>
                                 <div class="menuTextBox">
@@ -49,6 +54,7 @@
                                     <a th:each="foodUsage, state : ${foodUsageList}"
                                         th:href="@{/food/searchFoodPage(foodUsageCode=${foodUsage.foodUsageCode})}">
                                         <p class="menuTextBtn" th:text="${foodUsage.foodUsageText}"></p>
+                                        <input type="hidden" class="searchMenu" th:value="${foodUsage.foodUsageCode}">
                                     </a>
                                 </div>
                                 <div class="menuTextBox">
@@ -58,6 +64,7 @@
                                     <a th:each="foodMtrl, state : ${foodMtrlList}"
                                         th:href="@{/food/searchFoodPage(foodMtrlCode=${foodMtrl.foodMtrlCode})}">
                                         <p class="menuTextBtn" th:text="${foodMtrl.foodMtrlText}"></p>
+                                        <input type="hidden" class="searchMenu" th:value="${foodMtrl.foodMtrlCode}">
                                     </a>
                                 </div>
                                 <div class="menuTextBox">
@@ -67,6 +74,7 @@
                                     <a th:each="foodType, state : ${foodTypeList}"
                                         th:href="@{/food/searchFoodPage(foodTypeCode=${foodType.foodTypeCode})}">
                                         <p class="menuTextBtn" th:text="${foodType.foodTypeText}"></p>
+                                        <input type="hidden" class="searchMenu" th:value="${foodType.foodTypeCode}">
                                     </a>
                                 </div>
                             </div>
