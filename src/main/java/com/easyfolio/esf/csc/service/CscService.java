@@ -26,9 +26,9 @@ public interface CscService {
 
     public List<InqVO> inqList();
 
-    public InqVO inqDetail(String inqCode);
+    public InqVO inqDetail(InqVO inqVO);
 
-    public List<InqImgVO> inqImgList(String inqCode);
+    public List<InqImgVO> inqImgList(InqVO inqVO);
 
     public void insertInq(InqVO inqVO);
 
@@ -38,9 +38,9 @@ public interface CscService {
 
     public int deleteInqImg(InqVO inqVO);
 
-    public ResVO resInq(String resCode);
+    public ResVO resInq(ResVO resVO);
 
-    public List<ResImgVO> resImgList(String resCode);
+    public List<ResImgVO> resImgList(ResVO resVO);
 
     public int updateResponse(InqVO inqVO);
 

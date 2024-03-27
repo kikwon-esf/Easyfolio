@@ -47,6 +47,22 @@
                         <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
                     </div>
                 </div>
+
+                <div>
+                    <div class="inqResponse" th:if="${inqDetail.inqResponse == 'Y'}">
+                        <p th:utext="${resInq.resContent}"></p>
+                    </div>
+                    <div class="imgBox" th:if="${resImgList != null and resImgList.size() > 0}">
+                        <div class="inqImgBlock" th:each="resImg : ${resImgList}">
+                            <img th:src="${'/img/csc/res/'+ resImg.attachedFileName}" alt="">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
             <div class="btnBlock">
                 <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}" th:if="${inqDetail.inqResponse == 'N'}" class="btn">

@@ -95,15 +95,16 @@ public class CscController {
     // 문의 사항 세부 페이지
     @GetMapping("/inqDetailForm")
     public String inqDetailForm(Model model, InqVO inqVO, ResVO resVO){
-        InqVO inq = cscService.inqDetail(inqVO.getInqCode());
-        model.addAttribute("inqDetail", cscService.inqDetail(inqVO.getInqCode()));
-        model.addAttribute("inqImgList", cscService.inqImgList(inqVO.getInqCode()));
+        InqVO inq = cscService.inqDetail(inqVO);
+        model.addAttribute("inqDetail", cscService.inqDetail(inqVO));
+        model.addAttribute("inqImgList", cscService.inqImgList(inqVO));
+
         if (inq.getInqResponse().equals("Y")){
-            resVO.setResCode(inq.getInqCode());
-            ResVO res = cscService.resInq(resVO.getResCode());
-            model.addAttribute("resInq", res);
-            model.addAttribute("resImgList", cscService.resImgList(resVO.getResCode()));
+            model.addAttribute("resInq", cscService.resInq(resVO));
+            resVO.setResCode((cscService.resInq(resVO)).getResCode());
+            model.addAttribute("resImgList", cscService.resImgList(resVO));
         }
+
         return "content/csc/inq/csc_inqDetail";
     }
 
@@ -150,8 +151,8 @@ public class CscController {
     // 문의 사항 답변 페이지
     @GetMapping("/responseInqForm")
      public String responseInqForm(Model model, InqVO inqVO){
-        model.addAttribute("inqDetail", cscService.inqDetail(inqVO.inqCode));
-        model.addAttribute("inqImgList", cscService.inqImgList(inqVO.inqCode));
+        model.addAttribute("inqDetail", cscService.inqDetail(inqVO));
+        model.addAttribute("inqImgList", cscService.inqImgList(inqVO));
         return "content/csc/inq/csc_responseInq";
      }
     
