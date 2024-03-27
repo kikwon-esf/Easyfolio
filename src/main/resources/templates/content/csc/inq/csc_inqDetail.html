@@ -47,30 +47,40 @@
                         <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
                     </div>
                 </div>
-
-                <div>
-                    <div class="inqResponse" th:if="${inqDetail.inqResponse == 'Y'}">
-                        <p th:utext="${resInq.resContent}"></p>
+            </div>
+            <div class="csc_title"  th:if="${inqDetail.inqResponse == 'Y'}">
+                <p class="csc_title1">답변</p>
+                <p class="csc_title2">Answer</p>
+            </div>
+            <div class="csc_inner"  th:if="${inqDetail.inqResponse == 'Y'}">
+                <div class="annDetailHeader">
+                    <div class="annHeader2">
+                        <p class="annDate">
+                            <span>작성일 : </span>
+                            <span>[[${resInq.resDate}]]</span>
+                        </p>
                     </div>
-                    <div class="imgBox" th:if="${resImgList != null and resImgList.size() > 0}">
-                        <div class="inqImgBlock" th:each="resImg : ${resImgList}">
-                            <img th:src="${'/img/csc/res/'+ resImg.attachedFileName}" alt="">
-                        </div>
+                </div>
+                <div class="annContent">
+                    <p th:utext="${resInq.resContent}"></p>
+                </div>
+                <div class="imgBox" th:if="${resImgList != null and resImgList.size() > 0}">
+                    <div class="inqImgBlock" th:each="resImg : ${resImgList}">
+                        <img th:src="${'/img/csc/res/'+ resImg.attachedFileName}" alt="">
                     </div>
                 </div>
 
-
-
-
-
             </div>
             <div class="btnBlock">
-                <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}" th:if="${inqDetail.inqResponse == 'N'}" class="btn">
-                    <p>답변하기</p>
-                </a>
-                <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn">
-                    <p>삭제하기</p>
-                </a>
+                <div class="btnBox">
+                    <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}"
+                        th:if="${inqDetail.inqResponse == 'N'}" class="btn">
+                        <p>답변하기</p>
+                    </a>
+                    <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn">
+                        <p>삭제하기</p>
+                    </a>
+                </div>
             </div>
             <div class="bigImgBlock">
                 <div class="bigImgBox">

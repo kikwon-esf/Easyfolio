@@ -62,7 +62,7 @@ textarea {
     color: #f3c053;
 }
 .csc_inner{
-    margin: -5px auto 30px auto;
+    margin: -5px auto 100px auto;
     width: 900px;
     height: auto;
     box-sizing: border-box;
@@ -160,11 +160,14 @@ textarea {
 .annContent tr:last-child{
     border-radius: 0 0 5px 5px;
 }
-.btnBlock{
-    display: flex;
-    width: 450px;
-    margin: 0 auto;
+.btnBox{
+    max-width: 450px;
     justify-content: space-between;
+    display: inline-flex;
+}
+.btnBlock{
+    margin: 0 auto;
+    text-align: center;
 }
 .btn{
     border: 1px solid #f4f4f4;
@@ -177,13 +180,16 @@ textarea {
     transition: background-color 0.5s ease;
     box-sizing: border-box;
     text-align: center;
-    padding: 11px
+    padding: 11px;
+    margin: 0 10px;
 }
 .btn:hover{
     background-color: #f08509;
     transition: background-color 0.5s ease;
 }
 .imgBox{
+    height: 200px;
+    box-sizing: border-box;
     padding: 20px 0;
     display: flex;
     border-top: 1px solid #dadada;
@@ -191,20 +197,22 @@ textarea {
 .inqImgBlock{
     cursor: pointer;
     margin: 0 20px;
-    padding: 5px;
     box-sizing: border-box;
     width: 200px;
-    height: auto;
-    transition: padding 0.3s ease;
+    height: 100%;
 }
-.inqImgBlock:hover{
+.inqImgBlock img:hover{
     padding: 0;
     transition: padding 0.3s ease;
 }
 .inqImgBlock img{
+    box-sizing: border-box;
     border-radius: 4px;
+    padding: 5px;
     width: 100%;
     height: auto;
+    max-height: 150px;
+    transition: padding 0.3s ease;
 }
 .bigImgBlock{
     display: none; 

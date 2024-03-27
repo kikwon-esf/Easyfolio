@@ -105,7 +105,8 @@ textarea {
     justify-content: right;
     margin-bottom: 10px;
 }
-.qnaBlock{
+.qnaWrap{
+    margin-bottom: 50px;
     border: 1px solid #dadada;
     border-radius: 9px;
     box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
@@ -116,7 +117,40 @@ textarea {
     cursor: pointer;
     border-bottom: 1px solid #dadada;
 }
-.qnaInner:last-child{
+.dnuBtnBox{
+    display: flex;
+    opacity: 0;
+    position: absolute;
+    right: -100px;
+    top: 7px;
+    transition: opacity 0.2s ease;
+}
+.dnuBtnBox.on{
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+.dnuBtn{
+    cursor: pointer;
+}
+.dnuBtn p{
+    border: 1px solid #f4f4f4;
+    background-color: #ffa43b;
+    color: #fff;
+    border-radius: 50%;
+    width: 35px;
+    height: 28px;
+    text-align: center;
+    margin: 0 5px;
+    padding-top: 7px;
+}
+.dnuBtn p:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
+}
+.qnaBlock{
+    position: relative;
+}
+.qnaBlock:last-child .qnaInner{
     border: 0;
 }
 .qnaBox{
@@ -176,4 +210,25 @@ textarea {
 .rotate{
     transform: rotate(180deg);
     transition: transform 0.5s ease;
+}
+.btnForm{
+    width: 200px;
+    margin: 0 auto;
+}
+.btnForm p{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    text-align: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+.btnForm p:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
 }

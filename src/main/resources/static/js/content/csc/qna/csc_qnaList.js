@@ -1,12 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var qnaInners = document.querySelectorAll('.qnaInner');
-    var qnaInnerArray = Array.from(qnaInners);
 
-    qnaInnerArray.forEach(function (qnaInner) {
+
+document.addEventListener("DOMContentLoaded", function () {
+    var qnaBlocks = document.querySelectorAll('.qnaBlock');
+    var qnaBlocksArray = Array.from(qnaBlocks);
+
+    qnaBlocksArray.forEach(function (qnaBlock) {
+        var dnuBtnBox = qnaBlock.querySelector('.dnuBtnBox');
+        var qnaInner = qnaBlock.querySelector('.qnaInner');
+        var ansBox = qnaBlock.querySelector('.ansBox'); 
+
         qnaInner.addEventListener('click', function () {
-            $(qnaInner).find('.ansBox').slideToggle();
+            $(dnuBtnBox).toggleClass('on');
+            $(ansBox).slideToggle(); 
             $(qnaInner).find('.qnaBox').toggleClass('on');
             $(qnaInner).find('.qnaArrow').toggleClass('rotate');
+        });
+
+        ansBox.addEventListener('click', function (event) {
+            event.stopPropagation(); 
         });
     });
 });
