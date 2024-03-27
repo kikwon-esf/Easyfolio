@@ -40,7 +40,7 @@
                     <div class="recipeBox">
                         <div class="recipes">
                             <div th:if="${not #lists.isEmpty(asFoodList)}" th:each="asfood, state : ${asFoodList}">
-                                <a th:each="asfood, state : ${asFoodList}" class="recipe">
+                                <a class="recipe">
                                     <div class="recipeImgBox">
                                         <img src="/img/food/examImg.jpg" alt="">
                                     </div>
@@ -163,7 +163,7 @@
                             </div>
                             <div class="qnaBlock">
                                 <div th:if="${not #lists.isEmpty(asQnaList)}" th:each="asQna, state : ${asQnaList}">
-                                    <div class="qnaInner" th:each="asQna, state : ${asQnaList}">
+                                    <div class="qnaInner">
                                         <div class="qnaBox">
                                             <div class="qnaIcon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#f3c053"
