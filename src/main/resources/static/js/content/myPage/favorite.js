@@ -47,11 +47,6 @@ window.addEventListener('load',()=>{
     }
     
 })  
-function onOff(onEle, offEle){
-    onEle.classList.remove("heartOff");
-    offEle.classList.add("heartOff");
-}
-
 
 
   
@@ -80,14 +75,42 @@ function addOrDelFav(ele){
         return resp.text();
     })
     .then((data)=>{
-        console.log(data);
         if(data == "addComplete"){
             onOff(fillHeart,biHeart);
+            onOffAnime(fillHeart,biHeart);
         }else if(data == "deleteComplete"){
             onOff(biHeart,fillHeart);
+            onOffAnime(biHeart,fillHeart);
         }
     })
 
 }
+//animation mouseDown
+const mouseDown = document.querySelectorAll('.mousedown');
+for(let ele=0 ; ele < addFavBtn.length ; ele++){
+    addFavBtn[ele].addEventListener('mousedown', ()=>{
+        let each = addFavBtn[ele].querySelectorAll('svg');
+        each[0].classList.add('heart_mouseDown');
+        each[1].classList.add('heart_mouseDown');
+    })
+    addFavBtn[ele].addEventListener('mouseout', ()=>{
+        let each = addFavBtn[ele].querySelectorAll('svg');
+        each[0].classList.remove('heart_mouseDown');
+        each[1].classList.remove('heart_mouseDown');
+    })
+}
 
+
+//onOff함수
+
+function onOff(onEle, offEle){
+    onEle.classList.remove("heartOff");
+
+    offEle.classList.add("heartOff");
+    
+}
+function onOffAnime(onEle,offEle){
+    offEle.classList.remove("toggle_anime");
+    onEle.classList.add("toggle_anime");
+}
 

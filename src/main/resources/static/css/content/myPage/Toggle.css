@@ -1,3 +1,33 @@
 .heartOff{
     display : none;
 }
+
+
+.toggle_anime{
+    animation-name: heart_anime;
+    animation-duration: 0.3s;
+    animation-direction: normal;
+}
+@keyframes heart_anime {
+    from{
+        width: 24px;
+        height: 24px;
+    }
+    to{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.bi.bi-heart.heart_mouseDown, .bi.bi-heart-fill.heart_mouseDown{
+    transition: 0.1s;
+    width: 18px;
+    height: 18px;
+    fill : #dd8c8c
+}
+.heartBox{
+    width: 25px;
+    height: 25px;
+    box-sizing: border-box;
+}
+
