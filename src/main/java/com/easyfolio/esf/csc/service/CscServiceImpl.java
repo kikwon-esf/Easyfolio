@@ -108,6 +108,11 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
+    public List<QnaVO> mainQnaList() {
+        return sqlSession.selectList("cscMapper.mainQnaList");
+    }
+
+    @Override
     public ResVO resInq(String resCode) {
         return sqlSession.selectOne("cscMapper.resInq", resCode);
     }
