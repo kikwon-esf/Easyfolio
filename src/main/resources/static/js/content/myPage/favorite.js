@@ -1,48 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var nowPage = urlParams.get('nowPage');
-
-    var pageButtons = document.querySelectorAll('.page_numBtn');
-
-    pageButtons.forEach(function(button) {
-        if (button.textContent === nowPage) {
-            button.classList.add('active'); // 여기서 'active'는 원하는 클래스명입니다.
-        }
-    });
-    var currentPageUrl = window.location.href;
-    if (currentPageUrl.endsWith("/myPage/favorite")) {
-        var numBtnSpans = document.querySelectorAll(".page_numBtn span");
-        numBtnSpans.forEach(function(span) {
-            if (span.textContent.trim() === '1') {
-                span.closest('.page_numBtn').classList.add('active');
-            }
-        });
-        
-    }
-});
-
-var foodSearch = document.querySelector('.searchFavoriteValue');
-var foodSearchBlock = document.querySelector('.foodSearchBlock');
-
-foodSearch.addEventListener("click", function () {
-    foodSearchBlock.style.border = "2px solid #F29221";
-    foodSearchBlock.style.backgroundColor = "transparent"
-    foodSearch.style.color = "#333";
-    foodSearch.placeholder = "";
-})
-
-document.addEventListener("click", function (event) {
-    if (event.target !== foodSearch) {
-        foodSearchBlock.style.border = "2px solid #ffd57a";
-        foodSearch.style.color = "#999";
-        foodSearch.placeholder = '즐겨찾기 검색';
-    }
-
-});
-
 const url = "/myPage/deleteFav"
-function deleteFav(ele) {
-    const foodCode = ele.parentNode.querySelector(".foodCode").value;
+function deleteFav(ele){
+    const foodCode = ele.closest('a').querySelector(".foodCode").value;
     let data = {
         method: 'POST',
         cache: 'no-cache',
@@ -53,22 +11,83 @@ function deleteFav(ele) {
             foodCode
         })
     }
-    fetch(url, data)
-        .then((response) => {
+
+
+    fetch(url,data)
+        .then((response)=>{
             return response.text();
-        }).then((data) => {
-            if (data != "complete") {
+        }).then((data)=>{
+            if(data != "complete"){
                 alert("실패");
-            } else {
+            }else{
                 alert("완료");
                 location.reload(true);
             }
         })
 }
-function searchFavorite() {
-    document.querySelector('.searchFavoriteForm').submit();
+
+const addFavBtn = document.querySelectorAll(".cartBox");
+const addFavURL = "/food/addFav";
+let list = null;
+//페이지 로딩시 하트색칠
+window.addEventListener('load',()=>{
+    const listdata = document.querySelector("#favoriteList").getAttribute("data-favorite-list");
+    list = JSON.parse(listdata);
+    if(list != null){
+        for(i = 0 ; i < addFavBtn.length ; i++){
+            const foodCode = addFavBtn[i].closest('a').querySelector(".foodCode").value;
+            const biHeart = addFavBtn[i].closest('a').querySelector(".bi-heart");
+            const fillHeart = addFavBtn[i].closest('a').querySelector(".bi-heart-fill");
+            if(list.includes(foodCode)){
+                onOff(fillHeart,biHeart);
+            }else{
+                onOff(biHeart,fillHeart);
+            }       
+        }
+    }
+    
+})  
+function onOff(onEle, offEle){
+    onEle.classList.remove("heartOff");
+    offEle.classList.add("heartOff");
 }
 
 
+
+  
+//* 즐겨찾기 추가
+function addOrDelFav(ele){
+    const biHeart = ele.querySelector(".bi-heart");
+    const fillHeart = ele.querySelector(".bi-heart-fill");
+    const foodCode = ele.closest(".recipeTextBox1").querySelector(".foodCode").value;
+    let data = {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify({
+            "foodCode" : foodCode
+        })
+    }
+
+    fetch(addFavURL,data)
+    .then((resp)=>{
+        let status = resp["status"];
+        
+        if(status != 200) alert("로그인을 확인해주세요!");
+
+        return resp.text();
+    })
+    .then((data)=>{
+        console.log(data);
+        if(data == "addComplete"){
+            onOff(fillHeart,biHeart);
+        }else if(data == "deleteComplete"){
+            onOff(biHeart,fillHeart);
+        }
+    })
+
+}
 
 

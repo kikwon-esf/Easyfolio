@@ -216,3 +216,6 @@
 .pageBtn a svg{
     margin-top: 3px;
 }
+.heartOff{
+    display: none;
+}

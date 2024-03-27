@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var urlParams = new URLSearchParams(window.location.search);
-    var nowPage = urlParams.get('nowPage');
+    var nowPage = document.querySelector('#nowPage').value;
 
     var pageButtons = document.querySelectorAll('.page_numBtn');
 
@@ -35,7 +35,7 @@ function searchFood(){
 
 document.addEventListener("DOMContentLoaded", function() {
     var currentPageUrl = window.location.href;
-    if (currentPageUrl.endsWith("/food/searchFood")||currentPageUrl.endsWith("/food/searchFoodPage")) {
+    if (currentPageUrl.endsWith("/food/searchFoodPage")) {
         var numBtnSpans = document.querySelectorAll(".page_numBtn span");
         numBtnSpans.forEach(function(span) {
             if (span.textContent.trim() === '1') {
@@ -46,68 +46,3 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-
-//페이지 로딩시 하트색칠
-
-const addFavBtn = document.querySelectorAll(".cartBox");
-const addFavURL = "/food/addFav";
-let list = null;
-window.addEventListener('load',()=>{
-    const listdata = document.querySelector("#favoriteList").getAttribute("data-favorite-list");
-    list = JSON.parse(listdata);
-    if(list != null){
-        for(i = 0 ; i < addFavBtn.length ; i++){
-            const foodCode = addFavBtn[i].querySelector(".food_code").value;
-            const biHeart = addFavBtn[i].querySelector(".bi-heart");
-            const fillHeart = addFavBtn[i].querySelector(".bi-heart-fill");
-            if(list.includes(foodCode)){
-                onOff(fillHeart,biHeart);
-            }else{
-                onOff(biHeart,fillHeart);
-            }       
-        }
-    }
-    
-})  
-//* 즐겨찾기 추가
-function addOrDelFav(ele){
-    const biHeart = ele.querySelector(".bi-heart");
-    const fillHeart = ele.querySelector(".bi-heart-fill");
-    const foodCode = ele.closest(".cartBox").querySelector(".food_code").value;
-    let data = {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-        },
-        body: JSON.stringify({
-            "foodCode" : foodCode
-        })
-    }
-
-    fetch(addFavURL,data)
-    .then((resp)=>{
-        let status = resp["status"];
-        
-        if(status != 200) alert("로그인을 확인해주세요!");
-
-        return resp.text();
-    })
-    .then((data)=>{
-        console.log(data);
-        if(data == "addComplete"){
-            onOff(fillHeart,biHeart);
-        }else if(data == "deleteComplete"){
-            onOff(biHeart,fillHeart);
-        }
-    })
-
-}
-
-//m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8
-
-//onoff 함수
-function onOff(onEle, offEle){
-    onEle.classList.remove("off");
-    offEle.classList.add("off");
-}
