@@ -55,13 +55,13 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
-    public InqVO inqDetail(String inqCode) {
-        return sqlSession.selectOne("cscMapper.inqDetail", inqCode);
+    public InqVO inqDetail(InqVO inqVO) {
+        return sqlSession.selectOne("cscMapper.inqDetail", inqVO);
     }
 
     @Override
-    public List<InqImgVO> inqImgList(String inqCode) {
-        return sqlSession.selectList("cscMapper.inqImgList", inqCode);
+    public List<InqImgVO> inqImgList(InqVO inqVO) {
+        return sqlSession.selectList("cscMapper.inqImgList", inqVO);
     }
 
     @Override
@@ -113,13 +113,13 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
-    public ResVO resInq(String resCode) {
-        return sqlSession.selectOne("cscMapper.resInq", resCode);
+    public ResVO resInq(ResVO resVO) {
+        return sqlSession.selectOne("cscMapper.resInq", resVO);
     }
 
     @Override
-    public List<ResImgVO> resImgList(String resCode) {
-        return sqlSession.selectList("cscMapper.resImgList", resCode);
+    public List<ResImgVO> resImgList(ResVO resVO) {
+        return sqlSession.selectList("cscMapper.resImgList", resVO);
     }
 
     @Override
