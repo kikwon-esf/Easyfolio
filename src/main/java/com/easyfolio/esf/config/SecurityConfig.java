@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,6 +27,8 @@ public class SecurityConfig implements WebMvcConfigurer {
     private CustomFailureHandler failureHandler;
     @Autowired
     private CustomLogoutSuccessHandler logoutSuccessHandler;
+
+
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
 
@@ -60,7 +64,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder(); // 패스워드 인코더 중 가장 강력
+//        return new BCryptPasswordEncoder(2); // 패스워드 인코더 중 가장 강력
         return NoOpPasswordEncoder.getInstance(); // 임시 설정 -- > 비밀번호 인코딩x
     }
 

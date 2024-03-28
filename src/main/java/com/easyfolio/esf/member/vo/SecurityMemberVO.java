@@ -9,7 +9,8 @@ import java.util.List;
 
 public class SecurityMemberVO implements UserDetails {
     private final MemberVO memberVO;
-
+    private boolean accountNonExpired;
+    private boolean
     public SecurityMemberVO(MemberVO memberVO){
         this.memberVO = memberVO;
     }
