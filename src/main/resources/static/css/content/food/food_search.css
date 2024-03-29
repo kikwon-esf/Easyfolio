@@ -178,10 +178,7 @@
     margin: 5px 0;
 }
 .cartBox{
-    width: 60px;
-    margin-right: -17px;
-    margin-top: 7px;
-    text-align: center;
+    text-align : center;
 }
 .cartBox p{
     margin: 0;
@@ -217,7 +214,4 @@
 }
 .off{
     display: none;
-}
-.heartBox{
-    margin-left: 17px;
 }

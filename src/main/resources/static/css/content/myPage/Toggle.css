@@ -10,12 +10,12 @@
 }
 @keyframes heart_anime {
     from{
-        width: 24px;
-        height: 24px;
+        width: 25px;
+        height: 25px;
     }
     to{
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
     }
 }
 
@@ -30,6 +30,6 @@
     width: 25px;
     height: 25px;
     box-sizing: border-box;
-    left : 17px;
 }
+
 

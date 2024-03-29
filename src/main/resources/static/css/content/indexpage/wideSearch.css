@@ -377,3 +377,6 @@
     transform: rotate(180deg);
     transition: transform 0.5s ease;
 }
+.heartBox{
+    margin-left: 17px;
+}
