@@ -54,4 +54,9 @@ public class MainpageController {
     public String testpage(){
         return "content/indexpage/testpage";
     }
+
+    @GetMapping("/recipe")
+    public String recipepage(){
+        return "content/food/recipe_detail_copy";
+    }
 }
