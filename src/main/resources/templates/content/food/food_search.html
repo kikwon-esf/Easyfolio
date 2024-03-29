@@ -86,10 +86,9 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="recipeBox">
                         <div class="recipes">
-                            <a th:each="food, state : ${foodList}" class="recipe">
+                            <a th:each="food, state : ${foodList}" class="recipe" th:href="@{/food/detail(foodCode=${food.foodCode})}">
                                 <div class="recipeImgBox">
                                     <img src="/img/food/examImg.jpg" alt="">
                                 </div>

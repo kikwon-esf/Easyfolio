@@ -52,7 +52,7 @@
                     <div class="recipeBox">
                         <div class="recipes">
                             <div th:if="${not #lists.isEmpty(asFoodList)}" th:each="asfood, state : ${asFoodList}">
-                                <a class="recipe">
+                                <a class="recipe" th:href="@{/food/detail(foodCode=${food.foodCode})}">
                                     <div class="recipeImgBox">
                                         <img src="/img/food/examImg.jpg" alt="">
                                     </div>

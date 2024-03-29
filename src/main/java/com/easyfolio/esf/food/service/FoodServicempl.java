@@ -78,6 +78,11 @@ public class FoodServicempl implements FoodService{
     public int allSearchFoodCnt(String allSearchKeyword) {
         return sqlSession.selectOne("foodMapper.allSearchFoodCnt", allSearchKeyword);
     }
+    //food상세검색
+    @Override
+    public FoodVO getFoodDtl(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.getFoodDtl",foodVO);
+    }
 
     @Override
     public int searchFoodCnt(FoodVO foodVO) {

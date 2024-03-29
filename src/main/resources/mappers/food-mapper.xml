@@ -191,6 +191,12 @@
         OR FOOD_TYPE_CODE = #{allSearchKeyword}
     </select>
 
+<!--    food 상세검색-->
+    <select id="getFoodDtl" resultMap="food">
+        SELECT *
+        FROM FOOD
+        WHERE FOOD_CODE = #{foodCode}
+    </select>
 
 
 </mapper>

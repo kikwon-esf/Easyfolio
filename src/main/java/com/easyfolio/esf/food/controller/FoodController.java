@@ -25,10 +25,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/food")
@@ -125,5 +122,10 @@ public class FoodController {
         return new ResponseEntity<>("addComplete", HttpStatus.OK);
     }
 
-
+    @GetMapping(value = "detail")
+    public String foodDtl(Model model, @RequestParam(value = "foodCode") String foodCode, FoodVO foodVO) {
+        foodVO = foodService.getFoodDtl(foodVO.withFoodCode(foodCode));
+        model.addAttribute("foodVO", foodVO);
+        return "/content/food/food_detail";
+    }
 }
