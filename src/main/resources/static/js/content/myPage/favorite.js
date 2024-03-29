@@ -27,7 +27,7 @@ function deleteFav(ele){
 }
 
 const addFavBtn = document.querySelectorAll(".cartBox");
-const addFavURL = "/food/addFav";
+const addFavURL = "/myPage/addFav";
 let list = null;
 //페이지 로딩시 하트색칠
 window.addEventListener('load',()=>{

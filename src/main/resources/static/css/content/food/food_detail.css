@@ -247,6 +247,6 @@ textarea {
 .cartBox{
     display: flex;
     position: relative;
-    right: -500px;
+    right: -550px;
     cursor : pointer;
 }

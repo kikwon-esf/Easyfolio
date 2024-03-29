@@ -100,32 +100,12 @@ public class FoodController {
         }
     }
 
-    //즐겨찾기 추가
-    @PostMapping(value = "/addFav")
-    @ResponseBody
-    public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> foodCode, FavoriteVO favoriteVO){
-        log.info("addFav");
-        if(principal == null){ //로그인이 안되어 있을 시
-            return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
-        }
-        favoriteVO.setFoodCode(foodCode.get("foodCode"));
-        favoriteVO.setMemberId(principal.getName());
-        try {
-            myPageService.addFav(favoriteVO);
-        }catch (DuplicateKeyException e){ //이미 add가 되어 있을 시 작동(즐겨찾기 삭제)
-            myPageService.deleteFav(favoriteVO);
-            return new ResponseEntity<>("deleteComplete",HttpStatus.OK);
-        }catch (Exception e){ //그 외 예외
-            return new ResponseEntity<>("something went wrong",HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>("addComplete", HttpStatus.OK);
-    }
 
     @GetMapping(value = "detail")
     public String foodDtl(Model model, @RequestParam(value = "foodCode") String foodCode, FoodVO foodVO) {
         foodVO = foodService.getFoodDtl(foodVO.withFoodCode(foodCode));
         model.addAttribute("foodVO", foodVO);
+        setupSearchDetails(model,foodVO);
         return "/content/food/food_detail";
     }
 }
