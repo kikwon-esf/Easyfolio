@@ -189,8 +189,14 @@
 .cartBox svg{
     cursor: pointer;
 }
+/* 페이지 버튼 */
+.btnBlock{
+    text-align: center;
+}
+.btn_group{
+    display: inline-block;
+}
 .pageBtn{
-    width: 150px;
     margin: 0 auto;
     display: flex;
 }

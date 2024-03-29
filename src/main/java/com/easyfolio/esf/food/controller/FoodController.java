@@ -55,7 +55,7 @@ public class FoodController {
         foodVO.setFoodKindCode(foodKindCode);
         foodVO.setFoodMtrlCode(foodMtrlCode);
         foodVO.setFoodUsageCode(foodUsageCode);
-        foodVO.setTotalDataCnt(foodService.foodCnt());
+        foodVO.setTotalDataCnt(foodService.searchFoodCnt(foodVO));
         foodVO.setPageInfo();
         model.addAttribute("nowPage", foodVO.getNowPage());
 

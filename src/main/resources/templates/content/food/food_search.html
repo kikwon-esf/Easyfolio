@@ -18,7 +18,8 @@
                 <div class="recipeBlock">
                     <div class="recipeHeader">
                         <div class="food_title">
-                            <th:block th:if="${(foodKind != null) or (foodUsage != null) or (foodMtrl != null) or (foodType != null)}">
+                            <th:block
+                                th:if="${(foodKind != null) or (foodUsage != null) or (foodMtrl != null) or (foodType != null)}">
                                 <th:block th:if="${(foodKind != null)}">
                                     <p class="food_title1">종목별</p>
                                     <p class="food_title1">></p>
@@ -40,7 +41,8 @@
                                     <p class="food_title1" th:text="${foodType.foodTypeText}"></p>
                                 </th:block>
                             </th:block>
-                            <th:block th:if="${(foodKind == null) and (foodUsage == null) and (foodMtrl == null) and (foodType == null)}">
+                            <th:block
+                                th:if="${(foodKind == null) and (foodUsage == null) and (foodMtrl == null) and (foodType == null)}">
                                 <p class="food_title0">전체</p>
                             </th:block>
                             <p class="food_title2">RECIPE</p>
@@ -62,10 +64,12 @@
                                 <input type="hidden" name="foodTypeCode" th:value="${foodTypeCode}">
                                 <div class="foodSearchBlock">
                                     <th:block th:if="${searchFoodValue != null and !searchFoodValue.isEmpty()}">
-                                        <input type="text" name="searchFoodValue" class="searchFoodValue" th:placeholder="${searchFoodValue}">
+                                        <input type="text" name="searchFoodValue" class="searchFoodValue"
+                                            th:placeholder="${searchFoodValue}">
                                     </th:block>
                                     <th:block th:if="${searchFoodValue == null or searchFoodValue.isEmpty()}">
-                                        <input type="text" name="searchFoodValue" class="searchFoodValue" placeholder="레시피 검색">
+                                        <input type="text" name="searchFoodValue" class="searchFoodValue"
+                                            placeholder="레시피 검색">
                                     </th:block>
                                     <div class="foodSearchBtn" onclick="searchFood()">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
@@ -107,13 +111,16 @@
                                     <input type="hidden" class="foodCode" th:value="${food.foodCode}">
                                     <div class="cartBox" onclick="addOrDelFav(this)">
                                         <div class="heartBox">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff3f3f"
-                                                class="bi bi-heart mousedown" viewBox="0 0 16 16">
-                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="#ff3f3f" class="bi bi-heart mousedown" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
                                             </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff3f3f" 
-                                            class="bi bi-heart-fill heartOff mousedown" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="#ff3f3f" class="bi bi-heart-fill heartOff mousedown"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
                                             </svg>
                                         </div>
                                         <p>
@@ -127,31 +134,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn_group">
-                    <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
-                        <a class="page_prevBtn"
-                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
-                                th:if="${foodVO.prev}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
-                                </svg>
-                            </span></a>
-                        <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
-                            <a class="page_numBtn"
-                                th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
-                                    th:text="${pageNum}"></span></a>
-                        </th:block>
-                        <a class="page_nextBtn"
-                            th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue},foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
-                                th:if="${foodVO.next}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-                                </svg>
-                            </span></a>
+                <div class="btnBlock">
+                    <div class="btn_group">
+                        <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
+                            <a class="page_prevBtn"
+                                th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                                    th:if="${foodVO.prev}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                    </svg>
+                                </span></a>
+                            <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
+                                <a class="page_numBtn"
+                                    th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                                        th:text="${pageNum}"></span></a>
+                            </th:block>
+                            <a class="page_nextBtn"
+                                th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue},foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                                    th:if="${foodVO.next}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                    </svg>
+                                </span></a>
+                        </div>
                     </div>
                 </div>
             </div>

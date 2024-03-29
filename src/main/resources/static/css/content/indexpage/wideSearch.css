@@ -5,7 +5,7 @@
     text-align: center;
     color: #333;
     font-size: 21px;
-    margin: 0 10px 10px 0;
+    margin: 30px 0;
 }
 .inner{
     position: relative;
@@ -125,7 +125,7 @@
     display: grid;
     grid-template-columns: 220px 220px 220px 220px 220px;
     gap: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 .recipe{
     cursor: pointer;
@@ -219,23 +219,34 @@
     color: #333;
     display: flex;
 }
-.csc_annPlus1{
+.food_plusBtn{
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    margin: 15px 20px 0 0;
+}
+.csc_annPlus1, .food_plusBtn1{
     color: #333;
     margin-right: 2px;
 }
 .csc_annPlus2{
     margin-top: 2px;
 }
-.csc_annPlus:hover .csc_annPlus1{
+.csc_annPlus:hover .csc_annPlus1, .food_plusBtn:hover .food_plusBtn1{
     color: #f29221;
 }
-.csc_annPlus:hover .csc_annPlus2 svg{
+.csc_annPlus:hover .csc_annPlus2 svg, .food_plusBtn:hover .food_plusBtn2 svg{
     fill: #f29221;
+}
+.food_plusBtn2{
+    margin-top: 2px;
 }
 .csc_annBlock{
     border: 1px solid #dadada;
     border-radius: 9px;
     box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+    margin-bottom: 50px;
 }
 .csc_annBox{
     cursor: pointer;
@@ -284,20 +295,26 @@
 /* 자주 찾는 질문 */
 .Qna_Wrap{
     width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto 100px;
 }
-.qnaBlock{
-    border: 1px solid #dadada;
+.qnaWrap{
     border-radius: 9px;
     box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
     width: 100%;
     box-sizing: border-box;
+    border: 1px solid #dadada;
 }
-.qnaInner{
-    cursor: pointer;
+.qnaBlock{
     border-bottom: 1px solid #dadada;
+    cursor: pointer;
 }
-.qnaInner:last-child{
+.noSearch{
+    margin: 50px 0;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+.qnaBlock:last-child{
     border: 0;
 }
 .qnaBox{

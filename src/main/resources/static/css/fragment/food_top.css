@@ -186,6 +186,7 @@ textarea {
     line-height: 20px;
     color: #ffa43b;
     font-size: 15px;
+    margin: 0 10px;
 }
 .menuTextBox a> .menuTextAll:hover{
     color: #f29221;
