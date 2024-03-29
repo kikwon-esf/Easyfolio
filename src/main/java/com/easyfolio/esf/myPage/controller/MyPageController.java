@@ -79,6 +79,7 @@ public class MyPageController {
     @ResponseBody
     @Transactional
     public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> foodCode, FavoriteVO favoriteVO){
+
         if(principal == null){ //로그인이 안되어 있을 시
             return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
         }
