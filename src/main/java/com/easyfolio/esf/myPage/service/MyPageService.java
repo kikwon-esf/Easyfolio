@@ -19,4 +19,6 @@ public interface MyPageService {
 
     public int favoriteCnt(FavoriteVO favoriteVO);
 
+
+
 }

@@ -35,9 +35,9 @@ window.addEventListener('load',()=>{
     list = JSON.parse(listdata);
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){
-            const foodCode = addFavBtn[i].closest('a').querySelector(".foodCode").value;
-            const biHeart = addFavBtn[i].closest('a').querySelector(".bi-heart");
-            const fillHeart = addFavBtn[i].closest('a').querySelector(".bi-heart-fill");
+            const foodCode = addFavBtn[i].closest('.recipe').querySelector(".foodCode").value;
+            const biHeart = addFavBtn[i].closest('.recipe').querySelector(".bi-heart");
+            const fillHeart = addFavBtn[i].closest('.recipe').querySelector(".bi-heart-fill");
             if(list.includes(foodCode)){
                 onOff(fillHeart,biHeart);
             }else{
@@ -83,6 +83,8 @@ function addOrDelFav(ele){
             onOffAnime(biHeart,fillHeart);
         }
     })
+    return false;
+    
 
 }
 //animation mouseDown
