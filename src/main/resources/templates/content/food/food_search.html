@@ -61,7 +61,7 @@
                                 <input type="hidden" name="foodMtrlCode" th:value="${foodMtrlCode}">
                                 <input type="hidden" name="foodTypeCode" th:value="${foodTypeCode}">
                                 <div class="foodSearchBlock">
-                                    <th:block th:if="${searchFoodValue != null}">
+                                    <th:block th:if="${searchFoodValue != null and !searchFoodValue.isEmpty()}">
                                         <input type="text" name="searchFoodValue" class="searchFoodValue" th:placeholder="${searchFoodValue}">
                                     </th:block>
                                     <th:block th:if="${searchFoodValue == null or searchFoodValue.isEmpty()}">

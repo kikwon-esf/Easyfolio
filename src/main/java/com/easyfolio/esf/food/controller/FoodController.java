@@ -57,6 +57,7 @@ public class FoodController {
         foodVO.setFoodUsageCode(foodUsageCode);
         foodVO.setTotalDataCnt(foodService.foodCnt());
         foodVO.setPageInfo();
+        model.addAttribute("nowPage", foodVO.getNowPage());
 
         setupFoodList(model, foodVO);
         setupSearchDetails(model, foodVO);
