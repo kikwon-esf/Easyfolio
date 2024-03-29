@@ -103,7 +103,6 @@ public class FoodController {
         setupSearchDetails(model, foodVO);
 
         String mtrl = detailFoodVO.getFoodMtrlCn();
-        System.err.println(mtrl);
         Pattern pattern = Pattern.compile("\\[([^\\]]+)\\]([^\\[]+)(?=\\[|$)");
         Matcher matcher = pattern.matcher(mtrl);
 
