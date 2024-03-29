@@ -26,8 +26,10 @@
     fill : #dd8c8c
 }
 .heartBox{
+    position : relative;
     width: 25px;
     height: 25px;
     box-sizing: border-box;
+    left : 17px;
 }
 

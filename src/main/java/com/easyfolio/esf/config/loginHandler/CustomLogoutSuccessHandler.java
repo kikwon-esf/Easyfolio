@@ -9,13 +9,14 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Enumeration;
+
 @Component
 @Slf4j
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        log.info("logoutSuccess.ip");
-        System.out.println(request.getHeader("Referer"));
-        response.sendRedirect("/");
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer);
     }
 }
