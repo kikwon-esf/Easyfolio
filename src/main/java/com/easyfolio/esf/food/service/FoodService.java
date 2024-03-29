@@ -37,4 +37,6 @@ public interface FoodService {
     public FoodVO getFoodDtl(FoodVO foodVO);
 
     public FoodVO selectFoodCode(FoodVO foodVO);
+
+    public void updateFoodInqCnt(FoodVO foodVO);
 }

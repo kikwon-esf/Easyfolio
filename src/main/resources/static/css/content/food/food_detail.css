@@ -163,6 +163,10 @@ textarea {
     font-size: 13px;
     color: #444;
 }
+.recipe_header_bot_left{
+    display: flex;
+    justify-content: space-between;
+}
 
 /*레시피 내용 */
 .recipe_content_inner {

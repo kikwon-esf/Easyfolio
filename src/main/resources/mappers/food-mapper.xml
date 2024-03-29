@@ -257,5 +257,11 @@
         WHERE FOOD_CODE = #{foodCode}
     </select>
 
+    <update id="updateFoodInqCnt">
+        UPDATE FOOD
+        SET FOOD_INQ_CNT = FOOD_INQ_CNT + 1
+        WHERE FOOD_CODE = #{foodCode}
+    </update>
+
 
 </mapper>

@@ -97,6 +97,7 @@ public class FoodController {
 
     @GetMapping(value = "detail")
     public String foodDtl(Model model, FoodVO foodVO) {
+        foodService.updateFoodInqCnt(foodVO);
         model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
         model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));

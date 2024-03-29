@@ -90,6 +90,11 @@ public class FoodServicempl implements FoodService{
     }
 
     @Override
+    public void updateFoodInqCnt(FoodVO foodVO) {
+        sqlSession.update("foodMapper.updateFoodInqCnt", foodVO);
+    }
+
+    @Override
     public int searchFoodCnt(FoodVO foodVO) {
         return sqlSession.selectOne("foodMapper.searchFoodCnt", foodVO);
     }
