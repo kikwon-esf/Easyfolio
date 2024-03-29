@@ -191,6 +191,9 @@ textarea {
     color: #f29221;
     font-weight: 500;
 }
+.menuTextBox a:hover > .menuTextBtn{
+    color: #f29221;
+}
 .menuTextBox a:last-child{
     position: absolute;
     right: 28px;
