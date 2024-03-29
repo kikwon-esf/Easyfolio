@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/food")
@@ -97,11 +99,41 @@ public class FoodController {
     public String foodDtl(Model model, FoodVO foodVO) {
         model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
-        System.err.println(foodService.getFoodDtl(foodVO));
-        System.err.println(foodService.selectFoodCode(detailFoodVO));
-
         model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
-        setupSearchDetails(model,foodVO);
+        setupSearchDetails(model, foodVO);
+
+        String mtrl = detailFoodVO.getFoodMtrlCn();
+        System.err.println(mtrl);
+        Pattern pattern = Pattern.compile("\\[([^\\]]+)\\]([^\\[]+)(?=\\[|$)");
+        Matcher matcher = pattern.matcher(mtrl);
+
+        List<String> mtrlTitle = new ArrayList<>();
+        List<List<String>> mtrlMt1 = new ArrayList<>();
+        List<List<String>> mtrlMt2 = new ArrayList<>();
+
+        while (matcher.find()) {
+            mtrlTitle.add(matcher.group(1).trim());
+
+            String materials = matcher.group(2).trim();
+            String[] mtrls = materials.split("\\|");
+            for (int i = 0; i < mtrls.length; i++) {
+                String[] splitMtrls = mtrls[i].trim().split("\\s+(?=[^\\s]*$)");
+                List<String> mtrlList = Arrays.asList(splitMtrls);
+                if (mtrlTitle.size() == 1) {
+                    mtrlMt1.add(mtrlList);
+                } else {
+                    mtrlMt2.add(mtrlList);
+                }
+            }
+        }
+
+        // 결과 출력
+        model.addAttribute("mtrlTitles", mtrlTitle);
+        model.addAttribute("mtrlMt1", mtrlMt1);
+        if (mtrlMt2.isEmpty()) {
+            mtrlMt2.add(new ArrayList<>());
+        }
+        model.addAttribute("mtrlMt2", mtrlMt2);
 
         return "/content/food/food_detail";
     }
