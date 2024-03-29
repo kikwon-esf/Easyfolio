@@ -30,6 +30,7 @@ const addFavBtn = document.querySelectorAll(".cartBox");
 const addFavURL = "/myPage/addFav";
 let list = null;
 //페이지 로딩시 하트색칠
+
 window.addEventListener('load',()=>{
     const listdata = document.querySelector("#favoriteList").getAttribute("data-favorite-list");
     list = JSON.parse(listdata);

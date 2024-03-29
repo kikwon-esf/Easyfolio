@@ -1,5 +1,6 @@
 package com.easyfolio.esf.myPage.service;
 
+import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 
@@ -19,4 +20,7 @@ public interface MyPageService {
 
     public int favoriteCnt(FavoriteVO favoriteVO);
 
+    public int increaseFavCnt(FavoriteVO favoriteVO);
+
+    public int decreaseFavCnt(FavoriteVO favoriteVO);
 }
