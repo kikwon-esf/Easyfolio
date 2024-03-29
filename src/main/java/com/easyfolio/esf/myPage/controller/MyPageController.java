@@ -12,6 +12,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -76,16 +77,21 @@ public class MyPageController {
     //즐겨찾기 추가
     @PostMapping(value = "/addFav")
     @ResponseBody
+    @Transactional
     public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> foodCode, FavoriteVO favoriteVO){
+
         if(principal == null){ //로그인이 안되어 있을 시
             return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
         }
         favoriteVO.setFoodCode(foodCode.get("foodCode"));
         favoriteVO.setMemberId(principal.getName());
         try {
+            
             myPageService.addFav(favoriteVO);
+            myPageService.increaseFavCnt(favoriteVO);
         }catch (DuplicateKeyException e){ //이미 add가 되어 있을 시 작동(즐겨찾기 삭제)
             myPageService.deleteFav(favoriteVO);
+            myPageService.decreaseFavCnt(favoriteVO);
             return new ResponseEntity<>("deleteComplete",HttpStatus.OK);
         }catch (Exception e){ //그 외 예외
             return new ResponseEntity<>("something went wrong",HttpStatus.INTERNAL_SERVER_ERROR);
