@@ -85,6 +85,11 @@ public class FoodServicempl implements FoodService{
     }
 
     @Override
+    public FoodVO selectFoodCode(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.selectFoodCode",foodVO);
+    }
+
+    @Override
     public int searchFoodCnt(FoodVO foodVO) {
         return sqlSession.selectOne("foodMapper.searchFoodCnt", foodVO);
     }

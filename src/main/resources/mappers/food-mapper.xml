@@ -10,8 +10,8 @@
         <result column="MEMBER_NAME" property="memberName" />
         <result column="FOOD_INQ_CNT" property="foodInqCnt"/>
         <result column="FOOD_RCMM_CNT" property="foodRcmmCnt"/>
-        <result column="FOOD_TYPE" property="foodType"/>
-        <result column="FOOD_USAGE" property="foodUsage"/>
+        <result column="FOOD_TYPE_CODE" property="foodTypeCode"/>
+        <result column="FOOD_USAGE_CODE" property="foodUsageCode"/>
         <result column="FOOD_MTRL_CODE" property="foodMtrlCode"/>
         <result column="FOOD_KIND_CODE" property="foodKindCode"/>
         <result column="FOOD_INDC" property="foodIndc"/>
@@ -20,6 +20,10 @@
         <result column="FOOD_DIF" property="foodDif"/>
         <result column="FOOD_TIME" property="foodTime"/>
         <result column="FOOD_REG_DT" property="foodRegDt"/>
+        <collection property="foodKindVO" resultMap="foodKind"/>
+        <collection property="foodUsageVO" resultMap="foodUsage"/>
+        <collection property="foodMtrlVO" resultMap="foodMtrl"/>
+        <collection property="foodTypeVO" resultMap="foodType"/>
     </resultMap>
 
     <resultMap id="foodKind" type="com.easyfolio.esf.food.vo.FoodKindVO">
@@ -89,6 +93,61 @@
         SELECT FOOD_TYPE_TEXT
         FROM FOOD_TYPE
         WHERE FOOD_TYPE_CODE = #{foodTypeCode}
+    </select>
+
+    <select id="selectFoodCode" resultMap="food">
+        SELECT
+        <if test="foodKindCode != null and not foodKindCode.isEmpty()">
+            FK.FOOD_KIND_TEXT
+        </if>
+        <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">
+            , FU.FOOD_USAGE_TEXT
+        </if>
+        <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">
+            , FM.FOOD_MTRL_TEXT
+        </if>
+        <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">
+            , FT.FOOD_TYPE_TEXT
+        </if>
+        FROM
+        <if test="foodKindCode != null and not foodKindCode.isEmpty()">
+            FOOD_KIND FK
+        </if>
+        <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">
+            <if test="foodKindCode != null and not foodKindCode.isEmpty()">
+                ,
+            </if>
+            FOOD_USAGE FU
+        </if>
+        <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">
+            <if test="(foodKindCode != null and not foodKindCode.isEmpty())
+        || (foodUsageCode != null and not foodUsageCode.isEmpty())">
+                ,
+            </if>
+            FOOD_MTRL FM
+        </if>
+        <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">
+            <if test="(foodKindCode != null and not foodKindCode.isEmpty())
+        || (foodUsageCode != null and not foodUsageCode.isEmpty())
+        || (foodMtrlCode != null and not foodMtrlCode.isEmpty())">
+                ,
+            </if>
+            FOOD_TYPE FT
+        </if>
+        <where>
+            <if test="foodKindCode != null and not foodKindCode.isEmpty()">
+                AND FK.FOOD_KIND_CODE = #{foodKindCode}
+            </if>
+            <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">
+                AND FU.FOOD_USAGE_CODE = #{foodUsageCode}
+            </if>
+            <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">
+                AND FM.FOOD_MTRL_CODE = #{foodMtrlCode}
+            </if>
+            <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">
+                AND FT.FOOD_TYPE_CODE = #{foodTypeCode}
+            </if>
+        </where>
     </select>
 
 

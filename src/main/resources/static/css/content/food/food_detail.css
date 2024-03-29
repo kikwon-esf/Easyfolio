@@ -41,212 +41,55 @@ textarea {
     height: 0;
     overflow: hidden;
 }
-#food_wrap{
-    width: 1000px;
-    margin : 0 auto;
+#wrap{
+    position: relative;
+    width: 100%;
+}
+.inner{
+    width: 1200px;
+    margin: 0 auto;
 }
 .food_title{
     display: -webkit-inline-box;
-    position: relative;
-    margin: -10px 0 20px 20px;
+    margin: 0 0 20px 20px;
 }
 .food_title1{
-    color: #000;
-    font-size: 27px;
+    color: #333;
+    font-size: 23px;
     font-weight: 700;
+    margin-right: 10px;
 }
 .food_title2{
-    margin-top: 10px;
-    margin-left: 3px;
-    font-size: 21px;
+    margin: 8px 10px 3px 0;
+    font-size: 17px;
     font-weight: 700;
     color: #f3c053;
 }
-.food_inner{
-    margin: -5px auto 100px auto;
-    width: 900px;
+
+/* 레시피 헤더 */
+.recipeBlock{
+    width: 1200px;
     height: auto;
     box-sizing: border-box;
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
 }
-.dtlHeader1{
-    padding: 20px 10px;
+.recipe_header_top{
+    border-bottom: 1px solid #dadada;
+}
+.recipe_title_box{
     display: flex;
+    padding: 20px;
 }
-.dtlCate{
-    margin-right: 20px;
-    display: flex;
-    width: 130px;
-    justify-content: space-between;
-}
-.cateText{
-    font-size: 22px;
-    color: #f29221;
-}
-.dtlTitle{
-    font-size: 22px;
+.recipe_title{
+    font-size: 20px;
     color: #333;
 }
-.dtlDate span, .dtlWriter span{
-    color: #555;
-    font-size: 15px;
+.recipe_cate{
+    margin-right: 10px;
 }
-.dtlDate{
-    margin-right: 30px;
-}
-.dtlHeader2{
-    padding: 10px 10px 15px 10px;
-    display: flex;
-}
-.dtlDetailHeader{
-    border-bottom: 1px solid #dadada;
-}
-.dtlContent{
-    padding: 20px 10px;
-}
-.dtlContent p{
-    color: #555;
-}
-.dtlContent tbody{
-    border-radius: 5px;
-}
-.dtlContent table{
-    margin:10px 0
-}
-.dtlContent tr{
-    border-bottom: 1px solid #dadada;
-}
-.dtlContent tr:first-child{
-    color: #fff;
-    background-color: #ffaf4c;
-}
-.dtlContent tr:first-child > td{
-    padding: 10px 5px;
-    border-right: 1px solid #fff;
-}
-.dtlContent td{
-    text-align: center;
-    min-width: 100px;
-    max-width: 200px;
-    width: auto;
-    padding: 10px 5px;
-    border-right: 1px solid #dadada;
-}
-.dtlContent td:last-child{
-    padding: 10px 4px;
-}
-.dtlContent td:first-child{
-    margin-left: 1px;
-    padding: 10px 4px;
-    border-left: 1px solid #dadada;
-}
-.dtlContent tr:first-child > td:first-child{
-    border-radius: 5px 0 0 0;
-    padding: 10px 5px;
-    border: 0;
-    width: 101px;
-    border-right: 1px solid #fff;
-}
-.dtlContent tr:first-child > td:last-child{
-    border-radius: 0 5px 0 0;
-    border: 0;
-}
-.dtlContent tr:last-child > td:first-child{
-    border-radius: 0 0 0 5px;
-}
-.dtlContent tr:last-child > td:last-child{
-    border-radius: 0 0 5px 0;
-}
-.dtlContent tr:last-child{
-    border-radius: 0 0 5px 5px;
-}
-.btnBox{
-    max-width: 450px;
-    justify-content: space-between;
-    display: inline-flex;
-}
-.btnBlock{
-    margin: 0 auto;
-    text-align: center;
-}
-.btn{
-    border: 1px solid #f4f4f4;
-    border-radius: 5px;
-    background-color: #ffa43b;
-    width: 200px;
-    height: 45px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    box-sizing: border-box;
-    text-align: center;
-    padding: 11px;
-    margin: 0 10px;
-}
-.btn:hover{
-    background-color: #f08509;
-    transition: background-color 0.5s ease;
-}
-.imgBox{
-    height: 200px;
-    box-sizing: border-box;
-    padding: 20px 0;
-    display: flex;
-    border-top: 1px solid #dadada;
-}
-.inqImgBlock{
-    cursor: pointer;
-    margin: 0 20px;
-    box-sizing: border-box;
-    width: 200px;
-    height: 100%;
-}
-.inqImgBlock img:hover{
-    padding: 0;
-    transition: padding 0.3s ease;
-}
-.inqImgBlock img{
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 5px;
-    width: 100%;
-    height: auto;
-    max-height: 150px;
-    transition: padding 0.3s ease;
-}
-.bigImgBlock{
-    display: none; 
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    background-color: rgba(0,0,0,0.5); 
-    z-index: 9999; 
-    overflow: auto;
-}
-.bigImgBox{
-    position: relative;
-    width: 700px;
-    margin: 20vh auto;
-}
-.bigImg{
-    width: 100%;
-    height: auto;
-    margin-right: -20vh;
-}
-.close{
-    position: absolute;
-    right: -42px;
-    cursor: pointer;
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 2px 5px;
-}
-.cartBox{
-    display: flex;
-    position: relative;
-    right: -550px;
-    cursor : pointer;
+.cateText{
+    font-size: 20px;
+    color: #f3c053;
+    margin: 0 3px;
 }

@@ -26,9 +26,4 @@ public class FoodVO extends PageVO {
     private FoodUsageVO foodUsageVO;
     private FoodMtrlVO foodMtrlVO;
     private FoodTypeVO foodTypeVO;
-
-    public FoodVO withFoodCode(String foodCode){
-        this.foodCode = foodCode;
-        return this;
-    }
 }

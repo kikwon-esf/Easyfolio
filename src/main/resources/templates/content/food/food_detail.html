@@ -26,110 +26,121 @@
                     <div class="recipe_header">
                         <div class="recipe_header_top">
                             <div class="recipe_title_box">
-                                <p class="recipe_title">[[${foodVO.foodTtl}]]</p>
+                                <p class="recipe_cate">
+                                    <span class="cateText">[</span>
+                                    <span class="cateText">[[${foodDetail.foodName}]]</span>
+                                    <span class="cateText">]</span>
+                                </p>
+                                <p class="recipe_title">[[${foodDetail.foodTtl}]]</p>
                             </div>
                         </div>
                         <div class="recipe_header_bot">
                             <div class="recipe_header_bot_left">
                                 <div class="recipe_cate_block">
-                                    <p class="recipe_cate">
-                                        <span class="cateText">[</span>
-                                        <span class="cateText">[[${foodVO.foodName}]]</span>
-                                        <span class="cateText">]</span>
-                                    </p>
                                     <p class="recipe_cate1">
                                         <span>종류별 :</span>
-                                        <span>소고기</span>
-                                    </p>
-                                    <p class="recipe_cate1">
-                                        <span>재료별 :</span>
-                                        <span>소고기</span>
+                                        <span th:if="${foodCodeList.foodKindVO != null and foodCodeList.foodKindVO.foodKindText != null and !foodCodeList.foodKindVO.foodKindText.isEmpty()}" th:text="${foodCodeList.foodKindVO.foodKindText}"></span>
+                                        <span th:if="${foodCodeList.foodKindVO == null || foodCodeList.foodKindVO.foodKindText == null || foodCodeList.foodKindVO.foodKindText.isEmpty()}">
+                                            정보 없음
+                                        </span>
                                     </p>
                                     <p class="recipe_cate1">
                                         <span>상황별 :</span>
-                                        <span>소고기</span>
+                                        <span th:if="${foodCodeList.foodUsageVO != null and foodCodeList.foodUsageVO.foodUsageText != null and !foodCodeList.foodUsageVO.foodUsageText.isEmpty()}" th:text="${foodCodeList.foodUsageVO.foodUsageText}"></span>
+                                        <span th:if="${foodCodeList.foodUsageVO == null || foodCodeList.foodUsageVO.foodUsageText == null || foodCodeList.foodUsageVO.foodUsageText.isEmpty()}">
+                                            정보 없음
+                                        </span>
+                                    </p>
+                                    <p class="recipe_cate1">
+                                        <span>재료별 :</span>
+                                        <span th:if="${foodCodeList.foodMtrlVO != null and foodCodeList.foodMtrlVO.foodMtrlText != null and !foodCodeList.foodMtrlVO.foodMtrlText.isEmpty()}" th:text="${foodCodeList.foodMtrlVO.foodMtrlText}"></span>
+                                        <span th:if="${foodCodeList.foodMtrlVO == null || foodCodeList.foodMtrlVO.foodMtrlText == null || foodCodeList.foodMtrlVO.foodMtrlText.isEmpty()}">
+                                            정보 없음
+                                        </span>
                                     </p>
                                     <p class="recipe_cate1">
                                         <span>방법별 :</span>
-                                        <span>소고기</span>
+                                        <span th:if="${foodCodeList.foodTypeVO != null and foodCodeList.foodTypeVO.foodTypeText != null and !foodCodeList.foodTypeVO.foodTypeText.isEmpty()}" th:text="${foodCodeList.foodTypeVO.foodTypeText}"></span>
+                                        <span th:if="${foodCodeList.foodTypeVO == null || foodCodeList.foodTypeVO.foodTypeText == null || foodCodeList.foodTypeVO.foodTypeText.isEmpty()}">
+                                            정보 없음
+                                        </span>
                                     </p>
-                                    <div class="dtlHeader2">
-                                        <p class="dtlDate">
-                                            <span>작성일 : </span>
-                                            <span>[[${foodVO.foodRegDt}]]</span>
-                                        </p>
-                                        <p class="dtlWriter">
-                                            <span>작성자 : </span>
-                                            <span>[[${foodVO.memberName}]]</span>
-                                        </p>
-                                        <div class="recipeTextBox1">
-                                            <input type="hidden" class="foodCode" th:value="${foodVO.foodCode}">
-                                            <div class="cartBox" onclick="addOrDelFav(this)">
-                                                <div class="heartBox">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22"
-                                                        fill="#ff3f3f" class="bi bi-heart mousedown"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22"
-                                                        fill="#ff3f3f" class="bi bi-heart-fill heartOff mousedown"
-                                                        viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="dtlDetailHeader">
-                                        <div class="dtlHeader1">
-
-                                            <p class="dtlTitle">[[${foodVO.foodTtl}]]</p>
-                                        </div>
-                                        <div class="dtlHeader2">
-                                            <p class="dtlDate">
-                                                <span>작성일 : </span>
-                                                <span>[[${foodVO.foodRegDt}]]</span>
-                                            </p>
-                                            <p class="dtlWriter">
-                                                <span>작성자 : </span>
-                                                <span>[[${foodVO.memberName}]]</span>
-                                            </p>
-                                            <div class="recipeTextBox1">
-                                                <input type="hidden" class="foodCode" th:value="${foodVO.foodCode}">
-                                                <div class="cartBox" onclick="addOrDelFav(this)">
-                                                    <div class="heartBox">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                            fill="#ff3f3f" class="bi bi-heart mousedown"
-                                                            viewBox="0 0 16 16">
-                                                            <path
-                                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                            fill="#ff3f3f" class="bi bi-heart-fill heartOff mousedown"
-                                                            viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
-                                                        </svg>
-                                                    </div>
-                                                    <p>
-                                                        <span>(</span>
-                                                        <span>[[${foodVO.foodRcmmCnt}]]</span>
-                                                        <span>)</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="dtlContent">
-                                        <p>일단 이거는 만들지 말래서 남겨 놓음</p>
-                                    </div>
                                 </div>
-                                <div class="food_comment">
+                                <div class="recipe_info_block">
+                                    <p class="recipe_info">
+                                        <span>작성일 : </span>
+                                        <span>[[${foodVO.foodRegDt}]]</span>
+                                    </p>
+                                    <p class="recipe_info">
+                                        <span>작성자 : </span>
+                                        <span>[[${foodVO.memberName}]]</span>
+                                    </p>
+                                </div>
 
+                                <div class="recipeTextBox1">
+                                    <input type="hidden" class="foodCode" th:value="${foodVO.foodCode}">
+                                    <div class="cartBox" onclick="addOrDelFav(this)">
+                                        <div class="heartBox">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22"
+                                                fill="#ff3f3f" class="bi bi-heart mousedown" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22"
+                                                fill="#ff3f3f" class="bi bi-heart-fill heartOff mousedown"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="dtlDetailHeader">
+                                <div class="dtlHeader1">
+
+                                    <p class="dtlTitle">[[${foodVO.foodTtl}]]</p>
+                                </div>
+                                <div class="dtlHeader2">
+                                    <p class="dtlDate">
+                                        <span>작성일 : </span>
+                                        <span>[[${foodVO.foodRegDt}]]</span>
+                                    </p>
+                                    <p class="dtlWriter">
+                                        <span>작성자 : </span>
+                                        <span>[[${foodVO.memberName}]]</span>
+                                    </p>
+                                    <div class="recipeTextBox1">
+                                        <input type="hidden" class="foodCode" th:value="${foodVO.foodCode}">
+                                        <div class="cartBox" onclick="addOrDelFav(this)">
+                                            <div class="heartBox">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    fill="#ff3f3f" class="bi bi-heart mousedown" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                                </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    fill="#ff3f3f" class="bi bi-heart-fill heartOff mousedown"
+                                                    viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                                </svg>
+                                            </div>
+                                            <p>
+                                                <span>(</span>
+                                                <span>[[${foodVO.foodRcmmCnt}]]</span>
+                                                <span>)</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dtlContent">
+                                <p>일단 이거는 만들지 말래서 남겨 놓음</p>
+                            </div>
+                        </div>
+                        <div class="food_comment">
+
                         </div>
                     </div>
                 </div>

@@ -38,20 +38,12 @@ public class FoodController {
     private final MyPageService myPageService;
 
     @RequestMapping(value = "/searchFoodPage", method = {RequestMethod.GET, RequestMethod.POST})
-    public String searchFoodAllPage(Model model, FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
-                                    @RequestParam(value = "foodMtrlCode", required = false) String foodMtrlCode,
-                                    @RequestParam(value = "foodUsageCode", required = false) String foodUsageCode,
-                                    @RequestParam(value = "foodKindCode", required = false) String foodKindCode,
+    public String searchFoodAllPage(Model model, FoodVO foodVO,
                                     Principal principal, MemberVO memberVO) throws Exception {
 
         if (RequestMethod.POST.toString().equals(RequestContextHolder.currentRequestAttributes().getAttribute("method", RequestAttributes.SCOPE_REQUEST))) {
             setupFavoriteList(model, principal, memberVO);
         }
-
-        foodVO.setSearchFoodValue(searchFoodValue);
-        foodVO.setFoodKindCode(foodKindCode);
-        foodVO.setFoodMtrlCode(foodMtrlCode);
-        foodVO.setFoodUsageCode(foodUsageCode);
         foodVO.setTotalDataCnt(foodService.searchFoodCnt(foodVO));
         foodVO.setPageInfo();
         model.addAttribute("nowPage", foodVO.getNowPage());
@@ -102,10 +94,15 @@ public class FoodController {
 
 
     @GetMapping(value = "detail")
-    public String foodDtl(Model model, @RequestParam(value = "foodCode") String foodCode, FoodVO foodVO) {
-        foodVO = foodService.getFoodDtl(foodVO.withFoodCode(foodCode));
-        model.addAttribute("foodVO", foodVO);
+    public String foodDtl(Model model, FoodVO foodVO) {
+        model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
+        FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
+        System.err.println(foodService.getFoodDtl(foodVO));
+        System.err.println(foodService.selectFoodCode(detailFoodVO));
+
+        model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
         setupSearchDetails(model,foodVO);
+
         return "/content/food/food_detail";
     }
 }
