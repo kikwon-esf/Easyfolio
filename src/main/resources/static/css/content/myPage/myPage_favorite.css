@@ -219,3 +219,6 @@
 .heartOff{
     display: none;
 }
+.heartBox{
+    margin-left : 17px
+}
