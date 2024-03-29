@@ -33,28 +33,28 @@ import java.util.Set;
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-            System.err.println(request.getHeaderNames());
-            Enumeration names = request.getHeaderNames();
-            while (names.hasMoreElements()) {
-                String name = (String) names.nextElement();
-                System.err.println("name : " + name);
-                System.err.println("value : " + request.getHeader(name));
-                System.err.println();
-            }
-            Enumeration Anames = request.getAttributeNames();
-            while (Anames.hasMoreElements()) {
-                String name = (String) Anames.nextElement();
-                System.err.println("name : " + name);
-                System.err.println("value : " + request.getAttribute(name));
-                System.err.println();
-            }
-
-            System.out.println("-----");
-            System.err.println("getRemoteUser : "+request.getRemoteUser());
-            System.err.println("getRemoteAddr : "+request.getRemoteAddr());
-            System.err.println("getRemoteHost : "+request.getRemoteHost());
-            System.err.println("getRemotePort : "+request.getRemotePort());
-            System.out.println("referer" + request.getHeader("Referer"));
+//            System.err.println(request.getHeaderNames());
+//            Enumeration names = request.getHeaderNames();
+//            while (names.hasMoreElements()) {
+//                String name = (String) names.nextElement();
+//                System.err.println("name : " + name);
+//                System.err.println("value : " + request.getHeader(name));
+//                System.err.println();
+//            }
+//            Enumeration Anames = request.getAttributeNames();
+//            while (Anames.hasMoreElements()) {
+//                String name = (String) Anames.nextElement();
+//                System.err.println("name : " + name);
+//                System.err.println("value : " + request.getAttribute(name));
+//                System.err.println();
+//            }
+//
+//            System.out.println("-----");
+//            System.err.println("getRemoteUser : "+request.getRemoteUser());
+//            System.err.println("getRemoteAddr : "+request.getRemoteAddr());
+//            System.err.println("getRemoteHost : "+request.getRemoteHost());
+//            System.err.println("getRemotePort : "+request.getRemotePort());
+//            System.out.println("referer" + request.getHeader("Referer"));
 
 
             try{

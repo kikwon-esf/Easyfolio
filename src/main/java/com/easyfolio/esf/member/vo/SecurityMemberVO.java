@@ -6,11 +6,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class SecurityMemberVO implements UserDetails {
     private final MemberVO memberVO;
     private boolean accountNonExpired;
-    private boolean
+    private boolean accountLocked;
+
     public SecurityMemberVO(MemberVO memberVO){
         this.memberVO = memberVO;
     }
@@ -49,5 +51,12 @@ public class SecurityMemberVO implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired){
+        this.accountNonExpired = accountNonExpired;
+    }
+    public void setAccountLocked(boolean accountLocked){
+        this.accountLocked = accountLocked;
     }
 }
