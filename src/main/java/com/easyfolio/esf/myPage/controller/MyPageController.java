@@ -85,6 +85,7 @@ public class MyPageController {
         favoriteVO.setFoodCode(foodCode.get("foodCode"));
         favoriteVO.setMemberId(principal.getName());
         try {
+            
             myPageService.addFav(favoriteVO);
             myPageService.increaseFavCnt(favoriteVO);
         }catch (DuplicateKeyException e){ //이미 add가 되어 있을 시 작동(즐겨찾기 삭제)

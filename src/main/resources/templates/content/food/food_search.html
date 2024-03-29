@@ -88,13 +88,15 @@
                     </div>
                     <div class="recipeBox">
                         <div class="recipes">
-                            <a th:each="food, state : ${foodList}" class="recipe" th:href="@{/food/detail(foodCode=${food.foodCode})}">
-                                <div class="recipeImgBox">
-                                    <img src="/img/food/examImg.jpg" alt="">
-                                </div>
-                                <div class="recipeTextBox">
-                                    <p>[[${food.foodTtl}]]</p>
-                                </div>
+                            <div th:each="food, state : ${foodList}" class="recipe">
+                                <a th:href="@{/food/detail(foodCode=${food.foodCode})}">
+                                    <div class="recipeImgBox">
+                                        <img src="/img/food/examImg.jpg" alt="">
+                                    </div>
+                                    <div class="recipeTextBox">
+                                        <p>[[${food.foodTtl}]]</p>
+                                    </div>
+                                </a>
                                 <div class="recipeTextBox1">
                                     <div class="recipeTextBox11">
                                         <p class="foodDifBox">
@@ -129,7 +131,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>

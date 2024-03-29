@@ -52,15 +52,16 @@
                     <div class="recipeBox">
                         <div class="recipes">
                             <div th:if="${not #lists.isEmpty(asFoodList)}" th:each="asfood, state : ${asFoodList}">
-                                <a class="recipe" th:href="@{/food/detail(foodCode=${food.foodCode})}">
-                                    <div class="recipeImgBox">
-                                        <img src="/img/food/examImg.jpg" alt="">
-                                    </div>
-                                    <input type="hidden" class="foodCode" th:value="${asfood.foodCode}">
-                                    <div class="recipeTextBox">
-                                        <p>[[${asfood.foodTtl}]]</p>
-                                    </div>
-
+                                <div class="recipe">
+                                    <a th:href="@{/food/detail(foodCode=${food.foodCode})}">
+                                        <div class="recipeImgBox">
+                                            <img src="/img/food/examImg.jpg" alt="">
+                                        </div>
+                                        <input type="hidden" class="foodCode" th:value="${asfood.foodCode}">
+                                        <div class="recipeTextBox">
+                                            <p>[[${asfood.foodTtl}]]</p>
+                                        </div>
+                                    </a>
                                     <div class="recipeTextBox1">
                                         <div class="recipeTextBox11">
                                             <p class="foodDifBox">
@@ -94,7 +95,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                             <p th:if="${#lists.isEmpty(asFoodList)}">일치하는 검색결과가 없습니다.</p>
                         </div>

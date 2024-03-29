@@ -1,6 +1,5 @@
 package com.easyfolio.esf.myPage.service;
 
-import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 
