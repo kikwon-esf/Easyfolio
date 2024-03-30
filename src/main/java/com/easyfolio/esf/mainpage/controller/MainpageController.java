@@ -52,6 +52,6 @@ public class MainpageController {
 
     @GetMapping("/recipe")
     public String recipepage(){
-        return "recipe_detail_copy_copy";
+        return "content/food/recipe_detail_copy_copy";
     }
 }

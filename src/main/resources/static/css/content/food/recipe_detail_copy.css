@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#wrap{
+    position: relative;
+    width: 100%;
+}
+.inner{
+    padding: 30px 0;
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.recipe_detail_content_header_bot{
+    display: flex;
+    justify-content: space-between;
+}
+.recipe_detail_content_header_bot .recipe_detail_content_header_bot_left{
+    display: flex;
+}
+.recipe_detail_content_header_bot .recipe_detail_content_header_bot_left p{
+    margin-right: 20px;
+}
+.recipeImgBox{
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+}
+.recipeImgBox img{
+    width: 100%;
+    height: auto;
+}
+.recipeMtBox{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.recipeMt{
+    width: 100%;
+    padding: 20px;
+}
+.recipeMts{
+    padding: 20px;
+}

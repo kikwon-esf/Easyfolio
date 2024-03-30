@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/food_layout}">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
     <th:block layout:fragment="content">
         <link rel="stylesheet" href="/css/content/food/recipe_detail_copy_copy.css">
@@ -13,9 +15,9 @@
                 <div class="recipe_detail_title">
                     <h2>레시피 상세</h2>
                 </div>
-                <div class="recipe_detail">
+                <div class="recipe_detail_block">
                     <div class="recipe_detail_content_header">
-                        <div class="recipe_detail_content_title">
+                        <div class="recipe_detail_content_header_top">
                             <h3>레시피 타이틀</h3>
                         </div>
                         <div class="recipe_detail_content_header_bot">
@@ -24,33 +26,55 @@
                                 <p>작성자 : 작성자</p>
                             </div>
                             <div class="recipe_detail_content_header_bot_right">
-                                <p>작성일 : 2021-01-01</p>
+                                <p>작성일 : 2024-03-30</p>
                             </div>
                         </div>
                     </div>
-                    <div class="recipe_detail_img">
+                    <div class="recipe_content">
                         <div class="recipeImgBox">
-                            <img src="/img/food/examImg.jpg" alt="레시피 이미지">
+                            <div class="recipe_img">
+                                <img src="/img/food/examImg.jpg" alt="레시피 이미지">
+                            </div>
                         </div>
-                    </div>
-                    <div class="recipe_detail_txt">
-                        <p>레시피 내용</p>
-                        <div class="recipeTxtBox">
-                            <div class="recipeMtBox">
-                                <div class="recipeMt">
+                        <div class="recipe_txt">
+                            <div class="recipeTxtBox">
+                                <div class="recipeTxtTitle">
                                     <p>재료</p>
-                                    <div class="recipeMts">
-                                        <p>재료1</p>
-                                        <p>재료2</p>
-                                        <p>재료3</p>
-                                    </div>
                                 </div>
-                                <div class="recipeMt">
-                                    <p>양념</p>
-                                    <div class="recipeMts">
-                                        <p>양념1</p>
-                                        <p>양념2</p>
-                                        <p>양념3</p>
+                                <div class="recipeMtBox">
+                                    <div class="recipeMt">
+                                        <div class="recipeMtTitle">
+                                            <p>주재료</p>
+                                        </div>
+                                        <div class="recipeMts">
+                                            <div class="recipeMtnames">
+                                                <p>재료1</p>
+                                                <p>재료2</p>
+                                                <p>재료3</p>
+                                            </div>
+                                            <div class="recipeMtamounts">
+                                                <p>양1</p>
+                                                <p>양2</p>
+                                                <p>양3</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="recipeMt">
+                                        <div class="recipeMtTitle">
+                                            <p>양념</p>
+                                        </div>
+                                        <div class="recipeMts">
+                                            <div class="recipeMtnames">
+                                                <p>양념1</p>
+                                                <p>양념2</p>
+                                                <p>양념3</p>
+                                            </div>
+                                            <div class="recipeMtamounts">
+                                                <p>양1</p>
+                                                <p>양2</p>
+                                                <p>양3</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -62,4 +86,5 @@
     </th:block>
 
 </body>
+
 </html>
