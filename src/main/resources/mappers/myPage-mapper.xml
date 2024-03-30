@@ -65,4 +65,15 @@
         WHERE MEMBER_ID = #{memberId}
         AND FOOD_CODE = #{foodCode}
     </delete>
+
+    <select id="increaseFavCnt" resultType="int">
+        UPDATE FOOD
+        SET FOOD_RCMM_CNT =  FOOD_RCMM_CNT + 1
+        WHERE FOOD_CODE = #{foodCode}
+    </select>
+    <select id="decreaseFavCnt" resultType="int">
+        UPDATE FOOD
+        SET FOOD_RCMM_CNT =  FOOD_RCMM_CNT - 1
+        WHERE FOOD_CODE = #{foodCode}
+    </select>
 </mapper>

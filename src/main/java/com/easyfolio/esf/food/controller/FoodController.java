@@ -25,10 +25,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/food")
@@ -41,20 +40,12 @@ public class FoodController {
     private final MyPageService myPageService;
 
     @RequestMapping(value = "/searchFoodPage", method = {RequestMethod.GET, RequestMethod.POST})
-    public String searchFoodAllPage(Model model, FoodVO foodVO, @RequestParam(value = "searchFoodValue", required = false) String searchFoodValue,
-                                    @RequestParam(value = "foodMtrlCode", required = false) String foodMtrlCode,
-                                    @RequestParam(value = "foodUsageCode", required = false) String foodUsageCode,
-                                    @RequestParam(value = "foodKindCode", required = false) String foodKindCode,
+    public String searchFoodAllPage(Model model, FoodVO foodVO,
                                     Principal principal, MemberVO memberVO) throws Exception {
 
         if (RequestMethod.POST.toString().equals(RequestContextHolder.currentRequestAttributes().getAttribute("method", RequestAttributes.SCOPE_REQUEST))) {
             setupFavoriteList(model, principal, memberVO);
         }
-
-        foodVO.setSearchFoodValue(searchFoodValue);
-        foodVO.setFoodKindCode(foodKindCode);
-        foodVO.setFoodMtrlCode(foodMtrlCode);
-        foodVO.setFoodUsageCode(foodUsageCode);
         foodVO.setTotalDataCnt(foodService.searchFoodCnt(foodVO));
         foodVO.setPageInfo();
         model.addAttribute("nowPage", foodVO.getNowPage());
@@ -103,27 +94,47 @@ public class FoodController {
         }
     }
 
-    //즐겨찾기 추가
-    @PostMapping(value = "/addFav")
-    @ResponseBody
-    public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> foodCode, FavoriteVO favoriteVO){
-        log.info("addFav");
-        if(principal == null){ //로그인이 안되어 있을 시
-            return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
-        }
-        favoriteVO.setFoodCode(foodCode.get("foodCode"));
-        favoriteVO.setMemberId(principal.getName());
-        try {
-            myPageService.addFav(favoriteVO);
-        }catch (DuplicateKeyException e){ //이미 add가 되어 있을 시 작동(즐겨찾기 삭제)
-            myPageService.deleteFav(favoriteVO);
-            return new ResponseEntity<>("deleteComplete",HttpStatus.OK);
-        }catch (Exception e){ //그 외 예외
-            return new ResponseEntity<>("something went wrong",HttpStatus.INTERNAL_SERVER_ERROR);
+
+    @GetMapping(value = "detail")
+    public String foodDtl(Model model, FoodVO foodVO) {
+        foodService.updateFoodInqCnt(foodVO);
+        model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
+        FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
+        model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
+        setupSearchDetails(model, foodVO);
+
+        String mtrl = detailFoodVO.getFoodMtrlCn();
+        Pattern pattern = Pattern.compile("\\[([^\\]]+)\\]([^\\[]+)(?=\\[|$)");
+        Matcher matcher = pattern.matcher(mtrl);
+
+        List<String> mtrlTitle = new ArrayList<>();
+        List<List<String>> mtrlMt1 = new ArrayList<>();
+        List<List<String>> mtrlMt2 = new ArrayList<>();
+
+        while (matcher.find()) {
+            mtrlTitle.add(matcher.group(1).trim());
+
+            String materials = matcher.group(2).trim();
+            String[] mtrls = materials.split("\\|");
+            for (int i = 0; i < mtrls.length; i++) {
+                String[] splitMtrls = mtrls[i].trim().split("\\s+(?=[^\\s]*$)");
+                List<String> mtrlList = Arrays.asList(splitMtrls);
+                if (mtrlTitle.size() == 1) {
+                    mtrlMt1.add(mtrlList);
+                } else {
+                    mtrlMt2.add(mtrlList);
+                }
+            }
         }
 
-        return new ResponseEntity<>("addComplete", HttpStatus.OK);
+        // 결과 출력
+        model.addAttribute("mtrlTitles", mtrlTitle);
+        model.addAttribute("mtrlMt1", mtrlMt1);
+        if (mtrlMt2.isEmpty()) {
+            mtrlMt2.add(new ArrayList<>());
+        }
+        model.addAttribute("mtrlMt2", mtrlMt2);
+
+        return "/content/food/food_detail";
     }
-
-
 }

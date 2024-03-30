@@ -62,13 +62,15 @@
                     </div>
                     <div class="recipeBox">
                         <div class="recipes">
-                            <a th:each="favorite, status:${myFavorite}" class="recipe">
-                                <div class="recipeImgBox">
-                                    <img src="/img/food/examImg.jpg" alt="">
-                                </div>
-                                <div class="recipeTextBox">
-                                    <p>[[${favorite.foodVO.foodTtl}]]</p>
-                                </div>
+                            <div th:each="favorite, status:${myFavorite}" class="recipe">
+                                <a th:href="@{/food/detail(foodCode=${favorite.foodCode})}">
+                                    <div class="recipeImgBox">
+                                        <img src="/img/food/examImg.jpg" alt="">
+                                    </div>
+                                    <div class="recipeTextBox">
+                                        <p>[[${favorite.foodVO.foodTtl}]]</p>
+                                    </div>
+                                </a>
                                 <div class="recipeTextBox1">
                                     <div class="recipeTextBox11">
                                         <p class="foodDifBox">
@@ -102,7 +104,7 @@
                                     </div>
                                 </div>
                                 
-                            </a>
+                            </div>
                         </div>
 
                     </div>

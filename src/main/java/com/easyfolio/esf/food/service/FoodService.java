@@ -34,4 +34,9 @@ public interface FoodService {
 
     public int allSearchFoodCnt(String allSearchKeyword);
 
+    public FoodVO getFoodDtl(FoodVO foodVO);
+
+    public FoodVO selectFoodCode(FoodVO foodVO);
+
+    public void updateFoodInqCnt(FoodVO foodVO);
 }

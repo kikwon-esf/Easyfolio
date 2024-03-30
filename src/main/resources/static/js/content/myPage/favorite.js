@@ -27,17 +27,19 @@ function deleteFav(ele){
 }
 
 const addFavBtn = document.querySelectorAll(".cartBox");
-const addFavURL = "/food/addFav";
+const addFavURL = "/myPage/addFav";
 let list = null;
 //페이지 로딩시 하트색칠
+
 window.addEventListener('load',()=>{
     const listdata = document.querySelector("#favoriteList").getAttribute("data-favorite-list");
     list = JSON.parse(listdata);
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){
-            const foodCode = addFavBtn[i].closest('a').querySelector(".foodCode").value;
-            const biHeart = addFavBtn[i].closest('a').querySelector(".bi-heart");
-            const fillHeart = addFavBtn[i].closest('a').querySelector(".bi-heart-fill");
+            const foodCode = addFavBtn[i].closest('.recipe').querySelector(".foodCode").value;
+            const biHeart = addFavBtn[i].closest('.recipe').querySelector(".bi-heart");
+            const fillHeart = addFavBtn[i].closest('.recipe').querySelector(".bi-heart-fill");
+            
             if(list.includes(foodCode)){
                 onOff(fillHeart,biHeart);
             }else{
@@ -55,6 +57,8 @@ function addOrDelFav(ele){
     const biHeart = ele.querySelector(".bi-heart");
     const fillHeart = ele.querySelector(".bi-heart-fill");
     const foodCode = ele.closest(".recipeTextBox1").querySelector(".foodCode").value;
+    const rcmmCnt = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt");
+    const rcmmCntVal = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt").textContent;
     let data = {
         method: 'POST',
         cache: 'no-cache',
@@ -78,11 +82,15 @@ function addOrDelFav(ele){
         if(data == "addComplete"){
             onOff(fillHeart,biHeart);
             onOffAnime(fillHeart,biHeart);
+            rcmmCnt.innerHTML=(parseInt(rcmmCntVal)+1)
         }else if(data == "deleteComplete"){
             onOff(biHeart,fillHeart);
             onOffAnime(biHeart,fillHeart);
+            rcmmCnt.innerHTML=(parseInt(rcmmCntVal)-1)
         }
     })
+    return false;
+    
 
 }
 //animation mouseDown

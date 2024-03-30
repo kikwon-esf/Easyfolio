@@ -1,5 +1,6 @@
 package com.easyfolio.esf.myPage.service;
 
+import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,15 @@ public class MyPageServiceImpl implements MyPageService{
     @Override
     public int favoriteCnt(FavoriteVO favoriteVO) {
         return sqlSession.selectOne("myPageMapper.favoriteCnt", favoriteVO);
+    }
+    @Override
+    public int increaseFavCnt(FavoriteVO favoriteVO) {
+        return sqlSession.update("myPageMapper.increaseFavCnt",favoriteVO);
+    }
+
+    @Override
+    public int decreaseFavCnt(FavoriteVO favoriteVO) {
+        return sqlSession.insert("myPageMapper.decreaseFavCnt", favoriteVO);
     }
 
 }

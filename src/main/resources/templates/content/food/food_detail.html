@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/food_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/content/food/food_detail.css">
+        <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <div id="wrap">
+            <div class="inner">
+                <div class="header">
+                    <div class="food_title">
+                        <p class="food_title1">레시피</p>
+                        <p class="food_title2">Recipe</p>
+                    </div>
+                </div>
+                <div class="recipeBlock">
+                    <div class="recipe_header">
+                        <div class="recipe_header_top">
+                            <div class="recipe_title_box">
+                                <p class="recipe_cate">
+                                    <span class="cateText">[</span>
+                                    <span class="cateText">[[${foodDetail.foodName}]]</span>
+                                    <span class="cateText">]</span>
+                                </p>
+                                <p class="recipe_title">[[${foodDetail.foodTtl}]]</p>
+                            </div>
+                            <div class="recipe_cate_block">
+                                <a th:href="@{/food/searchFoodPage(foodKindCode=${foodDetail.foodKindCode})}" class="recipe_cate1">
+                                    <span>종류별 :</span>
+                                    <span
+                                        th:if="${foodCodeList.foodKindVO != null and foodCodeList.foodKindVO.foodKindText != null and !foodCodeList.foodKindVO.foodKindText.isEmpty()}"
+                                        th:text="${foodCodeList.foodKindVO.foodKindText}"></span>
+                                    <span
+                                        th:if="${foodCodeList.foodKindVO == null || foodCodeList.foodKindVO.foodKindText == null || foodCodeList.foodKindVO.foodKindText.isEmpty()}">
+                                        정보 없음
+                                    </span>
+                                </a>
+                                <a th:href="@{/food/searchFoodPage(foodUsageCode=${foodDetail.foodUsageCode})}" class="recipe_cate1">
+                                    <span>상황별 :</span>
+                                    <span
+                                        th:if="${foodCodeList.foodUsageVO != null and foodCodeList.foodUsageVO.foodUsageText != null and !foodCodeList.foodUsageVO.foodUsageText.isEmpty()}"
+                                        th:text="${foodCodeList.foodUsageVO.foodUsageText}"></span>
+                                    <span
+                                        th:if="${foodCodeList.foodUsageVO == null || foodCodeList.foodUsageVO.foodUsageText == null || foodCodeList.foodUsageVO.foodUsageText.isEmpty()}">
+                                        정보 없음
+                                    </span>
+                                </a>
+                                <a th:href="@{/food/searchFoodPage(foodMtrlCode=${foodDetail.foodMtrlCode})}" class="recipe_cate1">
+                                    <span>재료별 :</span>
+                                    <span
+                                        th:if="${foodCodeList.foodMtrlVO != null and foodCodeList.foodMtrlVO.foodMtrlText != null and !foodCodeList.foodMtrlVO.foodMtrlText.isEmpty()}"
+                                        th:text="${foodCodeList.foodMtrlVO.foodMtrlText}"></span>
+                                    <span
+                                        th:if="${foodCodeList.foodMtrlVO == null || foodCodeList.foodMtrlVO.foodMtrlText == null || foodCodeList.foodMtrlVO.foodMtrlText.isEmpty()}">
+                                        정보 없음
+                                    </span>
+                                </a>
+                                <a th:href="@{/food/searchFoodPage(foodTypeCode=${foodDetail.foodTypeCode})}" class="recipe_cate1">
+                                    <span>방법별 :</span>
+                                    <span
+                                        th:if="${foodCodeList.foodTypeVO != null and foodCodeList.foodTypeVO.foodTypeText != null and !foodCodeList.foodTypeVO.foodTypeText.isEmpty()}"
+                                        th:text="${foodCodeList.foodTypeVO.foodTypeText}"></span>
+                                    <span
+                                        th:if="${foodCodeList.foodTypeVO == null || foodCodeList.foodTypeVO.foodTypeText == null || foodCodeList.foodTypeVO.foodTypeText.isEmpty()}">
+                                        정보 없음
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="recipe_header_bot">
+                            <div class="recipe_header_bot_left">
+
+                                <div class="recipe_info_block">
+                                    <p class="recipe_info">
+                                        <span>작성자 : </span>
+                                        <span>[[${foodDetail.memberName}]]</span>
+                                    </p>
+                                    <p class="recipe_info">
+                                        <span>작성일 : </span>
+                                        <span>[[${foodDetail.foodRegDt}]]</span>
+                                    </p>
+                                </div>
+                                <div class="recipe_info_block">
+                                    <p class="recipe_info">
+                                        <span>조회수 :</span>
+                                        <span>[[${foodDetail.foodInqCnt}]]</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recipe_content">
+                        <div class="recipe_content_inner">
+                            <div class="recipe_content_info">
+                                <div class="recipe_info_top">
+                                    <div class="recipe_info_left">
+                                        <div class="recipe_img">
+                                            <img src="/img/food/examImg.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="recipe_info_right">
+                                        <div class="recipe_mtrl_block">
+                                            <div class="mtrl_block_title">
+                                                <p class="mtrl_block_title1">
+                                                    재료
+                                                </p>
+                                                <p class="mtrl_block_title2">
+                                                    Ingredients
+                                                </p>
+                                            </div>
+                                            <div class="recipe_mtrl">
+                                                <div th:if="${mtrlTitles.size() > 1 and mtrlTitles.get(1) != null}"
+                                                    class="mtrlTitle">
+                                                    <span>[</span>
+                                                    <span th:text="${mtrlTitles.get(0)}">
+                                                    </span>
+                                                    <span>]</span>
+                                                </div>
+                                                <div class="mtrlMt">
+                                                    <div th:each="mtrlMt : ${mtrlMt1}">
+                                                        <p class="mtText" th:text="${mtrlMt[0]}"></p>
+                                                        <p th:if="${mtrlMt.size() > 1 and mtrlMt[1] != null}"
+                                                            class="mtNum" th:text="${mtrlMt[1]}"></p>
+                                                        <p th:if="${mtrlMt.size() > 2 and mtrlMt[2] != null}"
+                                                            class="mtNum" th:text="${mtrlMt[2]}"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div th:if="${mtrlTitles.size() > 1 and mtrlTitles.get(1) != null}"
+                                                class="recipe_mtrl">
+                                                <p class="mtrlTitle">
+                                                    <span>[</span>
+                                                    <span th:text="${mtrlTitles.get(1)}">
+                                                    </span>
+                                                    <span>]</span>
+                                                </p>
+                                                <div class="mtrlMt">
+                                                    <div th:each="mtrlMt : ${mtrlMt2}">
+                                                        <p class="mtText" th:text="${mtrlMt[0]}"></p>
+                                                        <p th:if="${mtrlMt.size() > 1 and mtrlMt[1] != null}"
+                                                            class="mtNum" th:text="${mtrlMt[1]}"></p>
+                                                        <p th:if="${mtrlMt.size() > 2 and mtrlMt[2] != null}"
+                                                            class="mtNum" th:text="${mtrlMt[2]}"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recipe_info_bot">
+                                    <div class="recipe_indc">
+                                        <div class="indc_title">
+                                            <p class="indc_title1">
+                                                레시피 소개
+                                            </p>
+                                            <p class="indc_title2">
+                                                Introduce
+                                            </p>
+                                        </div>
+                                        <p class="recipe_indc_text">[[${foodDetail.foodIndc}]]</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/food/food_detail.js"></script>
+    <script src="/js/content/myPage/favorite.js"></script>
+</th:block>
+
+</html>
