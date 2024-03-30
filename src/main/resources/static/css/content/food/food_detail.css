@@ -213,6 +213,10 @@ textarea {
     margin: 0 auto;
     background-color: #f4f4f4;
 }
+.recipe_indc_text{
+    font-size: 13px;
+    color: #333;
+}
 
 .indc_title {
     display: flex;
@@ -313,6 +317,8 @@ textarea {
     margin-top: 13px;
 }
 .mtrlMt div{
+    color: #333;
+    font-size: 13px;
     padding: 5px 0;
     display: flex;
     border-bottom: 1px solid #dadada;
