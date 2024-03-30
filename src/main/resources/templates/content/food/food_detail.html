@@ -34,7 +34,7 @@
                                 <p class="recipe_title">[[${foodDetail.foodTtl}]]</p>
                             </div>
                             <div class="recipe_cate_block">
-                                <p class="recipe_cate1">
+                                <a th:href="@{/food/searchFoodPage(foodKindCode=${foodDetail.foodKindCode})}" class="recipe_cate1">
                                     <span>종류별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodKindVO != null and foodCodeList.foodKindVO.foodKindText != null and !foodCodeList.foodKindVO.foodKindText.isEmpty()}"
@@ -43,8 +43,8 @@
                                         th:if="${foodCodeList.foodKindVO == null || foodCodeList.foodKindVO.foodKindText == null || foodCodeList.foodKindVO.foodKindText.isEmpty()}">
                                         정보 없음
                                     </span>
-                                </p>
-                                <p class="recipe_cate1">
+                                </a>
+                                <a th:href="@{/food/searchFoodPage(foodUsageCode=${foodDetail.foodUsageCode})}" class="recipe_cate1">
                                     <span>상황별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodUsageVO != null and foodCodeList.foodUsageVO.foodUsageText != null and !foodCodeList.foodUsageVO.foodUsageText.isEmpty()}"
@@ -53,8 +53,8 @@
                                         th:if="${foodCodeList.foodUsageVO == null || foodCodeList.foodUsageVO.foodUsageText == null || foodCodeList.foodUsageVO.foodUsageText.isEmpty()}">
                                         정보 없음
                                     </span>
-                                </p>
-                                <p class="recipe_cate1">
+                                </a>
+                                <a th:href="@{/food/searchFoodPage(foodMtrlCode=${foodDetail.foodMtrlCode})}" class="recipe_cate1">
                                     <span>재료별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodMtrlVO != null and foodCodeList.foodMtrlVO.foodMtrlText != null and !foodCodeList.foodMtrlVO.foodMtrlText.isEmpty()}"
@@ -63,8 +63,8 @@
                                         th:if="${foodCodeList.foodMtrlVO == null || foodCodeList.foodMtrlVO.foodMtrlText == null || foodCodeList.foodMtrlVO.foodMtrlText.isEmpty()}">
                                         정보 없음
                                     </span>
-                                </p>
-                                <p class="recipe_cate1">
+                                </a>
+                                <a th:href="@{/food/searchFoodPage(foodTypeCode=${foodDetail.foodTypeCode})}" class="recipe_cate1">
                                     <span>방법별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodTypeVO != null and foodCodeList.foodTypeVO.foodTypeText != null and !foodCodeList.foodTypeVO.foodTypeText.isEmpty()}"
@@ -73,7 +73,7 @@
                                         th:if="${foodCodeList.foodTypeVO == null || foodCodeList.foodTypeVO.foodTypeText == null || foodCodeList.foodTypeVO.foodTypeText.isEmpty()}">
                                         정보 없음
                                     </span>
-                                </p>
+                                </a>
                             </div>
                         </div>
                         <div class="recipe_header_bot">

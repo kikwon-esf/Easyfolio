@@ -99,15 +99,19 @@
         SELECT
         <if test="foodKindCode != null and not foodKindCode.isEmpty()">
             FK.FOOD_KIND_TEXT
+            , FK.FOOD_KIND_CODE
         </if>
         <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">
             , FU.FOOD_USAGE_TEXT
+            , FU.FOOD_USAGE_CODE
         </if>
         <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">
             , FM.FOOD_MTRL_TEXT
+            , FM.FOOD_MTRL_CODE
         </if>
         <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">
             , FT.FOOD_TYPE_TEXT
+            , FT.FOOD_TYPE_CODE
         </if>
         FROM
         <if test="foodKindCode != null and not foodKindCode.isEmpty()">
