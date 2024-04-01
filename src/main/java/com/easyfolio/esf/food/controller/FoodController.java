@@ -113,7 +113,7 @@ public class FoodController {
 
         while (matcher.find()) {
             mtrlTitle.add(matcher.group(1).trim());
-
+            System.err.println();
             String materials = matcher.group(2).trim();
             String[] mtrls = materials.split("\\|");
             for (int i = 0; i < mtrls.length; i++) {
