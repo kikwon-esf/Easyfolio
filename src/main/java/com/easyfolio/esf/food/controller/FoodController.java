@@ -102,6 +102,7 @@ public class FoodController {
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
         model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
         setupSearchDetails(model, foodVO);
+        System.out.println();
 
         String mtrl = detailFoodVO.getFoodMtrlCn();
         Pattern pattern = Pattern.compile("\\[([^\\]]+)\\]([^\\[]+)(?=\\[|$)");
