@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class RecipeTextService {
+public class RecipeTextService2 {
     private static String Res_URL = "https://www.10000recipe.com/recipe/6993517";
 
     @PostConstruct
-    public List<RecipeTextVO> getResData() throws IOException {
+    public List<RecipeTextVO> getResData2() throws IOException {
         List<RecipeTextVO> resData = new ArrayList<>();
         Document document = Jsoup.connect(Res_URL).get();
 
