@@ -10,5 +10,6 @@ import lombok.ToString;
 public class RecipeTextVO {
     public String recipeCode;
     public String textCode;
+    public String recipeTitle;
     public String recipeContent;
 }
