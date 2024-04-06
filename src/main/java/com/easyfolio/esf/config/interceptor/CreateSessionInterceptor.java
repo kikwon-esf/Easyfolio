@@ -19,24 +19,18 @@ import java.util.Iterator;
 @RequiredArgsConstructor
 public class CreateSessionInterceptor implements HandlerInterceptor {
 
-
-
     //Session안에 이전 페이지를 저장해주는 작업
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession session = request.getSession();
         session.setAttribute("prevPage", request.getHeader("Referer"));
-        System.err.println("Referer" + request.getHeader("Referer"));
 
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-
-
         HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }
 

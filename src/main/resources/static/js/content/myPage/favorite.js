@@ -68,16 +68,19 @@ function addOrDelFav(ele){
             'Content-Type': 'application/json; charset=UTF-8'
         },
         body: JSON.stringify({
-            "foodCode" : foodCode
+            "foodCode" : foodCode,
+            "type" : "fetch"
         })
     }
 
     fetch(addFavURL,data)
     .then((resp)=>{
         let status = resp["status"];
-        console.log(status);
-        if(status != 200) alert("로그인을 확인해주세요!");
-
+        if(status != 200) {
+            alert("로그인을 확인해주세요!");
+            popup(askFrame);
+        }
+        
         return resp.text();
     })
     .then((data)=>{

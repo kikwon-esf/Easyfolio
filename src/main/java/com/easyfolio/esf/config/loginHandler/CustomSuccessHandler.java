@@ -30,8 +30,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         HttpSession session = request.getSession(); //로그인 성공 시 세션 체크
         String target = (String) session.getAttribute("target");
         if(target != null){ //특정 타겟이 있을시(로그인 페이지로 가기 전에 타겟 페이지가 있을 시)
-            session.removeAttribute("target");
             response.sendRedirect("http://localhost:8081" + target);
+            session.removeAttribute("target");
         }else { //그게 아니라면
             String redirectPage = (String)session.getAttribute("prevPage"); //세션에서 이전 페이지 값 추출
             response.sendRedirect(redirectPage != null ? redirectPage : "/"); // 세션에서 이전 페이지 값이 없을시, 메인페이지로 이동
