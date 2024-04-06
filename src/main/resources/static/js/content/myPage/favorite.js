@@ -1,6 +1,8 @@
 const url = "/myPage/deleteFav"
 function deleteFav(ele){
-    const foodCode = ele.closest('a').querySelector(".foodCode").value;
+    console.log('ele' + ele);
+    console.log('a'+ele.closest('.recipeTextBox1'));
+    const foodCode = ele.closest('.recipeTextBox1').querySelector(".foodCode").value;
     let data = {
         method: 'POST',
         cache: 'no-cache',
@@ -73,7 +75,7 @@ function addOrDelFav(ele){
     fetch(addFavURL,data)
     .then((resp)=>{
         let status = resp["status"];
-        
+        console.log(status);
         if(status != 200) alert("로그인을 확인해주세요!");
 
         return resp.text();
