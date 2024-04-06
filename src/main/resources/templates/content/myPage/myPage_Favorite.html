@@ -72,6 +72,7 @@
                                     </div>
                                 </a>
                                 <div class="recipeTextBox1">
+                                    <input type="hidden" class="foodCode" th:value="${favorite.foodCode}">
                                     <div class="recipeTextBox11">
                                         <p class="foodDifBox">
                                             <span>난이도</span>
@@ -83,7 +84,6 @@
                                             <span>[[${favorite.foodVO.foodInqCnt}]]</span>
                                         </p>
                                     </div>
-                                    <input type="hidden" class="foodCode" th:value="${favorite.foodCode}">
                                     <div class="cartBox"  onclick="deleteFav(this)">
                                         <div class="heartBox">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff3f3f"
@@ -98,7 +98,7 @@
                                         </div>
                                         <p>
                                             <span>(</span>
-                                            <span>[[${favorite.foodVO.foodRcmmCnt}]]</span>
+                                            <span class="RcmmCnt">[[${favorite.foodVO.foodRcmmCnt}]]</span>
                                             <span>)</span>
                                         </p>
                                     </div>
@@ -120,8 +120,7 @@
                                                 d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
                                         </svg>
                                     </span></a>
-                                <th:block
-                                    th:each="pageNum : ${#numbers.sequence(favoriteVO.beginPage, favoriteVO.endPage)}">
+                                <th:block th:each="pageNum : ${#numbers.sequence(favoriteVO.beginPage, favoriteVO.endPage)}">
                                     <a class="page_numBtn"
                                         th:href="@{/myPage/favorite(nowPage=${pageNum}, searchFavoriteValue=${searchFavoriteValue})}"><span
                                             th:text="${pageNum}"></span></a>
