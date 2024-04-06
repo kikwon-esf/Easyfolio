@@ -31,7 +31,7 @@ public class MemberController {
 
     //로그인 페이지 이동
     @GetMapping("/loginForm")
-    public String loginForm(Principal principal){
+    public String loginForm(Principal principal, HttpServletRequest request){
         if(principal != null && principal.getName() !=null){
             return "redirect:/";
         }
