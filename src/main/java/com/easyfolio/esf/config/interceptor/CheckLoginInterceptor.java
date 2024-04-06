@@ -2,6 +2,7 @@ package com.easyfolio.esf.config.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,48 +33,24 @@ import java.util.Set;
         //preHandle controller 동작 전 실행
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-//            System.err.println(request.getHeaderNames());
-//            Enumeration names = request.getHeaderNames();
-//            while (names.hasMoreElements()) {
-//                String name = (String) names.nextElement();
-//                System.err.println("name : " + name);
-//                System.err.println("value : " + request.getHeader(name));
-//                System.err.println();
-//            }
-//            Enumeration Anames = request.getAttributeNames();
-//            while (Anames.hasMoreElements()) {
-//                String name = (String) Anames.nextElement();
-//                System.err.println("name : " + name);
-//                System.err.println("value : " + request.getAttribute(name));
-//                System.err.println();
-//            }
-//
-//            System.out.println("-----");
-//            System.err.println("getRemoteUser : "+request.getRemoteUser());
-//            System.err.println("getRemoteAddr : "+request.getRemoteAddr());
-//            System.err.println("getRemoteHost : "+request.getRemoteHost());
-//            System.err.println("getRemotePort : "+request.getRemotePort());
-//            System.out.println("referer" + request.getHeader("Referer"));
-
+            HttpSession session = request.getSession();
+            session.setAttribute("target", request.getAttribute("org.springframework.web.util.ServletRequestPathUtils.PATH").toString());
+            System.out.println("target : " + request.getAttribute("org.springframework.web.util.ServletRequestPathUtils.PATH"));
 
             try{
                 Principal principal = request.getUserPrincipal();
                 checkLogin(principal);
             }catch (Exception e){
                 response.sendRedirect("/member/loginForm");
+                response.setStatus(400);
                 response.setHeader("Referer","/member/loginForm");
                 log.warn("잘못된 접근");
-                return false;
             }
             return HandlerInterceptor.super.preHandle(request, response, handler);
         }
 
         @Override
         public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-
-
             HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
         }
 
