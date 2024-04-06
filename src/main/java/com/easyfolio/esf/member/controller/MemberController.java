@@ -41,8 +41,10 @@ public class MemberController {
 
     //로그인 에러
     @GetMapping("/loginForm/error")
-    public String loginForm(Model model, HttpServletRequest request, HttpServletResponse response){
-        System.err.println(request.getRequestURL());
+    public String loginForm(Model model, Principal principal){
+        if(principal != null && principal.getName() !=null){
+            return "redirect:/";
+        }
         model.addAttribute("loginError","아이디와 비밀번호를 확인해주세요.");
         return "content/member/login";
     }

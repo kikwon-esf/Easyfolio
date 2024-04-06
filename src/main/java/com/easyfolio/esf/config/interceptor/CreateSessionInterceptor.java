@@ -24,7 +24,10 @@ public class CreateSessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession session = request.getSession();
-        session.setAttribute("prevPage", request.getHeader("Referer"));
+        String prevPage = request.getHeader("Referer");
+        if(prevPage!=null&&!prevPage.contains("/member/login")){
+            session.setAttribute("prevPage", request.getHeader("Referer"));
+        }
 
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }

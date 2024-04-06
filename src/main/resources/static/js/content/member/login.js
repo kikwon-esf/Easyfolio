@@ -25,37 +25,41 @@ const errInput = document.querySelector('#login_error');
 document.addEventListener('DOMContentLoaded',()=>{
     if(errInput.value != ''){
         alert('로그인 정보를 확인해주세요.');
-        console.log(errInput.value)
     }
 })
 //input의 값이 공백일 경우
-const regularChk = VerEx() //정규식 생성 (verbalExpression)
-.startOfLine()
-.whiteSpace()
-.endOfLine()
-;
+
+const regularChk = /^(?:[^ ]+)$/;
+
 const loginBtn = document.querySelector('.loginBtn'); //로그인 버튼
 const chkList = document.querySelectorAll('.inputMem');
 const inputBox = document.querySelectorAll('.inputBox');
 loginBtn.addEventListener('click',(e)=>{
-    if(regularChk.test(chkList[0])){
-        chkList[0].value='';
+    const idValue = chkList[0].value;
+    const result = regularChk.test(idValue);
+    if(!result){
+        // chkList[0].value='';
         inputBox[0].classList.add('fail')
-        chkList[0].placeholer="아이디값을 확인해주세요.";
+        chkList[0].placeholder="아이디값을 확인해주세요.";
         e.preventDefault();
         return;
-    }else if(!regularChk.test(chkList[1])){
-        chkList[1].value='';
+    }else if(chkList[1].value==''){
         inputBox[1].classList.add('fail')
-        chkList[1].placeholer="비밀번호를 확인해주세요.";
+        chkList[1].placeholder="비밀번호를 확인해주세요.";
         e.preventDefault();
         return;
     }
-    
+    return;
 })
+
 for(let i = 0 ; i < chkList.length ; i++){
     chkList[i].addEventListener('click',()=>{
         inputBox[i].classList.remove('fail');
+        if(i==0){
+            chkList[0].placeholder="아이디";
+        }else{
+            chkList[1].placeholder="비밀번호";
+        }
     })
 }
 
