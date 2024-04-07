@@ -1,5 +1,6 @@
 package com.easyfolio.esf.member.controller;
 
+import com.easyfolio.esf.config.interceptor.CreateSessionInterceptor;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import jakarta.annotation.Resource;
@@ -40,7 +41,10 @@ public class MemberController {
 
     //로그인 에러
     @GetMapping("/loginForm/error")
-    public String loginForm(Model model){
+    public String loginForm(Model model, Principal principal){
+        if(principal != null && principal.getName() !=null){
+            return "redirect:/";
+        }
         model.addAttribute("loginError","아이디와 비밀번호를 확인해주세요.");
         return "content/member/login";
     }

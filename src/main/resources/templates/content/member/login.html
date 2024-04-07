@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-
+    <script src="https://cdn.jsdelivr.net/npm/verbal-expressions@1.0.2/dist/verbalexpressions.min.js"></script>
     <!-- css 영역 -->
     <th:block layout:fragment="content_css">
 
@@ -13,7 +13,9 @@
 </head>
 <body>
 <th:block layout:fragment="content">
+    
     <link rel="stylesheet" href="/css/content/member/login.css">
+    <input type="hidden" th:value="${loginError}" id="login_error">
     <div id="wrap">
         <div class="inner">
             <div class="logoBlock">
@@ -49,7 +51,7 @@
                             <input type="password" class="inputMem pw" id="memberPw" name="memberPw" placeholder="비밀번호">
                         </div>
                         <div class="loginBtnForm">
-                            <input class="loginBtn" type="submit" value="로그인" onclick="checkInput()">
+                            <input class="loginBtn" type="submit" value="로그인">
                         </div>
                         <div class="loginFooter">
                             <p><a href="/member/findMemberForm">아이디 찾기 / 비밀번호 찾기</a></p>
@@ -73,5 +75,9 @@
 </body>
 <!-- js 영역 -->
 <th:block layout:fragment="content_js">
+    <script th:inline="javascript">
+
+
+    </script>
 </th:block>
 </html>

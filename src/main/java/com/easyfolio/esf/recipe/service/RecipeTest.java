@@ -14,6 +14,7 @@ public class RecipeTest {
     public RecipeTest() throws IOException {
         Element title = document.getElementById("contents_area_full");
 
+        System.err.println();
 
 //        for (Element content : title) {
 //            RecipeTextVO recipeText = RecipeTextVO.builder()

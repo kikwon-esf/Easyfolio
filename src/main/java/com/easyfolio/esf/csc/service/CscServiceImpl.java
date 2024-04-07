@@ -123,13 +123,18 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
-    public List<QnaVO> qnaList() {
-        return sqlSession.selectList("cscMapper.qnaList");
+    public List<QnaVO> qnaList(QnaVO qnaVO) {
+        return sqlSession.selectList("cscMapper.qnaList", qnaVO);
     }
 
     @Override
     public int insertQna(QnaVO qnaVO) {
         return sqlSession.insert("cscMapper.insertQna", qnaVO);
+    }
+
+    @Override
+    public int qnaCnt() {
+        return sqlSession.selectOne("cscMapper.qnaCnt");
     }
 
 

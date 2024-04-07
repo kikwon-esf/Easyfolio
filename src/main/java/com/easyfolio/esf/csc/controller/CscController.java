@@ -188,8 +188,12 @@ public class CscController {
 
     // 자주 찾는 질문 목록 조회
     @GetMapping("/qnaListForm")
-    public String qnaListForm(Model model){
-        model.addAttribute("qnaList", cscService.qnaList());
+    public String qnaListForm(Model model, QnaVO qnaVO){
+        qnaVO.setTotalDataCnt(cscService.qnaCnt());
+        qnaVO.setPageInfo();
+        System.err.println(cscService.qnaCnt());
+        System.err.println(cscService.qnaList(qnaVO));
+        model.addAttribute("qnaList", cscService.qnaList(qnaVO));
         return "content/csc/qna/csc_qnaList";
     }
 
