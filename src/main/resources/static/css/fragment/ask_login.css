@@ -1,0 +1,34 @@
+button{
+    cursor: pointer;
+}
+.pop_blind{
+    display: none;
+}
+#popup_wrap{
+    z-index: 400;    
+    width: 100%;
+    position: fixed;         
+}
+.ask_container{    
+    border : 1px solid black;
+    border-radius: 10px;  
+    background-color: white;  
+    z-index: 401;
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+}
+.ask_answer_yes{
+    background-color: blue;
+}
+.ask_answer_no{
+    background-color: wheat;
+}
+.ask_btn_container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.ask_btn{
+    margin: 40px;
+}

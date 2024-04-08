@@ -102,7 +102,6 @@ public class FoodController {
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
         model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
         setupSearchDetails(model, foodVO);
-
         String mtrl = detailFoodVO.getFoodMtrlCn();
         Pattern pattern = Pattern.compile("\\[([^\\]]+)\\]([^\\[]+)(?=\\[|$)");
         Matcher matcher = pattern.matcher(mtrl);
@@ -113,7 +112,6 @@ public class FoodController {
 
         while (matcher.find()) {
             mtrlTitle.add(matcher.group(1).trim());
-
             String materials = matcher.group(2).trim();
             String[] mtrls = materials.split("\\|");
             for (int i = 0; i < mtrls.length; i++) {

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{fragment/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+
+</th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="wrap">
+        <div class="inner">
+            <div th:each="recipe : ${recipeTest}">
+                <div th:text="${recipe.recipeTitle}"></div>
+                <div th:text="${recipe.recipeContent}"></div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+
+</th:block>
+</html>

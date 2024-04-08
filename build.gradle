@@ -41,6 +41,9 @@ dependencies {
 
 	implementation 'com.google.code.gson:gson:2.8.9' //json 사용(gson)
 
+	// https://mvnrepository.com/artifact/org.jsoup/jsoup
+	implementation group: 'org.jsoup', name: 'jsoup', version: '1.17.2'
+
 }
 tasks.named('test') {
 	useJUnitPlatform()
