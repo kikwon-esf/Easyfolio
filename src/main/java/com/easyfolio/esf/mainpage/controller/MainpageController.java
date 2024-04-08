@@ -3,22 +3,17 @@ package com.easyfolio.esf.mainpage.controller;
 
 import com.easyfolio.esf.csc.service.CscService;
 import com.easyfolio.esf.csc.vo.*;
-import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.food.service.FoodService;
-import com.easyfolio.esf.mainpage.service.MainpageService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/mainpage")
@@ -53,5 +48,10 @@ public class MainpageController {
     @GetMapping("/test")
     public String testpage(){
         return "content/indexpage/testpage";
+    }
+
+    @GetMapping("/recipe")
+    public String recipepage(){
+        return "content/food/recipe_detail_copy_copy";
     }
 }
