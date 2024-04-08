@@ -7,6 +7,8 @@ const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+
 
 let userMessage = null; // Variable to store user's message
 const inputInitHeight = chatInput.scrollHeight;
@@ -61,7 +63,7 @@ const handleChat = () => {
 
 chatInput.addEventListener("input", () => {
     // Adjust the height of the input textarea based on its content
-    chatInput.style.height = `${inputInitHeight}px`;
+    chatInput.style.height = "auto";
     chatInput.style.height = `${chatInput.scrollHeight}px`;
 });
 
@@ -73,6 +75,5 @@ chatInput.addEventListener("keydown", (e) => {
         handleChat();
     }
 });
-// sendChatBtn.addEventListener("click", handleChat);
-// closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
-// chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+
+sendChatBtn.addEventListener("click", handleChat);
