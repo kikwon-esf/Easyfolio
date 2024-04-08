@@ -55,9 +55,11 @@ public interface CscService {
 
     public List<QnaVO> mainQnaList();
 
-    public List<QnaVO> qnaList();
+    public List<QnaVO> qnaList(QnaVO qnaVO);
 
     public int insertQna(QnaVO qnaVO);
+
+    public int qnaCnt();
 
 
 

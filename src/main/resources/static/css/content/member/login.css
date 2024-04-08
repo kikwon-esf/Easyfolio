@@ -141,3 +141,9 @@ textarea {
 .loginFooter p:hover a{
     color: #f29221;
 }
+.inputBox.fail svg{
+    fill: #ff3f3f;
+}
+.inputBox.fail .inputMem::placeholder{
+    color: #ff3f3f;
+}
