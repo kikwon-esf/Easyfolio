@@ -1,13 +1,22 @@
 //챗봇
 
 const chatbotToggler = document.querySelector(".chatbot-toggler");
+const chatIcons = document.querySelectorAll("#chat-icon");
+const chatBlock = document.querySelector(".chatBlock");
+
 const closeBtn = document.querySelector(".close-btn");
 const outputbox = document.querySelector(".outputbox");
-const chatInput = document.querySelector(".chat-input textarea");
-const sendChatBtn = document.querySelector(".chat-input span");
+const chatInput = document.querySelector(".inputbox textarea");
+const sendChatBtn = document.querySelector(".inputbox span");
 
-chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
-closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+chatbotToggler.addEventListener("click", function(){
+    chatBlock.classList.toggle('on');
+    chatIcons.forEach(chatIcon => {
+        chatIcon.classList.toggle('on');
+    });
+});
+
+closeBtn.addEventListener("click", () => document.body.classList.remove("on"));
 
 
 let userMessage = null; // Variable to store user's message
@@ -61,11 +70,10 @@ const handleChat = () => {
     });
 }
 
-chatInput.addEventListener("input", () => {
-    // Adjust the height of the input textarea based on its content
-    chatInput.style.height = "auto";
-    chatInput.style.height = `${chatInput.scrollHeight}px`;
-});
+// chatInput.addEventListener("input", () => {
+//     // Adjust the height of the input textarea based on its content
+//     chatInput.style.height = `${chatInput.scrollHeight}px`;
+// });
 
 chatInput.addEventListener("keydown", (e) => {
     // If Enter key is pressed without Shift key and the window 
