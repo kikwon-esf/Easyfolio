@@ -2,7 +2,7 @@
 
 const chatbotToggler = document.querySelector(".chatbot-toggler");
 const closeBtn = document.querySelector(".close-btn");
-const chatbox = document.querySelector(".chatbox");
+const outputbox = document.querySelector(".outputbox");
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
@@ -33,15 +33,15 @@ const handleChat = () => {
     chatInput.value = "";
     chatInput.style.height = `${inputInitHeight}px`;
 
-    // Append the user's message to the chatbox
-    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-    chatbox.scrollTo(0, chatbox.scrollHeight);
+    // Append the user's message to the outputbox
+    outputbox.appendChild(createChatLi(userMessage, "outgoing"));
+    outputbox.scrollTo(0, outputbox.scrollHeight);
 
     // Display "Thinking..." message while waiting for the response
     const incomingChatLi = createChatLi("...", "incoming");
 
-    chatbox.appendChild(incomingChatLi);
-    chatbox.scrollTo(0, chatbox.scrollHeight);
+    outputbox.appendChild(incomingChatLi);
+    outputbox.scrollTo(0, outputbox.scrollHeight);
 
     // AJAX Request
     $.ajax({
