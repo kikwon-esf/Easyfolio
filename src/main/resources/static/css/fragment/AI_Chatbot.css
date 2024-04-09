@@ -28,6 +28,7 @@
   height: 100%;
 }
 .chatbot-toggler {
+  z-index: 1000;
   position: fixed;
   bottom: 30px;
   right: 35px;
@@ -66,9 +67,33 @@
   transform-origin: bottom right;
   box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
     0 32px 64px -48px rgba(0, 0, 0, 0.5);
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
+}
+.chatbot-toggler:hover {
+  animation: buttonHoverAnimation 0.5s ease; /* 호버 애니메이션 적용 */
 }
 
+/* 애니메이션 키프레임 정의 */
+@keyframes buttonAnimation {
+  from {
+    transform: scale(1); /* 초기 크기 */
+  }
+  to {
+    transform: scale(1); /* 초기 크기 */
+  }
+}
+
+@keyframes buttonHoverAnimation {
+  0% {
+    transform: scale(1); /* 초기 크기 */
+  }
+  50% {
+    transform: scale(1.1); /* 50%까지 커짐 */
+  }
+  100% {
+    transform: scale(1); /* 마지막엔 다시 초기 크기로 작아짐 */
+  }
+}
 .show-chatbot .chatbot-toggler {
   transform: rotate(90deg);
 }
@@ -291,7 +316,7 @@ header h2 {
   }
 
   #chat-icon {
-    font-size: 5vw;
+    font-size: 3.5vw;
   }
 
   .chatbot {
