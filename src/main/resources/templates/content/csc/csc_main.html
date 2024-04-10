@@ -19,16 +19,18 @@
             </div>
             <div class="csc_inner">
                 <div class="csc_searchBox">
-                    <div class="csc_searchBlock">
-                        <input type="text" class="csc_search" placeholder="궁금한 점을 간단하게">
-                        <div class="csc_searchBtn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffd57a"
-                                class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                            </svg>
+                    <form action="/csc/cscForm" method="post">
+                        <div class="csc_searchBlock">
+                            <input type="text" class="csc_Search" placeholder="궁금한 점을 간단하게" name="allSearchKeyword" th:value="${allSearchKeyword}">
+                            <div class="csc_searchBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffd57a"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="searchTipBox">
                         <p class="searchTipTitle">추천 검색어</p>
                         <div class="searchTips">
@@ -55,7 +57,7 @@
                         </div>
                     </div>
                     <div class="csc_annBlock">
-                        <a th:href="@{/csc/annDetailForm(annNum=${ann.annNum})}" th:each="ann, state : ${annList}" class="csc_annLink">
+                        <a th:href="@{/csc/annDetailForm(annCode=${ann.annCode})}" th:each="ann, state : ${annList}" class="csc_annLink" th:if="${#lists.size(annList) != 0}">
                             <div class="csc_annBox">
                                 <div class="annTypeBox">
                                     <p class="slash">[</p>
@@ -70,6 +72,9 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="csc_annBox" th:if="${#lists.size(annList) == 0}">
+                            내용이 없습니다
+                        </div>
                     </div>
                 </div>
                 <div class="csc_qna">
@@ -87,7 +92,7 @@
                         </div>
                     </div>
                     <div class="qnaBlock">
-                        <div class="qnaBox" th:each="qna : ${qnaList}">
+                        <div class="qnaBox" th:each="qna : ${qnaList}" th:if="${#lists.size(qnaList) != 0}">
                             <div class="qnaTextBox">
                                 <span class="qnaIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
@@ -111,6 +116,9 @@
                                     </svg>
                                 </p>
                             </div>
+                        </div>
+                        <div class="qnaBox" th:if="${#lists.size(qnaList) == 0}">
+                            내용이 없습니다.
                         </div>
                     </div>
                 </div>

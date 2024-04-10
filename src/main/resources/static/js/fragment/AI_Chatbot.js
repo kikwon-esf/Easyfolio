@@ -70,10 +70,10 @@ const handleChat = () => {
     });
 }
 
-// chatInput.addEventListener("input", () => {
-//     // Adjust the height of the input textarea based on its content
-//     chatInput.style.height = `${chatInput.scrollHeight}px`;
-// });
+chatInput.addEventListener("input", () => {
+    // Adjust the height of the input textarea based on its content
+    chatInput.style.height = `${chatInput.scrollHeight}px`;
+});
 
 chatInput.addEventListener("keydown", (e) => {
     // If Enter key is pressed without Shift key and the window 

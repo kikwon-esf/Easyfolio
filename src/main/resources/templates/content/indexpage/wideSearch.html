@@ -126,7 +126,7 @@
                 </div>
                 <div class="csc_annBlock">
                     <div th:if="${!#lists.isEmpty(asAnnList)}">
-                        <a th:href="@{/csc/annDetailForm(annNum=${asAnn.annNum})}" th:each="asAnn, state : ${asAnnList}"
+                        <a th:href="@{/csc/annDetailForm(annCode=${asAnn.annCode})}" th:each="asAnn, state : ${asAnnList}"
                             class="csc_annLink">
                             <div class="csc_annBox">
                                 <div class="annTypeBox">

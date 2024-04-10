@@ -1,11 +1,12 @@
-package com.easyfolio.esf.csc.vo;
+package com.easyfolio.esf.csc.vo.inq;
 
+import com.easyfolio.esf.csc.vo.PageVO;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class InqVO extends PageVO{
+public class InqVO extends PageVO {
     public String inqCode;
     public String inqCate;
     public String inqWriter;

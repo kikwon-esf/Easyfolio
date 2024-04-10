@@ -1,6 +1,11 @@
 package com.easyfolio.esf.csc.service;
 
 import com.easyfolio.esf.csc.vo.*;
+import com.easyfolio.esf.csc.vo.ann.AnnCateVO;
+import com.easyfolio.esf.csc.vo.ann.AnnVO;
+import com.easyfolio.esf.csc.vo.inq.InqImgVO;
+import com.easyfolio.esf.csc.vo.inq.InqVO;
+import com.easyfolio.esf.csc.vo.qna.QnaVO;
 
 import java.util.List;
 
@@ -21,6 +26,12 @@ public interface CscService {
     public int updateAnn(AnnVO annVO);
 
     public int deleteAnn(AnnVO annVO);
+
+    public List<AnnVO> cscSearchAnn(AnnVO annVO);
+
+    public List<AnnCateVO> annCateList(AnnCateVO annCateVO);
+
+    public int cscSearchAnnCnt(AnnVO annVO);
 
     // INQ
 
@@ -60,6 +71,10 @@ public interface CscService {
     public int insertQna(QnaVO qnaVO);
 
     public int qnaCnt();
+
+    public List<QnaVO> cscSearchQna(QnaVO qnaVO);
+
+    public int cscSearchQnaCnt (QnaVO qnaVO);
 
 
 
