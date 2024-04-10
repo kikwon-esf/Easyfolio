@@ -174,7 +174,52 @@
   padding: 12px 16px;
 }
 
-.outputbox .chat span {
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.dot-animation {
+  display: inline-block;
+  animation: bounce 1s infinite;
+}
+
+@keyframes grow-shrink {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+.grow-animation {
+  display: inline-block;
+  animation: grow-shrink 1.2s infinite;
+}
+
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.fade-animation {
+  display: inline-block;
+  animation: fade-in-out 1.2s infinite;
+}
+
+.outputbox .chat > .material-symbols-outlined {
   width: 30px;
   height: 30px;
   color: #fff;
@@ -223,6 +268,7 @@
   outline: 0;
   border: 0;
   border-radius: 6px;
+  text-decoration: none;
 }
 
 .inputbox textarea::-webkit-scrollbar,
@@ -237,15 +283,22 @@
 
 .inputbox textarea::-webkit-scrollbar-thumb,
 .outputbox::-webkit-scrollbar-thumb {
-  background-color: #75d248;
+  background-color: #dadada;
   border-radius: 6px;
   border: 3px solid #fff;
+}
+
+.inputbox textarea::-webkit-scrollbar-thumb:hover,
+.outputbox::-webkit-scrollbar-thumb:hover {
+  background-color: #b0b0b0;
+  cursor: pointer;
 }
 
 .chat-btn {
   display: flex;
   justify-content: space-between;
   margin: 3px 5px;
+  align-items: center;
 }
 
 .chatmenu {
@@ -267,6 +320,34 @@
 .chatmenu > .material-symbols-outlined:hover {
   background-color: #f4f4f4;
   color: #75d248;
+}
+
+#send-btn {
+  color: #dadada;
+  cursor: pointer;
+  padding: 5px;
+}
+
+#send-btn.active {
+  color: #91e4677b;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 30%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#send-btn.active:hover {
+  color: #75d248;
+  background-color: #f4f4f4;
+}
+
+.text-length {
+  position: absolute;
+  right: 45px;
+  bottom: 10px;
+  font-size: 10px;
+  line-height: 150%;
+  color: #888888;
 }
 
 /* .show-chatbot .chatbot-toggler {
