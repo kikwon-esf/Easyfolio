@@ -6,8 +6,8 @@
 
     <!--  공지사항  -->
 
-    <resultMap id="announcement" type="com.easyfolio.esf.csc.vo.AnnVO">
-        <id column="ANN_NUM" property="annNum" />
+    <resultMap id="announcement" type="com.easyfolio.esf.csc.vo.ann.AnnVO">
+        <id column="ANN_CODE" property="annCode" />
         <result column="ANN_CATE" property="annCate" />
         <result column="ANN_WRITER" property="annWriter" />
         <result column="ANN_TITLE" property="annTitle" />
@@ -16,14 +16,14 @@
         <collection property="annCateList" resultMap="annCate"/>
     </resultMap>
 
-    <resultMap id="annCate" type="com.easyfolio.esf.csc.vo.AnnCateVO">
+    <resultMap id="annCate" type="com.easyfolio.esf.csc.vo.ann.AnnCateVO">
         <id column="CATE_CODE" property="cateCode"/>
         <result column="CATE_NAME" property="cateName"/>
     </resultMap>
 
     <!--  공지사항 메인 페이지 조회  -->
     <select id="mainAnnList" resultMap="announcement">
-        SELECT ANN_NUM
+        SELECT ANN_CODE
         , ANN_CATE
         , CATE_NAME
         , ANN_TITLE
@@ -31,13 +31,13 @@
         , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
-        ORDER BY ANN_NUM DESC
+        ORDER BY ANN_CODE DESC
         OFFSET 0 ROWS FETCH FIRST 4 ROWS ONLY
     </select>
 
     <!--  공지사항 목록 조회  -->
     <select id="annList" resultMap="announcement">
-        SELECT ANN_NUM
+        SELECT ANN_CODE
             , ANN_CATE
             , CATE_NAME
             , ANN_TITLE
@@ -45,19 +45,19 @@
             , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LI
         WHERE ANN.ANN_CATE = LI.CATE_CODE
-        ORDER BY ANN_NUM DESC
+        ORDER BY ANN_CODE DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
     <!--  공지 사항 게시물 수 조회  -->
     <select id="annCnt" resultType="int">
-        SELECT COUNT(ANN_NUM)
+        SELECT COUNT(ANN_CODE)
         FROM ANNOUNCEMENT
     </select>
 
     <!--  공지 사항 세부 조회  -->
     <select id="annDetail" resultMap="announcement">
-        SELECT ANN_NUM
+        SELECT ANN_CODE
             , CATE_CODE
             , CATE_NAME
             , ANN_WRITER
@@ -66,19 +66,19 @@
             , TO_CHAR(ANN_DATE, 'YYYY-MM-DD') AS ANN_DATE
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
-        AND ANN_NUM = #{annNum}
+        AND ANN_CODE = #{annCode}
     </select>
 
     <!--  공지 사항 작성  -->
     <insert id="insertAnn">
         INSERT INTO ANNOUNCEMENT (
-        ANN_NUM
+        ANN_CODE
         , ANN_CATE
         , ANN_TITLE
         , ANN_CONTENT
         )
         VALUES (
-        (SELECT 'ANN_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ANN_NUM, 5))),0) + 1, 3, '0')
+        (SELECT 'ANN_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ANN_CODE, 5))),0) + 1, 3, '0')
         FROM ANNOUNCEMENT)
         , #{annCate}
         , #{annTitle}
@@ -93,18 +93,18 @@
         ANN_CATE = #{annCate}
         , ANN_TITLE = #{annTitle}
         , ANN_CONTENT = #{annContent}
-        WHERE ANN_NUM = #{annNum}
+        WHERE ANN_CODE = #{annCode}
     </update>
 
     <!--  공지 사항 삭제  -->
     <delete id="deleteAnn">
         DELETE ANNOUNCEMENT
-        WHERE ANN_NUM = #{annNum}
+        WHERE ANN_CODE = #{annCode}
     </delete>
 
     <!--  문의 사항  -->
 
-    <resultMap id="inquire" type="com.easyfolio.esf.csc.vo.InqVO">
+    <resultMap id="inquire" type="com.easyfolio.esf.csc.vo.inq.InqVO">
         <id column="INQ_CODE" property="inqCode"/>
         <result column="INQ_CATE" property="inqCate"/>
         <result column="INQ_WRITER" property="inqWriter"/>
@@ -116,12 +116,12 @@
         <collection property="inqImgList" resultMap="inqImg"/>
     </resultMap>
 
-    <resultMap id="inqCate" type="com.easyfolio.esf.csc.vo.InqCateVO">
+    <resultMap id="inqCate" type="com.easyfolio.esf.csc.vo.inq.InqCateVO">
         <id column="CATE_CODE" property="cateCode"/>
         <result column="CATE_NAME" property="cateName"/>
     </resultMap>
 
-    <resultMap id="inqImg" type="com.easyfolio.esf.csc.vo.InqImgVO">
+    <resultMap id="inqImg" type="com.easyfolio.esf.csc.vo.inq.InqImgVO">
         <id column="IMG_CODE" property="imgCode"/>
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
         <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
@@ -301,7 +301,7 @@
 
     <!--  자주 찾는 질문  -->
 
-    <resultMap id="qna" type="com.easyfolio.esf.csc.vo.QnaVO">
+    <resultMap id="qna" type="com.easyfolio.esf.csc.vo.qna.QnaVO">
         <id column="QNA_CODE" property="qnaCode"/>
         <result column="QNA_QUESTION" property="qnaQuestion"/>
         <result column="QNA_ANSWER" property="qnaAnswer"/>
@@ -355,7 +355,7 @@
         <![CDATA[
     SELECT *
     FROM (
-        SELECT ANN_NUM
+        SELECT ANN_CODE
         , CATE_NAME
         , ANN_TITLE
         , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
@@ -387,9 +387,9 @@
     <!--  고객 센터 페이지 검색 + 페이징   -->
 
     <!--  공지사항  검색 페이징  -->
-    <select id="searchAnnPaging" resultMap="announcement">
+    <select id="CscSearchAnn" resultMap="announcement">
         SELECT
-        ANN_NUM
+        ANN_CODE
         , ANN_CATE
         , CATE_NAME
         , ANN_WRITER
@@ -401,60 +401,67 @@
         <if test='annCate != null and !annCate.equals("")'>
             AND ANN_CATE = #{annCate}
         </if>
-        <if test='searchData != null and !searchData.equals("")'>
+        <if test='allSearchKeyword != null and !allSearchKeyword.equals("")'>
             AND (
-            UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
-            OR UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
-            OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
+            UPPER(CATE_NAME) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
+            OR UPPER(ANN_TITLE) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
+            OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
             )
         </if>
-        ORDER BY ANN_NUM DESC
+        ORDER BY ANN_CODE DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
-    <select id="searchAnnCnt" resultType="int">
-        SELECT COUNT(ANN_NUM)
+    <!--  공지 사항 카테고리 목록 조회  -->
+    <select id="annCateList" resultMap="annCate">
+        SELECT
+        CATE_CODE
+        , CATE_NAME
+        FROM ANN_CATE_LIST
+        ORDER BY CATE_CODE
+    </select>
+
+    <select id="CscSearchAnnCnt" resultType="int">
+        SELECT COUNT(ANN_CODE)
         FROM ANNOUNCEMENT
         WHERE 1 = 1
         <if test='annCate != null and !annCate.equals("")'>
             AND ANN_CATE = #{annCate}
         </if>
-        <if test='searchData != null and !searchData.equals("")'>
+        <if test='allSearchKeyword != null and !allSearchKeyword.equals("")'>
             AND (
-            UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
-            OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
+            UPPER(ANN_TITLE) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
+            OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
             )
         </if>
     </select>
 
     <!--  QNA 검색 페이징  -->
-    <select id="searchQnaPaging" resultMap="qna">
+    <select id="CscSearchQna" resultMap="qna">
         SELECT
         QNA_CODE
         , QNA_QUESTION
         , QNA_ANSWER
         FROM QNA
-        WHERE QNA.CATE_CODE = LIST.CATE_CODE
-        <if test='searchData != null and !searchData.equals("")'>
+        WHERE 1 = 1
+        <if test='allSearchKeyword != null and !allSearchKeyword.equals("")'>
             AND (
-            UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
-            OR UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{searchData})||'%'
-            OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{searchData})||'%'
+            UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
+            OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
             )
         </if>
         ORDER BY QNA_CODE DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
-    <select id="searchQnaCnt" resultType="int">
-        SELECT
-        count(QNA_CODE)
-        FROM QNA QNA
+    <select id="CscSearchQnaCnt" resultType="int">
+        SELECT COUNT(QNA_CODE)
+        FROM QNA
         WHERE 1 = 1
-        <if test='searchData != null and !searchData.equals("")'>
+        <if test='allSearchKeyword != null and !allSearchKeyword.equals("")'>
             AND (
-            UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{searchData})||'%'
-            OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{searchData})||'%'
+            UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
+            OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{allSearchKeyword})||'%'
             )
         </if>
     </select>

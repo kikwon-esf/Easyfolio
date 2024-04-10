@@ -2,7 +2,7 @@ package com.easyfolio.esf.mainpage.controller;
 
 
 import com.easyfolio.esf.csc.service.CscService;
-import com.easyfolio.esf.csc.vo.*;
+import com.easyfolio.esf.csc.vo.ann.AnnVO;
 import com.easyfolio.esf.food.service.FoodService;
 
 import jakarta.servlet.http.HttpServletRequest;

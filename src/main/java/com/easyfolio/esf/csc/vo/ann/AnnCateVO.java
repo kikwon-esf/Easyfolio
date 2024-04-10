@@ -1,4 +1,4 @@
-package com.easyfolio.esf.csc.vo;
+package com.easyfolio.esf.csc.vo.ann;
 
 import lombok.Data;
 

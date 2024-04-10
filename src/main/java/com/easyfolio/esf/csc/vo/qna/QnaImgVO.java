@@ -1,11 +1,11 @@
-package com.easyfolio.esf.csc.vo;
+package com.easyfolio.esf.csc.vo.qna;
 
 import lombok.Data;
 
 @Data
-public class InqImgVO {
+public class QnaImgVO {
     private String imgCode;
     private String originFileName;
     private String attachedFileName;
-    private String inqCode;
+    private String qnaCode;
 }
