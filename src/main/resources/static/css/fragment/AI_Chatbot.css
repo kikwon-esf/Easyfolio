@@ -334,7 +334,8 @@
   background-color: #f4f4f4;
   color: #75d248;
 }
-.chatSend{
+
+.chatSend {
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
   background-color: transparent;
@@ -344,13 +345,35 @@
   height: 34px;
   padding: 8px;
 }
-.chatSend:hover {
+
+.chatSend > .sendBorder {
+  border: 2px solid #dadada; /* 회색 테두리 */
+}
+
+.chatSend > .sendBorder > .material-symbols-rounded.send {
+  color: #dadada; /* 회색 아이콘 */
+}
+
+/* 활성화 상태의 스타일 */
+.chatSend.active {
+  cursor: pointer; /* 활성화 상태에서는 커서를 포인터로 변경 */
+}
+
+.chatSend.active > .sendBorder {
+  border: 2px solid #91e4677b; /* 활성화 상태에서는 연두색 테두리 */
+}
+
+.chatSend.active > .sendBorder > .material-symbols-rounded.send {
+  color: #91e4677b; /* 활성화 상태에서는 연두색 아이콘 */
+}
+
+.chatSend.active:hover {
   background-color: #f4f4f4;
 }
-.chatSend:hover> .sendBorder.active{
+.chatSend.active:hover> .sendBorder.active{
   border: 2px solid #75d248;
 } 
-.chatSend:hover> .sendBorder > .material-symbols-rounded.send.active {
+.chatSend.active> .sendBorder > .material-symbols-rounded.send.active {
   color: #75d248;
 } 
 

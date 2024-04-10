@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeBtn = document.querySelector(".close-btn");
   const outputbox = document.querySelector(".outputbox");
   const chatInput = document.querySelector(".inputbox textarea");
-  const sendChatBtn = document.querySelector("#send-btn");
+  const sendChatBtn = document.querySelector("#send-btn").parentNode.parentNode;;
   const messageInput = document.getElementById("message");
   const textLengthDisplay = document.querySelector(".text-length");
   var imageUploadTrigger = document.getElementById("image-upload-trigger");
@@ -38,18 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (file) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        previewContainer.innerHTML = `
-          <img src="${e.target.result}" style="max-width: 100px; height: auto; display: inline-block;">
-          <button onclick="removeImagePreview()" style="display: inline-block;">X</button>
-        `;
+        outputbox.appendChild(createChatLi(e.target.result, "outgoing-image"));
+        outputbox.scrollTo(0, outputbox.scrollHeight);
       };
       reader.readAsDataURL(file);
     }
   });
 
   window.removeImagePreview = function () {
-    previewContainer.innerHTML = '';
-    imageUploadInput.value = '';
+    previewContainer.innerHTML = "";
+    imageUploadInput.value = "";
   };
 
   const createChatLi = (message, className) => {
@@ -57,16 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const classes = className.split(" ");
     chatLi.classList.add("chat", ...classes);
     let chatContent;
-  if (className === "outgoing") {
-    chatContent = `<p>${message}</p>`;
-  } else {
-    if (message === "...") {
-      chatContent = `<span class="material-symbols-outlined">smart_toy</span><p><span class="dot-animation">.</span><span class="dot-animation" style="animation-delay: 0.15s;">.</span><span class="dot-animation" style="animation-delay: 0.3s;">.</span></p>`;
+    if (className === "outgoing") {
+      chatContent = `<p>${message}</p>`;
+    } else if (className === "outgoing-image") {
+      chatContent = `<img src="${message}" style="max-width: 50px; height: auto;">`;
     } else {
-      chatContent = `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+      if (message === "...") {
+        chatContent = `<span class="material-symbols-outlined">smart_toy</span><p><span class="dot-animation">.</span><span class="dot-animation" style="animation-delay: 0.15s;">.</span><span class="dot-animation" style="animation-delay: 0.3s;">.</span></p>`;
+      } else {
+        chatContent = `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+      }
     }
-  }
-  chatLi.innerHTML = chatContent;
+    chatLi.innerHTML = chatContent;
     return chatLi;
   };
 
