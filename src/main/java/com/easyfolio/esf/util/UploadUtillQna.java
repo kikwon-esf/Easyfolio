@@ -1,6 +1,6 @@
 package com.easyfolio.esf.util;
 
-import com.easyfolio.esf.csc.vo.InqImgVO;
+import com.easyfolio.esf.csc.vo.inq.InqImgVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class UploadUtillCsc {
+public class UploadUtillQna {
 
     // 파일 첨부 기능(단일 파일 업로드)
     public static InqImgVO uploadFile(MultipartFile img) {
@@ -29,7 +29,7 @@ public class UploadUtillCsc {
 
             // 파일 첨부
             try {
-                File file = new File(ConstantVariable.UPLOAD_PATH_CSC + attachedFileName);
+                File file = new File(ConstantVariable.UPLOAD_PATH_QNA + attachedFileName);
                 img.transferTo(file);
 
                 inqImgVO.setOriginFileName(originFileName);

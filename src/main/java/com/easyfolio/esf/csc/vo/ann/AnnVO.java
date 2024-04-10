@@ -1,10 +1,11 @@
-package com.easyfolio.esf.csc.vo;
+package com.easyfolio.esf.csc.vo.ann;
 
+import com.easyfolio.esf.csc.vo.PageVO;
 import lombok.Data;
 
 @Data
-public class AnnVO extends PageVO{
-    private String annNum;
+public class AnnVO extends PageVO {
+    private String annCode;
     private String annCate;
     private String annTitle;
     private String annWriter;

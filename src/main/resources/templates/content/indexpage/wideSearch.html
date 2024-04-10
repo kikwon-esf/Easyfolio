@@ -53,7 +53,7 @@
                         <div class="recipes">
                             <div th:if="${not #lists.isEmpty(asFoodList)}" th:each="asfood, state : ${asFoodList}">
                                 <div class="recipe">
-                                    <a th:href="@{/food/detail(foodCode=${food.foodCode})}">
+                                    <a th:href="@{/food/detail(foodCode=${asfood.foodCode})}">
                                         <div class="recipeImgBox">
                                             <img src="/img/food/examImg.jpg" alt="">
                                         </div>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="csc_annBlock">
                     <div th:if="${!#lists.isEmpty(asAnnList)}">
-                        <a th:href="@{/csc/annDetailForm(annNum=${asAnn.annNum})}" th:each="asAnn, state : ${asAnnList}"
+                        <a th:href="@{/csc/annDetailForm(annCode=${asAnn.annCode})}" th:each="asAnn, state : ${asAnnList}"
                             class="csc_annLink">
                             <div class="csc_annBox">
                                 <div class="annTypeBox">

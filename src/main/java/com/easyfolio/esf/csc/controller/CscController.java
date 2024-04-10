@@ -2,7 +2,12 @@ package com.easyfolio.esf.csc.controller;
 
 import com.easyfolio.esf.csc.service.CscService;
 import com.easyfolio.esf.csc.vo.*;
-import com.easyfolio.esf.util.UploadUtillCsc;
+import com.easyfolio.esf.csc.vo.ann.AnnCateVO;
+import com.easyfolio.esf.csc.vo.ann.AnnVO;
+import com.easyfolio.esf.csc.vo.inq.InqImgVO;
+import com.easyfolio.esf.csc.vo.inq.InqVO;
+import com.easyfolio.esf.csc.vo.qna.QnaVO;
+import com.easyfolio.esf.util.UploadUtillInq;
 import com.easyfolio.esf.util.UploadUtillRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,10 +28,11 @@ public class CscController {
     private final CscService cscService;
 
     // 고객 센터 메인 페이지
-    @GetMapping("/cscForm")
-    public String cscForm(Model model){
-        model.addAttribute("annList", cscService.mainAnnList());
-        model.addAttribute("qnaList", cscService.mainQnaList());
+    @RequestMapping("/cscForm")
+    public String cscForm(Model model, AnnVO annVO, QnaVO qnaVO){
+        model.addAttribute("annList", cscService.cscSearchAnn(annVO));
+        model.addAttribute("qnaList", cscService.cscSearchQna(qnaVO));
+        model.addAttribute("allSearchKeyword", annVO.getAllSearchKeyword());
         return "content/csc/csc_main";
     }
     
@@ -34,10 +40,15 @@ public class CscController {
 
     // 공지 사항 목록 조회 페이지
     @RequestMapping("/annListForm")
-    public String annForm(Model model, AnnVO annVO){
-        annVO.setTotalDataCnt(cscService.annCnt());
+    public String annListForm(Model model, AnnVO annVO, AnnCateVO annCateVO){
+        annVO.setTotalDataCnt(cscService.cscSearchAnnCnt(annVO));
         annVO.setPageInfo();
-        model.addAttribute("annList", cscService.annList(annVO));
+        model.addAttribute("annList", cscService.cscSearchAnn(annVO));
+        model.addAttribute("annCateList", cscService.annCateList(annCateVO));
+        model.addAttribute("allSearchKeyword", annVO.getAllSearchKeyword());
+        if (annVO.getAnnCate() != null){
+            model.addAttribute("annCate", annVO.getAnnCate());
+        }
         return "content/csc/ann/csc_annList";
     }
 
@@ -73,7 +84,7 @@ public class CscController {
     @PostMapping("/updateAnn")
     public String updateAnn(AnnVO annVO){
         cscService.updateAnn(annVO);
-        return "redirect:/csc/annListForm?annNum=" + annVO.getAnnNum();
+        return "redirect:/csc/annListForm?annCode=" + annVO.getAnnCode();
     }
 
     // 공지 사항 삭제 후 목록 페이지 이동
@@ -125,7 +136,7 @@ public class CscController {
         //2. 이미지 정보 하나가 들어갈 수 있는 통!
 
         //첨부파일 기능 다중
-        List<InqImgVO> imgList = UploadUtillCsc.multiFileUpload(inqImg);
+        List<InqImgVO> imgList = UploadUtillInq.multiFileUpload(inqImg);
 
 
         for(InqImgVO inqImgVO : imgList){
@@ -187,13 +198,12 @@ public class CscController {
     // 자주 찾는 질문 //
 
     // 자주 찾는 질문 목록 조회
-    @GetMapping("/qnaListForm")
+    @RequestMapping("/qnaListForm")
     public String qnaListForm(Model model, QnaVO qnaVO){
-        qnaVO.setTotalDataCnt(cscService.qnaCnt());
+        qnaVO.setTotalDataCnt(cscService.cscSearchQnaCnt(qnaVO));
         qnaVO.setPageInfo();
-        System.err.println(cscService.qnaCnt());
-        System.err.println(cscService.qnaList(qnaVO));
-        model.addAttribute("qnaList", cscService.qnaList(qnaVO));
+        model.addAttribute("qnaList", cscService.cscSearchQna(qnaVO));
+        model.addAttribute("allSearchKeyword", qnaVO.getAllSearchKeyword());
         return "content/csc/qna/csc_qnaList";
     }
 

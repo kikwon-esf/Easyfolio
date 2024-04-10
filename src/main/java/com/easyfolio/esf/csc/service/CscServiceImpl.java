@@ -1,6 +1,11 @@
 package com.easyfolio.esf.csc.service;
 
 import com.easyfolio.esf.csc.vo.*;
+import com.easyfolio.esf.csc.vo.ann.AnnCateVO;
+import com.easyfolio.esf.csc.vo.ann.AnnVO;
+import com.easyfolio.esf.csc.vo.inq.InqImgVO;
+import com.easyfolio.esf.csc.vo.inq.InqVO;
+import com.easyfolio.esf.csc.vo.qna.QnaVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -47,6 +52,21 @@ public class CscServiceImpl implements CscService{
     @Override
     public int deleteAnn(AnnVO annVO) {
         return sqlSession.delete("cscMapper.deleteAnn", annVO);
+    }
+
+    @Override
+    public List<AnnVO> cscSearchAnn(AnnVO annVO) {
+        return sqlSession.selectList("cscMapper.CscSearchAnn", annVO);
+    }
+
+    @Override
+    public List<AnnCateVO> annCateList(AnnCateVO annCateVO) {
+        return sqlSession.selectList("cscMapper.annCateList", annCateVO);
+    }
+
+    @Override
+    public int cscSearchAnnCnt(AnnVO annVO) {
+        return sqlSession.selectOne("cscMapper.CscSearchAnnCnt", annVO);
     }
 
     @Override
@@ -135,6 +155,16 @@ public class CscServiceImpl implements CscService{
     @Override
     public int qnaCnt() {
         return sqlSession.selectOne("cscMapper.qnaCnt");
+    }
+
+    @Override
+    public List<QnaVO> cscSearchQna(QnaVO qnaVO) {
+        return sqlSession.selectList("cscMapper.CscSearchQna", qnaVO);
+    }
+
+    @Override
+    public int cscSearchQnaCnt(QnaVO qnaVO) {
+        return sqlSession.selectOne("cscMapper.CscSearchQnaCnt", qnaVO);
     }
 
 
