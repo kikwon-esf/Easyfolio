@@ -213,6 +213,7 @@
         OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
+
     <select id="allSearchFood" resultMap="food">
         <![CDATA[
     SELECT *
