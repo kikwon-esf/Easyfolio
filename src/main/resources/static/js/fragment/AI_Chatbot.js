@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  closeBtn.addEventListener("click", () =>
-    document.body.classList.remove("on")
-  );
+  // closeBtn.addEventListener("click", () =>
+  //   document.body.classList.remove("on")
+  // );
 
   let userMessage = null;
   const inputInitHeight = chatInput.scrollHeight;
