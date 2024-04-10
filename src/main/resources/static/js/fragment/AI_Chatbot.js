@@ -1,87 +1,102 @@
-//챗봇
+document.addEventListener("DOMContentLoaded", function () {
+  const chatbotToggler = document.querySelector(".chatbot-toggler");
+  const chatIcons = document.querySelectorAll("#chat-icon");
+  const chatBlock = document.querySelector(".chatBlock");
 
-const chatbotToggler = document.querySelector(".chatbot-toggler");
-const chatIcons = document.querySelectorAll("#chat-icon");
-const chatBlock = document.querySelector(".chatBlock");
+  const closeBtn = document.querySelector(".close-btn");
+  const outputbox = document.querySelector(".outputbox");
+  const chatInput = document.querySelector(".inputbox textarea");
+  const sendChatBtn = document.querySelector("#send-btn");
+  const messageInput = document.getElementById("message");
+  const textLengthDisplay = document.querySelector(".text-length");
 
-const closeBtn = document.querySelector(".close-btn");
-const outputbox = document.querySelector(".outputbox");
-const chatInput = document.querySelector(".inputbox textarea");
-const sendChatBtn = document.querySelector(".inputbox span");
-
-chatbotToggler.addEventListener("click", function(){
-    chatBlock.classList.toggle('on');
-    chatIcons.forEach(chatIcon => {
-        chatIcon.classList.toggle('on');
+  chatbotToggler.addEventListener("click", function () {
+    chatBlock.classList.toggle("on");
+    chatIcons.forEach((chatIcon) => {
+      chatIcon.classList.toggle("on");
     });
-});
+  });
 
-closeBtn.addEventListener("click", () => document.body.classList.remove("on"));
+  closeBtn.addEventListener("click", () =>
+    document.body.classList.remove("on")
+  );
 
+  let userMessage = null;
+  const inputInitHeight = chatInput.scrollHeight;
 
-let userMessage = null; // Variable to store user's message
-const inputInitHeight = chatInput.scrollHeight;
-
-const createChatLi = (message, className) => {
-    // Create a chat <li> element with passed message and className
+  const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
-    const classes = className.split(' ');
+    const classes = className.split(" ");
     chatLi.classList.add("chat", ...classes);
-    let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
-    chatLi.innerHTML = chatContent;
-    chatLi.querySelector("p").textContent = message;
-    return chatLi; // return chat <li> element
-}
+    let chatContent;
+  if (className === "outgoing") {
+    chatContent = `<p>${message}</p>`;
+  } else {
+    if (message === "...") {
+      chatContent = `<span class="material-symbols-outlined">smart_toy</span><p><span class="dot-animation">.</span><span class="dot-animation" style="animation-delay: 0.15s;">.</span><span class="dot-animation" style="animation-delay: 0.3s;">.</span></p>`;
+    } else {
+      chatContent = `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+    }
+  }
+  chatLi.innerHTML = chatContent;
+    return chatLi;
+  };
 
-
-const handleChat = () => {
-    userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
+  const handleChat = () => {
+    userMessage = chatInput.value.trim();
     if (!userMessage) return;
 
-    // Clear the input textarea and set its height to default
     chatInput.value = "";
     chatInput.style.height = `${inputInitHeight}px`;
+    textLengthDisplay.textContent = `0 / 1000`;
+    sendChatBtn.classList.remove("active");
 
-    // Append the user's message to the outputbox
     outputbox.appendChild(createChatLi(userMessage, "outgoing"));
     outputbox.scrollTo(0, outputbox.scrollHeight);
 
-    // Display "Thinking..." message while waiting for the response
     const incomingChatLi = createChatLi("...", "incoming");
 
     outputbox.appendChild(incomingChatLi);
     outputbox.scrollTo(0, outputbox.scrollHeight);
 
-    // AJAX Request
     $.ajax({
-        url: '/AI/Chatbot/',  // 요청을 보낼 URL입니다.
-        type: 'GET',
-        data: {
-            'user_input': userMessage
-        },
-        success: function (data) {
-            if (data.message === 'SUCCESS') {
-                incomingChatLi.querySelector("p").textContent = data.result;
-            }
-        },
-        error: function (request, status, error) {
-            console.log('Error fetching data:', error);
+      url: "/AI/Chatbot/",
+      type: "GET",
+      data: {
+        user_input: userMessage,
+      },
+      success: function (data) {
+        if (data.message === "SUCCESS") {
+          incomingChatLi.querySelector("p").textContent = data.result;
         }
+      },
+      error: function (request, status, error) {
+        console.log("Error fetching data:", error);
+      },
     });
-}
+  };
 
-chatInput.addEventListener("input", () => {
-    // Adjust the height of the input textarea based on its content
+  chatInput.addEventListener("input", () => {
     chatInput.style.height = `${chatInput.scrollHeight}px`;
-});
 
-chatInput.addEventListener("keydown", (e) => {
-    // If Enter key is pressed without Shift key and the window 
-    // width is greater than 800px, handle the chat
-    if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
-        e.preventDefault();
-        handleChat();
+    if (chatInput.value.trim() !== "") {
+      sendChatBtn.classList.add("active");
+    } else {
+      sendChatBtn.classList.remove("active");
     }
-});
+  });
 
-sendChatBtn.addEventListener("click", handleChat);
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+      e.preventDefault();
+      handleChat();
+    }
+  });
+
+  messageInput.addEventListener("input", function () {
+    const textLength = this.value.length;
+    textLengthDisplay.textContent = `${textLength} / 1000`;
+  });
+
+  sendChatBtn.addEventListener("click", handleChat);
+});

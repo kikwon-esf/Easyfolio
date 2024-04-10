@@ -37,7 +37,6 @@
                     <div class="chatbotWrap">
                         <div class="chatBotHeader">
                             <p>Dishcovery</p>
-                            <span class="close-btn material-symbols-outlined" id="closeBtn">close</span>
                         </div>
                         <div class="chatroom">
                             <div class="outputbox">
@@ -47,7 +46,7 @@
                                 </li>
                             </div>
                             <div class="inputbox">
-                                <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+                                <textarea id="message" placeholder="Enter a message..." spellcheck="false" required></textarea>
                                 <div class="chat-btn">
                                     <div class="chatmenu">
                                         <span class="material-symbols-outlined">
@@ -56,6 +55,7 @@
                                     </div>
                                     <span id="send-btn" class="material-symbols-rounded">send</span>
                                 </div>
+                                <span class="text-length">0/1000</span>
                             </div>
                         </div>
                     </div>
