@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const sendChatBtn = document.querySelector("#send-btn");
   const messageInput = document.getElementById("message");
   const textLengthDisplay = document.querySelector(".text-length");
+  var imageUploadTrigger = document.getElementById("image-upload-trigger");
+  var imageUploadInput = document.getElementById("image-upload");
+  var previewContainer = document.createElement("div");
+  previewContainer.id = "image-preview-container";
+  document.querySelector(".inputbox").appendChild(previewContainer);
 
   chatbotToggler.addEventListener("click", function () {
     chatBlock.classList.toggle("on");
@@ -23,6 +28,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let userMessage = null;
   const inputInitHeight = chatInput.scrollHeight;
+
+  imageUploadTrigger.addEventListener("click", function () {
+    imageUploadInput.click();
+  });
+
+  imageUploadInput.addEventListener("change", function () {
+    var file = this.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        previewContainer.innerHTML = `
+          <img src="${e.target.result}" style="max-width: 100px; height: auto; display: inline-block;">
+          <button onclick="removeImagePreview()" style="display: inline-block;">X</button>
+        `;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  window.removeImagePreview = function () {
+    previewContainer.innerHTML = '';
+    imageUploadInput.value = '';
+  };
 
   const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
