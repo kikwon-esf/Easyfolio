@@ -160,7 +160,7 @@
 .outputbox .chat p {
   color: #fff;
   font-size: 1rem;
-  padding: 12px 16px 12px 16px;
+  padding: 12px 12px 12px 12px;
   border-radius: 25px 0px 25px 25px;
   background: #75d248;
   max-width: 70%;
@@ -240,6 +240,33 @@
   background-color: #75d248;
   border-radius: 6px;
   border: 3px solid #fff;
+}
+
+.chat-btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 5px;
+}
+
+.chatmenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* column-gap: 8px; */ /* 다른 부가메뉴들 간격조정시 사용예정임 */
+}
+
+.chatmenu > .material-symbols-outlined {
+  color:#91e4677b;
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 30%;
+  transition: background-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.chatmenu > .material-symbols-outlined:hover {
+  background-color: #f4f4f4;
+  color: #75d248;
 }
 
 /* .show-chatbot .chatbot-toggler {
