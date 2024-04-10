@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="csc_annBlock">
-                        <a th:href="@{/csc/annDetailForm(annCode=${ann.annCode})}" th:each="ann, state : ${annList}" class="csc_annLink" th:if="${#lists.size(annList) != 0}">
+                        <a th:href="@{/csc/annDetailForm(annCode=${ann.annCode})}" th:each="ann, state : ${annList}" class="csc_annLink" th:if="${(#lists.size(annList) != 0) && (state.index lt 6)}">
                             <div class="csc_annBox">
                                 <div class="annTypeBox">
                                     <p class="slash">[</p>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="qnaBlock">
-                        <div class="qnaBox" th:each="qna : ${qnaList}" th:if="${#lists.size(qnaList) != 0}">
+                        <div class="qnaBox" th:each="qna, state :  ${qnaList}" th:if="${(#lists.size(qnaList) != 0) && (state.index lt 6)}">
                             <div class="qnaTextBox">
                                 <span class="qnaIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
