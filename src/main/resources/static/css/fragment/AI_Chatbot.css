@@ -1,8 +1,7 @@
 /*챗봇*/
 @font-face {
   font-family: "EASTARJET-Medium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/EASTARJET-Medium.woff2")
-    format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/EASTARJET-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
@@ -61,12 +60,12 @@
   padding: 12px 0;
 }
 
-.chatbot-toggler > .material-symbols-outlined {
+.chatbot-toggler>.material-symbols-outlined {
   opacity: 0;
   position: absolute;
 }
 
-.chatbot-toggler > .material-symbols-outlined.on {
+.chatbot-toggler>.material-symbols-outlined.on {
   opacity: 1;
   position: relative;
 }
@@ -174,7 +173,65 @@
   padding: 12px 16px;
 }
 
-.outputbox .chat span {
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.dot-animation {
+  display: inline-block;
+  animation: bounce 1s infinite;
+}
+
+@keyframes grow-shrink {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+.grow-animation {
+  display: inline-block;
+  animation: grow-shrink 1.2s infinite;
+}
+
+@keyframes fade-in-out {
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.fade-animation {
+  display: inline-block;
+  animation: fade-in-out 1.2s infinite;
+}
+
+.outputbox .chat>.material-symbols-outlined {
   width: 30px;
   height: 30px;
   color: #fff;
@@ -223,6 +280,7 @@
   outline: 0;
   border: 0;
   border-radius: 6px;
+  text-decoration: none;
 }
 
 .inputbox textarea::-webkit-scrollbar,
@@ -237,26 +295,34 @@
 
 .inputbox textarea::-webkit-scrollbar-thumb,
 .outputbox::-webkit-scrollbar-thumb {
-  background-color: #75d248;
+  background-color: #dadada;
   border-radius: 6px;
   border: 3px solid #fff;
+}
+
+.inputbox textarea::-webkit-scrollbar-thumb:hover,
+.outputbox::-webkit-scrollbar-thumb:hover {
+  background-color: #b0b0b0;
+  cursor: pointer;
 }
 
 .chat-btn {
   display: flex;
   justify-content: space-between;
   margin: 3px 5px;
+  align-items: center;
 }
 
 .chatmenu {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* column-gap: 8px; */ /* 다른 부가메뉴들 간격조정시 사용예정임 */
+  /* column-gap: 8px; */
+  /* 다른 부가메뉴들 간격조정시 사용예정임 */
 }
 
-.chatmenu > .material-symbols-outlined {
-  color:#91e4677b;
+.chatmenu>.material-symbols-outlined {
+  color: #91e4677b;
   background-color: transparent;
   padding: 5px;
   border-radius: 30%;
@@ -264,9 +330,80 @@
   cursor: pointer;
 }
 
-.chatmenu > .material-symbols-outlined:hover {
+.chatmenu>.material-symbols-outlined:hover {
   background-color: #f4f4f4;
   color: #75d248;
+}
+
+.chatSend {
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-radius: 30%;
+  width: 34px;
+  height: 34px;
+  padding: 8px;
+}
+
+.chatSend > .sendBorder {
+  border: 2px solid #dadada; /* 회색 테두리 */
+}
+
+.chatSend > .sendBorder > .material-symbols-rounded.send {
+  color: #dadada; /* 회색 아이콘 */
+}
+
+/* 활성화 상태의 스타일 */
+.chatSend.active {
+  cursor: pointer; /* 활성화 상태에서는 커서를 포인터로 변경 */
+}
+
+.chatSend.active > .sendBorder {
+  border: 2px solid #91e4677b; /* 활성화 상태에서는 연두색 테두리 */
+}
+
+.chatSend.active > .sendBorder > .material-symbols-rounded.send {
+  color: #91e4677b; /* 활성화 상태에서는 연두색 아이콘 */
+}
+
+.chatSend.active:hover {
+  background-color: #f4f4f4;
+}
+.chatSend.active:hover> .sendBorder.active{
+  border: 2px solid #75d248;
+} 
+.chatSend.active> .sendBorder > .material-symbols-rounded.send.active {
+  color: #75d248;
+} 
+
+.sendBorder {
+  position: relative;
+  border: 2px solid #dadada;
+  border-radius: 2px;
+  width: 15px;
+  height: 15px;
+}
+
+.material-symbols-rounded.send  {
+  position: absolute;
+  top: 0.5px;
+  color: #dadada;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.material-symbols-rounded.send.active {
+  color: #91e4677b;
+}
+
+.text-length {
+  position: absolute;
+  right: 45px;
+  bottom: 10px;
+  font-size: 10px;
+  line-height: 150%;
+  color: #888888;
 }
 
 /* .show-chatbot .chatbot-toggler {
