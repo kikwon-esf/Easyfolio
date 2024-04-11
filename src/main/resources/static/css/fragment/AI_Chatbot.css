@@ -334,7 +334,8 @@
   background-color: #f4f4f4;
   color: #75d248;
 }
-.chatSend{
+
+.chatSend {
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
   background-color: transparent;
@@ -344,15 +345,40 @@
   height: 34px;
   padding: 8px;
 }
-.chatSend:hover {
+
+.chatSend > .sendBorder {
+  border: 2px solid #dadada;
+}
+
+.chatSend > .sendBorder > .material-symbols-rounded.send {
+  color: #dadada;
+}
+
+
+.chatSend.active {
+  cursor: pointer;
+}
+
+.chatSend.active > .sendBorder {
+  border: 2px solid #91e4677b;
+}
+
+.chatSend.active > .sendBorder > .material-symbols-rounded.send {
+  color: #91e4677b;
+}
+
+.chatSend.active:hover {
   background-color: #f4f4f4;
 }
-.chatSend:hover> .sendBorder.active{
+.chatSend.active:hover> .sendBorder{
   border: 2px solid #75d248;
 } 
-.chatSend:hover> .sendBorder > .material-symbols-rounded.send.active {
-  color: #75d248;
+.chatSend.active> .sendBorder > .material-symbols-rounded.send{
+  color: #91e4677b;
 } 
+.chatSend.active:hover> .sendBorder > .material-symbols-rounded.send{
+  color: #75d248;
+}
 
 .sendBorder {
   position: relative;

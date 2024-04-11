@@ -6,9 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeBtn = document.querySelector(".close-btn");
   const outputbox = document.querySelector(".outputbox");
   const chatInput = document.querySelector(".inputbox textarea");
-  const sendChatBtn = document.querySelector("#send-btn");
+  const sendChatBtn = document.querySelector("#send-btn").parentNode.parentNode;
   const messageInput = document.getElementById("message");
   const textLengthDisplay = document.querySelector(".text-length");
+  var imageUploadTrigger = document.getElementById("image-upload-trigger");
+  var imageUploadInput = document.getElementById("image-upload");
 
   chatbotToggler.addEventListener("click", function () {
     chatBlock.classList.toggle("on");
@@ -24,34 +26,80 @@ document.addEventListener("DOMContentLoaded", function () {
   let userMessage = null;
   const inputInitHeight = chatInput.scrollHeight;
 
+  imageUploadTrigger.addEventListener("click", function () {
+    imageUploadInput.click();
+  });
+
+  imageUploadInput.addEventListener("change", function () {
+    var file = this.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+
+        var previewImage = document.createElement("img");
+        previewImage.src = e.target.result;
+        previewImage.style.maxWidth = "100px";
+        previewImage.style.height = "auto";
+
+        var removeButton = document.createElement("button");
+        removeButton.textContent = "X";
+        removeButton.onclick = function () {
+          previewContainer.innerHTML = "";
+          imageUploadInput.value = "";
+        };
+
+        previewContainer.appendChild(previewImage);
+        previewContainer.appendChild(removeButton);
+
+        outputbox.scrollTo(0, outputbox.scrollHeight);
+        sendChatBtn.classList.add("active");
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
   const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
     const classes = className.split(" ");
     chatLi.classList.add("chat", ...classes);
     let chatContent;
-  if (className === "outgoing") {
-    chatContent = `<p>${message}</p>`;
-  } else {
-    if (message === "...") {
-      chatContent = `<span class="material-symbols-outlined">smart_toy</span><p><span class="dot-animation">.</span><span class="dot-animation" style="animation-delay: 0.15s;">.</span><span class="dot-animation" style="animation-delay: 0.3s;">.</span></p>`;
+    if (className === "outgoing") {
+      chatContent = `<p>${message}</p>`;
+    } else if (className === "outgoing-image") {
+      chatContent = `<img src="${message}" style="max-width: 50px; height: auto;">`;
     } else {
-      chatContent = `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+      if (message === "...") {
+        chatContent = `<span class="material-symbols-outlined">smart_toy</span><p><span class="dot-animation">.</span><span class="dot-animation" style="animation-delay: 0.15s;">.</span><span class="dot-animation" style="animation-delay: 0.3s;">.</span></p>`;
+      } else {
+        chatContent = `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`;
+      }
     }
-  }
-  chatLi.innerHTML = chatContent;
+    chatLi.innerHTML = chatContent;
     return chatLi;
   };
 
   const handleChat = () => {
     userMessage = chatInput.value.trim();
-    if (!userMessage) return;
+    if (!userMessage && !imageUploadInput.value) return;
 
     chatInput.value = "";
     chatInput.style.height = `${inputInitHeight}px`;
     textLengthDisplay.textContent = `0 / 1000`;
     sendChatBtn.classList.remove("active");
 
-    outputbox.appendChild(createChatLi(userMessage, "outgoing"));
+    if (userMessage) {
+      outputbox.appendChild(createChatLi(userMessage, "outgoing"));
+    }
+    if (imageUploadInput.value) {
+      var file = imageUploadInput.files[0];
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        outputbox.appendChild(createChatLi(e.target.result, "outgoing-image"));
+      };
+      reader.readAsDataURL(file);
+      previewContainer.innerHTML = "";
+      imageUploadInput.value = "";
+    }
     outputbox.scrollTo(0, outputbox.scrollHeight);
 
     const incomingChatLi = createChatLi("...", "incoming");

@@ -202,6 +202,7 @@ public class CscController {
     public String qnaListForm(Model model, QnaVO qnaVO){
         qnaVO.setTotalDataCnt(cscService.cscSearchQnaCnt(qnaVO));
         qnaVO.setPageInfo();
+        model.addAttribute("qnaCode", qnaVO.getQnaCode());
         model.addAttribute("qnaList", cscService.cscSearchQna(qnaVO));
         model.addAttribute("allSearchKeyword", qnaVO.getAllSearchKeyword());
         return "content/csc/qna/csc_qnaList";

@@ -17,3 +17,4 @@ window.onclick = function(event) {
 closeBtn.onclick = function() {
     bigImgBlock.style.display = "none";
 }
+
