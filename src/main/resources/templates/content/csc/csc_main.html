@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="qnaBlock">
-                        <div class="qnaBox" th:each="qna, state :  ${qnaList}" th:if="${(#lists.size(qnaList) != 0) && (state.index lt 6)}">
+                        <a class="qnaBox" th:href="@{/csc/qnaListForm(qnaCode=${qna.qnaCode})}" th:each="qna, state :  ${qnaList}" th:if="${(#lists.size(qnaList) != 0) && (state.index lt 6)}">
                             <div class="qnaTextBox">
                                 <span class="qnaIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
@@ -116,7 +116,7 @@
                                     </svg>
                                 </p>
                             </div>
-                        </div>
+                        </a>
                         <div class="qnaBox" th:if="${#lists.size(qnaList) == 0}">
                             내용이 없습니다.
                         </div>
