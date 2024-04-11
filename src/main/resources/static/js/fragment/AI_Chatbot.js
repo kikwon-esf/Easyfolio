@@ -6,14 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeBtn = document.querySelector(".close-btn");
   const outputbox = document.querySelector(".outputbox");
   const chatInput = document.querySelector(".inputbox textarea");
-  const sendChatBtn = document.querySelector("#send-btn").parentNode.parentNode;;
+  const sendChatBtn = document.querySelector("#send-btn").parentNode.parentNode;
   const messageInput = document.getElementById("message");
   const textLengthDisplay = document.querySelector(".text-length");
   var imageUploadTrigger = document.getElementById("image-upload-trigger");
   var imageUploadInput = document.getElementById("image-upload");
-  var previewContainer = document.createElement("div");
-  previewContainer.id = "image-preview-container";
-  document.querySelector(".inputbox").appendChild(previewContainer);
 
   chatbotToggler.addEventListener("click", function () {
     chatBlock.classList.toggle("on");
@@ -38,17 +35,28 @@ document.addEventListener("DOMContentLoaded", function () {
     if (file) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        outputbox.appendChild(createChatLi(e.target.result, "outgoing-image"));
+
+        var previewImage = document.createElement("img");
+        previewImage.src = e.target.result;
+        previewImage.style.maxWidth = "100px";
+        previewImage.style.height = "auto";
+
+        var removeButton = document.createElement("button");
+        removeButton.textContent = "X";
+        removeButton.onclick = function () {
+          previewContainer.innerHTML = "";
+          imageUploadInput.value = "";
+        };
+
+        previewContainer.appendChild(previewImage);
+        previewContainer.appendChild(removeButton);
+
         outputbox.scrollTo(0, outputbox.scrollHeight);
+        sendChatBtn.classList.add("active");
       };
       reader.readAsDataURL(file);
     }
   });
-
-  window.removeImagePreview = function () {
-    previewContainer.innerHTML = "";
-    imageUploadInput.value = "";
-  };
 
   const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
@@ -72,14 +80,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const handleChat = () => {
     userMessage = chatInput.value.trim();
-    if (!userMessage) return;
+    if (!userMessage && !imageUploadInput.value) return;
 
     chatInput.value = "";
     chatInput.style.height = `${inputInitHeight}px`;
     textLengthDisplay.textContent = `0 / 1000`;
     sendChatBtn.classList.remove("active");
 
-    outputbox.appendChild(createChatLi(userMessage, "outgoing"));
+    if (userMessage) {
+      outputbox.appendChild(createChatLi(userMessage, "outgoing"));
+    }
+    if (imageUploadInput.value) {
+      var file = imageUploadInput.files[0];
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        outputbox.appendChild(createChatLi(e.target.result, "outgoing-image"));
+      };
+      reader.readAsDataURL(file);
+      previewContainer.innerHTML = "";
+      imageUploadInput.value = "";
+    }
     outputbox.scrollTo(0, outputbox.scrollHeight);
 
     const incomingChatLi = createChatLi("...", "incoming");

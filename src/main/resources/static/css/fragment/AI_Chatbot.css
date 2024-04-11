@@ -347,35 +347,38 @@
 }
 
 .chatSend > .sendBorder {
-  border: 2px solid #dadada; /* 회색 테두리 */
+  border: 2px solid #dadada;
 }
 
 .chatSend > .sendBorder > .material-symbols-rounded.send {
-  color: #dadada; /* 회색 아이콘 */
+  color: #dadada;
 }
 
-/* 활성화 상태의 스타일 */
+
 .chatSend.active {
-  cursor: pointer; /* 활성화 상태에서는 커서를 포인터로 변경 */
+  cursor: pointer;
 }
 
 .chatSend.active > .sendBorder {
-  border: 2px solid #91e4677b; /* 활성화 상태에서는 연두색 테두리 */
+  border: 2px solid #91e4677b;
 }
 
 .chatSend.active > .sendBorder > .material-symbols-rounded.send {
-  color: #91e4677b; /* 활성화 상태에서는 연두색 아이콘 */
+  color: #91e4677b;
 }
 
 .chatSend.active:hover {
   background-color: #f4f4f4;
 }
-.chatSend.active:hover> .sendBorder.active{
+.chatSend.active:hover> .sendBorder{
   border: 2px solid #75d248;
 } 
-.chatSend.active> .sendBorder > .material-symbols-rounded.send.active {
-  color: #75d248;
+.chatSend.active> .sendBorder > .material-symbols-rounded.send{
+  color: #91e4677b;
 } 
+.chatSend.active:hover> .sendBorder > .material-symbols-rounded.send{
+  color: #75d248;
+}
 
 .sendBorder {
   position: relative;
