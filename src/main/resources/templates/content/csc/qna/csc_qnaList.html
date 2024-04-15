@@ -36,8 +36,7 @@
                             </form>
                         </div>
                         <div class="qnaWrap">
-                            <div class="qnaBlock"  th:each="qna, state : ${qnaList}" th:if="${#lists.size(qnaList) != 0}">
-                                
+                            <div class="qnaBlock"  th:each="qna, state : ${qnaList}" th:if="${#lists.size(qnaList) != 0}"> 
                                 <div class="qnaInner">
                                     <input class="bQnaCode" type="hidden" th:value="${qna.qnaCode}">
                                     <div class="qnaBox">
@@ -68,8 +67,8 @@
                                     </div>
                                 </div>
                                 <div class="dnuBtnBox">
-                                    <div class="dnuBtn update"><p>수정</p></div>
-                                    <div class="dnuBtn delete"><p>삭제</p></div>
+                                    <div class="dnuBtn update" th:onclick=""><p>수정</p></div>
+                                    <div class="dnuBtn delete" th:onclick="|location.href='@{/csc/deleteQna(qnaCode=${qna.qnaCode})}'|"><p>삭제</p></div>
                                 </div>
                             </div>
                             <div th:if="${#lists.size(qnaList) == 0}">

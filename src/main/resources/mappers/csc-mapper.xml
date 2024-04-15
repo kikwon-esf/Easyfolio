@@ -348,6 +348,18 @@
         )
     </insert>
 
+<!--    <update id="">-->
+<!--        UPDATE QNA-->
+<!--        SET-->
+<!--        -->
+<!--    </update>-->
+
+    <!--  자주 찾는 질문 삭제  -->
+    <delete id="deleteQna">
+        DELETE QNA
+        WHERE QNA_CODE = #{qnaCode}
+    </delete>
+
     <!--  메인 페이지 검색  -->
 
     <!--  공지사항 검색  -->

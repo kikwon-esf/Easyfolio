@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
 var annSearch = document.querySelector('.annSearch');
 var annSearchBlock = document.querySelector('.annSearchBlock');
 if (annSearch != null) {
