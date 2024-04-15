@@ -167,6 +167,11 @@ public class CscServiceImpl implements CscService{
         return sqlSession.selectOne("cscMapper.CscSearchQnaCnt", qnaVO);
     }
 
+    @Override
+    public int deleteQna(QnaVO qnaVO) {
+        return sqlSession.delete("deleteQna", qnaVO);
+    }
+
 
     @Override
     public List<AnnVO> allSearchAnn(String allSearchKeyword) {

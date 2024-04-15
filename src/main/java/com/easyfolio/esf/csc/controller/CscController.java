@@ -12,10 +12,7 @@ import com.easyfolio.esf.util.UploadUtillRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -221,6 +218,15 @@ public class CscController {
         cscService.insertQna(qnaVO);
         return "redirect:/csc/qnaListForm";
     }
+
+    // 자주 찾는 질문 삭제
+    @GetMapping("/deleteQna")
+        public String deleteQna (QnaVO qnaVO){
+            cscService.deleteQna(qnaVO);
+            return "redirect:/csc/qnaListForm";
+        }
+
+
 
 
 

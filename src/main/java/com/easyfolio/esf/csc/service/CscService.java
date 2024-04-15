@@ -76,6 +76,8 @@ public interface CscService {
 
     public int cscSearchQnaCnt (QnaVO qnaVO);
 
+    public int deleteQna (QnaVO qnaVO);
+
 
 
 
