@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/fragment/csc_layout.css">
 
     <!-- css -->
     <th:block layout:fragment="content_css"></th:block>
@@ -18,12 +17,13 @@
 </head>
 
 <body>
-    <div class="container">
+
+<div class="container">
 
         <div class="row mb-3">
             <!-- 헤더 영역 -->
             <div class="col">
-                <th:block th:replace="~{fragment/main_header :: mainHeaderFragment}"></th:block>
+                <th:block th:replace="~{fragment/main/main_header :: mainHeaderFragment}"></th:block>
             </div>
         </div>
 
@@ -32,32 +32,20 @@
                 <div class="csc_t">
                     <!-- 상단 메뉴 영역 -->
                     <div class="col-2 csc_top">
-                        <th:block th:replace="~{fragment/csc_top :: cscTopFragment}"></th:block>
+                        <th:block th:replace="~{fragment/food/food_top :: foodTopFragment}"></th:block>
                     </div>
                 </div>
 
                 <div class="csc_m">
 
-                    <!-- 사이드 메뉴 영역 -->
-                    <div class="csc_col csc_side">
-                        <th:block th:replace="~{fragment/csc_side :: cscSideFragment}"></th:block>
-                    </div>
-
                     <!-- 컨텐츠 영역 -->
-                    <div class="csc_col csc_content">
+                    <div class="food_col food_content">
+                        <th:block th:replace="~{fragment/ask_login :: aksLoginFragment}"></th:block>
                         <th:block layout:fragment="content"></th:block>
                     </div>
                     
                 </div>
             </div>
-
-            <div class="csc_b">
-                <!-- 하단 메뉴 영역 -->
-                <div class="col-2 csc_bottom">
-                    <th:block th:replace="~{fragment/csc_bottom :: cscBottomFragment}"></th:block>
-                </div>
-            </div>
-            
         </div>
 
             <!-- 푸터 메뉴 영역 -->
