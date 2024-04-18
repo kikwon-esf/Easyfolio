@@ -78,6 +78,8 @@ public interface CscService {
 
     public int deleteQna (QnaVO qnaVO);
 
+    public int updateQna(QnaVO qnaVO);
+
 
 
 

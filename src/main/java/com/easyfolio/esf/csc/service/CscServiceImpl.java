@@ -169,7 +169,12 @@ public class CscServiceImpl implements CscService{
 
     @Override
     public int deleteQna(QnaVO qnaVO) {
-        return sqlSession.delete("deleteQna", qnaVO);
+        return sqlSession.delete("cscMapper.deleteQna", qnaVO);
+    }
+
+    @Override
+    public int updateQna(QnaVO qnaVO) {
+        return sqlSession.update("cscMapper.updateQna", qnaVO);
     }
 
 

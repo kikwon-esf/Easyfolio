@@ -232,3 +232,7 @@ textarea {
     background-color: #f08509;
     transition: background-color 0.5s ease;
 }
+
+.updateDisplay{
+    display: none;
+}
