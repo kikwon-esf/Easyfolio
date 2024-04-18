@@ -18,3 +18,17 @@ closeBtn.onclick = function() {
     bigImgBlock.style.display = "none";
 }
 
+// 삭제 팝업
+
+const deleteQnaBtn = document.querySelector('.deleteQnaBtn')
+
+deleteQnaBtn.addEventListener("click", function(){
+    deletePopUp();
+    puBtnYes.addEventListener('click', ()=>{
+        const deleteCode =  document.querySelector('.deleteCode').value;
+        var url = '/csc/deleteInq?inqCode=' + deleteCode;
+        location.href = url;
+    })
+
+});
+

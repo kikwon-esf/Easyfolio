@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/csc_layout}">
+    layout:decorate="~{fragment/csc/csc_layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -77,9 +77,8 @@
                         th:if="${inqDetail.inqResponse == 'N'}" class="btn">
                         <p>답변하기</p>
                     </a>
-                    <a th:href="@{/csc/deleteInq(inqCode=${inqDetail.inqCode})}" class="btn">
-                        <p>삭제하기</p>
-                    </a>
+                    <input type="hidden" th:value="${inqDetail.inqCode}" class="deleteCode">
+                    <div class="btn deleteQnaBtn" onclick="deletePopUp()">삭제하기</div>
                 </div>
             </div>
             <div class="bigImgBlock">

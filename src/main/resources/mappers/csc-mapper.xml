@@ -348,6 +348,27 @@
         )
     </insert>
 
+    <update id="updateQna">
+        UPDATE QNA
+        SET
+        <if test='inputQnaQuestion != null and !inputQnaQuestion.equals("")' >
+            QNA_QUESTION = #{inputQnaQuestion}
+            <if test='inputQnaAnswer != null and !inputQnaAnswer.equals("")' >
+                ,
+            </if>
+        </if>
+        <if test='inputQnaAnswer != null and !inputQnaAnswer.equals("")'>
+            QNA_ANSWER = #{inputQnaAnswer}
+        </if>
+        WHERE QNA_CODE = #{qnaCode}
+    </update>
+
+    <!--  자주 찾는 질문 삭제  -->
+    <delete id="deleteQna">
+        DELETE QNA
+        WHERE QNA_CODE = #{qnaCode}
+    </delete>
+
     <!--  메인 페이지 검색  -->
 
     <!--  공지사항 검색  -->

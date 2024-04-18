@@ -9,4 +9,6 @@ public class QnaVO extends PageVO {
     public String qnaQuestion;
     public String qnaAnswer;
     private String allSearchKeyword;
+    private String inputQnaQuestion;
+    private String inputQnaAnswer;
 }

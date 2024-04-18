@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-    layout:decorate="~{fragment/csc_layout}">
+    layout:decorate="~{fragment/csc/csc_layout}">
 <head>
 <meta charset="UTF-8">
 <title></title>
@@ -43,8 +43,10 @@
             </div>
         </div>
         <div class="btnBlock">
+            <input type="hidden" th:value="${annDetail.annCode}" class="deleteCode">
             <a th:href="@{/csc/updateAnnForm(annCode=${annDetail.annCode})}" class="btn"><p>수정하기</p></a>
-            <a th:href="@{/csc/deleteAnn(annCode=${annDetail.annCode})}" class="btn"><p>삭제하기</p></a>
+            <p class="btn deleteAnnBtn" onclick="deletePopUp()">삭제하기</p>
+            <!-- th:href="@{/csc/deleteAnn(annCode=${annDetail.annCode})}" -->
         </div>
     </div>
 </th:block>

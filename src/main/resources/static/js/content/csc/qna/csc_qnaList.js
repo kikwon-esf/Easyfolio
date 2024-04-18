@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
 var annSearch = document.querySelector('.annSearch');
 var annSearchBlock = document.querySelector('.annSearchBlock');
 if (annSearch != null) {
@@ -57,6 +59,105 @@ if (annSearch != null) {
     });
 }
 
+// 내용 수정 비동기
+
+function updateQna(qnaCode, qnaQuestion, qnaAnswer) {
+    fetch('/csc/updateQna', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        //컨트롤러로 전달할 데이터
+        body: new URLSearchParams({
+            'qnaCode': qnaCode,
+            'qnaQuestion': qnaQuestion,
+            'qnaAnswer': qnaAnswer,
+            'inputQnaQuestion' : document.querySelector('.inputQnaQuestion').value,
+            'inputQnaAnswer' : document.querySelector('.inputQnaAnswer').value
+
+        })
+    })
+        .then((response) => {
+            if (!response.ok) {
+                alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                return;
+            }
+
+            return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+            //return response.json(); //나머지 경우에 사용
+        })
+        //fetch 통신 후 실행 영역
+        .then((data) => {//data -> controller에서 리턴되는 데이터!
+            alert('변경되었습니다.')
+
+        })
+        //fetch 통신 실패 시 실행 영역
+        .catch(err => {
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
+        });
+}
+
+const qnaLists = document.querySelectorAll('qnaBlock');
+
+qnaLists.forEach((qnaList) =>{
+    qnaList.addEventListener("click", function(){
+        qnaBlock.querySelector('.note-editor.note-frame').classList.add('updateDisplay');
+    })
+})
 
 
+function updateStart(element){
+    const qnaBlock = element.closest('.qnaBlock');
+    qnaBlock.querySelector('.inputQnaQuestion').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.inputQnaAnswer').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.update2').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.labelQnaQuestion').classList.add('updateDisplay');
+    qnaBlock.querySelector('.labelQnaAnswer').classList.add('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.update').classList.add('updateDisplay');
+    qnaBlock.querySelector('.inputQnaAnswer').setAttribute('id', 'summernote');
+}
 
+function updateComplete(element){
+    const qnaBlock = element.closest('.qnaBlock');
+    qnaBlock.querySelector('.inputQnaQuestion').classList.add('updateDisplay');
+    qnaBlock.querySelector('.inputQnaAnswer').classList.add('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.update2').classList.add('updateDisplay');
+    qnaBlock.querySelector('.labelQnaQuestion').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.labelQnaAnswer').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.update').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.inputQnaAnswer').removeAttribute('id');
+    qnaBlock.querySelector('.labelQnaQuestion').textContent = qnaBlock.querySelector('.inputQnaQuestion').value;
+}
+
+
+// 삭제 팝업
+
+function deletePopUp(){
+    displayOn(puDelete);
+}
+
+const deleteBtns = document.querySelectorAll('.dnuBtn.delete');
+
+deleteBtns.forEach((deleteBtn) =>{
+    deleteBtn.addEventListener("click", function(){
+        deletePopUp();
+        puBtnYes.addEventListener('click', ()=>{
+            const textCode =  deleteBtn.parentNode.querySelector('.textCode').value;
+            var url = '/csc/deleteQna?qnaCode=' + textCode;
+            location.href = url;
+        })
+
+    })
+});
+
+
+$(document).ready(function() {
+    // 반복문을 통해 Summernote 생성
+        // Summernote 초기화
+        $('.editor').summernote({
+            height: 200, // 에디터 높이 설정 (선택 사항)
+            placeholder: '내용을 입력하세요...', // 플레이스홀더 설정 (선택 사항)
+        });
+    });

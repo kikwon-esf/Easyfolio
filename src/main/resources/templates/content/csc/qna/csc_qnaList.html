@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/csc_layout}">
+    layout:decorate="~{fragment/csc/csc_layout}">
 
 <head>
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="/css/content/csc/qna/csc_qnaList.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -23,7 +23,8 @@
                         <div class="annHeader">
                             <form action="/csc/qnaListForm" method="post">
                                 <div class="annSearchBlock">
-                                    <input type="text" class="annSearch" name="allSearchKeyword" placeholder="자주 찾는 질문 검색" th:value="${allSearchKeyword}">
+                                    <input type="text" class="annSearch" name="allSearchKeyword"
+                                        placeholder="자주 찾는 질문 검색" th:value="${allSearchKeyword}">
                                     <input type="submit" value="검색">
                                     <div class="annSearchBtn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
@@ -36,8 +37,8 @@
                             </form>
                         </div>
                         <div class="qnaWrap">
-                            <div class="qnaBlock"  th:each="qna, state : ${qnaList}" th:if="${#lists.size(qnaList) != 0}">
-                                
+                            <div class="qnaBlock" th:each="qna, state : ${qnaList}"
+                                th:if="${#lists.size(qnaList) != 0}">
                                 <div class="qnaInner">
                                     <input class="bQnaCode" type="hidden" th:value="${qna.qnaCode}">
                                     <div class="qnaBox">
@@ -51,7 +52,11 @@
                                             </svg>
                                         </div>
                                         <div class="qnaText">
-                                            <p>[[${qna.qnaQuestion}]]</p>
+                                            <p class="labelQnaQuestion">[[${qna.qnaQuestion}]]</p>
+                                            <p>
+                                                <input type="text" class="inputQnaQuestion updateDisplay"
+                                                    name="inputQnaQuestion" th:value="${qna.qnaQuestion}">
+                                            </p>
                                         </div>
                                         <div class="qnaArrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#666"
@@ -63,13 +68,24 @@
                                     </div>
                                     <div class="ansBox">
                                         <div class="ansText">
-                                            <p th:utext="${qna.qnaAnswer}"></p>
+                                            <p class="labelQnaAnswer" th:utext="${qna.qnaAnswer}"></p>
+                                            <div class="editor"
+                                               ></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="dnuBtnBox">
-                                    <div class="dnuBtn update"><p>수정</p></div>
-                                    <div class="dnuBtn delete"><p>삭제</p></div>
+                                    <input type="hidden" th:value="${qna.qnaCode}" class="textCode">
+                                    <div class="dnuBtn update" onclick="updateStart(this)">
+                                        <p>수정</p>
+                                    </div>
+                                    <div class="dnuBtn update2 updateDisplay"
+                                        th:onclick="updateQna([[${qna.qnaCode}]], [[${qna.qnaQuestion}]], [[${qna.qnaAnswer}]]), updateComplete(this) ">
+                                        <p>완료</p>
+                                    </div>
+                                    <div class="dnuBtn delete" onclick="deletePopUp()">
+                                        <p>삭제</p>
+                                    </div>
                                 </div>
                             </div>
                             <div th:if="${#lists.size(qnaList) == 0}">
@@ -80,13 +96,15 @@
                             <div class="btn_group">
                                 <div class="pageBtn" th:if="${#lists.size(qnaList) != 0}">
                                     <a class="page_prevBtn"
-                                        th:href="@{/csc/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span th:if="${qnaVO.prev}">이전</span></a>
+                                        th:href="@{/csc/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span
+                                            th:if="${qnaVO.prev}">이전</span></a>
                                     <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
-                                        <a class="page_numBtn"
-                                            th:href="@{/csc/qnaListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                                        <a class="page_numBtn" th:href="@{/csc/qnaListForm(nowPage=${pageNum})}"><span
+                                                th:text="${pageNum}"></span></a>
                                     </th:block>
                                     <a class="page_nextBtn"
-                                        th:href="@{/csc/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span th:if="${qnaVO.next}">다음</span></a>
+                                        th:href="@{/csc/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span
+                                            th:if="${qnaVO.next}">다음</span></a>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +119,11 @@
                 </div>
             </div>
         </div>
-
+        <!-- 썸머노트 적용 -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js" defer></script>
         <script src="/js/content/csc/qna/csc_qnaList.js"></script>
+        <script src="/js/content/csc/use_summernote.js"></script>
     </th:block>
 </body>
 
