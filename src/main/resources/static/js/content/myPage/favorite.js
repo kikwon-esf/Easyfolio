@@ -77,7 +77,6 @@ function addOrDelFav(ele){
     .then((resp)=>{
         let status = resp["status"];
         if(status != 200) {
-            alert("로그인을 확인해주세요!");
             popup(askFrame);
         }
         
