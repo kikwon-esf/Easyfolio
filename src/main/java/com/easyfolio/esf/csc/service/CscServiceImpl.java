@@ -128,6 +128,16 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
+    public int deleteResponse(ResVO resVO) {
+        return sqlSession.delete("cscMapper.deleteResponse", resVO);
+    }
+
+    @Override
+    public int deleteResImg(ResVO resVO) {
+        return sqlSession.delete("cscMapper.deleteResImg", resVO);
+    }
+
+    @Override
     public List<QnaVO> mainQnaList() {
         return sqlSession.selectList("cscMapper.mainQnaList");
     }

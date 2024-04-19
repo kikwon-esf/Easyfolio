@@ -59,6 +59,10 @@ public interface CscService {
 
     public String nextResCode();
 
+    public int deleteResponse(ResVO resVO);
+
+    public int deleteResImg(ResVO resVO);
+
 
 
 

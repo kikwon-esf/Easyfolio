@@ -37,10 +37,12 @@ public class MainpageController {
     @PostMapping("/wideSearch")
     public String wideSearch(@RequestParam(value = "allSearchKeyword", required = false) String allSearchKeyword, Model model, AnnVO annVO) {
             annVO.setAllSearchKeyword(allSearchKeyword);
+            System.err.println(allSearchKeyword);
             model.addAttribute("asAnnList", cscService.allSearchAnn(allSearchKeyword));
             model.addAttribute("asFoodList", foodService.allSearchFood(allSearchKeyword));
             model.addAttribute("asFoodCnt", foodService.allSearchFoodCnt(allSearchKeyword));
             model.addAttribute("asQnaList", cscService.allSearchQna(allSearchKeyword));
+        System.err.println("allSearchKeyworkd" + allSearchKeyword);
             model.addAttribute("allSearchKeyword", allSearchKeyword);
             return "content/indexpage/wideSearch";
     }

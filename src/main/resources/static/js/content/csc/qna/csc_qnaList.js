@@ -101,36 +101,35 @@ function updateQna(qnaCode, qnaQuestion, qnaAnswer) {
 
 const qnaLists = document.querySelectorAll('qnaBlock');
 
-qnaLists.forEach((qnaList) =>{
-    qnaList.addEventListener("click", function(){
-        qnaBlock.querySelector('.note-editor.note-frame').classList.add('updateDisplay');
-    })
-})
 
 
 function updateStart(element){
     const qnaBlock = element.closest('.qnaBlock');
+    const ansText = qnaBlock.querySelector('.ansText');
+    ansText.classList.add('updateDisplay');
     qnaBlock.querySelector('.inputQnaQuestion').classList.remove('updateDisplay');
-    qnaBlock.querySelector('.inputQnaAnswer').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.summernoteBox').classList.remove('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update2').classList.remove('updateDisplay');
     qnaBlock.querySelector('.labelQnaQuestion').classList.add('updateDisplay');
     qnaBlock.querySelector('.labelQnaAnswer').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update').classList.add('updateDisplay');
-    qnaBlock.querySelector('.inputQnaAnswer').setAttribute('id', 'summernote');
 }
 
 function updateComplete(element){
     const qnaBlock = element.closest('.qnaBlock');
     qnaBlock.querySelector('.inputQnaQuestion').classList.add('updateDisplay');
     qnaBlock.querySelector('.inputQnaAnswer').classList.add('updateDisplay');
+    qnaBlock.querySelector('.summernoteBox').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update2').classList.add('updateDisplay');
     qnaBlock.querySelector('.labelQnaQuestion').classList.remove('updateDisplay');
     qnaBlock.querySelector('.labelQnaAnswer').classList.remove('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update').classList.remove('updateDisplay');
-    qnaBlock.querySelector('.inputQnaAnswer').removeAttribute('id');
     qnaBlock.querySelector('.labelQnaQuestion').textContent = qnaBlock.querySelector('.inputQnaQuestion').value;
+    qnaBlock.querySelector('.labelQnaAnswer').textContent = qnaBlock.querySelector('.inputQnaAnswer').value;
+    const tag = qnaBlock.querySelector('.ansBox');
+    tag.innerHTML = '';
+    tag.insertAdjacentHTML('afterbegin', qnaBlock.querySelector('.editor.inputQnaAnswer').textContent);
 }
-
 
 // 삭제 팝업
 

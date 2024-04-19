@@ -150,7 +150,9 @@ public class CscController {
 
     // 문의 사항 삭제 후 목록 페이지 이동
     @GetMapping("/deleteInq")
-    public String deleteInq(InqVO inqVO){
+    public String deleteInq(InqVO inqVO, ResVO resVO){
+        cscService.deleteResImg(resVO);
+        cscService.deleteResponse(resVO);
         cscService.deleteInqImg(inqVO);
         cscService.deleteInq(inqVO);
         return "redirect:/csc/inqListForm";
