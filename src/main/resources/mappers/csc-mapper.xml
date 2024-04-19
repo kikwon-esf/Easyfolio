@@ -226,6 +226,16 @@
         WHERE INQ_CODE = #{inqCode}
     </update>
 
+    <delete id="deleteResponse">
+        DELETE INQ_RESPONSE
+        WHERE RES_CODE = #{resCode}
+    </delete>
+
+    <delete id="deleteResImg">
+        DELETE RES_IMG
+        WHERE RES_CODE = #{resCode}
+    </delete>
+
     <!--  문의 답변  -->
     <resultMap id="response" type="com.easyfolio.esf.csc.vo.ResVO">
         <id column="RES_CODE" property="resCode"/>

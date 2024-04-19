@@ -77,8 +77,9 @@
                         th:if="${inqDetail.inqResponse == 'N'}" class="btn">
                         <p>답변하기</p>
                     </a>
-                    <input type="hidden" th:value="${inqDetail.inqCode}" class="deleteCode">
-                    <div class="btn deleteQnaBtn" onclick="deletePopUp()">삭제하기</div>
+                    <input type="hidden" th:value="${inqDetail.inqCode}" class="deleteInqCode">
+                    <input th:if="${inqDetail.inqResponse == 'Y'}" type="hidden" th:value="${resInq.resCode}" class="deleteResCode">
+                    <div class="btn deleteinqBtn" onclick="deletePopUp()">삭제하기</div>
                 </div>
             </div>
             <div class="bigImgBlock">
