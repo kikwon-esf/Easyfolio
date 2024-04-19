@@ -106,6 +106,7 @@ const qnaLists = document.querySelectorAll('qnaBlock');
 function updateStart(element){
     const qnaBlock = element.closest('.qnaBlock');
     const ansText = qnaBlock.querySelector('.ansText');
+    ansText.classList.add('updateDisplay');
     qnaBlock.querySelector('.inputQnaQuestion').classList.remove('updateDisplay');
     qnaBlock.querySelector('.summernoteBox').classList.remove('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update2').classList.remove('updateDisplay');
@@ -125,9 +126,9 @@ function updateComplete(element){
     qnaBlock.querySelector('.dnuBtn.update').classList.remove('updateDisplay');
     qnaBlock.querySelector('.labelQnaQuestion').textContent = qnaBlock.querySelector('.inputQnaQuestion').value;
     qnaBlock.querySelector('.labelQnaAnswer').textContent = qnaBlock.querySelector('.inputQnaAnswer').value;
-    const tag = qnaBlock.querySelector('.labelQnaAnswer');
+    const tag = qnaBlock.querySelector('.ansBox');
     tag.innerHTML = '';
-    tag.insertAdjacentHTML('afterbegin', qnaBlock.querySelector('.inputQnaAnswer').value);
+    tag.insertAdjacentHTML('afterbegin', qnaBlock.querySelector('.editor.inputQnaAnswer').textContent);
 }
 
 // 삭제 팝업
