@@ -101,11 +101,14 @@ function updateQna(qnaCode, qnaQuestion, qnaAnswer) {
 
 const qnaLists = document.querySelectorAll('qnaBlock');
 
-
-
 function updateStart(element){
     const qnaBlock = element.closest('.qnaBlock');
     const ansText = qnaBlock.querySelector('.ansText');
+    // const Allp = ansText.querySelectorAll('p');
+    // Allp.forEach((p) =>{
+    //     p.classList.add('updateDisplay');
+    // })
+    // ansText.querySelector('table').classList.add('updateDisplay');
     ansText.classList.add('updateDisplay');
     qnaBlock.querySelector('.inputQnaQuestion').classList.remove('updateDisplay');
     qnaBlock.querySelector('.summernoteBox').classList.remove('updateDisplay');
@@ -117,18 +120,18 @@ function updateStart(element){
 
 function updateComplete(element){
     const qnaBlock = element.closest('.qnaBlock');
+    const ansText = qnaBlock.querySelector('.ansText');
+    ansText.classList.remove('updateDisplay');
     qnaBlock.querySelector('.inputQnaQuestion').classList.add('updateDisplay');
-    qnaBlock.querySelector('.inputQnaAnswer').classList.add('updateDisplay');
     qnaBlock.querySelector('.summernoteBox').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update2').classList.add('updateDisplay');
     qnaBlock.querySelector('.labelQnaQuestion').classList.remove('updateDisplay');
     qnaBlock.querySelector('.labelQnaAnswer').classList.remove('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update').classList.remove('updateDisplay');
     qnaBlock.querySelector('.labelQnaQuestion').textContent = qnaBlock.querySelector('.inputQnaQuestion').value;
-    qnaBlock.querySelector('.labelQnaAnswer').textContent = qnaBlock.querySelector('.inputQnaAnswer').value;
-    const tag = qnaBlock.querySelector('.ansBox');
+    const tag = qnaBlock.querySelector('.ansText');
     tag.innerHTML = '';
-    tag.insertAdjacentHTML('afterbegin', qnaBlock.querySelector('.editor.inputQnaAnswer').textContent);
+    tag.insertAdjacentHTML('afterend', qnaBlock.querySelector('.note-editable').innerHTML);
 }
 
 // 삭제 팝업
@@ -152,11 +155,30 @@ deleteBtns.forEach((deleteBtn) =>{
 });
 
 
-$(document).ready(function() {
-    // 반복문을 통해 Summernote 생성
-        // Summernote 초기화
-        $('.editor').summernote({
-            height: 200, // 에디터 높이 설정 (선택 사항)
-            placeholder: '내용을 입력하세요...', // 플레이스홀더 설정 (선택 사항)
+// $(document).ready(function() {
+//     // 반복문을 통해 Summernote 생성
+//         // Summernote 초기화
+//         $('.editor').summernote({
+//             height: 200, // 에디터 높이 설정 (선택 사항)
+//             placeholder: '내용을 입력하세요...', // 플레이스홀더 설정 (선택 사항)
+//         });
+//     });
+
+
+// JavaScript 함수를 통해 각 썸머노트에 고유한 ID를 할당
+function initializeSummerNote() {
+    var textAreas = document.querySelectorAll('.inputQnaAnswer');
+    textAreas.forEach(function(textArea, index) {
+        var uniqueID = 'summerNote_' + index; // 각 썸머노트에 할당할 고유한 ID 생성
+        textArea.setAttribute('id', uniqueID); // 각 textarea에 고유한 ID 할당
+        // 해당 textarea를 썸머노트로 초기화
+        $('#' + uniqueID).summernote({
+            // 여기에 썸머노트 옵션 설정
         });
     });
+}
+
+// 페이지 로드 후 각 썸머노트 초기화 함수 호출
+window.onload = function() {
+    initializeSummerNote();
+};

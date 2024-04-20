@@ -71,7 +71,7 @@
                                             <p class="labelQnaAnswer" th:utext="${qna.qnaAnswer}"></p>
                                         </div>
                                         <div class="summernoteBox updateDisplay">
-                                            <textarea class="editor inputQnaAnswer">[[${qna.qnaAnswer}]]</textarea>
+                                            <textarea class="inputQnaAnswer" th:utext="${qna.qnaAnswer}"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
                                         <p>수정</p>
                                     </div>
                                     <div class="dnuBtn update2 updateDisplay"
-                                        th:onclick="updateQna([[${qna.qnaCode}]], [[${qna.qnaQuestion}]], [[${qna.qnaAnswer}]]), updateComplete(this) ">
+                                        th:onclick=" updateQna([[${qna.qnaCode}]], [[${qna.qnaQuestion}]], [[${qna.qnaAnswer}]]), updateComplete(this), ">
                                         <p>완료</p>
                                     </div>
                                     <div class="dnuBtn delete" onclick="deletePopUp()">
