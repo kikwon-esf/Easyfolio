@@ -81,7 +81,7 @@
                                         <p>수정</p>
                                     </div>
                                     <div class="dnuBtn update2 updateDisplay"
-                                        th:onclick="updateQna([[${qna.qnaCode}]], [[${qna.qnaQuestion}]], [[${qna.qnaAnswer}]]), updateComplete(this) ">
+                                        th:onclick="updateQna(this), updateComplete(this) ">
                                         <p>완료</p>
                                     </div>
                                     <div class="dnuBtn delete" onclick="deletePopUp()">
