@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function updateQna(element) {
     const target = element.closest(".qnaBlock");
-    console.log(target)
     fetch('/csc/updateQna', {
         method: 'POST',
         cache: 'no-cache',
