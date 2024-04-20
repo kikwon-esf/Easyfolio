@@ -39,12 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-<<<<<<< HEAD
-function updateQna(element) {
-    const target = element.closest(".qnaBlock");
-    console.log(target)
-    fetch('/csc/updateQna', {
-=======
 
 var annSearch = document.querySelector('.annSearch');
 var annSearchBlock = document.querySelector('.annSearchBlock');
@@ -69,7 +63,6 @@ if (annSearch != null) {
 
 function updateQna(qnaCode, qnaQuestion, qnaAnswer) {
     fetch('/csc/updateQna', { //요청경로
->>>>>>> sun
         method: 'POST',
         cache: 'no-cache',
         headers: {
@@ -77,20 +70,12 @@ function updateQna(qnaCode, qnaQuestion, qnaAnswer) {
         },
         //컨트롤러로 전달할 데이터
         body: new URLSearchParams({
-<<<<<<< HEAD
-            'qnaCode': target.querySelector('.bQnaCode').value,
-            'qnaQuestion': target.querySelector('.labelQnaQuestion').value,
-            'qnaAnswer': target.querySelector('.labelQnaAnswer').value,
-            'inputQnaQuestion': target.querySelector('.inputQnaQuestion').value,
-            'inputQnaAnswer': target.querySelector('.inputQnaAnswer').value
-=======
             'qnaCode': qnaCode,
             'qnaQuestion': qnaQuestion,
             'qnaAnswer': qnaAnswer,
             'inputQnaQuestion' : document.querySelector('.inputQnaQuestion').value,
             'inputQnaAnswer' : document.querySelector('.inputQnaAnswer').value
 
->>>>>>> sun
         })
     })
         .then((response) => {
