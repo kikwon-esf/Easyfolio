@@ -54,7 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function updateQna(qnaCode, qnaQuestion, qnaAnswer) {
+function updateQna(element) {
+    const target = element.closest(".qnaBlock");
+    console.log(target)
     fetch('/csc/updateQna', {
         method: 'POST',
         cache: 'no-cache',
@@ -62,11 +64,11 @@ function updateQna(qnaCode, qnaQuestion, qnaAnswer) {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
         body: new URLSearchParams({
-            'qnaCode': qnaCode,
-            'qnaQuestion': qnaQuestion,
-            'qnaAnswer': qnaAnswer,
-            'inputQnaQuestion': document.querySelector('.inputQnaQuestion').value,
-            'inputQnaAnswer': document.querySelector('.inputQnaAnswer').value
+            'qnaCode': target.querySelector('.bQnaCode').value,
+            'qnaQuestion': target.querySelector('.labelQnaQuestion').value,
+            'qnaAnswer': target.querySelector('.labelQnaAnswer').value,
+            'inputQnaQuestion': target.querySelector('.inputQnaQuestion').value,
+            'inputQnaAnswer': target.querySelector('.inputQnaAnswer').value
         })
     })
         .then((response) => {
