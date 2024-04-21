@@ -358,6 +358,7 @@
         )
     </insert>
 
+    <!--  자주 찾는 질문 수정 (비동기)  -->
     <update id="updateQna">
         UPDATE QNA
         SET

@@ -19,6 +19,7 @@ var cscSearchBlock = document.querySelector('.csc_searchBlock');
 
 
 
+
 function searchTip(element){
     var data = element.textContent;
     var url = '/csc/cscForm?allSearchKeyword=' + data;
