@@ -235,7 +235,6 @@ public class CscController {
     @PostMapping("/updateQna")
     public void updateQna(QnaVO qnaVO){
         cscService.updateQna(qnaVO);
-        System.err.println(qnaVO);
     }
 
 
