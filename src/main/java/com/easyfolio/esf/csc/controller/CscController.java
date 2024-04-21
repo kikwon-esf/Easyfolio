@@ -10,6 +10,7 @@ import com.easyfolio.esf.csc.vo.qna.QnaVO;
 import com.easyfolio.esf.util.UploadUtillInq;
 import com.easyfolio.esf.util.UploadUtillRes;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -229,6 +230,7 @@ public class CscController {
     }
 
     // 자주 찾는 질문 수정 (비동기)
+    @Async
     @ResponseBody
     @PostMapping("/updateQna")
     public void updateQna(QnaVO qnaVO){
