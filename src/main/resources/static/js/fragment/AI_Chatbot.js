@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // closeBtn.addEventListener("click", () =>
   //   document.body.classList.remove("on")
   // );
-
+// sadfasdfasdf
   let userMessage = null;
   const inputInitHeight = chatInput.scrollHeight;
 
