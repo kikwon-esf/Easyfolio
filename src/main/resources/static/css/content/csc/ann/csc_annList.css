@@ -112,8 +112,8 @@ textarea {
 .annChoice{
     cursor: pointer;
     text-align: center;
-    width: 70px;
-    margin: 0 10px;
+    width: 90px;
+    margin: 0 5px;
     font-size: 18px;
     color: #666;
 }
