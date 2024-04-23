@@ -364,7 +364,7 @@
         SET
         <if test='inputQnaQuestion != null and !inputQnaQuestion.equals("")' >
             QNA_QUESTION = #{inputQnaQuestion}
-            <if test='inputQnaAnswer != null and !inputQnaAnswer.equals("")' >
+            <if test='inputQnaAnswer != null and !inputQnaAnswer.equals("") ' >
                 ,
             </if>
         </if>
