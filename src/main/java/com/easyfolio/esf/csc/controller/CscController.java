@@ -230,7 +230,6 @@ public class CscController {
     }
 
     // 자주 찾는 질문 수정 (비동기)
-    @Async
     @ResponseBody
     @PostMapping("/updateQna")
     public void updateQna(QnaVO qnaVO){
