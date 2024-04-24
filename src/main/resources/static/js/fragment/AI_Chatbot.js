@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
   //   document.body.classList.remove("on")
   // );
 // sadfasdfasdf
-  // sdffgsdgdrtydfgxcfg
+  // sdffgsdgd
+  //asdjfladfasdf
   let userMessage = null;
   const inputInitHeight = chatInput.scrollHeight;
 
