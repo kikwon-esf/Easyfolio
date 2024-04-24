@@ -235,3 +235,268 @@ textarea {
     border-radius: 50%;
     padding: 2px 5px;
 }
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#csc_wrap{
+    width: 1000px;
+}
+.csc_title{
+    display: -webkit-inline-box;
+    position: relative;
+    margin: -10px 0 20px 20px;
+}
+.csc_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.csc_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.csc_inner{
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+}
+.inq_checkBlock{
+    background-color: rgba(244,244,244,.5);
+    width: 650px;
+    height: 222px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin: 30px auto 50px auto;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.inqStop{
+    display: flex;
+    margin-bottom: 20px;
+}
+.inqStopText{
+    font-size: 30px;
+    font-weight: 700;
+    color: #f29221;
+    margin-right: 10px;
+    margin: 0 10px 0 17px;
+}
+.inqStopText1{
+    font-size: 21px;
+    color: #666;
+    margin-top: 13px;
+}
+.inq_stopTextBox{
+    display: ruby-text;
+}
+.inq_stopTextBox p{
+    color: #666;
+    font-size: 18px;
+    margin: 15px 0;
+}
+.inq_stopTextBox span{
+    color: #555;
+    font-size: 20px;
+    font-weight: 700;
+}
+.qnaGo:hover{
+    font-weight: 700;
+    color: #333;
+    border-bottom: 2px solid #555;
+}
+.inq_stopTextBox > .qnaGo{
+    cursor: pointer;
+    color: #555;
+}
+.inqBlock{
+    width: 100%;
+    margin-bottom: 50px;
+}
+.inqBlock .box{
+    width: 800px;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.04);
+    border: 1px solid #dadada;
+}
+.inputBox{
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.inputBox:last-child{
+    border-bottom: 0;
+}
+.label{
+    font-size: 15px;
+    color: #333;
+    width: 100px;
+    text-align: center;
+    padding: 20px 0;
+    border-right: 1px solid #dadada;
+}
+select{
+    font-size: 15px;
+    width: 100px;
+    padding: 5px 5px;
+    height: 30px;
+    margin: 16px 10px;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+    outline: 0;
+}
+select:focus, select:hover{
+    border: 1px solid #f3c053;
+}
+.inputBox input{
+    border: 0;
+    box-sizing: border-box;
+    outline: 0;
+    width: 690px;
+    padding: 5px 10px;
+    font-size: 17px;
+    color: #333;
+}
+.inputBox.content > .label{
+    height: 300px;
+    line-height: 300px;
+}
+.inputBox.content textarea{
+    width: 690px;
+    font-size: 17px;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+}
+.label.imgLook{
+    height: 100px;
+    padding: 60px 0 25px 0;
+}
+.btnBox{
+    width: 200px;
+    margin: 0 auto;
+}
+.subBtn{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+.subBtn:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
+}
+.inputBox.img input{
+    width: 100px;
+}
+
+/* 사진 미리보기 */
+.inqImg{
+    color: #fff;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+}
+.inputBox.img .upload-name {
+    border-radius: 5px;
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 585px;
+    color: #999999;
+    margin: 16px 10px;
+}
+
+.inputBox.img label {
+    display: inline-block;
+    padding: 7px 0px 2px 15px;
+    border-radius: 5px;
+    width: 68px;
+    border: 1px solid #ffd57a;
+    font-size: 14px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #ffa43b;
+    cursor: pointer;
+    height: 25px;
+    margin: 18px 0;
+    transition: background-color 0.5s ease;
+}
+.inputBox.img label:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
+}
+.inputBox.img input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.imgSlideList{
+    width: 120px;
+    height: 120px;
+    margin: 10px 5px;
+}
+.imgSlideList:first-child{
+    margin-left: 10px;
+}
+.imgSlideList img{
+    width: 100%;
+    height: 100%;
+}
+.inputBox.imgLook > .label{
+    height: 140px;
+    box-sizing: border-box;
+    padding: 40px 0;
+}
