@@ -236,5 +236,9 @@ textarea {
 .updateDisplay{
     display: none;
 }
+.pageBtnBox{
+    text-align: center;
+    margin-bottom: 20px;
+}
 
 
