@@ -79,7 +79,7 @@ function updateQna(element) {
             return response.text();
         })
         .then((data) => {
-            alert('변경되었습니다.');
+            alert('내용이 변경되었습니다.');
         })
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
