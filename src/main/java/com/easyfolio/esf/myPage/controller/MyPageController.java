@@ -5,6 +5,7 @@ import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
+import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.JSONParser;
@@ -98,6 +99,15 @@ public class MyPageController {
         }
 
         return new ResponseEntity<>("addComplete", HttpStatus.OK);
+    }
+
+    //댓글 등록
+    @PostMapping("/comment")
+    @Transactional
+    public String submitComment(CommentVO commentVO, Principal principal, String foodCode){
+        commentVO.setMemberId(principal.getName());
+
+        return "content/myPage/replace/food_comment";
     }
 
 }

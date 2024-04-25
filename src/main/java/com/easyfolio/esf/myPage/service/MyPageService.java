@@ -1,6 +1,7 @@
 package com.easyfolio.esf.myPage.service;
 
 import com.easyfolio.esf.member.vo.MemberVO;
+import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface MyPageService {
     public int increaseFavCnt(FavoriteVO favoriteVO);
 
     public int decreaseFavCnt(FavoriteVO favoriteVO);
+
+    public int submitComment(CommentVO commentVO);
+
+    public int deleteComment(CommentVO commentVO);
 }

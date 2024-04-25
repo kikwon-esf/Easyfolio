@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="commentMapper">
+
+    <resultMap id="commentEach" type="com.easyfolio.esf.myPage.vo.CommentVO">
+        <result column="FOOD_COMMENT_ID" property="foodCommentId" />
+        <result column="FOOD_CODE" property="foodCode" />
+        <result column="MEMBER_ID" property="memberId" />
+        <result column="REG_DATE" property="reg_date" />
+        <result column="CONTENT" property="content" />
+        <collection property="foodVO" resultMap="foodMapper.food"/>
+        <collection property="memberVO" resultMap="memberMapper.member"/>
+    </resultMap>
+
+    <!--    댓글등록-->
+    <insert id="submitComment">
+        INSERT INTO FOOD_COMMENT (
+        FOOD_COMMENT_ID
+        , FOOD_CODE
+        , MEMBER_ID
+        , CONTENT
+        )
+        VALUES (
+        (SELECT 'COMMT_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(FOOD_COMMENT_ID, 5))),0) + 1, 3, '0')
+        FROM FOOD_COMMENT)
+        , #{foodCode}
+        , #{memberId}
+        , #{content}
+        )
+    </insert>
+
+
+    <!--댓글 삭제-->
+    <delete id="deleteFoodComment">
+        DELETE FROM FOOD_COMMENT
+        WHERE FOOD_COMMENT_ID = #{foodCommentId}
+    </delete>
+
+
+    <!--댓글 수정-->
+    <update id="updateFoodComment">
+        UPDATE FOOD_COMMENT
+        SET
+        CONTENT = #{content}
+        WHERE FOOD_COMMENT_ID = #{foodCommentId}
+    </update>
+
+
+    <!--댓글 불러오기-->
+    <select id="commentList" resultMap="commentEach">
+        SELECT M.MEMBER_NAME
+        <!--   멤버 아이디로 찾을 때     -->
+        <if test="memberId != null and not memberId.isEmpty()">
+            ,F.FOOD_TTL
+            ,C.FOOD_CODE
+        </if>
+        <!--    FOOD_CODE로 찾을 때    -->
+        <if test="foodCode != null and not foodCode.isEmpty()">
+            ,F.FOOD_TTL
+            ,C.FOOD_CODE
+        </if>
+        ,C.FOOD_COMMENT_ID
+        ,C.MEMBER_ID
+        ,C.CONTENT
+        , TO_CHAR(FAVORITE_DATE,'YYYY-MM-DD') AS C.REG_DATE
+        FROM COMMENT C
+
+        <if test="memberId != null and not memberId.isEmpty()">
+            ,FOOD F
+            WHERE FA.MEMBER_ID = #{memberId}
+            AND FOOD_TTL LIKE '%' || #{searchFavoriteValue} || '%'
+        </if>
+        <if test="foodCode != null and not foodCode.isEmpty()">
+            WHERE FA.MEMBER_ID = #{memberId}
+            AND FOOD_TTL LIKE '%' || #{searchFavoriteValue} || '%'
+        </if>
+        AND FA.FOOD_CODE = FO.FOOD_CODE
+        ORDER BY C.REG_DATE DESC
+    </select>
+
+    <!--댓글 불러오기 AS MEMBER-->
+
+</mapper>
