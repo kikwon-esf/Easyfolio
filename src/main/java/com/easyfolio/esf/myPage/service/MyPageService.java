@@ -27,4 +27,8 @@ public interface MyPageService {
     public int submitComment(CommentVO commentVO);
 
     public int deleteComment(CommentVO commentVO);
+
+    public int updateComment(CommentVO commentVO);
+
+    public List<CommentVO> getCommentVOList(CommentVO commentVO);
 }

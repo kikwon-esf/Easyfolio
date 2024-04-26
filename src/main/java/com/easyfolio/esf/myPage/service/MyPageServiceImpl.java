@@ -2,6 +2,7 @@ package com.easyfolio.esf.myPage.service;
 
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.vo.MemberVO;
+import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -51,6 +52,26 @@ public class MyPageServiceImpl implements MyPageService{
     @Override
     public int decreaseFavCnt(FavoriteVO favoriteVO) {
         return sqlSession.insert("myPageMapper.decreaseFavCnt", favoriteVO);
+    }
+
+    @Override
+    public int submitComment(CommentVO commentVO) {
+        return sqlSession.insert("commentMapper.submitComment",commentVO);
+    }
+
+    @Override
+    public int deleteComment(CommentVO commentVO) {
+        return sqlSession.insert("commentMapper.deleteFoodComment",commentVO);
+    }
+
+    @Override
+    public int updateComment(CommentVO commentVO) {
+        return sqlSession.insert("commentMapper.updateFoodComment",commentVO);
+    }
+
+    @Override
+    public List<CommentVO> getCommentVOList(CommentVO commentVO) {
+        return sqlSession.selectList("commentMapper.commentList",commentVO);
     }
 
 }

@@ -16,4 +16,14 @@ public class CommentVO extends PageVO {
     private String memberId;
     private String reg_date;
     private String content;
+
+    public CommentVO withMemberId(String memberId){
+        this.memberId = memberId;
+        return this;
+    }
+
+    public CommentVO withFoodCode(String foodCode){
+        this.foodCode = foodCode;
+        return this;
+    }
 }
