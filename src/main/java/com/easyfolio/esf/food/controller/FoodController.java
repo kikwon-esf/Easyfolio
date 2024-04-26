@@ -5,6 +5,7 @@ import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
+import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -134,5 +135,14 @@ public class FoodController {
         model.addAttribute("mtrlMt2", mtrlMt2);
 
         return "/content/food/food_detail";
+    }
+    //foodDetail에서 댓글 읽어오기
+    @GetMapping(value = "/comment")
+    public String getCommentList(@RequestParam(value = "foodCode") String foodCode, Model model, CommentVO commentVO){
+        commentVO.setFoodCode(foodCode);
+        List<CommentVO> commentList = myPageService.getCommentVOList(commentVO);
+        model.addAttribute("commentList", commentList);
+        model.addAttribute("inputComment",new CommentVO());
+        return "content/myPage/replace/food_comment";
     }
 }
