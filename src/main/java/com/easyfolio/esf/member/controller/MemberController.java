@@ -78,9 +78,7 @@ public class MemberController {
     @ResponseBody
     @PostMapping("/findId")
     public List<MemberVO> findId(MemberVO memberVO) {
-
         List<MemberVO> members = memberService.findId(memberVO);
-        System.out.println(members);
         return members;
     }
 
@@ -88,9 +86,7 @@ public class MemberController {
     @ResponseBody
     @PostMapping("/findPw")
     public List<MemberVO> findPw(MemberVO memberVO) {
-        System.out.println(memberVO);
         List<MemberVO> members = memberService.findPw(memberVO);
-        System.out.println(members);
         return members;
     }
 
