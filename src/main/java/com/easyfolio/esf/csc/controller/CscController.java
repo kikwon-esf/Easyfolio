@@ -236,6 +236,13 @@ public class CscController {
         cscService.updateQna(qnaVO);
     }
 
+    // 자주 찾는 질문 수정 (비동기)
+    @ResponseBody
+    @PostMapping("/updateQna")
+    public void updateQna2(QnaVO qnaVO){
+        cscService.updateQna(qnaVO);
+    }
+
 
 
 

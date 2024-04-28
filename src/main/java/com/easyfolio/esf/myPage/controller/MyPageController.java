@@ -5,9 +5,11 @@ import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
+import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.JSONParser;
+import org.springframework.boot.Banner;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,6 +100,20 @@ public class MyPageController {
         }
 
         return new ResponseEntity<>("addComplete", HttpStatus.OK);
+    }
+
+
+
+    //댓글 등록 후 댓글창 업로드
+    @PostMapping("/comment")
+    public String submitComment(CommentVO inputComment, Principal principal,  Model model){
+        inputComment.setMemberId(principal.getName());
+        myPageService.submitComment(inputComment);
+        List<CommentVO> commentList = myPageService.getCommentVOList(new CommentVO().withFoodCode(inputComment.getFoodCode()));
+//        System.err.println(commentList.get(0));
+        model.addAttribute("commentList", commentList);
+        model.addAttribute("inputComment",new CommentVO());
+        return "content/myPage/replace/food_comment";
     }
 
 }
