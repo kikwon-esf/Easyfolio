@@ -19,4 +19,10 @@ public interface MemberService {
 
     // 회원찾기
     public MemberVO findMemberById(String id);
+
+    // 알람cnt 플러스
+    public int alamCntPlus(MemberVO memberVO);
+
+    // 알람cnt 마이너스
+    public int alamCntMinus(MemberVO memberVO);
 }
