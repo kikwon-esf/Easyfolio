@@ -22,14 +22,17 @@
         , CONTENT
         )
         VALUES (
-        (SELECT 'COMMT_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(FOOD_COMMENT_ID, 8))),0) + 1, 5, '0')
-        FROM FOOD_COMMENT)
+        #{foodCommentId}
         , #{foodCode}
-        , #{memberId}
+        , #{sendMemberId}
         , #{content}
         )
     </insert>
 
+    <select id="nextComtCode" resultType="String">
+        SELECT 'COMMT_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(FOOD_COMMENT_ID, 8))),0) + 1, 5, '0')
+        FROM FOOD_COMMENT
+    </select>
 
 
 

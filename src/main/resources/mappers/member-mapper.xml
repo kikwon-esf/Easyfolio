@@ -3,13 +3,21 @@
 
 <mapper namespace="memberMapper">
     <resultMap id="member" type="com.easyfolio.esf.member.vo.MemberVO">
-        <result column="MEMBER_ID"      property="memberId" />
+        <id column="MEMBER_ID"      property="memberId" />
         <result column="MEMBER_PW"      property="memberPw" />
         <result column="MEMBER_NAME"    property="memberName" />
         <result column="MEMBER_TEL"    property="memberTel" />
         <result column="MEMBER_GENDER"  property="memberGender"/>
         <result column="MEMBER_ROLE"    property="memberRole"/>
         <result column="ALAM_CNT"    property="alamCnt"/>
+    </resultMap>
+
+    <resultMap id="alam" type="com.easyfolio.esf.member.vo.AlamVO">
+        <id column="ALAM_CODE"      property="alamCode" />
+        <result column="RECIVE_MEMBER_ID"      property="reciveMemberId" />
+        <result column="SEND_MEMBER_ID"      property="sendMemberId" />
+        <result column="FOOD_CODE"    property="foodCode" />
+        <result column="FOOD_COMMENT_ID"    property="foodCommentCode" />
     </resultMap>
 
     <insert id="join">
@@ -79,8 +87,20 @@
         WHERE MEMBER_ID = #{memberId}
     </update>
 
-<!--    <insert id="insertAlam">-->
-
-<!--    </insert>-->
+    <insert id="insertAlam">
+        INSERT INTO ALAM (
+        ALAM_CODE,
+        RECIVE_MEMBER_ID,
+        SEND_MEMBER_ID,
+        FOOD_CODE,
+        FOOD_COMMENT_ID
+        ) VALUES (
+        (SELECT 'ALAM_' || LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ALAM_CODE, 6))), 0) + 1, 5, '0') FROM ALAM),
+        #{reciveMemberId},
+        #{sendMemberId},
+        #{foodCode},
+        #{foodCommentId}
+        )
+    </insert>
 
 </mapper>

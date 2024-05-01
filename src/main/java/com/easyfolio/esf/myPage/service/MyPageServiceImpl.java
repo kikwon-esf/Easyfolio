@@ -56,6 +56,11 @@ public class MyPageServiceImpl implements MyPageService{
     }
 
     @Override
+    public String nextComtCode() {
+        return sqlSession.selectOne("commentMapper.nextComtCode");
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public void submitComment(CommentVO commentVO) {
         sqlSession.insert("commentMapper.submitComment",commentVO);
