@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
 
 <head>
 </head>
@@ -8,7 +7,8 @@
 <body th:fragment="food_comment">
 
     <link rel="stylesheet" href="/css/content/myPage/replace/food_comment.css">
-    <div class="comment_wrap">
+    
+    <div class="comment_wrap" th:object="${inputComment}">
         <h1>댓글</h1>
         <div class="commentList">
             <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
@@ -18,19 +18,18 @@
                     <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
                     <p><span>댓글내용</span><span class="comment_name" th:text="${commentVO.content}"></span></p>
                     <p><span>등록일자</span><span class="comment_name" th:text="${commentVO.reg_date}"></span></p>
-                    </div>
+                </div>
             </th:block>
         </div>
-        <form class="newComment" action="#" sec:authorize="isAuthenticated()" th:object="${inputComment}">
-            <input class="foodCode_hide" type="hidden" th:field="*{foodCode}">
-            <h3>댓글등록</h3>
-            <div>
-                <textarea th:field="*{content}" class="content">
+        <input class="foodCode_hide" type="hidden" th:field="*{foodCode}">
+        <h3>댓글등록</h3>
+        <div>
+            <textarea th:field="*{content}" class="content">
                 </textarea>
-            </div>
-            <button class="comment_submit" type="button" onclick="submitComment()">댓글 쓰기</button>
-        </form>
-        
+        </div>
+        <button class="comment_submit" type="button" onclick="submitComment()">댓글 쓰기</button>
+
+
     </div>
 
 

@@ -138,8 +138,7 @@ public class FoodController {
     }
     //foodDetail에서 댓글 읽어오기
     @GetMapping(value = "/comment")
-    public String getCommentList(@RequestParam(value = "foodCode") String foodCode, Model model, CommentVO commentVO){
-        commentVO.setFoodCode(foodCode);
+    public String getCommentList(Model model, CommentVO commentVO){
         List<CommentVO> commentList = myPageService.getCommentVOList(commentVO);
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO());

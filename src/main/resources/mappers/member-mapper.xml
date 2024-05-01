@@ -64,19 +64,23 @@
         SELECT
         , FOOD_NAME
         FROM DISH_MEMBER
-        WHERE MEMBER_ID = ${memberId}
+        WHERE MEMBER_ID = #{memberId}
     </select>
 
     <update id="alamCntPlus">
         UPDATE DISH_MEMBER
-        SET ALAM_CNT = ALAM_CNT + 1;
-        WHERE MEMBER_ID = {memberId}
+        SET ALAM_CNT = ALAM_CNT + 1
+        WHERE MEMBER_ID = #{memberId}
     </update>
 
     <update id="alamCntMinus">
         UPDATE DISH_MEMBER
-        SET ALAM_CNT = ALAM_CNT - 1;
-        WHERE MEMBER_ID = {memberId}
+        SET ALAM_CNT = ALAM_CNT - 1
+        WHERE MEMBER_ID = #{memberId}
     </update>
+
+<!--    <insert id="insertAlam">-->
+
+<!--    </insert>-->
 
 </mapper>

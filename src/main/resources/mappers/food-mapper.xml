@@ -20,6 +20,7 @@
         <result column="FOOD_DIF" property="foodDif"/>
         <result column="FOOD_TIME" property="foodTime"/>
         <result column="FOOD_REG_DT" property="foodRegDt"/>
+        <result column="MEMBER_ID" property="memberId"/>
         <collection property="foodKindVO" resultMap="foodKind"/>
         <collection property="foodUsageVO" resultMap="foodUsage"/>
         <collection property="foodMtrlVO" resultMap="foodMtrl"/>

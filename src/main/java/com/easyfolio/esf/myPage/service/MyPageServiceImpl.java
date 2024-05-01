@@ -7,6 +7,7 @@ import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -55,8 +56,10 @@ public class MyPageServiceImpl implements MyPageService{
     }
 
     @Override
-    public int submitComment(CommentVO commentVO) {
-        return sqlSession.insert("commentMapper.submitComment",commentVO);
+    @Transactional(rollbackFor = Exception.class)
+    public void submitComment(CommentVO commentVO) {
+        sqlSession.insert("commentMapper.submitComment",commentVO);
+
     }
 
     @Override
