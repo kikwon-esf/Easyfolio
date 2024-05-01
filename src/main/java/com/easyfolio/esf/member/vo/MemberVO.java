@@ -12,6 +12,7 @@ public class MemberVO {
     private String memberTel;
     private String memberGender;
     private String memberRole;
+    private String alamCnt;
 
     public MemberVO withMemberId(String memberId){
         this.memberId = memberId;

@@ -42,5 +42,15 @@ public class MemberServiceImpl implements MemberService {
         return sqlSession.selectOne("memberMapper.login",memberId);
     }
 
+    @Override
+    public int alamCntPlus(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.alamCntPlus", memberVO);
+    }
+
+    @Override
+    public int alamCntMinus(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.alamCntMinus", memberVO);
+    }
+
 
 }

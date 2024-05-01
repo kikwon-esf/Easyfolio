@@ -139,7 +139,6 @@ public class FoodController {
     //foodDetail에서 댓글 읽어오기
     @GetMapping(value = "/comment")
     public String getCommentList(Model model, CommentVO commentVO){
-        System.err.println(commentVO.getFoodCode());
         List<CommentVO> commentList = myPageService.getCommentVOList(commentVO);
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO());

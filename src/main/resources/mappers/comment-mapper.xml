@@ -31,6 +31,8 @@
     </insert>
 
 
+
+
     <!--댓글 삭제-->
     <delete id="deleteFoodComment">
         DELETE FROM FOOD_COMMENT

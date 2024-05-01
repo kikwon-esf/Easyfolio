@@ -9,6 +9,7 @@
         <result column="MEMBER_TEL"    property="memberTel" />
         <result column="MEMBER_GENDER"  property="memberGender"/>
         <result column="MEMBER_ROLE"    property="memberRole"/>
+        <result column="ALAM_CNT"    property="alamCnt"/>
     </resultMap>
 
     <insert id="join">
@@ -63,6 +64,23 @@
         SELECT
         , FOOD_NAME
         FROM DISH_MEMBER
-        WHERE MEMBER_ID = ${memberId}
+        WHERE MEMBER_ID = #{memberId}
     </select>
+
+    <update id="alamCntPlus">
+        UPDATE DISH_MEMBER
+        SET ALAM_CNT = ALAM_CNT + 1
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <update id="alamCntMinus">
+        UPDATE DISH_MEMBER
+        SET ALAM_CNT = ALAM_CNT - 1
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+<!--    <insert id="insertAlam">-->
+
+<!--    </insert>-->
+
 </mapper>
