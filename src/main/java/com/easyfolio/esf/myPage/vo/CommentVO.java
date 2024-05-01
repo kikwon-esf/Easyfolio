@@ -14,6 +14,8 @@ public class CommentVO extends PageVO {
     private String foodCommentId;
     private String foodCode;
     private String memberId;
+    private String reciveMemberId;
+    private String sendMemberId;
     private String reg_date;
     private String content;
 

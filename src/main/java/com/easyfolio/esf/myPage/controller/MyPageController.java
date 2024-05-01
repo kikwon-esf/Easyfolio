@@ -107,7 +107,13 @@ public class MyPageController {
     @PostMapping("/comment")
     public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
         memberService.alamCntPlus(memberVO);
-        myPageService.submitComment(commentVO.withMemberId(principal.getName())); // 댓글 등록하는 코드
+        commentVO.setFoodCommentId(myPageService.nextComtCode());
+        commentVO.setReciveMemberId(commentVO.getMemberId());
+        commentVO.setSendMemberId(principal.getName());
+
+        myPageService.submitComment(commentVO); // 댓글 등록하는 코드
+        memberService.insertAlam(commentVO);
+
         List<CommentVO> commentList = myPageService.getCommentVOList(commentVO.withMemberId(null));
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO());

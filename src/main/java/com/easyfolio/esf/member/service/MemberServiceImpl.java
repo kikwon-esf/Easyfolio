@@ -1,6 +1,7 @@
 package com.easyfolio.esf.member.service;
 
 import com.easyfolio.esf.member.vo.MemberVO;
+import com.easyfolio.esf.myPage.vo.CommentVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -50,6 +51,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int alamCntMinus(MemberVO memberVO) {
         return sqlSession.update("memberMapper.alamCntMinus", memberVO);
+    }
+
+    @Override
+    public void insertAlam(CommentVO commentVO) {
+        sqlSession.insert("memberMapper.insertAlam", commentVO);
     }
 
 
