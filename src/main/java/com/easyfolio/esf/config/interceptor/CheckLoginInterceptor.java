@@ -1,5 +1,6 @@
 package com.easyfolio.esf.config.interceptor;
 
+import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -9,9 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+import org.springframework.web.context.request.async.WebAsyncManager;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.Principal;
 import java.util.*;
 
@@ -51,7 +57,31 @@ public class CheckLoginInterceptor implements HandlerInterceptor {
             //권한이 있는 사용자가 아닐 시 로그인 화면으로 이동
             //fetch 요청일경우
             if(fetchList.contains(targetURI)){
+                System.err.println("getRequestedSessionId : " + request.getRequestedSessionId());
+                System.err.println("getContextPath : " + request.getContextPath());
+                System.err.println(request.getAttribute("attributeNameorg.springframework.web.context.request.async.WebAsyncManager.WEB_ASYNC_MANAGER"));
+
+                //login시 보류되었던 비동기처리 실행
+                //잠시 대기
+                StringBuilder stringBuilder = new StringBuilder();
+                InputStream inputStream = request.getInputStream();
+
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                char[] charBuffer = new char[128];
+                int bytesRead = -1;
+                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
+                    stringBuilder.append(charBuffer, 0, bytesRead);
+                }
+
+                bufferedReader.close();
+
+
+                String body = stringBuilder.toString();
+                System.err.println(body);
+
+
                 response.setStatus(400);
+
                 return false;
             }
             //fetch요청이 아닐경우

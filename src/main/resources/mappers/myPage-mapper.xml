@@ -46,7 +46,7 @@
         FROM FAVORITE FA, FOOD FO
         <where>
             <if test="memberId != null and not memberId.isEmpty()">
-                AND MEMBER_ID = #{memberId}
+                AND FA.MEMBER_ID = #{memberId}
             </if>
             <if test="searchFavoriteValue != null and not searchFavoriteValue.isEmpty()">
                 AND FOOD_TTL LIKE '%' || #{searchFavoriteValue} || '%'
