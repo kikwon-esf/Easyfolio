@@ -36,4 +36,10 @@ public interface MemberService {
 
     // 알람 체크 업데이트
     public void updateAlarm(AlarmVO alarmVO);
+
+    // 알람 모두 삭제
+    public void deleteAlarmAll(MemberVO memberVO);
+
+    // 알람 삭제
+    public void deleteAlarm(AlarmVO alarmVO);
 }

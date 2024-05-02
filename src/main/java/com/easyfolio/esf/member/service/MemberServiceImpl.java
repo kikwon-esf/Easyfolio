@@ -69,5 +69,17 @@ public class MemberServiceImpl implements MemberService {
         sqlSession.update("memberMapper.updateAlarm", alarmVO);
     }
 
+    // 알람 모두 삭제
+    @Override
+    public void deleteAlarmAll(MemberVO memberVO) {
+        sqlSession.delete("memberMapper.deleteAlarmAll", memberVO);
+    }
+
+    // 알람 삭제
+    @Override
+    public void deleteAlarm(AlarmVO alarmVO) {
+        sqlSession.delete("memberMapper.deleteAlarm", alarmVO);
+    }
+
 
 }

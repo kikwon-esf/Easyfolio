@@ -166,9 +166,12 @@ textarea{
     height: auto;
     max-height: 270px;
     overflow-y: auto;
+    overflow-x: hidden;
+
 }
 .alarmInner::-webkit-scrollbar,
 .outputbox::-webkit-scrollbar {
+    position: absolute;
   width: 12px;
 }
 
@@ -211,11 +214,6 @@ textarea{
     font-weight: 700;
     color: #f3c053;
 }
-.alarmBox{
-    position: relative;
-    padding: 2px 10px;
-    transition: all 0.2s ease;
-}
 .alarmBox:hover{
     background-color: #ececec;
     border-radius: 6px;
@@ -246,7 +244,13 @@ textarea{
     color: #f3c053;
 }
 .alarmBox{
+    width: 240px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 2px 10px;
+    transition: all 0.5s ease;
     margin-bottom: 10px;
+    margin-right: 10px;
 }
 .alarmBox span{
     color: #333;
@@ -298,6 +302,10 @@ textarea{
     width: 196px;
     justify-content: space-between;
     display: flex;
+}
+.alarmTag{
+    display: block;
+    width: 200px;
 }
 .alarmTag.check, .alarmTag.check * {
     color: #dadada;

@@ -100,4 +100,19 @@ public class MemberController {
         return "redirect:/food/detail?foodCode=" + alarmVO.getFoodCode();
     }
 
+    // 알람 모두 삭제
+    @ResponseBody
+    @PostMapping("/deleteAlarmAll")
+    public void deleteAlarmAll(Principal principal, MemberVO memberVO) {
+        memberVO.setMemberId(principal.getName());
+        memberService.deleteAlarmAll(memberVO);
+    }
+
+    // 알람 삭제
+    @ResponseBody
+    @PostMapping("/deleteAlarm")
+    public void deleteAlarm(AlarmVO alarmVO) {
+        memberService.deleteAlarm(alarmVO);
+    }
+
 }

@@ -101,18 +101,19 @@
                                 </div>
                                 <div class="popup alarm">
                                     <div class="alarmHeader">
-                                            <div class="alarmTitle">
-                                                <p class="alarmTitle1">알람</p>
-                                                <p class="alarmTitle2">Alarm</p>
-                                            </div>
-                                            <div class="alarmDeleteBox" th:if="${alarmList != null and #lists.size(alarmList) != 0}">
-                                                <p class="alarmDelete">전체삭제</p>
-                                                <p>&times;</p>
-                                            </div>
-
+                                        <div class="alarmTitle">
+                                            <p class="alarmTitle1">알람</p>
+                                            <p class="alarmTitle2">Alarm</p>
                                         </div>
+                                        <div class="alarmDeleteBox" onclick="deleteAlarmAll()"
+                                            th:if="${alarmList != null and #lists.size(alarmList) != 0}">
+                                            <p class="alarmDelete">전체삭제</p>
+                                            <p>&times;</p>
+                                        </div>
+
+                                    </div>
                                     <div class="alarmInner">
-                                
+
                                         <div class="alarmBlock"
                                             th:if="${alarmList == null or #lists.size(alarmList) == 0}">
                                             <p class="zeroAlarm">알람이 없습니다</p>
@@ -120,48 +121,54 @@
                                         <div class="alarmBlock"
                                             th:if="${alarmList != null and #lists.size(alarmList) != 0}">
                                             <div th:each="alarm, state : ${alarmList}" class="alarmBox">
-                                                <a class="alarmTag" th:href="@{/member/alarmDetail(alarmCode=${alarm.alarmCode}, foodCode=${alarm.foodCode})}" th:if="${alarm.alarmType == 'C'} and ${alarm.alarmCheck == 'N'}">
-                                                    <div class="alarmTop">
-                                                        <span class="nicName">[[${alarm.sendMemberId}]]</span>
-                                                        <span>님이 댓글을 입력하셨습니다.</span><br>
-                                                    </div>
-                                                    <div class="alarmBot">
-                                                        <p class="comTextBox">
-                                                            <span>"</span>
-                                                            <span class="comText">[[${alarm.content}]]</span>
-                                                            <span>"</span>
-                                                        </p>
-                                                        <span class="alarmDate">[[${alarm.regDate}]]</span>
-                                                    </div>
-                                                    <div class="alarmIcon">
+                                                <div th:if="${alarm.alarmType == 'C'} and ${alarm.alarmCheck == 'N'}">
+                                                    <a class="alarmTag"
+                                                        th:href="@{/member/alarmDetail(alarmCode=${alarm.alarmCode}, foodCode=${alarm.foodCode})}">
+                                                        <div class="alarmTop">
+                                                            <span class="nicName">[[${alarm.sendMemberId}]]</span>
+                                                            <span>님이 댓글을 입력하셨습니다.</span><br>
+                                                        </div>
+                                                        <div class="alarmBot">
+                                                            <p class="comTextBox">
+                                                                <span>"</span>
+                                                                <span class="comText">[[${alarm.content}]]</span>
+                                                                <span>"</span>
+                                                            </p>
+                                                            <span class="alarmDate">[[${alarm.regDate}]]</span>
+                                                        </div>
+                                                    </a>
+                                                    <div class="alarmIcon" onclick="deleteAlarm(this)" th:data-alarm-code="${alarm.alarmCode}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                             fill="#888" class="bi bi-x" viewBox="0 0 16 16">
                                                             <path
                                                                 d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
                                                         </svg>
                                                     </div>
-                                                </a>
-                                                <a class="alarmTag check" th:href="@{/member/alarmDetail(alarmCode=${alarm.alarmCode}, foodCode=${alarm.foodCode})}" th:if="${alarm.alarmType == 'C'} and ${alarm.alarmCheck == 'Y'}">
-                                                    <div class="alarmTop">
-                                                        <span class="nicName">[[${alarm.sendMemberId}]]</span>
-                                                        <span>님이 댓글을 입력하셨습니다.</span><br>
-                                                    </div>
-                                                    <div class="alarmBot">
-                                                        <p class="comTextBox">
-                                                            <span>"</span>
-                                                            <span class="comText">[[${alarm.content}]]</span>
-                                                            <span>"</span>
-                                                        </p>
-                                                        <span class="alarmDate">[[${alarm.regDate}]]</span>
-                                                    </div>
-                                                    <div class="alarmIcon">
+                                                </div>
+                                                <div th:if="${alarm.alarmType == 'C'} and ${alarm.alarmCheck == 'Y'}">
+                                                    <a class="alarmTag check"
+                                                        th:href="@{/member/alarmDetail(alarmCode=${alarm.alarmCode}, foodCode=${alarm.foodCode})}">
+                                                        <div class="alarmTop">
+                                                            <span class="nicName">[[${alarm.sendMemberId}]]</span>
+                                                            <span>님이 댓글을 입력하셨습니다.</span><br>
+                                                        </div>
+                                                        <div class="alarmBot">
+                                                            <p class="comTextBox">
+                                                                <span>"</span>
+                                                                <span class="comText">[[${alarm.content}]]</span>
+                                                                <span>"</span>
+                                                            </p>
+                                                            <span class="alarmDate">[[${alarm.regDate}]]</span>
+                                                        </div>
+                                                    </a>
+                                                    <div class="alarmIcon" onclick="deleteAlarm(this)" th:data-alarm-code="${alarm.alarmCode}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                             fill="#888" class="bi bi-x" viewBox="0 0 16 16">
                                                             <path
                                                                 d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
                                                         </svg>
                                                     </div>
-                                                </a>
+                                                </div>
                                                 <!-- <p th:if="${alarm.alarmType == 'F'}">
                                                     <span>[[${alarm.sendMemberId}]]</span>
                                                     <span>님이 회원님의 게시글을 추천했습니다.</span>

@@ -140,4 +140,14 @@
         WHERE ALARM_CODE = #{alarmCode}
     </update>
 
+    <delete id="deleteAlarmAll">
+        DELETE FROM ALARM
+        WHERE RECIVE_MEMBER_ID = #{memberId}
+    </delete>
+
+    <delete id="deleteAlarm">
+        DELETE FROM ALARM
+        WHERE ALARM_CODE = #{alarmCode}
+    </delete>
+
 </mapper>
