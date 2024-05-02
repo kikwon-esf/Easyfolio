@@ -152,7 +152,6 @@ textarea{
     height: auto;
 }
 .popup.alarm{
-    display: block;
     width: 250px;
     right: -106px;
     padding: 10px 2px 10px 10px
@@ -244,13 +243,15 @@ textarea{
     color: #f3c053;
 }
 .alarmBox{
-    width: 240px;
+    border-radius: 6px;
+    width: 238px;
     box-sizing: border-box;
     position: relative;
     padding: 2px 10px;
     transition: all 0.5s ease;
     margin-bottom: 10px;
     margin-right: 10px;
+    margin-left: 2px;
 }
 .alarmBox span{
     color: #333;
@@ -310,6 +311,7 @@ textarea{
 .alarmTag.check, .alarmTag.check * {
     color: #dadada;
     fill: #dadada;
+    background-color: #fff;
 }
 .alarmTag.check .alarmIcon:hover * {
     fill: #f3c053;
