@@ -10,6 +10,7 @@ public class AlarmVO {
     private String foodCode;
     private String foodCommentId;
     private String alarmType;
+    private String alarmCheck;
     private String content;
     private String nickName;
     private String regDate;

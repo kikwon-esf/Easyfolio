@@ -2,10 +2,12 @@ package com.easyfolio.esf.member.controller;
 
 import com.easyfolio.esf.config.interceptor.CreateSessionInterceptor;
 import com.easyfolio.esf.member.service.MemberService;
+import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -90,5 +93,11 @@ public class MemberController {
         return members;
     }
 
+    // 알림창에서 이동
+    @GetMapping("/alarmDetail")
+    public String alarmDetail(AlarmVO alarmVO){
+        memberService.updateAlarm(alarmVO);
+        return "redirect:/food/detail?foodCode=" + alarmVO.getFoodCode();
+    }
 
 }

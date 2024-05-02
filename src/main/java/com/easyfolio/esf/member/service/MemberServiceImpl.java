@@ -64,5 +64,10 @@ public class MemberServiceImpl implements MemberService {
         return sqlSession.selectList("memberMapper.alarmList", memberVO);
     }
 
+    @Override
+    public void updateAlarm(AlarmVO alarmVO) {
+        sqlSession.update("memberMapper.updateAlarm", alarmVO);
+    }
+
 
 }

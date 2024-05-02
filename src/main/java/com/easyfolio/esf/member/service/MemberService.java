@@ -33,4 +33,7 @@ public interface MemberService {
 
     // 알람 리스트
     public List<AlarmVO> alarmList(MemberVO memberVO);
+
+    // 알람 체크 업데이트
+    public void updateAlarm(AlarmVO alarmVO);
 }
