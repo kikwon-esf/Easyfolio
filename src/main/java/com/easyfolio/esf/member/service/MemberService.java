@@ -1,5 +1,6 @@
 package com.easyfolio.esf.member.service;
 
+import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 
@@ -22,11 +23,14 @@ public interface MemberService {
     public MemberVO findMemberById(String id);
 
     // 알람cnt 플러스
-    public int alamCntPlus(MemberVO memberVO);
+    public int alarmCntPlus(MemberVO memberVO);
 
     // 알람cnt 마이너스
-    public int alamCntMinus(MemberVO memberVO);
+    public int alarmCntMinus(MemberVO memberVO);
 
     // 알람 테이블 등록
-    public void insertAlam(CommentVO commentVO);
+    public void insertAlarm(CommentVO commentVO);
+
+    // 알람 리스트
+    public List<AlarmVO> alarmList(MemberVO memberVO);
 }

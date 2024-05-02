@@ -7,7 +7,10 @@ import com.easyfolio.esf.csc.service.CscService;
 import com.easyfolio.esf.csc.vo.ann.AnnVO;
 import com.easyfolio.esf.food.service.FoodService;
 
-import jakarta.servlet.http.HttpServletRequest;
+import com.easyfolio.esf.member.service.MemberService;
+import com.easyfolio.esf.member.vo.AlarmVO;
+import com.easyfolio.esf.member.vo.MemberVO;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +20,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+import java.util.List;
+
 @Controller
 @RequestMapping("/mainpage")
 @RequiredArgsConstructor
 public class MainpageController {
+    @Resource
+    private final MemberService memberService;
+
     // 메인페이지
     @GetMapping("/main")
-    public String mainpage(HttpServletRequest request){
+    public String mainpage(Principal principal, MemberVO memberVO, Model model){
+
+        List<AlarmVO> alarmList = null;
+        if(principal != null && principal.getName() != null){
+            memberVO.setMemberId(principal.getName());
+            alarmList = memberService.alarmList(memberVO);
+        } else {
+            // principal이 null이거나 getName()이 null인 경우에 대한 처리
+        }
+
+        model.addAttribute("alarmList", alarmList);
         return "content/indexpage/mainpage";
     }
 
