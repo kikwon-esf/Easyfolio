@@ -117,9 +117,7 @@ for(let ele=0 ; ele < addFavBtn.length ; ele++){
 
 function onOff(onEle, offEle){
     onEle.classList.remove("heartOff");
-
     offEle.classList.add("heartOff");
-    
 }
 function onOffAnime(onEle,offEle){
     offEle.classList.remove("toggle_anime");

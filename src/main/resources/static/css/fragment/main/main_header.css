@@ -87,7 +87,6 @@ textarea{
     position: relative;
     width: 50px;
     height: 50px;
-    text-align: center;
     box-sizing: border-box;
     cursor: pointer;
 }
@@ -152,6 +151,68 @@ textarea{
     width: 100px;
     height: auto;
 }
+.popup.alarm{
+    display: block;
+    width: 250px;
+    right: -106px;
+    padding: 10px;
+}
+.alarmHeader{
+    margin-bottom: 5px;
+    justify-content: space-between;
+    display: flex;
+}
+.alarmTitle{
+    display: -webkit-inline-box;
+    position: relative;
+    margin-left: 10px;
+}
+.alarmTitle1{
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+}
+.alarmTitle2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.alarmBox{
+    position: relative;
+    padding: 2px 20px;
+}
+.alarmBox:hover{
+    background-color: #f4f4f4;
+    border-radius: 6px;
+    /* transition: ; */
+}
+.alarmDeleteBox{
+    color: #888;
+    display: flex;
+    height: 20px;
+    margin-top: 7px;
+    font-size: 13px;
+}
+.alarmDeleteBox:hover p{
+    color: #f3c053;
+}
+.alarmBox span{
+    color: #333;
+    font-size: 13px;
+}
+.alarmBox p> .alarmDate{
+    font-size: 11px;
+}
+.alarmIcon{
+    position: absolute;
+    right: 8px;
+    top: 13px;
+}
+.alarmIcon:hover svg{
+    fill: #f3c053;
+}
 .popupTap{
     z-index: 500;
     display: none;
@@ -165,6 +226,7 @@ textarea{
     height: auto;
 }
 .mymenubox p{
+    text-align: center;
     z-index: 500;
     border-radius: 4px;
     border: 1px solid #ffd57a;
@@ -175,6 +237,24 @@ textarea{
     box-sizing: border-box;
     box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
     margin-bottom: 10px;
+}
+.comTextBox{
+    display: flex;
+}
+.alamBot{
+    width: 196px;
+    justify-content: space-between;
+    display: flex;
+}
+.comText{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
+    font-size: 13px;
+    color: #333;
 }
 .mymenubox:hover p{
     border: 0;

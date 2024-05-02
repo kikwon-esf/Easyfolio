@@ -24,7 +24,10 @@ public interface MyPageService {
 
     public int decreaseFavCnt(FavoriteVO favoriteVO);
 
-    public int submitComment(CommentVO commentVO);
+    public String nextComtCode();
+
+    public void submitComment(CommentVO commentVO);
+
 
     public int deleteComment(CommentVO commentVO);
 

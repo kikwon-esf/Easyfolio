@@ -3,13 +3,26 @@
 
 <mapper namespace="memberMapper">
     <resultMap id="member" type="com.easyfolio.esf.member.vo.MemberVO">
-        <result column="MEMBER_ID"      property="memberId" />
+        <id column="MEMBER_ID"      property="memberId" />
         <result column="MEMBER_PW"      property="memberPw" />
         <result column="MEMBER_NAME"    property="memberName" />
         <result column="MEMBER_TEL"    property="memberTel" />
         <result column="MEMBER_GENDER"  property="memberGender"/>
         <result column="MEMBER_ROLE"    property="memberRole"/>
+        <result column="NICKNAME"    property="nickName"/>
         <result column="ALAM_CNT"    property="alamCnt"/>
+    </resultMap>
+
+    <resultMap id="alarm" type="com.easyfolio.esf.member.vo.AlarmVO">
+        <id column="ALARM_CODE"      property="alarmCode" />
+        <result column="RECIVE_MEMBER_ID"      property="reciveMemberId" />
+        <result column="SEND_MEMBER_ID"      property="sendMemberId" />
+        <result column="FOOD_CODE"    property="foodCode" />
+        <result column="FOOD_COMMENT_ID"    property="foodCommentId" />
+        <result column="ALARM_TYPE"    property="alarmType" />
+        <result column="CONTENT"    property="content" />
+        <result column="REG_DATE"    property="regDate" />
+        <result column="NICKNAME"    property="nickName" />
     </resultMap>
 
     <insert id="join">
@@ -64,19 +77,56 @@
         SELECT
         , FOOD_NAME
         FROM DISH_MEMBER
-        WHERE MEMBER_ID = ${memberId}
+        WHERE MEMBER_ID = #{memberId}
     </select>
 
-    <update id="alamCntPlus">
+    <update id="alarmCntPlus">
         UPDATE DISH_MEMBER
-        SET ALAM_CNT = ALAM_CNT + 1;
-        WHERE MEMBER_ID = {memberId}
+        SET ALAM_CNT = ALAM_CNT + 1
+        WHERE MEMBER_ID = #{memberId}
     </update>
 
-    <update id="alamCntMinus">
+    <update id="alarmCntMinus">
         UPDATE DISH_MEMBER
-        SET ALAM_CNT = ALAM_CNT - 1;
-        WHERE MEMBER_ID = {memberId}
+        SET ALAM_CNT = ALAM_CNT - 1
+        WHERE MEMBER_ID = #{memberId}
     </update>
+
+    <insert id="insertAlarm">
+        INSERT INTO ALARM (
+        ALARM_CODE,
+        RECIVE_MEMBER_ID,
+        SEND_MEMBER_ID,
+        FOOD_CODE,
+        FOOD_COMMENT_ID,
+        ALARM_TYPE
+        ) VALUES (
+        (SELECT 'ALARM_' || LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ALARM_CODE, 7))), 0) + 1, 5, '0') FROM ALARM),
+        #{reciveMemberId},
+        #{sendMemberId},
+        #{foodCode},
+        #{foodCommentId},
+        <if test="foodCommentId != null and not foodCommentId.isEmpty()">
+            'C'
+        </if>
+        <if test="foodCommentId == null and foodCommentId.isEmpty()">
+            'L'
+        </if>
+        )
+    </insert>
+
+    <select id="alarmList" resultMap="alarm">
+        SELECT DISTINCT D.NICKNAME
+        , C.CONTENT
+        , TO_CHAR(C.REG_DATE, 'YY-MM-DD HH24:MI') AS REG_DATE
+        , A.FOOD_CODE
+        , A.ALARM_TYPE
+        , A.FOOD_COMMENT_ID
+        , A.SEND_MEMBER_ID
+        FROM ALARM A, FOOD_COMMENT C, DISH_MEMBER D
+        WHERE A.RECIVE_MEMBER_ID = #{memberId}
+        AND C.FOOD_COMMENT_ID = A.FOOD_COMMENT_ID
+        AND D.MEMBER_ID = A.RECIVE_MEMBER_ID
+    </select>
 
 </mapper>

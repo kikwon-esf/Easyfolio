@@ -15,6 +15,7 @@
 <body>
     <th:block layout:fragment="content">
         <input class="foodCode_hidden" type="hidden" th:value="${foodDetail.foodCode}">
+
         <div id="wrap">
             <div class="inner">
                 <div class="header">
@@ -35,7 +36,8 @@
                                 <p class="recipe_title">[[${foodDetail.foodTtl}]]</p>
                             </div>
                             <div class="recipe_cate_block">
-                                <a th:href="@{/food/searchFoodPage(foodKindCode=${foodDetail.foodKindCode})}" class="recipe_cate1">
+                                <a th:href="@{/food/searchFoodPage(foodKindCode=${foodDetail.foodKindCode})}"
+                                    class="recipe_cate1">
                                     <span>종류별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodKindVO != null and foodCodeList.foodKindVO.foodKindText != null and !foodCodeList.foodKindVO.foodKindText.isEmpty()}"
@@ -45,7 +47,8 @@
                                         정보 없음
                                     </span>
                                 </a>
-                                <a th:href="@{/food/searchFoodPage(foodUsageCode=${foodDetail.foodUsageCode})}" class="recipe_cate1">
+                                <a th:href="@{/food/searchFoodPage(foodUsageCode=${foodDetail.foodUsageCode})}"
+                                    class="recipe_cate1">
                                     <span>상황별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodUsageVO != null and foodCodeList.foodUsageVO.foodUsageText != null and !foodCodeList.foodUsageVO.foodUsageText.isEmpty()}"
@@ -55,7 +58,8 @@
                                         정보 없음
                                     </span>
                                 </a>
-                                <a th:href="@{/food/searchFoodPage(foodMtrlCode=${foodDetail.foodMtrlCode})}" class="recipe_cate1">
+                                <a th:href="@{/food/searchFoodPage(foodMtrlCode=${foodDetail.foodMtrlCode})}"
+                                    class="recipe_cate1">
                                     <span>재료별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodMtrlVO != null and foodCodeList.foodMtrlVO.foodMtrlText != null and !foodCodeList.foodMtrlVO.foodMtrlText.isEmpty()}"
@@ -65,7 +69,8 @@
                                         정보 없음
                                     </span>
                                 </a>
-                                <a th:href="@{/food/searchFoodPage(foodTypeCode=${foodDetail.foodTypeCode})}" class="recipe_cate1">
+                                <a th:href="@{/food/searchFoodPage(foodTypeCode=${foodDetail.foodTypeCode})}"
+                                    class="recipe_cate1">
                                     <span>방법별 :</span>
                                     <span
                                         th:if="${foodCodeList.foodTypeVO != null and foodCodeList.foodTypeVO.foodTypeText != null and !foodCodeList.foodTypeVO.foodTypeText.isEmpty()}"
@@ -173,7 +178,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="replacePosition"></div>
+                    <form class="newComment" action="#" sec:authorize="isAuthenticated()">
+                        <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">
+                        <div class="replacePosition"></div>
+                    </form>
                 </div>
             </div>
         </div>

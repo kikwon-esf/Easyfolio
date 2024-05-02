@@ -88,7 +88,6 @@ public class MyPageController {
         favoriteVO.setFoodCode(foodCode.get("foodCode"));
         favoriteVO.setMemberId(principal.getName());
         try {
-            
             myPageService.addFav(favoriteVO);
             myPageService.increaseFavCnt(favoriteVO);
         }catch (DuplicateKeyException e){ //이미 add가 되어 있을 시 작동(즐겨찾기 삭제)
@@ -106,14 +105,20 @@ public class MyPageController {
 
     //댓글 등록 후 댓글창 업로드
     @PostMapping("/comment")
-    public String submitComment(CommentVO inputComment, Principal principal,  Model model){
-        inputComment.setMemberId(principal.getName());
-        myPageService.submitComment(inputComment);
-        List<CommentVO> commentList = myPageService.getCommentVOList(new CommentVO().withFoodCode(inputComment.getFoodCode()));
-//        System.err.println(commentList.get(0));
+    public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
+        memberService.alarmCntPlus(memberVO);
+        commentVO.setFoodCommentId(myPageService.nextComtCode());
+        commentVO.setReciveMemberId(commentVO.getMemberId());
+        commentVO.setSendMemberId(principal.getName());
+
+        myPageService.submitComment(commentVO); // 댓글 등록하는 코드
+        memberService.insertAlarm(commentVO);
+
+        List<CommentVO> commentList = myPageService.getCommentVOList(commentVO.withMemberId(null));
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO());
         return "content/myPage/replace/food_comment";
     }
+
 
 }

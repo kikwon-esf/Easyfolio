@@ -1,6 +1,8 @@
 package com.easyfolio.esf.member.service;
 
+import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
+import com.easyfolio.esf.myPage.vo.CommentVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,13 +45,23 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int alamCntPlus(MemberVO memberVO) {
-        return sqlSession.update("memberMapper.alamCntPlus", memberVO);
+    public int alarmCntPlus(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.alarmCntPlus", memberVO);
     }
 
     @Override
-    public int alamCntMinus(MemberVO memberVO) {
-        return sqlSession.update("memberMapper.alamCntMinus", memberVO);
+    public int alarmCntMinus(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.alarmCntMinus", memberVO);
+    }
+
+    @Override
+    public void insertAlarm(CommentVO commentVO) {
+        sqlSession.insert("memberMapper.insertAlarm", commentVO);
+    }
+
+    @Override
+    public List<AlarmVO> alarmList(MemberVO memberVO) {
+        return sqlSession.selectList("memberMapper.alarmList", memberVO);
     }
 
 
