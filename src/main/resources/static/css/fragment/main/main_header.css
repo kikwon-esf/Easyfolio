@@ -166,7 +166,10 @@ textarea{
     max-height: 270px;
     overflow-y: auto;
     overflow-x: hidden;
-
+    border: 1px solid #ececec;
+    padding: 3px 1px;
+    width: 241px;
+    border-radius: 8px;
 }
 .alarmInner::-webkit-scrollbar,
 .outputbox::-webkit-scrollbar {
