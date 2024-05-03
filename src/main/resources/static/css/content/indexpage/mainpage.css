@@ -102,11 +102,11 @@ textarea {
     margin-left: 160px;
 }
 
-.slick-list {
+.main1 .slick-list {
     height: 500px;
 }
 
-.slick-track {
+.main1 .slick-track {
     display: flex;
 }
 
@@ -324,4 +324,62 @@ textarea {
     color: #666;
     font-size: 17px;
     font-weight: 700;
+}
+/* 메인3 */
+.mainImgSlide-inner{
+    overflow: hidden;
+    
+}
+.mainAccomSubImg{
+}
+.imgListSlide{
+    cursor: pointer;
+    display: block;
+    width: 320px;
+    height: auto;
+    border-radius: 3px;
+    margin: 0 -20px;
+    overflow: hidden;
+    transform: scale(0.80);
+    transition: all 0.5s ease;
+    opacity: 0.5;
+    padding: 0;
+}
+
+.main3 .slick-list{
+    width: 1200px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0 auto;
+    transition: all 0.5s ease;
+}
+.main3 .slick-track{
+    display: flex;
+    transition: all 0.5s ease;
+}
+.imgListSlide.slick-current{
+    transform: scale(1);
+    margin: 0 5px;
+    opacity: 1;
+    z-index: 500;
+    transition: all 0.2s ease;
+}
+.imgListSlide:hover{
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+.imgSlideList{
+    border-radius: 50px;
+    width: 100%;
+    height: 300px;
+    box-shadow: 0 0px 5px 3px rgba(68, 68, 68, .05);
+}
+.imgTextBox{
+    text-align: center;
+}
+.imgTextBox p{
+    margin: 20px 0;
+    font-size: 20px;
+    color: #333;
+    font-weight: 500;
 }

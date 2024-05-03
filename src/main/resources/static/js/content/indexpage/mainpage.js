@@ -69,3 +69,13 @@ $('.btn.menu').click(function () {
 $('.btnClose').click(function () {
     $('.slideAll').slideUp();
 });
+
+$('.mainAccomSubImg').slick({
+    arrows: false,
+    variableWidth: true,
+    infinite: true,
+    centerMode : true,
+    focusOnSelect: true,
+    slidesToShow: 1,
+    speed: 500
+});
