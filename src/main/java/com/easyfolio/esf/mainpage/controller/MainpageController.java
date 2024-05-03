@@ -7,6 +7,7 @@ import com.easyfolio.esf.csc.service.CscService;
 import com.easyfolio.esf.csc.vo.ann.AnnVO;
 import com.easyfolio.esf.food.service.FoodService;
 
+import com.easyfolio.esf.member.service.AlarmService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
@@ -29,6 +30,7 @@ import java.util.List;
 public class MainpageController {
     @Resource
     private final MemberService memberService;
+    private final AlarmService alarmService;
 
     // 메인페이지
     @GetMapping("/main")
@@ -37,7 +39,7 @@ public class MainpageController {
         List<AlarmVO> alarmList = null;
         if(principal != null && principal.getName() != null){
             memberVO.setMemberId(principal.getName());
-            alarmList = memberService.alarmList(memberVO);
+            alarmList = alarmService.alarmList(memberVO);
         } else {
             // principal이 null이거나 getName()이 null인 경우에 대한 처리
         }
