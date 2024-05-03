@@ -311,7 +311,7 @@ textarea{
 .alarmTag.check, .alarmTag.check * {
     color: #dadada;
     fill: #dadada;
-    background-color: #fff;
+    background-color: transparent;
 }
 .alarmTag.check .alarmIcon:hover * {
     fill: #f3c053;

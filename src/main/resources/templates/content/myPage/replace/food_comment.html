@@ -7,31 +7,40 @@
 <body th:fragment="food_comment">
 
     <link rel="stylesheet" href="/css/content/myPage/replace/food_comment.css">
-    
+
     <div class="comment_wrap" th:object="${inputComment}">
-        <h1>댓글</h1>
-        <div class="commentList">
-            <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
-                <div class="commentEach">
-                    <p><span>작성자</span><span class="comment_name" th:text="${commentVO.memberVO.memberName}"></span></p>
-                    <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
-                    <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
-                    <p><span>댓글내용</span><span class="comment_name" th:text="${commentVO.content}"></span></p>
-                    <p><span>등록일자</span><span class="comment_name" th:text="${commentVO.reg_date}"></span></p>
+        <div class="commentInner">
+            <div class="commentHeader">
+                <div class="commentTitle">
+                    <p class="commentTitle1">댓글</p>
+                    <p class="commentTitle2">Comment</p>
                 </div>
-            </th:block>
-        </div>
-        <input class="foodCode_hide" type="hidden" th:field="*{foodCode}">
-        <h3>댓글등록</h3>
-        <div>
-            <textarea th:field="*{content}" class="content">
-                </textarea>
-        </div>
-        <button class="comment_submit" type="button" onclick="submitComment()">댓글 쓰기</button>
+            </div>
+            <div class="commentList">
+                <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
+                    <div class="commentEach">
+                        <p class="commentName"><span th:text="${commentVO.memberVO.memberName}"></span>
+                        </p>
+                        <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
+                        <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
+                        <p class="commentText"><span th:text="${commentVO.content}"></span></p>
+                        <p class="commentDate"><span th:text="${commentVO.reg_date}"></span></p>
+                    </div>
+                </th:block>
+            </div>
+            <input class="foodCode_hide" type="hidden" th:field="*{foodCode}">
+            <div class="submitBlock">
+                <div>
+                    <textarea th:field="*{content}" placeholder="댓글을 입력해보세요" class="content">
+                    </textarea>
+                </div>
+                <button class="comment_submit" type="button" onclick="submitComment()">댓글 쓰기</button>
+            </div>
 
 
+
+        </div>
     </div>
-
 
 
 </body>

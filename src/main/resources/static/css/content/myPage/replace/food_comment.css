@@ -1,3 +1,162 @@
-.commentEach{
-    border : 1px solid black;
+@charset "UTF-8";
+
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.comment_wrap {
+    position: relative;
+    width: 100%;
+}
+
+.commentInner {
+    box-sizing: border-box;
+    width: 1200px;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+/* 댓글 헤더 */
+.commentTitle {
+    display: -webkit-inline-box;
+    margin: 0 0 0 20px;
+}
+
+.commentTitle1 {
+    color: #333;
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.commentTitle2 {
+    margin: 8px 10px 3px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.commentList{
+    margin-top: 20px;
+}
+.commentEach {
+    padding: 10px;
+    border-bottom: 1px solid #dadada;
+}
+
+.commentName {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.commentText {
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 7px;
+    word-wrap: break-word;
+}
+
+.commentDate {
+    font-size: 13px;
+    margin-top: 3px;
+    color: #888;
+}
+
+.submitBlock {
+    margin-top: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px 20px 20px 20px;
+}
+
+.content {
+    background-color: #f4f4f4;
+    width: 100%;
+    border-radius: 6px;
+    border: 0;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    outline: 0;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 7px;
+    border: 2px solid #f4f4f4;
+}
+
+.content:focus {
+    background-color: #fff;
+    border: 2px solid #666;
+}
+
+.content::-webkit-scrollbar,
+.outputbox::-webkit-scrollbar {
+    position: absolute;
+    width: 12px;
+}
+
+.content::-webkit-scrollbar-track,
+.outputbox::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+.content::-webkit-scrollbar-thumb,
+.outputbox::-webkit-scrollbar-thumb {
+    background-color: #dadada;
+    border-radius: 6px;
+    border: 3px solid #fff;
+}
+
+.content::-webkit-scrollbar-thumb:hover,
+.outputbox::-webkit-scrollbar-thumb:hover {
+    background-color: #b0b0b0;
+    cursor: pointer;
+}
+.comment_submit{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+.comment_submit:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
 }

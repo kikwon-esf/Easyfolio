@@ -23,7 +23,7 @@
         <result column="ALARM_CHECK"    property="alarmCheck" />
         <result column="CONTENT"    property="content" />
         <result column="REG_DATE"    property="regDate" />
-        <result column="NICKNAME"    property="nickName" />
+        <result column="MEMBER_NAME"    property="memberName" />
     </resultMap>
 
     <insert id="join">
@@ -117,7 +117,7 @@
     </insert>
 
     <select id="alarmList" resultMap="alarm">
-        SELECT DISTINCT D.NICKNAME
+        SELECT DISTINCT D.MEMBER_NAME
         , C.CONTENT
         , TO_CHAR(C.REG_DATE, 'YY-MM-DD HH24:MI') AS REG_DATE
         , A.FOOD_CODE

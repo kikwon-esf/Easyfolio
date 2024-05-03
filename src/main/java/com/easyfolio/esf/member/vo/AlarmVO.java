@@ -12,6 +12,6 @@ public class AlarmVO {
     private String alarmType;
     private String alarmCheck;
     private String content;
-    private String nickName;
+    private String memberName;
     private String regDate;
 }
