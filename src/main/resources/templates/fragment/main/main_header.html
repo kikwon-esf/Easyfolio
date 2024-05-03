@@ -11,8 +11,8 @@
 <body>
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/fragment/main/main_header.css">
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <input type="hidden" class="userName" th:value="${session.userName}">
         <div class="wrap">
             <div class="h_inner">
                 <div class="headtop">
@@ -195,7 +195,7 @@
                                     <a sec:authorize="isAnonymous()" class="mymenubox login" href="/member/loginForm">
                                         <p sec:authorize="isAnonymous()">로그인</p>
                                     </a>
-                                    <a sec:authorize="isAuthenticated()" class="mymenubox login" href="/logout">
+                                    <a sec:authorize="isAuthenticated()" class="mymenubox login" onclick="logout()">
                                         <p id="logout" sec:authorize="isAuthenticated()">로그아웃</p>
                                     </a>
                                     <a sec:authorize="isAnonymous()" class="mymenubox join" href="/member/joinForm">
@@ -205,7 +205,19 @@
                                         <p sec:authorize="isAuthenticated()">마이페이지</p>
                                     </a>
                                 </div>
-
+                                <!-- 로그아웃 시 팝업 버튼 -->
+                                <div class="logout pu_blind">
+                                    <div class="pu_inner">
+                                        <div class="pu_text_box">
+                                            <h1 class="pu_title">정말 로그아웃 하시겠습니까?</h1>
+                                        </div>
+                                        <div class="pu_btn_box">
+                                            <input type="hidden" th:value="${qnaCode}">
+                                            <button class="pu_btn pu_yes" onclick="logoutYes()">예</button>
+                                            <button class="pu_btn pu_no" onclick="logoutNo()">아니오</button>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- 삭제 시 팝업 버튼 -->
                                 <div class="pu_delete pu_blind">

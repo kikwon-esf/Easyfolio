@@ -1,7 +1,9 @@
 const url = "/myPage/deleteFav"
+const askDelete = document.querySelector('.askDelete');
+let currentElement = null;
 function deleteFav(ele){
-    console.log('ele' + ele);
-    console.log('a'+ele.closest('.recipeTextBox1'));
+    
+
     const foodCode = ele.closest('.recipeTextBox1').querySelector(".foodCode").value;
     let data = {
         method: 'POST',
@@ -22,7 +24,6 @@ function deleteFav(ele){
             if(data != "complete"){
                 alert("실패");
             }else{
-                alert("완료");
                 location.reload(true);
             }
         })
@@ -122,5 +123,17 @@ function onOff(onEle, offEle){
 function onOffAnime(onEle,offEle){
     offEle.classList.remove("toggle_anime");
     onEle.classList.add("toggle_anime");
+}
+
+function askDeleteFavorite(ele){
+    currentElement = ele;
+    popup(askDelete)
+}
+
+function confirmDeleteFavorite(){
+    deleteFav(currentElement);
+}
+function NoDeleteFavorite(){
+    blind(askDelete)
 }
 

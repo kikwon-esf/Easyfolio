@@ -17,6 +17,12 @@
         <link rel="stylesheet" href="/css/content/myPage/myPage_favorite.css">
         <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
         <div id="wrap">
+            <div class="askDelete pop_blind">
+                <h2>즐겨찾기를 삭제하시겠습니까?</h2>
+                <button onclick="confirmDeleteFavorite()">예</button>
+                <button onclick="NoDeleteFavorite()">아니오</button>
+            </div>
+            <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
             <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">
             <div class="as_food_wrap">
                 <div class="inner">
@@ -84,7 +90,7 @@
                                             <span>[[${favorite.foodVO.foodInqCnt}]]</span>
                                         </p>
                                     </div>
-                                    <div class="cartBox"  onclick="deleteFav(this)">
+                                    <div class="cartBox"  onclick="askDeleteFavorite(this)">
                                         <div class="heartBox">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff3f3f"
                                                 class="bi bi-heart heartOff mousedown" viewBox="0 0 16 16">
@@ -143,6 +149,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="/js/slick.min.js"></script>
         <script src="/js/content/myPage/favorite.js"></script>
+        <script src="/js/content/myPage/favoritePaging.js"></script>
+        <script src="/js/content/ask_login.js"></script>
     </th:block>
     </div>
     <th:block layout:fragment="content_js">

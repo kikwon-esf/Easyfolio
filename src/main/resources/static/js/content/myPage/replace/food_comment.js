@@ -3,15 +3,12 @@ const getCommentURL = "/food/comment";
 const submitURL = "/myPage/comment"
 const replacePosition = document.querySelector('.replacePosition');
 
-
 function getCommentList(url){
     fetch(url)
     .then((resp)=>{
-        console.log(resp);
         return resp.text();
     })
     .then((data)=>{
-        console.log(data);
         writeContent(replacePosition, data);
         const foodCode_hide = document.querySelector('.foodCode_hide')
         foodCode_hide.value=foodCode;
@@ -21,7 +18,6 @@ function writeContent(postion, content){
     postion.innerHTML=content;
 }
 window.addEventListener('load',()=>{
-    console.log(getCommentURL+"?foodCode="+foodCode);
     
     getCommentList(getCommentURL+"?foodCode="+foodCode);
 })
@@ -35,7 +31,6 @@ function submitComment(){
     }
     fetch(submitURL, options)
     .then((resp)=>{
-        console.log(resp);
         return resp.text();
     })
     .then((data)=>{
@@ -43,4 +38,6 @@ function submitComment(){
         const foodCode_hide = document.querySelector('.foodCode_hide')
         foodCode_hide.value=foodCode;
     })
+    
+
 }

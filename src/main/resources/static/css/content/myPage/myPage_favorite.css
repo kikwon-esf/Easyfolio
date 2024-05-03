@@ -222,3 +222,7 @@
 .heartBox{
     margin-left : 17px
 }
+
+.pop_blind{
+    display: none;
+}

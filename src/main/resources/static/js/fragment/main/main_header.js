@@ -64,15 +64,15 @@ document.addEventListener("mouseover", function (event) {
 })
 
 //로그아웃
-var logout = document.getElementById("logout");
-if (logout != null) {
-    logout.addEventListener("click", (e) => {
-        let active = confirm("로그아웃을 하시겠습니까?");
-        if (!active) {
-            e.preventDefault();
-        }
-    })
-}
+// var logout = document.getElementById("logout");
+// if (logout != null) {
+//     logout.addEventListener("click", (e) => {
+//         let active = confirm("로그아웃을 하시겠습니까?");
+//         if (!active) {
+//             e.preventDefault();
+//         }
+//     })
+// }
 
 function allSearch() {
     document.querySelector(".allSearchForm").submit();
@@ -205,5 +205,34 @@ function createZeroAlarmElement() {
     }
     
     document.querySelector('.alarmInner').appendChild(alarmBlock);
+}
+let eee=null;
+window.addEventListener('DOMContentLoaded', ()=>{
+    let user = document.querySelector(".userName").value;
+    if(user != null){
+        let emitter = new EventSource("http://localhost:8081/notify/getAlarm");
+        eee = emitter;
+        
+        emitter.addEventListener('notification',(e)=>{
+            const data = JSON.parse(e.data);
+            console.log(data)
+            console.log(data[0])
+        })
+        
+    }
+    
+    
+    
+})
+const logoutDisplay = document.querySelector('.logout')
+function logout(){
+    displayOn(logoutDisplay);
+
+}
+function logoutYes(){
+    location.href="/logout";
+}
+function logoutNo(){
+    displayOff(logoutDisplay);
 }
 
