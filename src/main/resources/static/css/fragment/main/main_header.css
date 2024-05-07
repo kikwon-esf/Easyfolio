@@ -277,11 +277,11 @@ textarea{
     z-index: 500;
     display: none;
     position: absolute;
-    left: -30px;
+    left: 5px;
     background-color: #fff;
     box-shadow: -1px 1px 8px 0px rgba(68,68,68,.3);
     border-radius: 5px;
-    padding: 20px 10px;
+    padding: 10px 10px 15px 10px;
     width: 300px;
     height: auto;
 }
@@ -344,32 +344,69 @@ textarea{
     width: 100%;
 }
 .popupTitle{
-    margin-bottom: 20px;
+    display: -webkit-inline-box;
+    margin: 0 0 20px 5px;
 }
-.popupTitle p{
-    font-size: 17px;
+.popupTitle1{
+    color: #333;
+    font-size: 18px;
     font-weight: 700;
+    margin-right: 4px;
+}
+.popupTitle2{
+    margin: 4px 10px 3px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f3c053;
 }
 .popupBlock{
+    padding: 15px;
+    position: relative;
     margin-bottom: 20px;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+}
+.popupBlock:last-child{
+    margin-bottom: 0;
 }
 .popupBoxTitle{
-    position: relative;
+    top: -14px;
+    left: 11px;
+    display: block;
+    position: absolute;
 }
 .popupBoxTitle p{
-    font-size: 16px;
+    padding: 0 10px 0 3px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
     position: relative;
     display: inline-block;
     background-color: #fff;
 }
-.popupBoxTitle::before{
-    position: absolute;
-    content: "";
-    display: block;
-    width: 100%;
-    top: 11px;
-    height: 2px;
-    background-color: #dadada;
+.popupBoxContent p{
+    font-size: 15px;
+    font-weight: 300;
+    color: #444;
+    margin-bottom: 10px;
+}
+.popupBoxContent p:hover{
+    color: #f3c053;
+}
+.popupBoxContent p:last-child{
+    margin-bottom: 0;
+}
+.popupBoxContent p:first-child{
+    margin-top: 6px;
+}
+.recipeAll{
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #333;
+}
+.recipeAll:hover{
+    color: #f3c053;
 }
 
 
