@@ -149,8 +149,41 @@ textarea {
 }
 
 .logoutError{
-    border:1px solid black;
-    position:absolute;
-    left : 40%;
-    top : 40%;
+    position: absolute;
+    padding: 20px 10px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 401;
+    width: 300px;
+    height: 100px;
+    top: 35%;
+    left: -150px;
+    margin-left: 50%;
+}
+.logoutError p{
+    font-weight: 300;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.logoutError button{
+    cursor: pointer;
+    font-weight: 300;
+    color: #777;
+    border-radius: 6px;
+    margin: 8px;
+    padding: 3px 16px;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+.logoutError button:hover{
+    background-color: #ffa43b;
+    color: #fff;
+    border: 1px solid #ffd57a;
+    transition: background-color 0.3s ease;
 }
