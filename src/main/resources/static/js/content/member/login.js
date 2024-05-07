@@ -22,11 +22,15 @@ document.addEventListener("click", function (event) {
 
 //로그인 에러시
 const errInput = document.querySelector('#login_error');
+const logoutErrorDisplay = document.querySelector('.logoutError');
 document.addEventListener('DOMContentLoaded',()=>{
     if(errInput.value != ''){
-        alert('로그인 정보를 확인해주세요.');
+        logoutErrorDisplay.classList.remove('hide')
     }
 })
+function close(ele){
+    ele.classList.add('hide')
+}
 //input의 값이 공백일 경우
 
 const regularChk = /^(?:[^ ]+)$/;

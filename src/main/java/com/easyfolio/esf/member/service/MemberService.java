@@ -22,15 +22,5 @@ public interface MemberService {
     // 회원찾기
     public MemberVO findMemberById(String id);
 
-    // 알람cnt 플러스
-    public int alarmCntPlus(MemberVO memberVO);
 
-    // 알람cnt 마이너스
-    public int alarmCntMinus(MemberVO memberVO);
-
-    // 알람 테이블 등록
-    public void insertAlarm(CommentVO commentVO);
-
-    // 알람 리스트
-    public List<AlarmVO> alarmList(MemberVO memberVO);
 }

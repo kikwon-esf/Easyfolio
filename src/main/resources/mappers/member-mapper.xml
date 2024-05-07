@@ -20,9 +20,10 @@
         <result column="FOOD_CODE"    property="foodCode" />
         <result column="FOOD_COMMENT_ID"    property="foodCommentId" />
         <result column="ALARM_TYPE"    property="alarmType" />
+        <result column="ALARM_CHECK"    property="alarmCheck" />
         <result column="CONTENT"    property="content" />
         <result column="REG_DATE"    property="regDate" />
-        <result column="NICKNAME"    property="nickName" />
+        <result column="MEMBER_NAME"    property="memberName" />
     </resultMap>
 
     <insert id="join">
@@ -116,17 +117,37 @@
     </insert>
 
     <select id="alarmList" resultMap="alarm">
-        SELECT DISTINCT D.NICKNAME
+        SELECT DISTINCT D.MEMBER_NAME
         , C.CONTENT
         , TO_CHAR(C.REG_DATE, 'YY-MM-DD HH24:MI') AS REG_DATE
         , A.FOOD_CODE
         , A.ALARM_TYPE
+        , A.ALARM_CODE
+        , A.ALARM_CHECK
         , A.FOOD_COMMENT_ID
         , A.SEND_MEMBER_ID
+        , TO_CHAR(C.REG_DATE, 'YY-MM-DD HH24:MI:SS') AS DESC_REG_DATE
         FROM ALARM A, FOOD_COMMENT C, DISH_MEMBER D
         WHERE A.RECIVE_MEMBER_ID = #{memberId}
         AND C.FOOD_COMMENT_ID = A.FOOD_COMMENT_ID
         AND D.MEMBER_ID = A.RECIVE_MEMBER_ID
+        ORDER BY DESC_REG_DATE DESC
     </select>
+
+    <update id="updateAlarm">
+        UPDATE ALARM
+        SET ALARM_CHECK = 'Y'
+        WHERE ALARM_CODE = #{alarmCode}
+    </update>
+
+    <delete id="deleteAlarmAll">
+        DELETE FROM ALARM
+        WHERE RECIVE_MEMBER_ID = #{memberId}
+    </delete>
+
+    <delete id="deleteAlarm">
+        DELETE FROM ALARM
+        WHERE ALARM_CODE = #{alarmCode}
+    </delete>
 
 </mapper>

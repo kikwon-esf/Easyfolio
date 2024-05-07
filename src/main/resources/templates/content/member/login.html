@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="/css/content/member/login.css">
     <input type="hidden" th:value="${loginError}" id="login_error">
     <div id="wrap">
+        <div class="logoutError hide">
+            <p>로그인 정보를 확인해주세요</p>
+            <button onclick="close(this)">확인</button>
+        </div>
         <div class="inner">
             <div class="logoBlock">
                 <div class="logo">

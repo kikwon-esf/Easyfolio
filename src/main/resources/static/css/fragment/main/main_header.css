@@ -152,10 +152,47 @@ textarea{
     height: auto;
 }
 .popup.alarm{
-    display: block;
     width: 250px;
     right: -106px;
-    padding: 10px;
+    padding: 10px 2px 10px 10px
+}
+.zeroAlarm{
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+.alarmInner{
+    height: auto;
+    max-height: 270px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #ececec;
+    padding: 3px 1px;
+    width: 241px;
+    border-radius: 8px;
+}
+.alarmInner::-webkit-scrollbar,
+.outputbox::-webkit-scrollbar {
+    position: absolute;
+  width: 12px;
+}
+
+.alarmInner::-webkit-scrollbar-track,
+.outputbox::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.alarmInner::-webkit-scrollbar-thumb,
+.outputbox::-webkit-scrollbar-thumb {
+  background-color: #dadada;
+  border-radius: 6px;
+  border: 3px solid #fff;
+}
+
+.alarmInner::-webkit-scrollbar-thumb:hover,
+.outputbox::-webkit-scrollbar-thumb:hover {
+  background-color: #b0b0b0;
+  cursor: pointer;
 }
 .alarmHeader{
     margin-bottom: 5px;
@@ -179,14 +216,20 @@ textarea{
     font-weight: 700;
     color: #f3c053;
 }
-.alarmBox{
-    position: relative;
-    padding: 2px 20px;
-}
 .alarmBox:hover{
-    background-color: #f4f4f4;
+    background-color: #ececec;
     border-radius: 6px;
-    /* transition: ; */
+    transition: all 0.2s ease;
+}
+.alarmTop{
+    display: flex;
+}
+.nicName{
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 45px;
 }
 .alarmDeleteBox{
     color: #888;
@@ -194,16 +237,33 @@ textarea{
     height: 20px;
     margin-top: 7px;
     font-size: 13px;
+    margin-right: 16px;
+}
+.alarmDelete{
+    margin-right: 2px;
 }
 .alarmDeleteBox:hover p{
     color: #f3c053;
+}
+.alarmBox{
+    border-radius: 6px;
+    width: 238px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 2px 10px;
+    transition: all 0.5s ease;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 2px;
 }
 .alarmBox span{
     color: #333;
     font-size: 13px;
 }
-.alarmBox p> .alarmDate{
+.alarmBot> .alarmDate{
     font-size: 11px;
+    margin-top: 3px;
+    color: #888;
 }
 .alarmIcon{
     position: absolute;
@@ -217,11 +277,11 @@ textarea{
     z-index: 500;
     display: none;
     position: absolute;
-    left: -30px;
+    left: 5px;
     background-color: #fff;
     box-shadow: -1px 1px 8px 0px rgba(68,68,68,.3);
     border-radius: 5px;
-    padding: 20px 10px;
+    padding: 10px 10px 15px 10px;
     width: 300px;
     height: auto;
 }
@@ -239,20 +299,35 @@ textarea{
     margin-bottom: 10px;
 }
 .comTextBox{
+    margin: 0 auto;
     display: flex;
 }
-.alamBot{
+.alarmBot{
     width: 196px;
     justify-content: space-between;
     display: flex;
 }
+.alarmTag{
+    display: block;
+    width: 200px;
+}
+.alarmTag.check, .alarmTag.check * {
+    color: #dadada;
+    fill: #dadada;
+    background-color: transparent;
+}
+.alarmTag.check .alarmIcon:hover * {
+    fill: #f3c053;
+}
+
+
 .comText{
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 80px;
+    max-width: 100px;
     font-size: 13px;
     color: #333;
 }
@@ -269,32 +344,69 @@ textarea{
     width: 100%;
 }
 .popupTitle{
-    margin-bottom: 20px;
+    display: -webkit-inline-box;
+    margin: 0 0 20px 5px;
 }
-.popupTitle p{
-    font-size: 17px;
+.popupTitle1{
+    color: #333;
+    font-size: 18px;
     font-weight: 700;
+    margin-right: 4px;
+}
+.popupTitle2{
+    margin: 4px 10px 3px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f3c053;
 }
 .popupBlock{
+    padding: 15px;
+    position: relative;
     margin-bottom: 20px;
+    border: 1px solid #dadada;
+    border-radius: 6px;
+}
+.popupBlock:last-child{
+    margin-bottom: 0;
 }
 .popupBoxTitle{
-    position: relative;
+    top: -14px;
+    left: 11px;
+    display: block;
+    position: absolute;
 }
 .popupBoxTitle p{
-    font-size: 16px;
+    padding: 0 10px 0 3px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
     position: relative;
     display: inline-block;
     background-color: #fff;
 }
-.popupBoxTitle::before{
-    position: absolute;
-    content: "";
-    display: block;
-    width: 100%;
-    top: 11px;
-    height: 2px;
-    background-color: #dadada;
+.popupBoxContent p{
+    font-size: 15px;
+    font-weight: 300;
+    color: #444;
+    margin-bottom: 10px;
+}
+.popupBoxContent p:hover{
+    color: #f3c053;
+}
+.popupBoxContent p:last-child{
+    margin-bottom: 0;
+}
+.popupBoxContent p:first-child{
+    margin-top: 6px;
+}
+.recipeAll{
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #333;
+}
+.recipeAll:hover{
+    color: #f3c053;
 }
 
 

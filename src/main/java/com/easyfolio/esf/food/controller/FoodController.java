@@ -3,6 +3,7 @@ package com.easyfolio.esf.food.controller;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
+import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.CommentVO;
@@ -22,11 +23,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.jar.Attributes;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,6 +42,7 @@ public class FoodController {
     private final FoodService foodService;
     //일단은 myPageService추가, 논의 후 foodService에 주입
     private final MyPageService myPageService;
+    private final MemberService memberService;
 
     @RequestMapping(value = "/searchFoodPage", method = {RequestMethod.GET, RequestMethod.POST})
     public String searchFoodAllPage(Model model, FoodVO foodVO,
@@ -144,4 +148,6 @@ public class FoodController {
         model.addAttribute("inputComment",new CommentVO());
         return "content/myPage/replace/food_comment";
     }
+
+
 }

@@ -227,6 +227,7 @@ public class CscController {
     public String deleteQna (QnaVO qnaVO){
         cscService.deleteQna(qnaVO);
         return "redirect:/csc/qnaListForm";
+
     }
 
 //     자주 찾는 질문 수정 (비동기)

@@ -84,6 +84,7 @@
 .foodTagBox{
     display: flex;
     border-radius: 4px;
+    height: 35px;
     box-shadow: 0 0px 5px 3px rgba(68,68,68,.03);
 }
 .foodTag{
@@ -221,4 +222,8 @@
 }
 .heartBox{
     margin-left : 17px
+}
+
+.pop_blind{
+    display: none;
 }
