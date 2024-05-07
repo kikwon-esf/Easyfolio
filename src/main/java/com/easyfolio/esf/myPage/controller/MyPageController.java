@@ -2,11 +2,13 @@ package com.easyfolio.esf.myPage.controller;
 
 
 import com.easyfolio.esf.food.service.FoodService;
+import com.easyfolio.esf.member.service.AlarmService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
+import com.easyfolio.esf.otherProtocol.sse.service.SseService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.boot.Banner;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.security.Principal;
 import java.util.List;
@@ -30,6 +33,8 @@ public class MyPageController {
     private final MemberService memberService;
     private final FoodService foodService;
     private final MyPageService myPageService;
+    private final AlarmService alarmService;
+    private final SseService sseService;
 
     @GetMapping(value = "/favorite")
     public String favoritePage(@RequestParam(value = "searchFavoriteValue", required = false) String searchFavoriteValue,FavoriteVO favoriteVO,Principal principal, Model model, MemberVO memberVO){
@@ -38,6 +43,7 @@ public class MyPageController {
         favoriteVO.setSearchFavoriteValue(searchFavoriteValue);
         favoriteVO.setTotalDataCnt(myPageService.favoriteCnt(favoriteVO));
         favoriteVO.setPageInfo(8);
+        model.addAttribute("nowPage", favoriteVO.getNowPage());
         model.addAttribute("searchFavoriteCnt", favoriteVO.getTotalDataCnt());
         List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(favoriteVO);
         model.addAttribute("myFavorite", favorite);
@@ -106,13 +112,19 @@ public class MyPageController {
     //댓글 등록 후 댓글창 업로드
     @PostMapping("/comment")
     public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
-        memberService.alarmCntPlus(memberVO);
+        alarmService.alarmCntPlus(memberVO);
         commentVO.setFoodCommentId(myPageService.nextComtCode());
         commentVO.setReciveMemberId(commentVO.getMemberId());
         commentVO.setSendMemberId(principal.getName());
 
         myPageService.submitComment(commentVO); // 댓글 등록하는 코드
-        memberService.insertAlarm(commentVO);
+        alarmService.insertAlarm(commentVO);
+
+        //client로 알람 전달
+        String sendMember = commentVO.getSendMemberId();
+        System.err.println(sendMember);
+        sseService.notify(sendMember, alarmService.alarmList(new MemberVO().withMemberId(sendMember)));
+
 
         List<CommentVO> commentList = myPageService.getCommentVOList(commentVO.withMemberId(null));
         model.addAttribute("commentList", commentList);

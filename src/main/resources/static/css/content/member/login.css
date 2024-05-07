@@ -147,3 +147,10 @@ textarea {
 .inputBox.fail .inputMem::placeholder{
     color: #ff3f3f;
 }
+
+.logoutError{
+    border:1px solid black;
+    position:absolute;
+    left : 40%;
+    top : 40%;
+}

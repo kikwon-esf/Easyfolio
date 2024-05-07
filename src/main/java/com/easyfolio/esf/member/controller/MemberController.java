@@ -1,9 +1,11 @@
 package com.easyfolio.esf.member.controller;
 
 import com.easyfolio.esf.config.interceptor.CreateSessionInterceptor;
+import com.easyfolio.esf.member.service.AlarmService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
+import com.easyfolio.esf.otherProtocol.sse.service.SseService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +32,8 @@ import java.util.Map;
 public class MemberController {
     @Resource
     private final MemberService memberService;
-
+    private final AlarmService alarmService;
+    private final SseService sseService;
     private final PasswordEncoder passwordEncoder;
 
     //로그인 페이지 이동
@@ -96,7 +99,7 @@ public class MemberController {
     // 알림창에서 이동
     @GetMapping("/alarmDetail")
     public String alarmDetail(AlarmVO alarmVO){
-        memberService.updateAlarm(alarmVO);
+        alarmService.updateAlarm(alarmVO);
         return "redirect:/food/detail?foodCode=" + alarmVO.getFoodCode();
     }
 
@@ -105,14 +108,15 @@ public class MemberController {
     @PostMapping("/deleteAlarmAll")
     public void deleteAlarmAll(Principal principal, MemberVO memberVO) {
         memberVO.setMemberId(principal.getName());
-        memberService.deleteAlarmAll(memberVO);
+        sseService.notify(principal.getName(),alarmService.alarmList(memberVO));
+        alarmService.deleteAlarmAll(memberVO);
     }
 
     // 알람 삭제
     @ResponseBody
     @PostMapping("/deleteAlarm")
     public void deleteAlarm(AlarmVO alarmVO) {
-        memberService.deleteAlarm(alarmVO);
+        alarmService.deleteAlarm(alarmVO);
     }
 
 }
