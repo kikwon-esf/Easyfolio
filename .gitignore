@@ -38,8 +38,10 @@ out/
 
 ### environment ###
 .env
+.env*
+application.properties
+application.properties*
 src/main/resources/application.properties
 .properties
 /application.properties
-application.properties
 
