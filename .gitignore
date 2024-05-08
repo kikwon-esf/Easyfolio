@@ -40,6 +40,7 @@ out/
 .env
 .env*
 application.properties
+D:/dev/WorkSpaceSpring/Easyfolio/application.properties
 application.properties*
 src/main/resources/application.properties
 .properties
