@@ -385,12 +385,14 @@ textarea{
     background-color: #fff;
 }
 .popupBoxContent p{
+    margin-bottom: 10px;
+}
+.popupContent, .popupBoxContent p{
     font-size: 15px;
     font-weight: 300;
     color: #444;
-    margin-bottom: 10px;
 }
-.popupBoxContent p:hover{
+.popupBoxContent p:hover > .popupContent{
     color: #f3c053;
 }
 .popupBoxContent p:last-child{
