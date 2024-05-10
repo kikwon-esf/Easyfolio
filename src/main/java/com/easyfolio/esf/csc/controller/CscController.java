@@ -226,6 +226,7 @@ public class CscController {
     @GetMapping("/deleteQna")
     public String deleteQna (QnaVO qnaVO){
         cscService.deleteQna(qnaVO);
+        System.out.println();
         return "redirect:/csc/qnaListForm";
 
     }
