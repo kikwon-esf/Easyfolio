@@ -192,6 +192,7 @@
         , FOOD_DIF
         , FOOD_INQ_CNT
         , FOOD_RCMM_CNT
+        , MEMBER_ID
         FROM FOOD
         <where>
             <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">

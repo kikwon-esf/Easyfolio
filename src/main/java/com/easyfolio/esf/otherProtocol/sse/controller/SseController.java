@@ -7,6 +7,7 @@ import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.otherProtocol.sse.service.SseService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import oracle.ucp.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.security.Principal;
 @RestController
 @RequestMapping(value = "/notify")
 @RequiredArgsConstructor
+@Slf4j
 public class SseController {
 
     private final SseService sseService;
@@ -29,7 +31,8 @@ public class SseController {
                         new MemberVO().withMemberId(principal.getName())
                 )
         );
-        System.err.println("isthisworking?"+principal.getName());
+        log.info("sse 최초 개통 getAlarm");
+        log.info(principal.getName());
         return emitter;
     }
 
