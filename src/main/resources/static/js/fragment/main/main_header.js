@@ -206,17 +206,28 @@ function createZeroAlarmElement() {
     
     document.querySelector('.alarmInner').appendChild(alarmBlock);
 }
-let eee=null;
+
+
+
+
+let alarmList = JSON.parse(localStorage.getItem("alarmList"));
+let emmiter = null;
+
+//알람 개통
 window.addEventListener('DOMContentLoaded', ()=>{
     let user = document.querySelector(".userName").value;
-    if(user != null){
-        let emitter = new EventSource("http://localhost:8081/notify/getAlarm");
-        eee = emitter;
-        
+    if(user != null && user!='' && emmiter == null){
+        alarmListRander();
+        emitter = new EventSource("http://localhost:8081/notify/getAlarm");
         emitter.addEventListener('notification',(e)=>{
-            const data = JSON.parse(e.data);
-            console.log(data)
-            console.log(data[0])
+            const data = JSON.stringify(JSON.parse(e.data));
+            const isEqual = JSON.stringify(alarmList) === data;
+            if(!isEqual){
+                localStorage.setItem("alarmList",data);
+                alarmList = JSON.parse(localStorage.getItem("alarmList"));
+                alarmListRander();
+                return;
+            }
         })
         
     }
@@ -236,3 +247,25 @@ function logoutNo(){
     displayOff(logoutDisplay);
 }
 
+//알람 변화 감지시 replace하는 함수
+function alarmListRander(){
+    //replace 위치
+    const replacePosition = document.querySelector(".alarmInner");
+    const getAlarmPageurl = "/myPage/getAlarmPage";
+    let data = {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(alarmList)
+    }
+    fetch(getAlarmPageurl,data)
+    .then((resp)=>{
+        return resp.text();
+    })
+    .then((data)=>{
+        replacePosition.innerHTML=data;
+    })
+
+}
