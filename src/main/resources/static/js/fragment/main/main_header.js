@@ -211,19 +211,20 @@ function createZeroAlarmElement() {
 
 
 let alarmList = JSON.parse(localStorage.getItem("alarmList"));
+let emmiter = null;
 
 //알람 개통
 window.addEventListener('DOMContentLoaded', ()=>{
     let user = document.querySelector(".userName").value;
-    if(user != null && user!=''){
+    if(user != null && user!='' && emmiter == null){
         alarmListRander();
-        let emitter = new EventSource("http://localhost:8081/notify/getAlarm");
+        emitter = new EventSource("http://localhost:8081/notify/getAlarm");
         emitter.addEventListener('notification',(e)=>{
-            const data = JSON.stringify(JSON.parse( e.data));
+            const data = JSON.stringify(JSON.parse(e.data));
             const isEqual = JSON.stringify(alarmList) === data;
-            console.log(alarmList)
             if(!isEqual){
                 localStorage.setItem("alarmList",data);
+                alarmList = JSON.parse(localStorage.getItem("alarmList"));
                 alarmListRander();
                 return;
             }
@@ -261,7 +262,6 @@ function alarmListRander(){
     }
     fetch(getAlarmPageurl,data)
     .then((resp)=>{
-        console.log(resp);
         return resp.text();
     })
     .then((data)=>{

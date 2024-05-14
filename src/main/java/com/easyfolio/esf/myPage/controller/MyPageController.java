@@ -129,7 +129,10 @@ public class MyPageController {
         //client로 알람 전달
         String sendMember = commentVO.getSendMemberId();
         System.err.println(sendMember);
-        sseService.notify(sendMember, alarmService.alarmList(new MemberVO().withMemberId(sendMember)));
+        List alarmList = alarmService.alarmList(new MemberVO().withMemberId(sendMember));
+        System.err.println("alarmList : \n"+alarmList);
+        System.err.println("alarmList.size() : \n"+alarmList.size());
+        sseService.notify(sendMember, alarmList);
 
 
         List<CommentVO> commentList = myPageService.getCommentVOList(commentVO.withMemberId(null));
