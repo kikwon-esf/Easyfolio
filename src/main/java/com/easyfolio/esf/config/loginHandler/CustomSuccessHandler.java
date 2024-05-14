@@ -41,14 +41,14 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         String userName = authentication.getName();
         session.setAttribute("userName",userName);
         System.err.println(authentication.getName());
-        SseEmitter emitter = sseService.loginSSE(authentication.getName(),
-                alarmService.alarmList(
-                        new MemberVO().withMemberId(authentication.getName())
-                )
-        );
+//        SseEmitter emitter = sseService.loginSSE(authentication.getName(),
+//                alarmService.alarmList(
+//                        new MemberVO().withMemberId(authentication.getName())
+//                )
+//        );
         //client의 session에 emitter객체 송신
-        session.setAttribute("emitter",emitter);
-        System.err.println(emitter);
+//        session.setAttribute("emitter",emitter);
+//        System.err.println(emitter);
         String target = (String) session.getAttribute("target");
         if(target != null){ //특정 타겟이 있을시(로그인 페이지로 가기 전에 타겟 페이지가 있을 시)
             response.sendRedirect("http://localhost:8081" + target);
