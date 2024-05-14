@@ -2,8 +2,10 @@ package com.easyfolio.esf.myPage.controller;
 
 
 import com.easyfolio.esf.food.service.FoodService;
+import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.AlarmService;
 import com.easyfolio.esf.member.service.MemberService;
+import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.CommentVO;
@@ -22,8 +24,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.security.Principal;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -86,12 +90,12 @@ public class MyPageController {
     @PostMapping(value = "/addFav")
     @ResponseBody
     @Transactional
-    public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> foodCode, FavoriteVO favoriteVO){
+    public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> requestMap, FavoriteVO favoriteVO, CommentVO commentVO){
 
         if(principal == null){ //로그인이 안되어 있을 시
             return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
         }
-        favoriteVO.setFoodCode(foodCode.get("foodCode"));
+        favoriteVO.setFoodCode(requestMap.get("foodCode"));
         favoriteVO.setMemberId(principal.getName());
         try {
             myPageService.addFav(favoriteVO);
@@ -109,7 +113,9 @@ public class MyPageController {
 
 
 
+
     //댓글 등록 후 댓글창 업로드
+    @Transactional
     @PostMapping("/comment")
     public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
         alarmService.alarmCntPlus(memberVO);
@@ -130,6 +136,14 @@ public class MyPageController {
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO());
         return "content/myPage/replace/food_comment";
+    }
+
+    //알람리스트 출력
+    @PostMapping(value = "getAlarmPage")
+    public String getAlarmPage(@RequestBody List<AlarmVO> alarmList, Model model){
+        System.err.println(alarmList);
+        model.addAttribute("alarmList",alarmList);
+        return "content/myPage/replace/alarm_content";
     }
 
 

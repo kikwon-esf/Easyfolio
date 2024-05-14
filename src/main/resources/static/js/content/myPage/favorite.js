@@ -35,8 +35,11 @@ let list = null;
 //페이지 로딩시 하트색칠
 
 window.addEventListener('load',()=>{
-    const listdata = document.querySelector("#favoriteList").getAttribute("data-favorite-list");
-    list = JSON.parse(listdata);
+    const listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
+    if(list!=null){
+        list = JSON.parse(listdata);
+    }
+    
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){
             const foodCode = addFavBtn[i].closest('.recipe').querySelector(".foodCode").value;
@@ -62,6 +65,7 @@ function addOrDelFav(ele){
     const foodCode = ele.closest(".recipeTextBox1").querySelector(".foodCode").value;
     const rcmmCnt = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt");
     const rcmmCntVal = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt").textContent;
+    const memberId = ele.closest(".recipeTextBox1").querySelector(".writer").value;
     let data = {
         method: 'POST',
         cache: 'no-cache',
@@ -69,6 +73,7 @@ function addOrDelFav(ele){
             'Content-Type': 'application/json; charset=UTF-8'
         },
         body: JSON.stringify({
+            "memberId" : memberId,
             "foodCode" : foodCode,
             "type" : "fetch"
         })
