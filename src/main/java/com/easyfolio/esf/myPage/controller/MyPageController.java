@@ -127,14 +127,11 @@ public class MyPageController {
         alarmService.insertAlarm(commentVO);
 
         //client로 알람 전달
-        String sendMember = commentVO.getSendMemberId();
-        System.err.println(sendMember);
+        String sendMember = commentVO.getReciveMemberId();
         List alarmList = alarmService.alarmList(new MemberVO().withMemberId(sendMember));
-        System.err.println("alarmList : \n"+alarmList);
-        System.err.println("alarmList.size() : \n"+alarmList.size());
+
         sseService.notify(sendMember, alarmList);
-
-
+        System.err.println("sendId : " + sendMember);
         List<CommentVO> commentList = myPageService.getCommentVOList(commentVO.withMemberId(null));
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO());
