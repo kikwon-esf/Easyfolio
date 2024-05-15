@@ -68,7 +68,7 @@ public class CscController {
     @PostMapping("/insertAnn")
     public String insertAnn(AnnVO annVO){
         cscService.insertAnn(annVO);
-        System.out.println(cscService.insertAnn(annVO););
+        System.out.println(cscService.insertAnn(annVO));
         return "redirect:/csc/annListForm";
     }
 
