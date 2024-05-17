@@ -212,9 +212,11 @@ function createZeroAlarmElement() {
 
 let alarmList = JSON.parse(localStorage.getItem("alarmList"));
 let emmiter = null;
+const alarmNumber = document.querySelector('.alarmNumber');
 
 //알람 개통
 window.addEventListener('DOMContentLoaded', ()=>{
+    
     let user = document.querySelector(".userName").value;
     if(user != null && user!='' && emmiter == null){
         alarmListRander();
@@ -222,12 +224,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
         emitter.addEventListener('notification',(e)=>{
             const data = JSON.stringify(JSON.parse(e.data));
             const isEqual = JSON.stringify(alarmList) === data;
+            
             if(!isEqual){
                 localStorage.setItem("alarmList",data);
                 alarmList = JSON.parse(localStorage.getItem("alarmList"));
                 alarmListRander();
+                alarmCountRender();
                 return;
             }
+            alarmCountRender(); 
         })
         
     }
@@ -268,4 +273,12 @@ function alarmListRander(){
         replacePosition.innerHTML=data;
     })
 
+}
+
+function alarmCountRender(){
+    let alarmListLength = alarmList.length;
+    if(alarmListLength>=1){
+        alarmNumber.textContent=alarmList.length;
+    }
+    
 }

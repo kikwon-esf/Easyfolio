@@ -15,6 +15,7 @@ import java.util.List;
 public class SseService {
     private final SseRepository sseRepository;
     public SseEmitter loginSSE(String id, List<AlarmVO> list){
+
         SseEmitter emitter = createEmitter(id);
 
         sendAlarmList(id,list);

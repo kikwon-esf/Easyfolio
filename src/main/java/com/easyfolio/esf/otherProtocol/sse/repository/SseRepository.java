@@ -13,6 +13,12 @@ public class SseRepository {
 
     private Map<String, SseEmitter> emitters = new ConcurrentHashMap<>();
 
+    public boolean contain(String key){
+        if(emitters.containsKey(key)){
+            return true;
+        }
+        return false;
+    }
     public void save(String id, SseEmitter emitter){
         emitters.put(id, emitter);
     }
