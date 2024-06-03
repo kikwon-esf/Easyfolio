@@ -28,4 +28,5 @@ public class SseRepository {
     public SseEmitter get(String id){
         return emitters.get(id);
     }
+    public void complete(){}
 }

@@ -29,7 +29,7 @@
                 </th:block>
             </div>
             <input class="foodCode_hide" type="hidden" th:field="*{foodCode}">
-            <div class="submitBlock">
+            <div class="submitBlock" sec:authorize="isAuthenticated()">
                 <div>
                     <textarea th:field="*{content}" placeholder="댓글을 입력해보세요" class="content">
                     </textarea>

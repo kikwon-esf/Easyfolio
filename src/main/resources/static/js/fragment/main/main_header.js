@@ -210,24 +210,24 @@ function createZeroAlarmElement() {
 
 
 
-let alarmList = JSON.parse(localStorage.getItem("alarmList"));
-let emmiter = null;
+let alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
+let emitterFlag = false;
 const alarmNumber = document.querySelector('.alarmNumber');
 
 //알람 개통
-window.addEventListener('DOMContentLoaded', ()=>{
-    
+window.addEventListener('DOMContentLoaded', function(){
     let user = document.querySelector(".userName").value;
-    if(user != null && user!='' && emmiter == null){
+    if(user != null && user!='' && emitterFlag == false){
         alarmListRander();
-        emitter = new EventSource("http://localhost:8081/notify/getAlarm");
+        const emitter = new EventSource("http://localhost:8081/notify/getAlarm");
+        sessionStorage.setItem("emitter",JSON.stringify(emitter))
         emitter.addEventListener('notification',(e)=>{
             const data = JSON.stringify(JSON.parse(e.data));
             const isEqual = JSON.stringify(alarmList) === data;
             
             if(!isEqual){
-                localStorage.setItem("alarmList",data);
-                alarmList = JSON.parse(localStorage.getItem("alarmList"));
+                sessionStorage.setItem("alarmList",data);
+                alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
                 alarmListRander();
                 alarmCountRender();
                 return;
@@ -235,11 +235,15 @@ window.addEventListener('DOMContentLoaded', ()=>{
             alarmCountRender(); 
         })
         
+        emitter.onerror = function(event) {
+            console.error("EventSource failed:", event);
+        };
+        emitterFlag = true;
     }
     
     
     
-})
+});
 const logoutDisplay = document.querySelector('.logout')
 function logout(){
     displayOn(logoutDisplay);
