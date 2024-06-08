@@ -274,7 +274,6 @@ function alarmListRander(){
     console.log("alarmlistRender : " + data)
     fetch(getAlarmPageurl,data)
     .then((resp)=>{
-        console.log(resp)
         return resp.text();
     })
     .then((data)=>{
