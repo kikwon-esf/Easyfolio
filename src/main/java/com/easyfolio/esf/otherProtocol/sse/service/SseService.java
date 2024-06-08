@@ -15,9 +15,14 @@ import java.util.List;
 public class SseService {
     private final SseRepository sseRepository;
     public SseEmitter loginSSE(String id, List<AlarmVO> list){
-        SseEmitter emitter = createEmitter(id);
-
-        sendAlarmList(id,list);
+        SseEmitter emitter = null;
+        if(!sseRepository.contain(id)){
+            emitter = createEmitter(id);
+            sendAlarmList(id,list);
+            return emitter;
+        }
+        emitter = sseRepository.get(id);
+        sendAlarmList(id, list);
         return emitter;
     }
     public void notify(String id, List<AlarmVO> list){
@@ -35,18 +40,31 @@ public class SseService {
             }
         }
     }
+    private void continueSse(String id){
+        if(sseRepository.contain(id)){
+            SseEmitter emitter = sseRepository.get(id);
+            try {
+                emitter.send(SseEmitter.event().id(id).name("continue").data("continue"));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
     private SseEmitter createEmitter(String id){
         //SseEmitter객체 생성 -> 기본생성자 초기 타임아웃 30분
         SseEmitter emitter = new SseEmitter();
         sseRepository.save(id, emitter);
 
         // Emitter가 완료될 때(모든 데이터가 성공적으로 전송된 상태) Emitter를 삭제한다.
-//        emitter.onCompletion(() -> sseRepository.deleteById(id));
+        emitter.onCompletion(() -> sseRepository.complete());
         // Emitter가 타임아웃 되었을 때(지정된 시간동안 어떠한 이벤트도 전송되지 않았을 때) Emitter를 삭제한다.
-//        emitter.onTimeout(() -> sseRepository.deleteById(id));
+        emitter.onTimeout(() -> sseRepository.deleteById(id));
 
         return emitter;
     }
 
+    public void deleteId(String id){
+        sseRepository.deleteById(id);
+    }
 
 }

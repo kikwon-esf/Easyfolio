@@ -178,10 +178,13 @@
     color: #555;
     margin: 5px 0;
 }
+.recipeTextBox11{
+    margin-left: 9px;
+}
 .cartBox{
     width: 60px;
     margin-right: -17px;
-    margin-top: 7px;
+    margin-top: 9px;
     text-align: center;
 }
 .cartBox p{

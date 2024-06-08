@@ -50,6 +50,7 @@ public class AlarmServiceImpl implements AlarmService{
     @Override
     public void deleteAlarm(AlarmVO alarmVO) {
         sqlSession.delete("memberMapper.deleteAlarm", alarmVO);
+
     }
 
 

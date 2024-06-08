@@ -5,6 +5,7 @@ import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.otherProtocol.sse.service.SseService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ public class SseController {
     private final AlarmService alarmService;
     @GetMapping(value = "/getAlarm")
     public SseEmitter getAlarm(Principal principal){
+
         SseEmitter emitter = sseService.loginSSE(
                 principal.getName()
                 ,alarmService.alarmList(

@@ -160,6 +160,7 @@ function deleteAlarm(icon) {
                         alarmBox.remove(); 
                         if (document.querySelectorAll('.alarmBox').length === 0) {
                             createZeroAlarmElement(); 
+                            alarmCountRender();
                         }
                     });
                 }
@@ -178,6 +179,7 @@ function deleteAlarmOne(icon) {
         alarmBox.style.opacity = '0';
         alarmBox.addEventListener('transitionend', function () {
             alarmBox.remove();
+            alarmCountRender();
             if (document.querySelectorAll('.alarmBox').length === 0) {
                 createZeroAlarmElement(); 
             }
@@ -210,31 +212,38 @@ function createZeroAlarmElement() {
 
 
 
-let alarmList = JSON.parse(localStorage.getItem("alarmList"));
-let emmiter = null;
+let alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
+const alarmNumber = document.querySelector('.alarmNumber');
 
 //알람 개통
-window.addEventListener('DOMContentLoaded', ()=>{
+window.addEventListener('DOMContentLoaded', function(){
     let user = document.querySelector(".userName").value;
-    if(user != null && user!='' && emmiter == null){
+    if(user != null && user!='' ){
         alarmListRander();
-        emitter = new EventSource("http://localhost:8081/notify/getAlarm");
+        alarmCountRender();
+        const emitter = new EventSource("http://localhost:8081/notify/getAlarm");
+        sessionStorage.setItem("emitter",JSON.stringify(emitter))
         emitter.addEventListener('notification',(e)=>{
             const data = JSON.stringify(JSON.parse(e.data));
             const isEqual = JSON.stringify(alarmList) === data;
+            
             if(!isEqual){
-                localStorage.setItem("alarmList",data);
-                alarmList = JSON.parse(localStorage.getItem("alarmList"));
+                sessionStorage.setItem("alarmList",data);
+                alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
                 alarmListRander();
+                alarmCountRender();
                 return;
             }
+            alarmCountRender(); 
         })
         
+     
     }
     
     
     
-})
+});
+
 const logoutDisplay = document.querySelector('.logout')
 function logout(){
     displayOn(logoutDisplay);
@@ -268,4 +277,12 @@ function alarmListRander(){
         replacePosition.innerHTML=data;
     })
 
+}
+
+function alarmCountRender(){
+    let alarmListLength = alarmList.length;
+    if(alarmListLength>=0){
+        alarmNumber.textContent=alarmList.length;
+    }
+    
 }
