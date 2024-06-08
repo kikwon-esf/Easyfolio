@@ -109,9 +109,12 @@ public class MemberController {
     @Transactional
     @PostMapping("/deleteAlarmAll")
     public void deleteAlarmAll(Principal principal, MemberVO memberVO) {
-        memberVO.setMemberId(principal.getName());
+        String user = principal.getName();
+        memberVO.setMemberId(user);
         alarmService.deleteAlarmAll(memberVO);
         sseService.notify(principal.getName(),alarmService.alarmList(memberVO));
+        sseService.notify(user, alarmService.alarmList(new MemberVO().withMemberId(user)));
+
     }
 
     // 알람 삭제
