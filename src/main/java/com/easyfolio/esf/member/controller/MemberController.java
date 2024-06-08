@@ -101,6 +101,7 @@ public class MemberController {
     @GetMapping("/alarmDetail")
     public String alarmDetail(AlarmVO alarmVO){
         alarmService.updateAlarm(alarmVO);
+        alarmService.deleteAlarm(alarmVO);
         return "redirect:/food/detail?foodCode=" + alarmVO.getFoodCode();
     }
 
