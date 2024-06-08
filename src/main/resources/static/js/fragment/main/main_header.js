@@ -160,6 +160,7 @@ function deleteAlarm(icon) {
                         alarmBox.remove(); 
                         if (document.querySelectorAll('.alarmBox').length === 0) {
                             createZeroAlarmElement(); 
+                            alarmCountRender();
                         }
                     });
                 }
@@ -178,6 +179,7 @@ function deleteAlarmOne(icon) {
         alarmBox.style.opacity = '0';
         alarmBox.addEventListener('transitionend', function () {
             alarmBox.remove();
+            alarmCountRender();
             if (document.querySelectorAll('.alarmBox').length === 0) {
                 createZeroAlarmElement(); 
             }
@@ -211,14 +213,14 @@ function createZeroAlarmElement() {
 
 
 let alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
-let emitterFlag = false;
 const alarmNumber = document.querySelector('.alarmNumber');
 
 //알람 개통
 window.addEventListener('DOMContentLoaded', function(){
     let user = document.querySelector(".userName").value;
-    if(user != null && user!='' && emitterFlag == false){
+    if(user != null && user!='' ){
         alarmListRander();
+        alarmCountRender();
         const emitter = new EventSource("http://localhost:8081/notify/getAlarm");
         sessionStorage.setItem("emitter",JSON.stringify(emitter))
         emitter.addEventListener('notification',(e)=>{
@@ -238,12 +240,12 @@ window.addEventListener('DOMContentLoaded', function(){
         emitter.onerror = function(event) {
             console.error("EventSource failed:", event);
         };
-        emitterFlag = true;
     }
     
     
     
 });
+
 const logoutDisplay = document.querySelector('.logout')
 function logout(){
     displayOn(logoutDisplay);

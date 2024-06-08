@@ -22,7 +22,7 @@ public class SseService {
             return emitter;
         }
         emitter = sseRepository.get(id);
-        continueSse(id);
+        sendAlarmList(id, list);
         return emitter;
     }
     public void notify(String id, List<AlarmVO> list){

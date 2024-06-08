@@ -117,8 +117,11 @@ public class MemberController {
     // 알람 삭제
     @ResponseBody
     @PostMapping("/deleteAlarm")
-    public void deleteAlarm(AlarmVO alarmVO) {
+    public void deleteAlarm(AlarmVO alarmVO, Principal principal) {
+
         alarmService.deleteAlarm(alarmVO);
+        String user = principal.getName();
+        sseService.notify(user, alarmService.alarmList(new MemberVO().withMemberId(user)));
     }
 
 }
