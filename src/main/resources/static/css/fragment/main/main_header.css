@@ -171,6 +171,19 @@ textarea{
     width: 241px;
     border-radius: 8px;
 }
+.alarmNumber{
+    display: block;
+    width: 22px;
+    position: absolute;
+    height: 20px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: #ff7b3f;
+    color: #fff;
+    text-align: center;
+    margin-top: -6px;
+    padding-bottom: 2px;
+}
 .alarmInner::-webkit-scrollbar,
 .outputbox::-webkit-scrollbar {
     position: absolute;
