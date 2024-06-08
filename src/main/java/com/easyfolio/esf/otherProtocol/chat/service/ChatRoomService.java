@@ -9,4 +9,5 @@ public interface ChatRoomService {
     public int createChatRoom();
     public int deleteChatRoom();
     public List<ChatRoomVO> getChatRoomList();
+    public ChatRoomVO getChatRoomDetail();
 }
