@@ -36,9 +36,9 @@ let list = null;
 
 window.addEventListener('load',()=>{
     const listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
-    if(list!=null){
-        list = JSON.parse(listdata);
-    }
+    
+    list = JSON.parse(listdata);
+    
     
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){

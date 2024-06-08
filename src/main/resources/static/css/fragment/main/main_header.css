@@ -19,7 +19,9 @@ a{
 textarea{
     resize: none;
 }
-
+.alarmCountHide{
+    display: none !important;
+}
 .hide{
     position: fixed;
     top: -99999px;

@@ -6,8 +6,13 @@
 //
 //@Configuration
 //@RequiredArgsConstructor
-//@EnableWebSocketMessageBroker
-//public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
+//@EnableWebSocket
+//public class WebsocketConfig implements  WebSocketConfigurer{
+//    private final ChatHandler chatHandler;
 //
+//    @Override
+//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+//        registry.addHandler(chatHandler, "/chat").setAllowedOrigins("*");
+//    }
 //
 //}
