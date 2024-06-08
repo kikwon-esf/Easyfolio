@@ -237,9 +237,7 @@ window.addEventListener('DOMContentLoaded', function(){
             alarmCountRender(); 
         })
         
-        emitter.onerror = function(event) {
-            console.error("EventSource failed:", event);
-        };
+     
     }
     
     
@@ -283,7 +281,7 @@ function alarmListRander(){
 
 function alarmCountRender(){
     let alarmListLength = alarmList.length;
-    if(alarmListLength>=1){
+    if(alarmListLength>=0){
         alarmNumber.textContent=alarmList.length;
     }
     
