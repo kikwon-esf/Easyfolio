@@ -232,7 +232,6 @@ window.addEventListener('DOMContentLoaded', function(){
                 sessionStorage.setItem("alarmList",data);
                 alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
                 alarmListRander();
-                alarmCountRender();
                 return;
             }
             alarmCountRender(); 
@@ -278,19 +277,19 @@ function alarmListRander(){
     })
     .then((data)=>{
         replacePosition.innerHTML=data;
+        alarmCountRender();
     })
 
 }
 
 function alarmCountRender(){
-    let alarmListLength = alarmList?.length;
-    if(alarmListLength>=0){
+    let alarmCount = document.querySelector('#alarmCount')?.value;
+    if(alarmCount>=0){
         alarmNumber.classList.remove("alarmCountHide");
-        alarmNumber.textContent=alarmList.length;
+        alarmNumber.textContent=alarmCount;
     }
 
-    if(alarmListLength<=0 || alarmList == null){
-        console.log("gg")
+    if(alarmCount<=0 || alarmCount == ""){
         alarmNumber.classList.add("alarmCountHide");
     }
     

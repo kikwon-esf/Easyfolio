@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -81,7 +83,6 @@ public class MyPageController {
 
         String user = principal.getName();
 
-
         return "content/myPage/myPage_myDetails";
     }
 
@@ -122,7 +123,7 @@ public class MyPageController {
         commentVO.setFoodCommentId(myPageService.nextComtCode());
         commentVO.setReciveMemberId(commentVO.getMemberId());
         commentVO.setSendMemberId(principal.getName());
-
+        System.err.println("commentVo :  " + commentVO);
         myPageService.submitComment(commentVO); // 댓글 등록하는 코드
         alarmService.insertAlarm(commentVO);
 
@@ -132,20 +133,48 @@ public class MyPageController {
 
         sseService.notify(sendMember, alarmList);
         System.err.println("sendId : " + sendMember);
-        List<CommentVO> commentList = myPageService.getCommentVOList(commentVO.withMemberId(null));
+        Map<String, CommentVO> commentMap = myPageService.getCommentVOList(commentVO.withMemberId(null));
+        List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
+        List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
+//        commentList.sort();
+
         model.addAttribute("commentList", commentList);
-        model.addAttribute("inputComment",new CommentVO());
+        model.addAttribute("inputComment",new CommentVO()
+                .withReciveMemberId(
+                commentVO.getReciveMemberId()
+        ));
+        model.addAttribute("foodCode", commentVO.getFoodCode());
         return "content/myPage/replace/food_comment";
     }
 
     //알람리스트 출력
     @PostMapping(value = "getAlarmPage")
-    public String getAlarmPage(@RequestBody List<AlarmVO> alarmList, Model model){
-        System.err.println(alarmList);
-        System.err.println("gelAlarmPage");
+    public String getAlarmPage(@RequestBody List<AlarmVO> alarmList, Model model, Principal principal){
         model.addAttribute("alarmList",alarmList);
+        model.addAttribute("alarmCount",alarmService.alarmCount(new AlarmVO().withReceiveMember(principal.getName())));
         return "content/myPage/replace/alarm_content";
     }
 
+    //댓글 삭제
+    @GetMapping(value = "deleteComment")
+    public String deleteComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
 
+
+        return "content/myPage/replace/food_comment";
+    }
+
+//테스트
+//    public static void main(String[] args) {
+//        String o1 = "2024-06-09 17:20:14.111";
+//        String o2 = "2024-06-10 17:20:14.111";
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+//
+//        System.err.println(o1.equals(o2));
+//        LocalDateTime a1 = LocalDateTime.parse(o1,formatter);
+//        LocalDateTime a2 = LocalDateTime.parse(o2,formatter);
+//        System.err.println("a1 : " + a1);
+//        System.err.println("a2 : " + a2);
+//        System.err.println("a2.isAfter(a1) : " + a2.isAfter(a1));
+//        System.err.println("a2.isBefore(a1) : " + a2.isBefore(a1));
+//    }
 }

@@ -14,4 +14,9 @@ public class AlarmVO {
     private String content;
     private String memberName;
     private String regDate;
+
+    public AlarmVO withReceiveMember(String user){
+        this.reciveMemberId = user;
+        return this;
+    }
 }

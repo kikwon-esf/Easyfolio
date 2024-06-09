@@ -149,5 +149,11 @@
         DELETE FROM ALARM
         WHERE ALARM_CODE = #{alarmCode}
     </delete>
-
+<!--알람 카운트-->
+    <select id="alarmCount" resultType="int">
+        SELECT COUNT(*)
+        FROM ALARM
+        WHERE ALARM_CHECK = 'N'
+        AND RECIVE_MEMBER_ID = #{reciveMemberId}
+    </select>
 </mapper>

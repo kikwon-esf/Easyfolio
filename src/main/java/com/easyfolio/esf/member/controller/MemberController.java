@@ -101,7 +101,6 @@ public class MemberController {
     @GetMapping("/alarmDetail")
     public String alarmDetail(AlarmVO alarmVO){
         alarmService.updateAlarm(alarmVO);
-        alarmService.deleteAlarm(alarmVO);
         return "redirect:/food/detail?foodCode=" + alarmVO.getFoodCode();
     }
 
@@ -122,10 +121,10 @@ public class MemberController {
     @ResponseBody
     @PostMapping("/deleteAlarm")
     public void deleteAlarm(AlarmVO alarmVO, Principal principal) {
-
         alarmService.deleteAlarm(alarmVO);
         String user = principal.getName();
         sseService.notify(user, alarmService.alarmList(new MemberVO().withMemberId(user)));
+
     }
 
 }
