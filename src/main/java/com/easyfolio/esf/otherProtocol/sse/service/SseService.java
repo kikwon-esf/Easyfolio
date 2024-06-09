@@ -16,12 +16,10 @@ public class SseService {
     private final SseRepository sseRepository;
     public SseEmitter loginSSE(String id, List<AlarmVO> list){
         SseEmitter emitter = null;
-        if(!sseRepository.contain(id)){
-            emitter = createEmitter(id);
-            sendAlarmList(id,list);
-            return emitter;
-        }
-        emitter = sseRepository.get(id);
+
+        emitter = createEmitter(id);
+
+//        emitter = sseRepository.get(id);
         sendAlarmList(id, list);
         return emitter;
     }
@@ -30,6 +28,7 @@ public class SseService {
     }
 
     private void sendAlarmList(String id, List<AlarmVO> list){
+        System.err.println("list sendAlarm" + list);
         SseEmitter emitter = sseRepository.get(id);
         if(emitter != null){
             try{

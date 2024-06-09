@@ -142,6 +142,7 @@ public class MyPageController {
     @PostMapping(value = "getAlarmPage")
     public String getAlarmPage(@RequestBody List<AlarmVO> alarmList, Model model){
         System.err.println(alarmList);
+        System.err.println("gelAlarmPage");
         model.addAttribute("alarmList",alarmList);
         return "content/myPage/replace/alarm_content";
     }

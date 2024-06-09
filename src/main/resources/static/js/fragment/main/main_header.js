@@ -217,6 +217,7 @@ const alarmNumber = document.querySelector('.alarmNumber');
 
 //알람 개통
 window.addEventListener('DOMContentLoaded', function(){
+    alarmCountRender()
     let user = document.querySelector(".userName").value;
     if(user != null && user!='' ){
         alarmListRander();
@@ -259,6 +260,7 @@ function logoutNo(){
 //알람 변화 감지시 replace하는 함수
 function alarmListRander(){
     //replace 위치
+    
     const replacePosition = document.querySelector(".alarmInner");
     const getAlarmPageurl = "/myPage/getAlarmPage";
     let data = {
@@ -267,8 +269,9 @@ function alarmListRander(){
         headers: {
             'Content-Type': 'application/json; charset=UTF-8'
         },
-        body: JSON.stringify(alarmList)
+        body: JSON.stringify(alarmList == null ? [] : alarmList)
     }
+    console.log("alarmlistRender : " + data)
     fetch(getAlarmPageurl,data)
     .then((resp)=>{
         return resp.text();
@@ -280,9 +283,15 @@ function alarmListRander(){
 }
 
 function alarmCountRender(){
-    let alarmListLength = alarmList.length;
+    let alarmListLength = alarmList?.length;
     if(alarmListLength>=0){
+        alarmNumber.classList.remove("alarmCountHide");
         alarmNumber.textContent=alarmList.length;
+    }
+
+    if(alarmListLength<=0 || alarmList == null){
+        console.log("gg")
+        alarmNumber.classList.add("alarmCountHide");
     }
     
 }
