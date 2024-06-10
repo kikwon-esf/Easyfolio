@@ -4,6 +4,7 @@ package com.easyfolio.esf.myPage.controller;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.AlarmService;
+import com.easyfolio.esf.member.service.LoginService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
@@ -11,12 +12,17 @@ import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 import com.easyfolio.esf.otherProtocol.sse.service.SseService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.boot.Banner;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -41,6 +47,9 @@ public class MyPageController {
     private final MyPageService myPageService;
     private final AlarmService alarmService;
     private final SseService sseService;
+    private final LoginService loginService;
+
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/favorite")
     public String favoritePage(@RequestParam(value = "searchFavoriteValue", required = false) String searchFavoriteValue,FavoriteVO favoriteVO,Principal principal, Model model, MemberVO memberVO){
@@ -84,6 +93,45 @@ public class MyPageController {
         String user = principal.getName();
 
         return "content/myPage/myPage_myDetails";
+    }
+    @GetMapping(value = "/editInform")
+    public String editInform(HttpServletRequest request, Principal principal, Model model){
+        HttpSession session = request.getSession();
+        session.setAttribute("authenticatedInform","used");
+        MemberVO member = memberService.findMemberById(principal.getName());
+        member.setMemberPw("");
+        System.err.println(member);
+        model.addAttribute("member", member);
+        return "content/myPage/myPage_editInform";
+    }
+    @Transactional
+    @PostMapping(value = "/submitInform")
+    @ResponseBody
+    public ResponseEntity<String> submitInform(HttpServletRequest request, Principal principal, Model model, MemberVO memberVO){
+        HttpSession session = request.getSession();
+        session.setAttribute("authenticatedInform","true");
+        memberVO.setMemberId(principal.getName());
+        memberService.updateMember(memberVO);
+        return new ResponseEntity<String>("ok", HttpStatus.OK);
+    }
+    //2차인증
+    @PostMapping(value = "/secondPasswordChk")
+    public String secondPasswordChk(HttpServletRequest request, HttpServletResponse response, Principal principal, Model model, MemberVO memberVO){
+        String user = principal.getName();
+        UserDetails userDetails = loginService.loadUserByUsername(user);
+        if(chkUser(userDetails, memberVO)) {
+            System.err.println("참");
+            HttpSession session = request.getSession();
+            session.setAttribute("authenticatedInform", "true");
+            return null;
+        }
+        response.setStatus(202);
+        return null;
+    }
+    private boolean chkUser(UserDetails oriUser, MemberVO member){
+        String oriPass = oriUser.getPassword();
+        String userPw = passwordEncoder.encode(member.getMemberPw());
+        return oriPass.equals(userPw) ? true : false;
     }
 
 
@@ -177,4 +225,6 @@ public class MyPageController {
 //        System.err.println("a2.isAfter(a1) : " + a2.isAfter(a1));
 //        System.err.println("a2.isBefore(a1) : " + a2.isBefore(a1));
 //    }
+
+
 }

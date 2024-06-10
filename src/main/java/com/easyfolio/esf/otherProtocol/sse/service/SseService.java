@@ -28,7 +28,6 @@ public class SseService {
     }
 
     private void sendAlarmList(String id, List<AlarmVO> list){
-        System.err.println("list sendAlarm" + list);
         SseEmitter emitter = sseRepository.get(id);
         if(emitter != null){
             try{

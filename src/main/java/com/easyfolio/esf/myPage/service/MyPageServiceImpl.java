@@ -89,4 +89,5 @@ public class MyPageServiceImpl implements MyPageService{
     public List<CommentVO> getReComment(CommentVO commentVO) {
         return sqlSession.selectList("commentMapper.getReComment",commentVO);
     }
+
 }

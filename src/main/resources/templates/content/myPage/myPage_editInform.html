@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/myPage/myPage_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>즐겨찾기</title>
+
+    <!-- css영역 -->
+    <th:block layout:fragment="content_css">
+
+    </th:block>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+
+<div class="replace">
+    <h1 class="mention">edit</h1>
+    <div class="userInfo" th:object="${member}">
+        <form class="form">
+            <span>비밀번호 수정</span>
+            <input name="memberPw">
+            <button type="button" class="submit">수정</button>
+        </form>
+        <form class="form">
+            <span>이름 수정</span>
+            <input th:field="*{memberName}" th:value="${member.memberName}">
+            <button type="button" class="submit">수정</button>
+        </form>
+        <form class="form">
+            <span>번호 수정</span>
+            <input th:field="*{memberTel}">
+            <button type="button" class="submit">수정</button>
+        </form>
+        <form class="form">
+            <span>성별 수정 > ??</span>
+            <input th:field="*{memberGender}">
+            <button type="button" class="submit">수정</button>
+        </form>
+        <form class="form">
+            <span>별칭 수정</span>
+            <input th:field="*{nickName}">
+            <button type="button" class="submit">수정</button>
+        </form>
+        
+        
+        
+    </div>
+</div>
+<script src="/js/content/myPage/myPage_editInform.js"></script>
+</th:block>
+<th:block layout:fragment="content_js">
+
+</th:block>
+</body>
+
+</html>
