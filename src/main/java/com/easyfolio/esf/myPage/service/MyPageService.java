@@ -37,4 +37,5 @@ public interface MyPageService {
     public Map<String,CommentVO> getCommentVOList(CommentVO commentVO);
 
     public List<CommentVO> getReComment(CommentVO commentVO);
+
 }

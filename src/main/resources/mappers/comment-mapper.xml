@@ -10,6 +10,8 @@
         <result column="REG_DATE" property="reg_date" />
         <result column="CONTENT" property="content" />
         <result column="RE_CODE" property="reCode" />
+        <result column="DEL_CHECK" property="delCheck" />
+        <result column="UP_CHECK" property="upCheck" />
         <collection property="foodVO" resultMap="foodMapper.food"/>
         <collection property="memberVO" resultMap="memberMapper.member"/>
     </resultMap>
@@ -50,15 +52,6 @@
     </delete>
 
 
-    <!--댓글 수정-->
-    <update id="updateFoodComment">
-        UPDATE FOOD_COMMENT
-        SET
-        CONTENT = #{content}
-        WHERE FOOD_COMMENT_ID = #{foodCommentId}
-    </update>
-
-
     <!--댓글 불러오기-->
     <select id="commentList" resultMap="commentEach">
         SELECT
@@ -75,6 +68,8 @@
         ,C.MEMBER_ID
         ,C.CONTENT
         , TO_CHAR(REG_DATE,'YYYY-MM-DD HH24:MI:SS') AS REG_DATE
+        , DEL_CHECK
+        , UP_CHECK
         FROM FOOD_COMMENT C
         <choose>
             <!-- MYPAGE에서 조회시 -->
@@ -126,4 +121,17 @@
         ORDER BY REG_DATE ASC
     </select>
 
+    <!-- 댓글 수정 -->
+    <update id="updateComment">
+        UPDATE FOOD_COMMENT
+        SET
+        <if test="content != null and not content.isEmpty()">
+            CONTENT = #{content}
+            , UP_CHECK = 'Y'
+        </if>
+        <if test="content == null or content.isEmpty()">
+            DEL_CHECK = 'Y'
+        </if>
+        WHERE FOOD_COMMENT_ID = #{foodCommentId}
+    </update>
 </mapper>

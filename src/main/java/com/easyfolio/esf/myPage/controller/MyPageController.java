@@ -163,6 +163,15 @@ public class MyPageController {
         return "content/myPage/replace/food_comment";
     }
 
+    // 댓글 수정
+    @ResponseBody
+    @PostMapping("/updateComment")
+    public void updateComment(CommentVO commentVO){
+
+        myPageService.updateComment(commentVO);
+    }
+
+
 //테스트
 //    public static void main(String[] args) {
 //        String o1 = "2024-06-09 17:20:14.111";

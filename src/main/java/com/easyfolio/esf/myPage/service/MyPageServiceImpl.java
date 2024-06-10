@@ -76,7 +76,7 @@ public class MyPageServiceImpl implements MyPageService{
 
     @Override
     public int updateComment(CommentVO commentVO) {
-        return sqlSession.insert("commentMapper.updateFoodComment",commentVO);
+        return sqlSession.insert("commentMapper.updateComment",commentVO);
     }
 
     @Override
