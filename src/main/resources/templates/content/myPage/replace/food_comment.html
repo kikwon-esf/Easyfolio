@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="/css/content/myPage/replace/food_comment.css">
 
-    <div class="comment_wrap" th:object="${inputComment}">
+    <div class="comment_wrap">
         <div class="commentInner">
             <div class="commentHeader">
                 <div class="commentTitle">
@@ -25,17 +25,43 @@
                         <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
                         <p class="commentText"><span th:text="${commentVO.content}"></span></p>
                         <p class="commentDate"><span th:text="${commentVO.reg_date}"></span></p>
+                        <!-- 대댓글 공간 -->
+                        <th:block th:if="${commentVO.reCommentList != null}" th:each="reComment, state : ${commentVO.reCommentList}">
+                            <div class="commentEach">
+                                <p class="commentName"><span th:text="${reComment.memberVO.memberName}"></span>
+                                </p>
+                                <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
+                                <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
+                                <p class="commentText"><span th:text="${reComment.content}"></span></p>
+                                <p class="commentDate"><span th:text="${reComment.reg_date}"></span></p>
+                            
+                            </div>
+                        
+                        </th:block>
+
                     </div>
+                    <form class="submitBlock" sec:authorize="isAuthenticated()" >
+                        <input name="foodCode" class="foodCode_hide" type="hidden" th:value="${foodCode}">
+                        <input class="foodCode_hide" name="reCode" type="hidden" th:value="${commentVO.foodCommentId}">
+                        <input type="hidden" name="memberId" class="detailMemberId" th:value="${inputComment.reciveMemberId}">
+                        <div>
+                            <textarea name="content" placeholder="댓글을 입력해보세요" class="content">
+                            </textarea>
+                        </div>
+                        <button class="comment_submit" type="button" onclick="submitComment(this)">댓글 쓰기</button>
+                    </form>
                 </th:block>
             </div>
-            <input class="foodCode_hide" type="hidden" th:field="*{foodCode}">
-            <div class="submitBlock" sec:authorize="isAuthenticated()">
+            
+            <form class="submitBlock" sec:authorize="isAuthenticated()"  th:object="${inputComment}">
+                <input class="foodCode_hide" name="foodCode" type="hidden" th:value="${foodCode}">
+                <input type="hidden" name="memberId" class="detailMemberId" th:value="${inputComment.reciveMemberId}">
                 <div>
-                    <textarea th:field="*{content}" placeholder="댓글을 입력해보세요" class="content">
+                    <textarea name="content" placeholder="댓글을 입력해보세요" class="content">
                     </textarea>
                 </div>
-                <button class="comment_submit" type="button" onclick="submitComment()">댓글 쓰기</button>
-            </div>
+                <button class="comment_submit" type="button" onclick="submitComment(this)">댓글 쓰기</button>
+            </form>
 
 
 

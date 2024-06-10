@@ -15,7 +15,7 @@
 <body>
     <th:block layout:fragment="content">
         <input class="foodCode_hidden" type="hidden" th:value="${foodDetail.foodCode}">
-
+        <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">                   
         <div id="wrap">
             <div class="inner">
                 <div class="header">
@@ -178,10 +178,9 @@
                             </div>
                         </div>
                     </div>
-                    <form class="newComment" action="#">
-                        <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">
-                        <div class="replacePosition"></div>
-                    </form>
+                    <div class="newComment">
+                         <div class="replacePosition"></div>
+                    </div>
                 </div>
             </div>
         </div>

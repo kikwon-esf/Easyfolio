@@ -9,7 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.*;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -78,8 +80,13 @@ public class MyPageServiceImpl implements MyPageService{
     }
 
     @Override
-    public List<CommentVO> getCommentVOList(CommentVO commentVO) {
-        return sqlSession.selectList("commentMapper.commentList",commentVO);
+    public Map<String,CommentVO> getCommentVOList(CommentVO commentVO) {
+        Map map = sqlSession.selectMap("commentMapper.commentList",commentVO, "foodCommentId");
+        return map;
     }
 
+    @Override
+    public List<CommentVO> getReComment(CommentVO commentVO) {
+        return sqlSession.selectList("commentMapper.getReComment",commentVO);
+    }
 }

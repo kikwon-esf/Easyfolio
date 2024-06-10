@@ -5,6 +5,7 @@ import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MyPageService {
     public List<FavoriteVO> getFavoriteListByMember(FavoriteVO favoriteVO);
@@ -33,5 +34,7 @@ public interface MyPageService {
 
     public int updateComment(CommentVO commentVO);
 
-    public List<CommentVO> getCommentVOList(CommentVO commentVO);
+    public Map<String,CommentVO> getCommentVOList(CommentVO commentVO);
+
+    public List<CommentVO> getReComment(CommentVO commentVO);
 }
