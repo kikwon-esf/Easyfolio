@@ -1,0 +1,210 @@
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+.replace{
+    position: relative;
+    width: 1000px;
+}
+.myPage_title{
+    display: -webkit-inline-box;
+    position: relative;
+    margin: -10px 0 20px 20px;
+}
+.myPage_title1{
+    color: #000;
+    font-size: 27px;
+    font-weight: 700;
+}
+.myPage_title2{
+    margin-top: 10px;
+    margin-left: 3px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.myPage_inner{
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+}
+.myPageBlock{
+    width: 100%;
+    margin: 30px auto 50px auto;
+}
+.myPageBlock .box{
+    width: 800px;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.04);
+    border: 1px solid #dadada;
+}
+.myPage_checkBlock{
+    background-color: rgba(244,244,244,.5);
+    width: 650px;
+    height: 222px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin: 30px auto 50px auto;
+    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
+}
+.myPageStop{
+    display: flex;
+    margin-bottom: 20px;
+}
+.myPageStopText{
+    font-size: 30px;
+    font-weight: 700;
+    color: #f29221;
+    margin: 0 20px 0 17px;
+}
+.myPageStopText1{
+    font-size: 21px;
+    color: #666;
+    margin-top: 13px;
+}
+.myPageStopText1 span{
+    font-weight: 700;
+    color: #444;
+}
+.inputBox{
+    display: flex;
+    width: 380px;
+    height: 36px;
+    margin: 0 auto 20px auto;
+    padding: 6px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px solid transparent;
+}
+.inputBox > .icon{
+    width: 36px;
+}
+.inputBox.on{
+    border: 1px solid #f29221;
+}
+.inputBox.on svg{
+    fill: #f29221;
+}
+.inputBox input{
+    margin-top: 1px;
+    width: 325px;
+    font-size: 13px;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+}
+.loginBtnForm{
+    width: 380px;
+    margin: 0 auto 20px auto;
+}
+.submit{
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    background-color: #ffa43b;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    box-shadow: 0 5px 8px 0 rgba(68,68,68,.04);
+}
+.submit:hover{
+    background-color: #f08509;
+}
+.inputBox.fail svg{
+    fill: #ff3f3f;
+}
+.inputBox.fail .inputMem::placeholder{
+    color: #ff3f3f;
+}
+.inputBox.fail{
+    border: 1px solid #ff3f3f;
+}
+.commentAlarmInner{
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+.commentAlarmPopup{
+    padding: 43px 10px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 401;
+    width: 400px;
+    height: 170px;
+    margin: 15% auto;
+}
+.alarmText{
+    font-weight: 300;
+    font-size: 18px;
+    color: #666;
+}
+.alarmBtnBox{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.alarmBtn{
+    font-weight: 300;
+    color: #777;
+    border-radius: 6px;
+    margin: 20px;
+    padding: 8px 25px;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+.alarmBtn:hover{
+    background-color: #ffa43b;
+    color: #fff;
+    border: 1px solid #ffd57a;
+    transition: background-color 0.3s ease;
+}

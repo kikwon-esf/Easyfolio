@@ -332,6 +332,6 @@
 .alarmBtn:hover{
     background-color: #ffa43b;
     color: #fff;
-    border: 1px solid #ffd57a;
+    border: 1px solid #fff;
     transition: background-color 0.3s ease;
 }
