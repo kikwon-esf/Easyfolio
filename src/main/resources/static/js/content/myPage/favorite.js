@@ -1,5 +1,6 @@
 const url = "/myPage/deleteFav"
-const askDelete = document.querySelector('.askDelete');
+const askDelete = document.querySelector('.commentCheckInner');
+const commentAlarmInner = document.querySelector('.commentAlarmInner');
 let currentElement = null;
 function deleteFav(ele){
     
@@ -24,9 +25,14 @@ function deleteFav(ele){
             if(data != "complete"){
                 alert("실패");
             }else{
-                location.reload(true);
+                
+                ele.closest('.recipe').remove();
+                
+                // commentAlarmInner를 표시
+                commentAlarmInner.style.display = "block";
             }
         })
+        
 }
 
 const addFavBtn = document.querySelectorAll(".cartBox");
@@ -132,13 +138,17 @@ function onOffAnime(onEle,offEle){
 
 function askDeleteFavorite(ele){
     currentElement = ele;
-    popup(askDelete)
+    askDelete.style.display = 'block';
 }
 
 function confirmDeleteFavorite(){
     deleteFav(currentElement);
+    askDelete.style.display = 'none';
 }
 function NoDeleteFavorite(){
-    blind(askDelete)
+    askDelete.style.display = 'none';
+}
+function okBtn(element){
+    element.closest('.commentAlarmInner').style.display = 'none';
 }
 

@@ -17,10 +17,31 @@
         <link rel="stylesheet" href="/css/content/myPage/myPage_favorite.css">
         <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
         <div id="wrap">
-            <div class="askDelete pop_blind">
+            <!-- <div class="askDelete pop_blind">
                 <h2>즐겨찾기를 삭제하시겠습니까?</h2>
                 <button onclick="confirmDeleteFavorite()">예</button>
                 <button onclick="NoDeleteFavorite()">아니오</button>
+            </div> -->
+            <div class="commentCheckInner pop_blind">
+                <div class="commentCheckPopup">
+                    <div class="checkTextBox">
+                        <p class="checkText">즐겨찾기를 삭제하시겠습니까?</p>
+                    </div>
+                    <div class="checkBtnBox">
+                        <button class="comCheckBtn yes" onclick="confirmDeleteFavorite(this)">확인</button>
+                        <button class="comCheckBtn no" onclick="NoDeleteFavorite()">취소</button>
+                    </div>
+                </div>
+            </div>
+            <div class="commentAlarmInner" style="display: none;">
+                <div class="commentAlarmPopup">
+                    <div class="alarmTextBox">
+                        <p class="alarmText">즐겨찾기 삭제가 완료 되었습니다.</p>
+                    </div>
+                    <div class="alarmBtnBox">
+                        <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                    </div>
+                </div>
             </div>
             <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
             <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">

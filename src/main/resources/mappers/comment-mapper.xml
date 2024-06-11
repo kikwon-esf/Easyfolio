@@ -103,6 +103,8 @@
         ,C.MEMBER_ID
         ,C.CONTENT
         , TO_CHAR(REG_DATE,'YYYY-MM-DD HH24:MI:SS') AS REG_DATE
+        , DEL_CHECK
+        , UP_CHECK
         FROM FOOD_COMMENT C
         <choose>
             <!-- MYPAGE에서 조회시 -->

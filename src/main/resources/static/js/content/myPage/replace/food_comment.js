@@ -81,6 +81,31 @@ function updateCheck(element) {
     };
 }
 
+function updateAlarmCheck() {
+    var commentAlarmInner = document.querySelector('.commentAlarmInner');
+    var alarmText = commentAlarmInner.querySelector('.alarmText');
+
+    alarmText.textContent = '댓글 수정을 완료했습니다.';
+
+    commentAlarmInner.style.display = "block";
+
+    document.querySelector('.alarmBtn.yes').onclick = function () {
+        commentAlarmInner.style.display = "none";
+    };
+}
+function deleteAlarmCheck() {
+    var commentAlarmInner = document.querySelector('.commentAlarmInner');
+    var alarmText = commentAlarmInner.querySelector('.alarmText');
+
+    alarmText.textContent = '댓글 삭제를 완료했습니다.';
+
+    commentAlarmInner.style.display = "block";
+
+    document.querySelector('.alarmBtn.yes').onclick = function () {
+        commentAlarmInner.style.display = "none";
+    };
+}
+
 function deleteCheck(element) {
     var commentCheckInner = document.querySelector('.commentCheckInner');
     var checkText = commentCheckInner.querySelector('.checkText');
@@ -130,16 +155,25 @@ function updateComment(element) {
                 var commentBlock = element.closest('.commentBlock');
                 var updateInputBlock = commentBlock.querySelector('.updateInputBlock');
                 var commentText = commentBlock.querySelector('.commentText');
+                var commentDate = commentBlock.querySelector('.commentDate');
+                var updateCheckBox = commentDate.querySelector('.updateCheckBox');
+                var upCheckValue = commentDate.querySelector('.upCheck').value;
+
                 if (updateInputBlock) {
                     var inputUpdateComment = updateInputBlock.querySelector('.input_textarea');
                     if (inputUpdateComment) {
                         commentText.textContent = inputUpdateComment.value;
                     }
                     updateInputBlock.style.display = "none";
+                    if(upCheckValue != 'Y'){
+                        updateCheckBox.style.display = 'inline-block';
+                    }
+                    
                 }
                 if (commentText) {
                     commentText.style.display = "block";
                 }
+                updateAlarmCheck();
             })
             .catch(err => {
                 alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
@@ -181,7 +215,8 @@ function deleteComment(element) {
             updateInputBlock.style.display = 'none';
             commentDate.style.display = 'none';
             commentBtns.style.display = 'none';
-        })
+            deleteAlarmCheck();
+        })  
         
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
