@@ -8,7 +8,7 @@
 
     <!-- css영역 -->
     <th:block layout:fragment="content_css">
-
+        <link rel="stylesheet" href="/css/content/myPage/myPage_editInform.css">
     </th:block>
 </head>
 
@@ -21,30 +21,78 @@
         <p class="myPage_title2">INFO EDIT</p>
     </div>
     <div class="userInfo" th:object="${member}">
-        <form class="form">
+        <!-- <form class="form">
             <span>비밀번호 수정</span>
             <input name="memberPw">
             <button type="button" class="submit">수정</button>
+        </form> -->
+        <form class="form">
+            <div class="myPage_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                    class="bi bi-person-fill" style="margin-top: 2px;" viewBox="0 0 16 16">
+                    <path
+                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                </svg>
+            </div>
+            <span>이름</span>
+            <div class="defaultBox">
+                <span>:</span>
+                <p th:text="*{memberName}"></p>
+            </div>
+            <div class="updateForm off">
+                <input th:field="*{memberName}">
+                <button type="button" class="submit">수정</button>
+            </div>
         </form>
         <form class="form">
-            <span>이름 수정</span>
-            <input th:field="*{memberName}" th:value="${member.memberName}">
-            <button type="button" class="submit">수정</button>
+            <div class="myPage_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#dadada"
+                    class="bi bi-telephone-fill" style="margin-top: 4px;" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                </svg>
+            </div>
+            <span>전화번호</span>
+            <div class="defaultBox">
+                <span>:</span>
+                <p th:text="*{memberTel}"></p>
+            </div>
+            <div class="updateForm off">
+                <input th:field="*{memberTel}">
+                <button type="button" class="submit">수정</button>
+            </div>
         </form>
         <form class="form">
-            <span>번호 수정</span>
-            <input th:field="*{memberTel}">
-            <button type="button" class="submit">수정</button>
+            <div class="myPage_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#dadada" class="bi bi-people-fill" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                  </svg>
+            </div>
+            <span>성별</span>
+            <div class="defaultBox">
+                <span>:</span>
+                <p th:text="*{memberGender}"></p>
+            </div>
+            <div class="updateForm off">
+                <input th:field="*{memberGender}">
+                <button type="button" class="submit">수정</button>
+            </div>
         </form>
         <form class="form">
-            <span>성별 수정 > ??</span>
-            <input th:field="*{memberGender}">
-            <button type="button" class="submit">수정</button>
-        </form>
-        <form class="form">
-            <span>별칭 수정</span>
-            <input th:field="*{nickName}">
-            <button type="button" class="submit">수정</button>
+            <div class="myPage_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#dadada" class="bi bi-emoji-smile-fill" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/>
+                  </svg>
+            </div>
+            <span>닉네임</span>
+            <div class="defaultBox">
+                <span>:</span>
+                <p th:text="*{nickName}"></p>
+            </div>
+            <div class="updateForm off">
+                <input th:field="*{nickName}">
+                <button type="button" class="submit">수정</button>
+            </div>
         </form>
         
         
