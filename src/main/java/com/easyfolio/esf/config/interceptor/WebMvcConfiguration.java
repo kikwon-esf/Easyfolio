@@ -43,10 +43,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .excludePathPatterns(exceptionPath)
                 .addPathPatterns("/food/**","/mainPage/**","/member/**");
 
-        registry.addInterceptor(editInformInterceptor)
-                .excludePathPatterns(exceptionPath)
-                .addPathPatterns("/myPage/editInform");
-
+//        registry.addInterceptor(editInformInterceptor)
+//                .excludePathPatterns(exceptionPath);
+//                .addPathPatterns("/myPage/editInform");
         registry.addInterceptor(secondPasswordInterceptor)
                 .excludePathPatterns(exceptionPath)
                 .addPathPatterns("/myPage/myDetails");
