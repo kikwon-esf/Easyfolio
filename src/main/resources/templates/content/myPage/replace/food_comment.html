@@ -62,8 +62,8 @@
                             <input name="foodCode" class="foodCode_hide" type="hidden" th:value="${foodCode}">
                             <input class="foodCode_hide" name="reCode" type="hidden"
                                 th:value="${commentVO.foodCommentId}">
-                            <input type="hidden" name="memberId" class="detailMemberId"
-                                th:value="${inputComment.reciveMemberId}">
+                            <input type="hidden" name="reciveMemberId" class="detailMemberId"
+                                th:value="${commentVO.memberId}">
                             <div>
                                 <textarea name="content" class="content">
                                 </textarea>
@@ -126,7 +126,8 @@
 
             <form class="submitBlock" sec:authorize="isAuthenticated()" th:object="${inputComment}">
                 <input class="foodCode_hide" name="foodCode" type="hidden" th:value="${foodCode}">
-                <input type="hidden" name="memberId" class="detailMemberId" th:value="${inputComment.reciveMemberId}">
+                <!-- <input type="hidden" name="memberId" class="detailMemberId" th:value="${inputComment.reciveMemberId}"> -->
+                <input type="hidden" name="reciveMemberId" class="detailMemberId" th:value="${inputComment.reciveMemberId}">
                 <div>
                     <textarea name="content" placeholder="댓글을 입력해보세요" class="content">
                     </textarea>
