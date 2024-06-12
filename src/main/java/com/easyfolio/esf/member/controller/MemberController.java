@@ -112,8 +112,8 @@ public class MemberController {
         String user = principal.getName();
         memberVO.setMemberId(user);
         alarmService.deleteAlarmAll(memberVO);
-        sseService.notify(principal.getName(),alarmService.alarmList(memberVO));
-        sseService.notify(user, alarmService.alarmList(new MemberVO().withMemberId(user)));
+    //        sseService.notify(principal.getName(),alarmService.alarmList(memberVO));
+    //        sseService.notify(user, alarmService.alarmList(new MemberVO().withMemberId(user)));
 
     }
 
