@@ -48,6 +48,7 @@ textarea {
     position: relative;
     margin: -10px 0 20px 20px;
 }
+
 .myPage_title1{
     color: #000;
     font-size: 27px;
@@ -62,10 +63,10 @@ textarea {
 }
 .userInfo{
     box-sizing: border-box;
-    padding: 40px 15px 30px 15px;
+    padding: 40px 50px 16px 50px;
     position: relative;
     z-index: 1;
-    margin: 0 auto 25px auto;
+    margin: 15px auto 50px auto;
     width: 700px;
     border: 1px solid #dadada;
     border-radius: 6px;
@@ -75,16 +76,149 @@ textarea {
 .form{
     display: flex;
 }
-.defaultBox{
+.defaultBox, .updateForm{
+    width: 400px;
+    justify-content: space-between;
     display: flex;
+}
+.updateBtn, .submit{
+    background-color: #ffa43b;
+    border: 1px solid transparent;
+    width: 75px;
+    height: 38px;
+    border-radius: 4px;
+    color: #fff;
+}
+.updateBtn:hover, .submit:hover{
+    background-color: #f08509;
 }
 .off{
     display: none;
 }
 .myPage_icon{
     border-radius: 50%;
-    border: 1px solid;
-    width: 30px;
-    height: 30px;
+    border: 2px solid #ffd57a;
+    width: 31px;
+    height: 31px;
     text-align: center;
+    margin-right: 10px;
+}
+.form span{
+    width: 130px;
+    color: #666;
+}
+.form span, .form p{
+    margin-top: 5px;
+    font-size: 18px;
+    margin-right: 7px;
+}
+.form p{
+    color: #444;
+}
+.form{
+    height: 50px;
+    border-bottom: 1px solid #dadada;
+    margin-bottom: 30px;
+}
+.myPage_icon.name{
+    border: 0;
+}
+.updateForm input{
+    box-sizing: border-box;
+    width: 300px;
+    height: 38px;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    padding: 4px 9px 6px 9px;
+    margin-left: -10px;
+    font-size: 18px;
+    color: #444;
+    outline: 0;
+}
+.updateForm input:focus{
+    border: 1px solid #333;
+}
+.input.gender {
+    display: flex;
+    width: 220px;
+    box-sizing: border-box;
+}
+
+.gender_check input[type="radio"] {
+    display: none;
+}
+
+.gender_check input[type="radio"]+span {
+    display: inline-block;
+    background: none;
+    border: 1px solid #dadada;
+    padding: 0px 10px;
+    text-align: center;
+    width: 90px;
+    height: 35px;
+    line-height: 33px;
+    cursor: pointer;
+}
+.gender_check.male input[type="radio"]+span {
+    border-radius: 5px 0 0 5px;
+    margin: 0;
+}
+
+.gender_check.female input[type="radio"]+span {
+    border-radius: 0 5px 5px 0;
+    margin: 0;
+}
+
+.gender_check input[type="radio"]:checked+span {
+    border: 1px solid #ffa43b;
+    background: #ffa43b;
+    color: #fff;
+}
+.gender_check input[type="radio"]:checked+span:hover, .gender_check input[type="radio"]+span:hover{
+    background-color: #f29221;
+    border: 1px solid #f29221;
+    color: #fff;
+}
+
+.defaultBox.pw{
+    width: 100%;
+    justify-content: space-between;
+}
+.form.pw.checkPw{
+    margin-top: 0;
+    display: flex;
+    width: 260px;
+}
+.checkPw{
+    position: relative;
+}
+.checkPw a .checkText{
+    padding: 0 10px 0 20px;
+    width: 220px;
+}
+.checkPw > a .checkIcon{
+    position: absolute;
+    left: 0;
+    top: -3px;
+    font-size: 30px;
+}
+.checkPw > a  svg{
+    top: 10px;
+    right: 2px;
+    position: absolute;
+}
+.checkPw > a{
+    position: relative;
+    height: 32px;
+    display: flex;
+}
+.checkPw > a:hover .checkText{
+    color: #000;
+    border-bottom: 2px solid #333;
+}
+.checkPw > a:hover .bi.bi-chevron-right {
+    fill: #000;
+}
+.checkPw > a:hover .checkIcon{
+    color: #333;
 }

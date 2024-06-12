@@ -19,3 +19,14 @@ for(let i = 0 ; i < btns.length ; i++){
         })
     })
 }
+
+function updateFormGo(element) {
+    var form = element.closest('.form');
+    var updateForm = form.querySelector('.updateForm');
+    var defaultBox = form.querySelector('.defaultBox');
+
+    if (!defaultBox.classList.contains('off')) {
+        defaultBox.classList.add('off');
+        updateForm.classList.remove('off');
+    }
+}
