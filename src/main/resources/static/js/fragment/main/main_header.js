@@ -159,11 +159,13 @@ function deleteAlarm(icon) {
                     alarmBox.addEventListener('transitionend', function () {
                         alarmBox.remove(); 
                         if (document.querySelectorAll('.alarmBox').length === 0) {
-                            createZeroAlarmElement(); 
-                            alarmCountRender();
+                            createZeroAlarmElement();  
                         }
                     });
                 }
+            })
+            .then(()=>{
+                alarmListRander();
             })
             .catch(err => {
                 alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');

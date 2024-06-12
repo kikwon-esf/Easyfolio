@@ -166,23 +166,20 @@ public class MyPageController {
     //댓글 등록 후 댓글창 업로드
     @Transactional
     @PostMapping("/comment")
-    public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
-        alarmService.alarmCntPlus(memberVO);
+    public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal, Model model){
+//        alarmService.alarmCntPlus(memberVO);
         commentVO.setFoodCommentId(myPageService.nextComtCode());
-        commentVO.setReciveMemberId(commentVO.getMemberId());
         commentVO.setSendMemberId(principal.getName());
-        System.err.println("commentVo :  " + commentVO);
         myPageService.submitComment(commentVO); // 댓글 등록하는 코드
         alarmService.insertAlarm(commentVO);
 
-        //client로 알람 전달
         String sendMember = commentVO.getReciveMemberId();
         List alarmList = alarmService.alarmList(new MemberVO().withMemberId(sendMember));
 
-        sseService.notify(sendMember, alarmList);
-        System.err.println("sendId : " + sendMember);
         Map<String, CommentVO> commentMap = myPageService.getCommentVOList(commentVO.withMemberId(null));
         List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
+
+        //코멘트, 리코멘트 맵핑
         List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
 //        commentList.sort();
 
@@ -192,9 +189,12 @@ public class MyPageController {
                 commentVO.getReciveMemberId()
         ));
         model.addAttribute("foodCode", commentVO.getFoodCode());
+        //client로 알람 전달
+        sseService.notify(sendMember, alarmList);
         return "content/myPage/replace/food_comment";
     }
 
+    @Transactional
     //알람리스트 출력
     @PostMapping(value = "getAlarmPage")
     public String getAlarmPage(@RequestBody List<AlarmVO> alarmList, Model model, Principal principal){
