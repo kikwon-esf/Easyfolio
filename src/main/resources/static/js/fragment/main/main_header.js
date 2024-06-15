@@ -159,11 +159,13 @@ function deleteAlarm(icon) {
                     alarmBox.addEventListener('transitionend', function () {
                         alarmBox.remove(); 
                         if (document.querySelectorAll('.alarmBox').length === 0) {
-                            createZeroAlarmElement(); 
-                            alarmCountRender();
+                            createZeroAlarmElement();  
                         }
                     });
                 }
+            })
+            .then(()=>{
+                alarmListRander();
             })
             .catch(err => {
                 alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
@@ -217,6 +219,7 @@ const alarmNumber = document.querySelector('.alarmNumber');
 
 //알람 개통
 window.addEventListener('DOMContentLoaded', function(){
+    alarmCountRender()
     let user = document.querySelector(".userName").value;
     if(user != null && user!='' ){
         alarmListRander();
@@ -231,7 +234,6 @@ window.addEventListener('DOMContentLoaded', function(){
                 sessionStorage.setItem("alarmList",data);
                 alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
                 alarmListRander();
-                alarmCountRender();
                 return;
             }
             alarmCountRender(); 
@@ -259,6 +261,7 @@ function logoutNo(){
 //알람 변화 감지시 replace하는 함수
 function alarmListRander(){
     //replace 위치
+    
     const replacePosition = document.querySelector(".alarmInner");
     const getAlarmPageurl = "/myPage/getAlarmPage";
     let data = {
@@ -267,22 +270,29 @@ function alarmListRander(){
         headers: {
             'Content-Type': 'application/json; charset=UTF-8'
         },
-        body: JSON.stringify(alarmList)
+        body: JSON.stringify(alarmList == null ? [] : alarmList)
     }
+    console.log("alarmlistRender : " + data)
     fetch(getAlarmPageurl,data)
     .then((resp)=>{
         return resp.text();
     })
     .then((data)=>{
         replacePosition.innerHTML=data;
+        alarmCountRender();
     })
 
 }
 
 function alarmCountRender(){
-    let alarmListLength = alarmList.length;
-    if(alarmListLength>=0){
-        alarmNumber.textContent=alarmList.length;
+    let alarmCount = document.querySelector('#alarmCount')?.value;
+    if(alarmCount>=0){
+        alarmNumber.classList.remove("alarmCountHide");
+        alarmNumber.textContent=alarmCount;
+    }
+
+    if(alarmCount<=0 || alarmCount == ""){
+        alarmNumber.classList.add("alarmCountHide");
     }
     
 }

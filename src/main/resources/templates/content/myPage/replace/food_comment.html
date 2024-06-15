@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="/css/content/myPage/replace/food_comment.css">
 
-    <div class="comment_wrap" th:object="${inputComment}">
+    <div class="comment_wrap">
         <div class="commentInner">
             <div class="commentHeader">
                 <div class="commentTitle">
@@ -19,26 +19,145 @@
             <div class="commentList">
                 <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
                     <div class="commentEach">
-                        <p class="commentName"><span th:text="${commentVO.memberVO.memberName}"></span>
-                        </p>
-                        <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
-                        <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
-                        <p class="commentText"><span th:text="${commentVO.content}"></span></p>
-                        <p class="commentDate"><span th:text="${commentVO.reg_date}"></span></p>
+                        <div class="commentBlock">
+
+                            <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
+                            <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
+                            <div class="noDeleteCom" th:if="${commentVO.delCheck == 'N'}">
+                                <p class="commentName"><span th:text="${commentVO.memberVO.memberName}"></span>
+                                </p>
+                                <p class="commentText"><span th:text="${commentVO.content}"></span></p>
+                                <div class="updateInputBlock" style="display: none;">
+                                    <input class="foodCommentId" name="foodCommentId" type="hidden"
+                                        th:value="${commentVO.foodCommentId}">
+                                    <textarea type="text" class="input_textarea" id="inputUpdateComment"
+                                        name="inputUpdateComment">
+                                </textarea>
+                                    <button class="comment_submit" type="button" onclick="updateCheck(this)">댓글
+                                        수정</button>
+                                </div>
+
+                                <p class="commentDate">
+                                    <input class="upCheck" name="upCheck" type="hidden" th:value="${commentVO.upCheck}">
+                                    <span th:text="${commentVO.reg_date}"></span>
+                                    <span class="updateCheckBox" style="display: none;">( 수정됨 )</span>
+                                    <span th:if="${commentVO.upCheck == 'Y'}">( 수정됨 )</span>
+                                </p>
+                                <div class="commentBtns">
+                                    <div class="updelBtn">
+                                        <p class="commentBtn" onclick="updateCommentBtn(this)">수정</p>
+                                        <p class="commentBtn" onclick="deleteCheck(this)">삭제</p>
+                                    </div>
+                                    <p class="commentBtn" onclick="insertComment(this)">답글</p>
+                                </div>
+                            </div>
+                            <div class="deleteCom" th:if="${commentVO.delCheck == 'Y'}">
+                                <p class="commentName"><span th:text="${commentVO.memberVO.memberName}"></span>
+                                </p>
+                                <p class="deleteText">삭제된 댓글입니다.</p>
+                            </div>
+
+                        </div>
+                        <form class="submitBlock" sec:authorize="isAuthenticated()">
+                            <input name="foodCode" class="foodCode_hide" type="hidden" th:value="${foodCode}">
+                            <input class="foodCode_hide" name="reCode" type="hidden"
+                                th:value="${commentVO.foodCommentId}">
+                            <input type="hidden" name="reciveMemberId" class="detailMemberId"
+                                th:value="${commentVO.memberId}">
+                            <div>
+                                <textarea name="content" class="content">
+                                </textarea>
+                            </div>
+                            <button class="comment_submit" type="button" onclick="submitComment(this)">댓글 쓰기</button>
+                        </form>
+
+                        <!-- 대댓글 공간 -->
+                        <th:block th:if="${commentVO.reCommentList != null}"
+                            th:each="reComment, state : ${commentVO.reCommentList}">
+                            <div class="commentEach re">
+                                <div class="commentBlock">
+                                    <input class="foodCommentId" name="foodCommentId" type="hidden"
+                                        th:value="${reComment.foodCommentId}">
+                                    <div class="noDeleteCom" th:if="${reComment.delCheck == 'N'}">
+                                        <p class="commentName"><span th:text="${reComment.memberVO.memberName}"></span>
+                                        </p>
+                                        <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
+                                        <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
+                                        <p class="commentText"><span th:text="${reComment.content}"></span></p>
+                                        <div class="updateInputBlock" style="display: none;">
+                                            <input class="foodCommentId" name="foodCommentId" type="hidden"
+                                                th:value="${reComment.foodCommentId}">
+                                            <textarea type="text" class="input_textarea" id="inputUpdateComment"
+                                                name="inputUpdateComment">
+                                    </textarea>
+                                            <button class="comment_submit" type="button" onclick="updateCheck(this)">댓글
+                                                수정</button>
+                                        </div>
+                                        <p class="commentDate">
+                                            <input class="upCheck" name="upCheck" type="hidden"
+                                                th:value="${reComment.upCheck}">
+                                            <span th:text="${reComment.reg_date}"></span>
+                                            <span class="updateCheckBox" style="display: none;">( 수정됨 )</span>
+                                            <span th:if="${reComment.upCheck == 'Y'}">( 수정됨 )</span>
+                                        </p>
+                                        <div class="commentBtns">
+                                            <div class="updelBtn">
+                                                <p class="commentBtn" onclick="updateCommentBtn(this)">수정</p>
+
+                                            </div>
+                                            <p class="commentBtn" onclick="deleteCheck(this)">삭제</p>
+                                        </div>
+                                    </div>
+                                    <div class="deleteCom" th:if="${reComment.delCheck == 'Y'}">
+                                        <p class="commentName"><span th:text="${reComment.memberVO.memberName}"></span>
+                                        </p>
+                                        <p class="deleteText">삭제된 댓글입니다.</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </th:block>
+
                     </div>
                 </th:block>
             </div>
-            <input class="foodCode_hide" type="hidden" th:field="*{foodCode}">
-            <div class="submitBlock" sec:authorize="isAuthenticated()">
+
+            <form class="submitBlock" sec:authorize="isAuthenticated()" th:object="${inputComment}">
+                <input class="foodCode_hide" name="foodCode" type="hidden" th:value="${foodCode}">
+                <!-- <input type="hidden" name="memberId" class="detailMemberId" th:value="${inputComment.reciveMemberId}"> -->
+                <input type="hidden" name="reciveMemberId" class="detailMemberId" th:value="${inputComment.reciveMemberId}">
                 <div>
-                    <textarea th:field="*{content}" placeholder="댓글을 입력해보세요" class="content">
+                    <textarea name="content" placeholder="댓글을 입력해보세요" class="content">
                     </textarea>
                 </div>
-                <button class="comment_submit" type="button" onclick="submitComment()">댓글 쓰기</button>
+                <button class="comment_submit" type="button" onclick="submitComment(this)">댓글 쓰기</button>
+            </form>
+
+
+
+        </div>
+        <div class="commentCheckInner">
+            <div class="commentCheckPopup">
+                <div class="checkTextBox">
+                    <p class="checkText"></p>
+                </div>
+                <div class="checkBtnBox">
+                    <button class="comCheckBtn yes" onclick="">확인</button>
+                    <button class="comCheckBtn no" onclick="">취소</button>
+                </div>
             </div>
-
-
-
+        </div>
+        <div class="commentAlarmInner">
+            <div class="commentAlarmPopup">
+                <div class="alarmTextBox">
+                    <p class="alarmText"></p>
+                </div>
+                <div class="alarmBtnBox">
+                    <button class="alarmBtn yes" onclick="">확인</button>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -9,6 +9,9 @@
         <result column="MEMBER_ID" property="memberId" />
         <result column="REG_DATE" property="reg_date" />
         <result column="CONTENT" property="content" />
+        <result column="RE_CODE" property="reCode" />
+        <result column="DEL_CHECK" property="delCheck" />
+        <result column="UP_CHECK" property="upCheck" />
         <collection property="foodVO" resultMap="foodMapper.food"/>
         <collection property="memberVO" resultMap="memberMapper.member"/>
     </resultMap>
@@ -20,12 +23,18 @@
         , FOOD_CODE
         , MEMBER_ID
         , CONTENT
+        <if test="reCode != null and not reCode.isEmpty()">
+            ,RE_CODE
+        </if>
         )
         VALUES (
         #{foodCommentId}
         , #{foodCode}
         , #{sendMemberId}
         , #{content}
+        <if test="reCode != null and not reCode.isEmpty()">
+            ,#{reCode}
+        </if>
         )
     </insert>
 
@@ -43,20 +52,11 @@
     </delete>
 
 
-    <!--댓글 수정-->
-    <update id="updateFoodComment">
-        UPDATE FOOD_COMMENT
-        SET
-        CONTENT = #{content}
-        WHERE FOOD_COMMENT_ID = #{foodCommentId}
-    </update>
-
-
     <!--댓글 불러오기-->
     <select id="commentList" resultMap="commentEach">
         SELECT
         <!-- 멤버 아이디로 찾을 때 -->
-        <if test="memberId != null and not memberId.isEmpty()">
+        <if test="foodCode == null and foodCode.isEmpty()">
             F.FOOD_TTL
             ,C.FOOD_CODE
         </if>
@@ -67,11 +67,13 @@
         ,C.FOOD_COMMENT_ID
         ,C.MEMBER_ID
         ,C.CONTENT
-        , TO_CHAR(REG_DATE,'YYYY-MM-DD') AS REG_DATE
+        , TO_CHAR(REG_DATE,'YYYY-MM-DD HH24:MI:SS') AS REG_DATE
+        , DEL_CHECK
+        , UP_CHECK
         FROM FOOD_COMMENT C
         <choose>
             <!-- MYPAGE에서 조회시 -->
-            <when test="memberId != null and not memberId.isEmpty()">
+            <when test="foodCode == null and foodCode.isEmpty()">
                 ,FOOD F
                 WHERE C.MEMBER_ID = #{memberId}
             </when>
@@ -80,9 +82,58 @@
                 ,DISH_MEMBER M
                 WHERE C.FOOD_CODE = #{foodCode}
                 AND C.MEMBER_ID = M.MEMBER_ID
+                AND RE_CODE IS NULL
             </otherwise>
         </choose>
-        ORDER BY C.REG_DATE ASC
+    </select>
+<!--    대댓글-->
+    <select id="getReComment" resultMap="commentEach">
+        SELECT
+        <!-- 멤버 아이디로 찾을 때 -->
+        <if test="foodCode == null and foodCode.isEmpty()">
+            F.FOOD_TTL
+            ,C.FOOD_CODE
+        </if>
+        <!-- FOOD_CODE로 찾을 때 -->
+        <if test="foodCode != null and not foodCode.isEmpty()">
+            M.MEMBER_NAME
+        </if>
+        ,C.FOOD_COMMENT_ID
+        ,C.RE_CODE
+        ,C.MEMBER_ID
+        ,C.CONTENT
+        , TO_CHAR(REG_DATE,'YYYY-MM-DD HH24:MI:SS') AS REG_DATE
+        , DEL_CHECK
+        , UP_CHECK
+        FROM FOOD_COMMENT C
+        <choose>
+            <!-- MYPAGE에서 조회시 -->
+            <when test="foodCode == null and foodCode.isEmpty()">
+                ,FOOD F
+                WHERE C.MEMBER_ID = #{memberId}
+            </when>
+            <!-- FOODDTL에서 조회시 -->
+            <otherwise>
+                ,DISH_MEMBER M
+                WHERE C.FOOD_CODE = #{foodCode}
+                AND C.MEMBER_ID = M.MEMBER_ID
+                AND RE_CODE IS NOT NULL
+            </otherwise>
+        </choose>
+        ORDER BY REG_DATE ASC
     </select>
 
+    <!-- 댓글 수정 -->
+    <update id="updateComment">
+        UPDATE FOOD_COMMENT
+        SET
+        <if test="content != null and not content.isEmpty()">
+            CONTENT = #{content}
+            , UP_CHECK = 'Y'
+        </if>
+        <if test="content == null or content.isEmpty()">
+            DEL_CHECK = 'Y'
+        </if>
+        WHERE FOOD_COMMENT_ID = #{foodCommentId}
+    </update>
 </mapper>

@@ -43,10 +43,30 @@
     </insert>
 <!--로그인-->
     <select id="login" resultMap="member">
-        SELECT MEMBER_ID
-        , MEMBER_PW
-        , MEMBER_ROLE
+        SELECT *
         FROM DISH_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+
+    </select>
+<!--수정-->
+    <select id="update">
+        UPDATE DISH_MEMBER
+        SET
+        <if test="memberPw != null and not memberPw.isEmpty()">
+            MEMBER_PW = #{memberPw}
+        </if>
+        <if test="memberName != null and not memberName.isEmpty()">
+            MEMBER_NAME = #{memberName}
+        </if>
+        <if test="memberTel != null and not memberTel.isEmpty()">
+            MEMBER_TEL = #{memberTel}
+        </if>
+        <if test="memberGender != null and not memberGender.isEmpty()">
+            MEMBER_GENDER = #{memberGender}
+        </if>
+        <if test="nickName != null and not nickName.isEmpty()">
+            NICKNAME = #{nickName}
+        </if>
         WHERE MEMBER_ID = #{memberId}
 
     </select>
@@ -149,5 +169,11 @@
         DELETE FROM ALARM
         WHERE ALARM_CODE = #{alarmCode}
     </delete>
-
+<!--알람 카운트-->
+    <select id="alarmCount" resultType="int">
+        SELECT COUNT(*)
+        FROM ALARM
+        WHERE ALARM_CHECK = 'N'
+        AND RECIVE_MEMBER_ID = #{reciveMemberId}
+    </select>
 </mapper>

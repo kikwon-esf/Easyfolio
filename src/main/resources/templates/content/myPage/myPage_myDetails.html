@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragment/myPage/myPage_layout}">
+    layout:decorate="~{fragment/myPage/myPage_layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,18 +8,59 @@
 
     <!-- css영역 -->
     <th:block layout:fragment="content_css">
-
+        <link rel="stylesheet" href="/css/content/myPage/myPage_myDetails.css">
     </th:block>
 </head>
 
 <body>
-<th:block layout:fragment="content">
+    <th:block layout:fragment="content">
+        <div class="replace">
+            <div class="myPage_title">
+                <p class="myPage_title1">개인정보 수정</p>
+                <p class="myPage_title2">INFO EDIT</p>
+            </div>
+            <div class="myPage_inner">
+                <div class="myPageBlock">
+                    <div class="myPage_checkBlock">
+                        <div class="myPageStop">
+                            <p class="myPageStopText">STOP !</p>
+                            <p class="myPageStopText1">
+                                <span>개인정보 보호</span>를 위해 비밀번호를 입력해 주세요.</p>
+                        </div>
+                        <form class="SecondPasswordform">
+                            <div class="inputBox memberPw">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                         class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z" />
+                                    </svg>
+                                </div>
+                                <input type="password" class="inputMem pw" id="memberPw" name="memberPw" placeholder="비밀번호">
+                            </div>
+                            <div class="loginBtnForm">
+                                <input class="submit" type="button"  onclick="submitSecondPasswordChk(this)" value="확인">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="commentAlarmInner">
+            <div class="commentAlarmPopup">
+                <div class="alarmTextBox">
+                    <p class="alarmText">비밀번호가 일치하지 않습니다.</p>
+                </div>
+                <div class="alarmBtnBox">
+                    <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                </div>
+            </div>
+        </div>
+        <script src="/js/content/myPage/myPage_myDetails.js"></script>
+    </th:block>
+    <th:block layout:fragment="content_js">
 
-    <h1>inform</h1>
-</th:block>
-<th:block layout:fragment="content_js">
-
-</th:block>
+    </th:block>
 </body>
 
 </html>

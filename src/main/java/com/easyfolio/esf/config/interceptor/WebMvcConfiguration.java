@@ -16,6 +16,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     private final CheckLoginInterceptor checkLoginInterceptor;
     private final MyfavoriteInterceptor myfavoriteInterceptor;
     private final CreateSessionInterceptor createSessionInterceptor;
+    private final EditInformInterceptor editInformInterceptor;
+    private final SecondPasswordInterceptor secondPasswordInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -40,6 +42,13 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(createSessionInterceptor)
                 .excludePathPatterns(exceptionPath)
                 .addPathPatterns("/food/**","/mainPage/**","/member/**");
+
+//        registry.addInterceptor(editInformInterceptor)
+//                .excludePathPatterns(exceptionPath);
+//                .addPathPatterns("/myPage/editInform");
+        registry.addInterceptor(secondPasswordInterceptor)
+                .excludePathPatterns(exceptionPath)
+                .addPathPatterns("/myPage/myDetails");
     }
 
 

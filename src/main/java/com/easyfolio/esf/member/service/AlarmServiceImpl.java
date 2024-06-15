@@ -53,5 +53,10 @@ public class AlarmServiceImpl implements AlarmService{
 
     }
 
+    @Override
+    public int alarmCount(AlarmVO alarmVO) {
+        return sqlSession.selectOne("memberMapper.alarmCount", alarmVO);
+    }
+
 
 }

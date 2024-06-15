@@ -270,5 +270,33 @@
         WHERE FOOD_CODE = #{foodCode}
     </update>
 
+    <select id="foodByMember" resultMap="food">
+        <![CDATA[
+    SELECT *
+    FROM (
+        SELECT
+            FOOD_CODE,
+            FOOD_TTL,
+            FOOD_DIF,
+            FOOD_INQ_CNT,
+            FOOD_RCMM_CNT,
+            ROWNUM AS rnum
+        FROM (
+            SELECT
+                FOOD_CODE,
+                FOOD_TTL,
+                FOOD_DIF,
+                FOOD_INQ_CNT,
+                FOOD_RCMM_CNT
+            FROM FOOD
+            WHERE MEMBER_ID = #{memberId}
+            ORDER BY FOOD_INQ_CNT DESC
+        )
+        WHERE ROWNUM <= 5
+    )
+    WHERE rnum <= 5
+    ]]>
+    </select>
+
 
 </mapper>

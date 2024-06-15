@@ -26,7 +26,7 @@ public class SseController {
     private final AlarmService alarmService;
     @GetMapping(value = "/getAlarm")
     public SseEmitter getAlarm(Principal principal){
-
+    
         SseEmitter emitter = sseService.loginSSE(
                 principal.getName()
                 ,alarmService.alarmList(
