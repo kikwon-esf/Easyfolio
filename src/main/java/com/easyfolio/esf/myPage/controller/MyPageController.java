@@ -80,16 +80,38 @@ public class MyPageController {
         }
         return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
     }
-    @GetMapping(value = "/myContent")
-    public String myContent(Principal principal, Model model){
-        String user = principal.getName();
 
+    //내가 쓴 글
+    @GetMapping(value = "/myContent")
+    public String myContent(Principal principal, Model model, CommentVO commentVO){
 
         return "content/myPage/myPage_myContent";
     }
+
+
+    //내가 쓴 food
+    @GetMapping(value = "/myContent/food")
+    public String myFood(Principal principal, Model model, FoodVO foodVO){
+        String user = principal.getName();
+        foodVO.setMemberId(user);
+        List<FoodVO> foodList =  myPageService.getFoodByMember(foodVO);
+        model.addAttribute("foodList", foodList);
+        return "content/myPage/replace/content_food";
+    }
+
+    //내가 쓴 댓글
+    @GetMapping(value = "/myContent/comment")
+    public String myComment(Principal principal, Model model, CommentVO commentVO){
+        String user = principal.getName();
+        commentVO.setMemberId(user);
+        List<CommentVO> commentList = myPageService.getCommentByMember(commentVO);
+        System.err.println(commentList);
+        model.addAttribute("commentList",commentList);
+        return "content/myPage/replace/content_comment";
+    }
+
     @GetMapping(value = "/myDetails")
     public String myInform(Principal principal, Model model){
-
         String user = principal.getName();
 
         return "content/myPage/myPage_myDetails";
@@ -100,7 +122,6 @@ public class MyPageController {
         session.setAttribute("authenticatedInform","used");
         MemberVO member = memberService.findMemberById(principal.getName());
         member.setMemberPw("");
-        System.err.println(member);
         model.addAttribute("member", member);
         return "content/myPage/myPage_editInform";
     }
@@ -215,7 +236,6 @@ public class MyPageController {
     @ResponseBody
     @PostMapping("/updateComment")
     public void updateComment(CommentVO commentVO){
-
         myPageService.updateComment(commentVO);
     }
 
