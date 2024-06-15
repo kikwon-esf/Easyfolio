@@ -14,6 +14,7 @@
 
 <body>
     <th:block layout:fragment="content">
+        <input id="response_commentId" type="hidden" th:if="${foodCommentId != null}" th:value="${foodCommentId}">
         <input class="foodCode_hidden" type="hidden" th:value="${foodDetail.foodCode}">
         <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">                   
         <div id="wrap">

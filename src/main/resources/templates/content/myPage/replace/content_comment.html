@@ -6,22 +6,23 @@
 
 <body th:fragment="food_comment">
 
-    <!-- <link rel="stylesheet" href="/css/content/myPage/replace/.css"> -->
+    <link rel="stylesheet" href="/css/content/myPage/replace/content_comment.css">
 
     <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
         <div class="commentEach">
             <div class="commentBlock">
 
                 <div class="noDeleteCom" th:if="${commentVO.delCheck == 'N'}">
-                    <p class="commentName"><span th:text="${commentVO.memberVO.memberName}"></span>
+                    <!-- <p class="commentName"><span></span><span th:text="${commentVO.memberVO.memberName}"></span> -->
                     </p>
-                    <p class="commentText"><span th:text="${commentVO.content}"></span></p>
-
+                    <input type="hidden" th:value="${commentVO.foodCommentId}">
+                    <a id="recipeBtn" th:href="@{/food/detail(foodCode=${commentVO.foodVO.foodCode})}" class="commentText"><span>레시피 : </span><span th:text="${commentVO.foodVO.foodTtl}"></span></a>
+                    <a id="commentBtn" th:href="@{/food/detail(foodCode=${commentVO.foodVO.foodCode}, foodCommentId=${commentVO.foodCommentId})}" class="commentText"><span>내용 : </span><span th:text="${commentVO.content}"></span></a>
                     <p class="commentDate">
                         <input class="upCheck" name="upCheck" type="hidden" th:value="${commentVO.upCheck}">
                         <span th:text="${commentVO.reg_date}"></span>
-                        <span class="updateCheckBox" style="display: none;">( 수정됨 )</span>
-                        <span th:if="${commentVO.upCheck == 'Y'}">( 수정됨 )</span>
+                        <span class="updateCheckBox" style="display: none;">( 수정함 )</span>
+                        <span th:if="${commentVO.upCheck == 'Y'}">( 수정함 )</span>
                     </p>
                 </div>
 

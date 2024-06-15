@@ -10,11 +10,9 @@ function paging(url, value){
     console.log(value)
     fetch(url)
     .then((resp)=>{
-        console.log(resp);
         return resp.text();
     })
     .then((data)=>{
-        console.log(data)
         writeHTMl(data);
     })
 
