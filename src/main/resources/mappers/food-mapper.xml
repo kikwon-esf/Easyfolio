@@ -293,6 +293,7 @@
             ORDER BY FOOD_INQ_CNT DESC
         )
         WHERE ROWNUM <= 5
+
     )
     WHERE rnum <= 5
     ]]>

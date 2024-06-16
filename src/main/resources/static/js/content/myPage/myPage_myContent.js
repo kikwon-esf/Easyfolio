@@ -25,12 +25,7 @@ function cookie(value){
     sessionStorage.setItem("myContentCookie",value);
 }
 function cookieCheck(){
-    var cookie = sessionStorage.getItem("myContentCookie");
-    if(cookie == null || "comment"){
-        return "comment"
-    }else{
-        return "food";
-    }
+    return sessionStorage.getItem("myContentCookie");
 }
 
 foodBtn.addEventListener('click', function(){
@@ -39,11 +34,11 @@ foodBtn.addEventListener('click', function(){
 
 });
 commentBtn.addEventListener('click', function(){
-    paging(content_URL+"content","content")
+    paging(content_URL+"comment","comment")
     cookie("comment");
 });
 
-window.addEventListener('load', ()=>{
-    let requestURL = cookieCheck()
+window.addEventListener('DOMContentLoaded', ()=>{
+    let requestURL = cookieCheck() == null ? "comment" : cookieCheck();
     paging(content_URL+requestURL, requestURL);
 })

@@ -15,8 +15,6 @@ function getCommentList(url) {
         .then((data) => {
             writeContent(replacePosition, data);
             const foodCode_hide = document.querySelector('.foodCode_hide')
-        })
-        .then(()=>{
             if(response_commentId != null || undefined){
                 const commentNode = this.document.getElementById(String(response_commentId));
                 console.dir(commentNode);
@@ -29,8 +27,9 @@ function getCommentList(url) {
 function writeContent(postion, content) {
     postion.innerHTML = content;
 }
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     getCommentList(getCommentURL + "?foodCode=" + foodCode + "&reciveMemberId=" + memberId);
+    
     
 })
 
@@ -239,6 +238,7 @@ function deleteComment(element) {
 function findScrollValue(commentNode){
 
     let rect = commentNode.getBoundingClientRect();
-    console.log(rect.y)
-    return rect.y;
+    console.log(rect.top)
+    console.log(window.scrollY)
+    return rect.top;
 }
