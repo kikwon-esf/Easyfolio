@@ -76,4 +76,7 @@
         SET FOOD_RCMM_CNT =  FOOD_RCMM_CNT - 1
         WHERE FOOD_CODE = #{foodCode}
     </select>
+
+
+
 </mapper>

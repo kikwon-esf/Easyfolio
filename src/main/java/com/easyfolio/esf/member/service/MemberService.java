@@ -4,6 +4,7 @@ import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 
+import java.security.PublicKey;
 import java.util.List;
 
 public interface MemberService {
@@ -22,5 +23,6 @@ public interface MemberService {
     // 회원찾기
     public MemberVO findMemberById(String id);
 
-
+    //회원정보 수정
+    public int updateMember(MemberVO memberVO);
 }

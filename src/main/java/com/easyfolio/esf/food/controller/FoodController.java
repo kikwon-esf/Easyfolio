@@ -101,7 +101,7 @@ public class FoodController {
 
 
     @GetMapping(value = "detail")
-    public String foodDtl(Model model, FoodVO foodVO) {
+    public String foodDtl(Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
         foodService.updateFoodInqCnt(foodVO);
         model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
@@ -138,15 +138,31 @@ public class FoodController {
         }
         model.addAttribute("mtrlMt2", mtrlMt2);
 
+
+        model.addAttribute("foodCommentId", foodCommentId);
+
         return "/content/food/food_detail";
     }
     //foodDetail에서 댓글 읽어오기
     @GetMapping(value = "/comment")
     public String getCommentList(Model model, CommentVO commentVO){
-        List<CommentVO> commentList = myPageService.getCommentVOList(commentVO);
+        Map<String,CommentVO> commentMap = myPageService.getCommentVOList(commentVO);
+        List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
+
+        List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
         model.addAttribute("commentList", commentList);
-        model.addAttribute("inputComment",new CommentVO());
+        model.addAttribute("inputComment",new CommentVO()
+                .withReciveMemberId(
+                        commentVO.getReciveMemberId()
+                )
+        );
+        model.addAttribute("foodCode", commentVO.getFoodCode());
+
         return "content/myPage/replace/food_comment";
+    }
+
+    private List<CommentVO> sortReComment(List<CommentVO> commentList, List<CommentVO> reCommentList){
+        return null;
     }
 
 

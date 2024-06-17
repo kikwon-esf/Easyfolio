@@ -7,4 +7,9 @@ window.addEventListener('DOMContentLoaded', function () {
             element.classList.add('full');
         }
     });
+    
+    
+    
 });
+
+

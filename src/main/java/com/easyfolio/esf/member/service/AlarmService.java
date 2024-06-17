@@ -27,4 +27,7 @@ public interface AlarmService {
 
     // 알람 삭제
     public void deleteAlarm(AlarmVO alarmVO);
+
+    //읽지 않은 알람 카운터
+    public int alarmCount(AlarmVO alarmVO);
 }

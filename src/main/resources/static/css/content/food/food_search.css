@@ -174,12 +174,17 @@
     color: #333;
 }
 .recipeTextBox1 p{
-    font-size: 13px;
+    font-size: 15px;
     color: #555;
     margin: 5px 0;
 }
+.recipeTextBox11{
+    margin-left: 9px;
+}
 .cartBox{
-    text-align : center;
+    margin-top: 9px;
+    text-align: center;
+    margin-right: 2px;
 }
 .cartBox p{
     margin: 0;

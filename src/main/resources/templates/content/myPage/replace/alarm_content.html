@@ -14,6 +14,7 @@
         th:if="${alarmList == null or #lists.size(alarmList) == 0}">
         <p class="zeroAlarm">알람이 없습니다</p>
     </div>
+    <input type="hidden" id="alarmCount" th:value="${alarmCount}"></input>
     <div class="alarmBlock"
         th:if="${alarmList != null and #lists.size(alarmList) != 0}">
         <div th:each="alarm, state : ${alarmList}" class="alarmBox">

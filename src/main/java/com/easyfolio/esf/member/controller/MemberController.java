@@ -109,16 +109,22 @@ public class MemberController {
     @Transactional
     @PostMapping("/deleteAlarmAll")
     public void deleteAlarmAll(Principal principal, MemberVO memberVO) {
-        memberVO.setMemberId(principal.getName());
+        String user = principal.getName();
+        memberVO.setMemberId(user);
         alarmService.deleteAlarmAll(memberVO);
-        sseService.notify(principal.getName(),alarmService.alarmList(memberVO));
+    //        sseService.notify(principal.getName(),alarmService.alarmList(memberVO));
+    //        sseService.notify(user, alarmService.alarmList(new MemberVO().withMemberId(user)));
+
     }
 
     // 알람 삭제
     @ResponseBody
     @PostMapping("/deleteAlarm")
-    public void deleteAlarm(AlarmVO alarmVO) {
+    public void deleteAlarm(AlarmVO alarmVO, Principal principal) {
         alarmService.deleteAlarm(alarmVO);
+        String user = principal.getName();
+        sseService.notify(user, alarmService.alarmList(new MemberVO().withMemberId(user)));
+
     }
 
 }
