@@ -152,6 +152,13 @@
         AND C.FOOD_COMMENT_ID = A.FOOD_COMMENT_ID
         AND D.MEMBER_ID = A.SEND_MEMBER_ID
         ORDER BY DESC_REG_DATE DESC
+        OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="alarmListCnt" resultType="int">
+        SELECT COUNT(ALARM_CODE)
+        FROM ALARM
+        WHERE RECIVE_MEMBER_ID = #{memberId}
     </select>
 
     <update id="updateAlarm">

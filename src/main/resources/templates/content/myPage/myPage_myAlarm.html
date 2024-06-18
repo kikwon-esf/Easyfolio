@@ -80,6 +80,25 @@
                 </p> -->
             </div>
         </div>
+
+        <th:block>
+            <div class="pageBtnBox">
+                <div class="btn_group">
+                    <div class="pageBtn" th:if="${#lists.size(alarmList) != 0}">
+                        <a class="page_prevBtn"
+                            th:href="@{/myPage/myAlarm(nowPage=${memberVO.beginPage - 1},foodCode=${foodCode})}"><span
+                                th:if="${memberVO.prev}">이전</span></a>
+                        <th:block th:each="pageNum : ${#numbers.sequence(memberVO.beginPage, memberVO.endPage)}">
+                            <a class="page_numBtn" th:href="@{/myPage/myAlarm(nowPage=${pageNum},foodCode=${foodCode})}"><span
+                                    th:text="${pageNum}"></span></a>
+                        </th:block>
+                        <a class="page_nextBtn"
+                            th:href="@{/myPage/myAlarm(nowPage=${memberVO.endPage + 1},foodCode=${foodCode})}"><span
+                                th:if="${memberVO.next}">다음</span></a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
         
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

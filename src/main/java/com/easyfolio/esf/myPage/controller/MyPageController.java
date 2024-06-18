@@ -263,6 +263,8 @@ public class MyPageController {
     @GetMapping(value = "/myAlarm")
     public String myAlarm(Principal principal, MemberVO memberVO, Model model){
         String user = principal.getName();
+        memberVO.setTotalDataCnt(alarmService.alarmListCnt(memberVO.withMemberId(user)));
+        memberVO.setPageInfo();
         List<AlarmVO> list = alarmService.alarmList(memberVO.withMemberId(user));
         model.addAttribute("alarmList", list);
 
