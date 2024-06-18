@@ -3,15 +3,23 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="weatherMapper">
-    <resultMap id="weather" type="com.easyfolio.esf.weather.vo.RegionVO">
-        <id column="RID" property="regionId" />
+    <resultMap id="regionParent" type="com.easyfolio.esf.weather.vo.RegionVO">
+        <id column="AREA_CODE" property="areaCode" />
         <result column="REGION_PARENT" property="regionParent" />
+    </resultMap>
+
+    <resultMap id="regionChild" type="com.easyfolio.esf.weather.vo.RegionVO">
+        <result column="AREA_CODE" property="areaCode" />
         <result column="REGION_CHILD" property="regionChild" />
         <result column="NX" property="nx" />
         <result column="NY" property="ny" />
     </resultMap>
 
-    <select id="allRegionList" resultMap="weather">
-        SELECT * FROM WEATHER
+    <select id="regionParentList" resultMap="regionParent">
+        SELECT * FROM REGION_PARENT
+    </select>
+
+    <select id="regionChildList" resultMap="regionChild">
+        SELECT * FROM REGION_CHILD
     </select>
 </mapper>
