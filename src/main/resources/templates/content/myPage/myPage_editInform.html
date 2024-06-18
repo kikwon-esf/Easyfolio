@@ -108,7 +108,7 @@
                         <button type="button" class="submit">수정완료</button>
                     </div>
                 </form>
-                <div class="form pw">
+                <form class="form pw">
                     <div class="myPage_icon" style="width: 33px;">
                         <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 6px;" width="22" height="22"
                             fill="#ffd57a" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
@@ -117,9 +117,18 @@
                             </path>
                         </svg>
                     </div>
-                    <div class="defaultBox pw">
-                        <p>비밀번호</p>
-                        <p class="checkPw">
+                    
+                    <p>비밀번호</p>
+                    <div class="defaultBox">
+                        <p></p>
+                        <button type="button" class="updateBtn" onclick="updateFormGo(this)">수정하기</button>
+                    </div>
+                    <div class="pw updateForm off">
+                        <input class="pw_input" type="password" name="memberPw">
+                        <input class="pw_input" type="password" id="password_repeat">
+                    </div>
+                    <button id="pw_submit" type="submit" class="submit pw_btn off">수정완료</button>
+                        <!-- <p class="checkPw">
                             <a href="/member/findMemberForm">
                                 <span class="checkIcon">*</span>
                                 <span class="checkText">비밀번호 찾기 페이지로 이동</span>
@@ -130,12 +139,41 @@
                                     </path>
                                 </svg>
                             </a>
-                        </p>
+                        </p> -->
 
+                    
+                </form>
+
+                <div class="pwAlarmInner">
+                    <div class="pwAlarmPopup">
+                        <div class="alarmTextBox">
+                            <p class="alarmText">비밀번호가 일치하지 않습니다.</p>
+                        </div>
+                        <div class="alarmBtnBox">
+                            <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                        </div>
                     </div>
                 </div>
-
-
+                <div class="badGateWay pwAlarmInner">
+                    <div class="pwAlarmPopup">
+                        <div class="alarmTextBox">
+                            <p class="alarmText">사용자의 입력값에 문제가 있습니다.</p>
+                        </div>
+                        <div class="alarmBtnBox">
+                            <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="internerServerError pwAlarmInner">
+                    <div class="pwAlarmPopup">
+                        <div class="alarmTextBox">
+                            <p class="alarmText">알 수 없는 오류! 페이지를 새로고침해주세요.</p>
+                        </div>
+                        <div class="alarmBtnBox">
+                            <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

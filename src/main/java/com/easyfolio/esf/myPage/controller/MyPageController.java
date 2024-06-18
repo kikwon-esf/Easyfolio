@@ -16,11 +16,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.SqlSessionException;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.boot.Banner;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -132,7 +134,16 @@ public class MyPageController {
         HttpSession session = request.getSession();
         session.setAttribute("authenticatedInform","true");
         memberVO.setMemberId(principal.getName());
-        memberService.updateMember(memberVO);
+        System.err.println(memberVO);
+        try{
+            memberService.updateMember(memberVO);
+
+        }catch (NullPointerException ne){
+            ne.printStackTrace();
+            return new ResponseEntity<String>("error",HttpStatus.BAD_REQUEST);
+        }catch(BadSqlGrammarException se){
+            return new ResponseEntity<String>("error",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<String>("ok", HttpStatus.OK);
     }
     //2차인증

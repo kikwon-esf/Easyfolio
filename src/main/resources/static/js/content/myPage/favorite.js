@@ -72,6 +72,8 @@ function addOrDelFav(ele){
     const rcmmCnt = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt");
     const rcmmCntVal = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt").textContent;
     const memberId = ele.closest(".recipeTextBox1").querySelector(".writer").value;
+    
+    let lfla\
     let data = {
         method: 'POST',
         cache: 'no-cache',
