@@ -16,11 +16,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.session.SqlSessionException;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.boot.Banner;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -67,13 +69,14 @@ public class MyPageController {
     }
     @ResponseBody
     @PostMapping(value = "/deleteFav")
-    public ResponseEntity<String> deleteFavorite(Principal principal, @RequestBody Map<String, String> foodCode, FavoriteVO favoriteVO){
+    public ResponseEntity<String> deleteFavorite(Principal principal, @RequestBody Map<String, String> foodCode, FavoriteVO favoriteVO, Model model){
 
         favoriteVO.setFoodCode(foodCode.get("foodCode"));
         favoriteVO.setMemberId(principal.getName());
 
         int result = myPageService.deleteFav(favoriteVO);
         if(result == 1){
+
             return new ResponseEntity<>("complete", HttpStatus.OK);
         }else if(result == 0){
             return new ResponseEntity<>("0", HttpStatus.GONE);
@@ -97,6 +100,7 @@ public class MyPageController {
         foodVO.setTotalDataCnt(myPageService.foodByMemberCnt(foodVO));
         foodVO.setPageInfo(8);
         List<FoodVO> foodList =  myPageService.getFoodByMember(foodVO);
+        model.addAttribute("nowPage", foodVO.getNowPage());
         model.addAttribute("foodList", foodList);
         return "content/myPage/replace/content_food";
     }
@@ -109,8 +113,9 @@ public class MyPageController {
         commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
         commentVO.setPageInfo();
         List<CommentVO> commentList = myPageService.getCommentByMember(commentVO);
-        System.err.println(commentList);
+        int nowPage = commentVO.getNowPage();
         model.addAttribute("commentList",commentList);
+        model.addAttribute("nowPage", nowPage);
         return "content/myPage/replace/content_comment";
     }
 
@@ -132,11 +137,21 @@ public class MyPageController {
     @Transactional
     @PostMapping(value = "/submitInform")
     @ResponseBody
-    public ResponseEntity<String> submitInform(HttpServletRequest request, Principal principal, Model model, MemberVO memberVO){
+    public ResponseEntity<String> submitInform(HttpServletRequest request, Principal principal, HttpServletResponse response, MemberVO memberVO){
+
         HttpSession session = request.getSession();
         session.setAttribute("authenticatedInform","true");
         memberVO.setMemberId(principal.getName());
-        memberService.updateMember(memberVO);
+        System.err.println(memberVO);
+        try{
+            memberService.updateMember(memberVO);
+        }catch (NullPointerException ne){
+            ne.printStackTrace();
+            response.setStatus(400);
+            return new ResponseEntity<String>("error",HttpStatus.BAD_REQUEST);
+        }catch(BadSqlGrammarException se){
+            return new ResponseEntity<String>("error",HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<String>("ok", HttpStatus.OK);
     }
     //2차인증
@@ -164,7 +179,7 @@ public class MyPageController {
     @PostMapping(value = "/addFav")
     @ResponseBody
     @Transactional
-    public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> requestMap, FavoriteVO favoriteVO, CommentVO commentVO){
+    public ResponseEntity<String> addFav(Principal principal, @RequestBody Map<String,String> requestMap, FavoriteVO favoriteVO, CommentVO commentVO, Model model){
 
         if(principal == null){ //로그인이 안되어 있을 시
             return new ResponseEntity<>("needLogin",HttpStatus.BAD_GATEWAY);
@@ -180,6 +195,8 @@ public class MyPageController {
             return new ResponseEntity<>("deleteComplete",HttpStatus.OK);
         }catch (Exception e){ //그 외 예외
             return new ResponseEntity<>("something went wrong",HttpStatus.INTERNAL_SERVER_ERROR);
+        }finally {
+            model.addAttribute("list", myPageService.getFavoriteListByMember(favoriteVO));
         }
 
         return new ResponseEntity<>("addComplete", HttpStatus.OK);
@@ -243,6 +260,14 @@ public class MyPageController {
         myPageService.updateComment(commentVO);
     }
 
+    @GetMapping(value = "/myAlarm")
+    public String myAlarm(Principal principal, MemberVO memberVO, Model model){
+        String user = principal.getName();
+        List<AlarmVO> list = alarmService.alarmList(memberVO.withMemberId(user));
+        model.addAttribute("alarmList", list);
+
+        return "content/myPage/myPage_myAlarm";
+    }
 
 //테스트
 //    public static void main(String[] args) {

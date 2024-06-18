@@ -7,11 +7,11 @@
 <body th:fragment="food_comment">
 
     <link rel="stylesheet" href="/css/content/myPage/replace/content_comment.css">
-
+    <input type="hidden" id="nowPage" th:value="${nowPage}">
     <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
         <div class="commentEach">
             <div class="commentBlock">
-
+                
                 <div class="noDeleteCom" th:if="${commentVO.delCheck == 'N'}">
                     <!-- <p class="commentName"><span></span><span th:text="${commentVO.memberVO.memberName}"></span> -->
                     </p>
@@ -34,15 +34,17 @@
         <div class="pageBtnBox">
             <div class="btn_group">
                 <div class="pageBtn" th:if="${#lists.size(commentList) != 0}">
-                    <a class="page_prevBtn"
-                        th:href="@{/myPage/myContent/comment(nowPage=${commentVO.beginPage - 1})}"><span
-                            th:if="${commentVO.prev}">이전</span></a>
+                    <a class="page_prevBtn"><span
+                        th:attr="onclick=|commentPaging(${commentVO.beginPage - 1})|"    
+                        th:if="${commentVO.prev}">이전</span></a>
                     <th:block th:each="pageNum : ${#numbers.sequence(commentVO.beginPage, commentVO.endPage)}">
-                        <a class="page_numBtn" th:href="@{/myPage/myContent/comment(nowPage=${pageNum})}"><span
+                        <a class="page_numBtn"
+                        th:id="page+${pageNum}"
+                        th:attr="onclick=|commentPaging(${pageNum})|"><span
                                 th:text="${pageNum}"></span></a>
                     </th:block>
                     <a class="page_nextBtn"
-                        th:href="@{/myPage/myContent/comment(nowPage=${commentVO.endPage + 1})}"><span
+                        th:attr="onclick=|commentPaging(${commentVO.endPage + 1})|"><span
                             th:if="${commentVO.next}">다음</span></a>
                 </div>
             </div>
