@@ -8,6 +8,4 @@ import java.util.List;
 public interface WeatherService {
     public List<RegionVO> allRegionList(RegionVO regionVO);
 
-    public WeatherVO getWeatherByRegion(RegionVO regionVO);
-
 }

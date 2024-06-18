@@ -1,19 +1,15 @@
 package com.easyfolio.esf.weather.vo;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 @XmlRootElement(name = "response")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class WeatherResponse {
-    @XmlElement(name = "header")
     private Header header;
-
-    @XmlElement(name = "body")
     private Body body;
 
+    @XmlElement(name = "header")
     public Header getHeader() {
         return header;
     }
@@ -22,6 +18,7 @@ public class WeatherResponse {
         this.header = header;
     }
 
+    @XmlElement(name = "body")
     public Body getBody() {
         return body;
     }
@@ -30,63 +27,75 @@ public class WeatherResponse {
         this.body = body;
     }
 
-    @XmlRootElement(name = "header")
-    @XmlAccessorType(XmlAccessType.FIELD)
     public static class Header {
-        @XmlElement(name = "resultCode")
         private String resultCode;
-
-        @XmlElement(name = "resultMsg")
         private String resultMsg;
 
-        // Getter, Setter 추가
+        @XmlElement(name = "resultCode")
+        public String getResultCode() {
+            return resultCode;
+        }
+
+        public void setResultCode(String resultCode) {
+            this.resultCode = resultCode;
+        }
+
+        @XmlElement(name = "resultMsg")
+        public String getResultMsg() {
+            return resultMsg;
+        }
+
+        public void setResultMsg(String resultMsg) {
+            this.resultMsg = resultMsg;
+        }
     }
 
-    @XmlRootElement(name = "body")
-    @XmlAccessorType(XmlAccessType.FIELD)
     public static class Body {
-        @XmlElement(name = "items")
         private Items items;
 
-        // Getter, Setter 추가
+        @XmlElement(name = "items")
+        public Items getItems() {
+            return items;
+        }
+
+        public void setItems(Items items) {
+            this.items = items;
+        }
     }
 
-    @XmlRootElement(name = "items")
-    @XmlAccessorType(XmlAccessType.FIELD)
     public static class Items {
-        @XmlElement(name = "item")
-        private Item item;
+        private List<Item> itemList;
 
-        // Getter, Setter 추가
+        @XmlElement(name = "item")
+        public List<Item> getItemList() {
+            return itemList;
+        }
+
+        public void setItemList(List<Item> itemList) {
+            this.itemList = itemList;
+        }
     }
 
-    @XmlRootElement(name = "item")
-    @XmlAccessorType(XmlAccessType.FIELD)
     public static class Item {
-        @XmlElement(name = "baseDate")
-        private String baseDate;
-
-        @XmlElement(name = "baseTime")
-        private String baseTime;
-
-        @XmlElement(name = "category")
         private String category;
-
-        @XmlElement(name = "fcstDate")
-        private String fcstDate;
-
-        @XmlElement(name = "fcstTime")
-        private String fcstTime;
-
-        @XmlElement(name = "fcstValue")
         private String fcstValue;
 
-        @XmlElement(name = "nx")
-        private int nx;
+        @XmlElement(name = "category")
+        public String getCategory() {
+            return category;
+        }
 
-        @XmlElement(name = "ny")
-        private int ny;
+        public void setCategory(String category) {
+            this.category = category;
+        }
 
-        // Getter, Setter 추가
+        @XmlElement(name = "fcstValue")
+        public String getFcstValue() {
+            return fcstValue;
+        }
+
+        public void setFcstValue(String fcstValue) {
+            this.fcstValue = fcstValue;
+        }
     }
 }
