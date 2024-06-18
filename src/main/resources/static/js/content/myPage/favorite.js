@@ -79,7 +79,7 @@ function addOrDelFav(ele){
     const foodCode = ele.closest(".recipeTextBox1").querySelector(".foodCode").value;
     const rcmmCnt = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt");
     const rcmmCntVal = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt").textContent;
-    const memberId = ele.closest(".recipeTextBox1").querySelector(".writer").value;
+
     
     let listFalg = list.includes(foodCode);
 
@@ -94,7 +94,6 @@ function addOrDelFav(ele){
                 'Content-Type': 'application/json; charset=UTF-8'
             },
             body: JSON.stringify({
-                "memberId" : memberId,
                 "foodCode" : foodCode,
                 "type" : "fetch"
             })

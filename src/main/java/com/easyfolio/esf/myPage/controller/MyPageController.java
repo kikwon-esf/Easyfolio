@@ -100,6 +100,7 @@ public class MyPageController {
         foodVO.setTotalDataCnt(myPageService.foodByMemberCnt(foodVO));
         foodVO.setPageInfo(8);
         List<FoodVO> foodList =  myPageService.getFoodByMember(foodVO);
+        model.addAttribute("nowPage", foodVO.getNowPage());
         model.addAttribute("foodList", foodList);
         return "content/myPage/replace/content_food";
     }
@@ -112,8 +113,9 @@ public class MyPageController {
         commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
         commentVO.setPageInfo();
         List<CommentVO> commentList = myPageService.getCommentByMember(commentVO);
-        System.err.println(commentList);
+        int nowPage = commentVO.getNowPage();
         model.addAttribute("commentList",commentList);
+        model.addAttribute("nowPage", nowPage);
         return "content/myPage/replace/content_comment";
     }
 
