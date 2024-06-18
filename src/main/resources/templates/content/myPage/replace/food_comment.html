@@ -122,6 +122,25 @@
 
                     </div>
                 </th:block>
+
+                <th:block>
+                    <div class="pageBtnBox">
+                        <div class="btn_group">
+                            <div class="pageBtn" th:if="${#lists.size(commentList) != 0}">
+                                <a class="page_prevBtn"
+                                    th:href="@{/food/comment(nowPage=${commentVO.beginPage - 1},foodCode=${foodCode})}"><span
+                                        th:if="${commentVO.prev}">이전</span></a>
+                                <th:block th:each="pageNum : ${#numbers.sequence(commentVO.beginPage, commentVO.endPage)}">
+                                    <a class="page_numBtn" th:href="@{/food/comment(nowPage=${pageNum},foodCode=${foodCode})}"><span
+                                            th:text="${pageNum}"></span></a>
+                                </th:block>
+                                <a class="page_nextBtn"
+                                    th:href="@{/food/comment(nowPage=${commentVO.endPage + 1},foodCode=${foodCode})}"><span
+                                        th:if="${commentVO.next}">다음</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
             </div>
 
             <form class="submitBlock" sec:authorize="isAuthenticated()" th:object="${inputComment}">
@@ -160,7 +179,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 

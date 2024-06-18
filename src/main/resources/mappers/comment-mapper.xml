@@ -4,7 +4,7 @@
 <mapper namespace="commentMapper">
 
     <resultMap id="commentEach" type="com.easyfolio.esf.myPage.vo.CommentVO">
-        <result column="FOOD_COMMENT_ID" property="foodCommentId" />
+        <id column="FOOD_COMMENT_ID" property="foodCommentId" />
         <result column="FOOD_CODE" property="foodCode" />
         <result column="MEMBER_ID" property="memberId" />
         <result column="REG_DATE" property="reg_date" />
@@ -86,7 +86,27 @@
                 AND RE_CODE IS NULL
             </otherwise>
         </choose>
+        ORDER BY REG_DATE DESC
+        OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
+
+    <select id="commentListCnt" resultType="int">
+        SELECT COUNT(FOOD_COMMENT_ID)
+        FROM FOOD_COMMENT
+        <choose>
+            <!-- MYPAGE에서 조회시 -->
+            <when test="foodCode == null or foodCode.isEmpty()">
+                WHERE MEMBER_ID = #{memberId}
+            </when>
+            <!-- FOODDTL에서 조회시 -->
+            <otherwise>
+                WHERE FOOD_CODE = #{foodCode}
+                AND RE_CODE IS NULL
+            </otherwise>
+        </choose>
+    </select>
+
+
 <!--    대댓글-->
     <select id="getReComment" resultMap="commentEach">
         SELECT
