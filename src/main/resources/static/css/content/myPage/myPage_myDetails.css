@@ -116,7 +116,7 @@ textarea {
     border-radius: 6px;
     border: 1px solid transparent;
 }
-.inputBox > .icon{
+.inputBox > .myPage_icon{
     width: 36px;
 }
 .inputBox.on{
