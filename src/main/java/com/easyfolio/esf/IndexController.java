@@ -9,4 +9,9 @@ public class IndexController {
     public String index() {
         return "redirect:/mainpage/main";
     }
+
+    @GetMapping("/region")
+    public String region() {
+        return "redirect:/weather/region";
+    }
 }

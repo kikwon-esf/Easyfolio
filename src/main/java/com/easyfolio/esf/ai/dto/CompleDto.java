@@ -8,11 +8,11 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CompleDto {
 
-    private String model;
+    private String model = "gpt-3.5-turbo-instruct";
     private String prompt;
-    private float temperature = 0.2f;
+    private float temperature = 0.1f;
     @JsonProperty("max_tokens")
-    private Integer maxTokens;
+    private Integer maxTokens = 1000;
 
     @Builder
     public CompleDto(String model, String prompt, float temperature, int maxTokens) {
