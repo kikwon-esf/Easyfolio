@@ -10,7 +10,7 @@ public class CompleDto {
 
     private String model = "gpt-3.5-turbo-instruct";
     private String prompt;
-    private float temperature = 0.2f;
+    private float temperature = 0.1f;
     @JsonProperty("max_tokens")
     private Integer maxTokens = 1000;
 
