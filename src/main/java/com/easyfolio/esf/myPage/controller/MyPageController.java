@@ -94,6 +94,8 @@ public class MyPageController {
     public String myFood(Principal principal, Model model, FoodVO foodVO){
         String user = principal.getName();
         foodVO.setMemberId(user);
+        foodVO.setTotalDataCnt(myPageService.foodByMemberCnt(foodVO));
+        foodVO.setPageInfo(8);
         List<FoodVO> foodList =  myPageService.getFoodByMember(foodVO);
         model.addAttribute("foodList", foodList);
         return "content/myPage/replace/content_food";
@@ -104,6 +106,8 @@ public class MyPageController {
     public String myComment(Principal principal, Model model, CommentVO commentVO){
         String user = principal.getName();
         commentVO.setMemberId(user);
+        commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
+        commentVO.setPageInfo();
         List<CommentVO> commentList = myPageService.getCommentByMember(commentVO);
         System.err.println(commentList);
         model.addAttribute("commentList",commentList);

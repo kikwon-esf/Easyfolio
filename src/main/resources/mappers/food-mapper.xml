@@ -271,32 +271,22 @@
     </update>
 
     <select id="foodByMember" resultMap="food">
-        <![CDATA[
-    SELECT *
-    FROM (
         SELECT
-            FOOD_CODE,
-            FOOD_TTL,
-            FOOD_DIF,
-            FOOD_INQ_CNT,
-            FOOD_RCMM_CNT,
-            ROWNUM AS rnum
-        FROM (
-            SELECT
-                FOOD_CODE,
-                FOOD_TTL,
-                FOOD_DIF,
-                FOOD_INQ_CNT,
-                FOOD_RCMM_CNT
-            FROM FOOD
-            WHERE MEMBER_ID = #{memberId}
-            ORDER BY FOOD_INQ_CNT DESC
-        )
-        WHERE ROWNUM <= 5
+        FOOD_CODE,
+        FOOD_TTL,
+        FOOD_DIF,
+        FOOD_INQ_CNT,
+        FOOD_RCMM_CNT
+        FROM FOOD
+        WHERE MEMBER_ID = #{memberId}
+        ORDER BY FOOD_INQ_CNT DESC
+        OFFSET ((#{nowPage} - 1) * #{displayDataCnt8}) ROWS FETCH FIRST #{displayDataCnt8} ROWS ONLY
+    </select>
 
-    )
-    WHERE rnum <= 5
-    ]]>
+    <select id="foodByMemberCnt" resultType="int">
+        SELECT COUNT(FOOD_CODE)
+        FROM FOOD
+        WHERE MEMBER_ID = #{memberId}
     </select>
 
 

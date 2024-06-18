@@ -149,6 +149,9 @@ public class FoodController {
         Map<String,CommentVO> commentMap = myPageService.getCommentVOList(commentVO);
         List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
 
+        commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
+        commentVO.setPageInfo();
+
         List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO()

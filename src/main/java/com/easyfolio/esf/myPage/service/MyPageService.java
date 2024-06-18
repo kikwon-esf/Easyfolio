@@ -43,4 +43,8 @@ public interface MyPageService {
 
     public List<CommentVO> getCommentByMember(CommentVO commentVO);
 
+    public int commentListCnt(CommentVO commentVO);
+
+    public int foodByMemberCnt(FoodVO foodVO);
+
 }
