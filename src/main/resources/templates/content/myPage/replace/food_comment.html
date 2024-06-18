@@ -18,7 +18,7 @@
             </div>
             <div class="commentList">
                 <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
-                    <div class="commentEach">
+                    <div th:id="${commentVO.foodCommentId}" class="commentEach">
                         <div class="commentBlock">
 
                             <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
@@ -74,7 +74,7 @@
                         <!-- 대댓글 공간 -->
                         <th:block th:if="${commentVO.reCommentList != null}"
                             th:each="reComment, state : ${commentVO.reCommentList}">
-                            <div class="commentEach re">
+                            <div th:id="${reComment.foodCommentId}" class="commentEach re">
                                 <div class="commentBlock">
                                     <input class="foodCommentId" name="foodCommentId" type="hidden"
                                         th:value="${reComment.foodCommentId}">

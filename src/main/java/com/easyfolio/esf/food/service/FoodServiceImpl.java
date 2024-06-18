@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class FoodServicempl implements FoodService{
+public class FoodServiceImpl implements FoodService{
     private final SqlSessionTemplate sqlSession;
 
     @Override

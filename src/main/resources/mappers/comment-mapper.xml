@@ -56,7 +56,7 @@
     <select id="commentList" resultMap="commentEach">
         SELECT
         <!-- 멤버 아이디로 찾을 때 -->
-        <if test="foodCode == null and foodCode.isEmpty()">
+        <if test="foodCode == null or foodCode.isEmpty()">
             F.FOOD_TTL
             ,C.FOOD_CODE
         </if>
@@ -73,9 +73,10 @@
         FROM FOOD_COMMENT C
         <choose>
             <!-- MYPAGE에서 조회시 -->
-            <when test="foodCode == null and foodCode.isEmpty()">
+            <when test="foodCode == null or foodCode.isEmpty()">
                 ,FOOD F
                 WHERE C.MEMBER_ID = #{memberId}
+                AND C.FOOD_CODE = F.FOOD_CODE
             </when>
             <!-- FOODDTL에서 조회시 -->
             <otherwise>

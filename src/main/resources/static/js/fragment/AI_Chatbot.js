@@ -102,27 +102,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     outputbox.scrollTo(0, outputbox.scrollHeight);
 
-    const incomingChatLi = createChatLi("...", "incoming");
+    const incomingChatLi = createChatLi("...", "incoming"); // Create message with "..."
 
     outputbox.appendChild(incomingChatLi);
     outputbox.scrollTo(0, outputbox.scrollHeight);
 
     $.ajax({
-      url: "/AI/Chatbot/",
-      type: "GET",
-      data: {
-        user_input: userMessage,
-      },
+      url: "/api/ai/legacyPrompt",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        prompt : userMessage
+      }),
       success: function (data) {
-        if (data.message === "SUCCESS") {
-          incomingChatLi.querySelector("p").textContent = data.result;
+        console.log(data);
+
+        if (data === '' || data != null) {
+          incomingChatLi.querySelector("p").textContent = data;
+          console.log('a');
         }
+        console.log('b');
       },
       error: function (request, status, error) {
-        console.log("Error fetching data:", error);
-      },
+        console.log('Error fetching data:', error);
+      }
     });
   };
+
 
   chatInput.addEventListener("input", () => {
     chatInput.style.height = `${chatInput.scrollHeight}px`;

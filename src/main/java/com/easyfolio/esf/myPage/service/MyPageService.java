@@ -1,5 +1,6 @@
 package com.easyfolio.esf.myPage.service;
 
+import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
@@ -37,5 +38,9 @@ public interface MyPageService {
     public Map<String,CommentVO> getCommentVOList(CommentVO commentVO);
 
     public List<CommentVO> getReComment(CommentVO commentVO);
+
+    public List<FoodVO> getFoodByMember(FoodVO foodVO);
+
+    public List<CommentVO> getCommentByMember(CommentVO commentVO);
 
 }

@@ -5,6 +5,7 @@ const memberId = document.querySelector('.detailMemberId').value;
 const getCommentURL = "/food/comment";
 const submitURL = "/myPage/comment"
 const replacePosition = document.querySelector('.replacePosition');
+let response_commentId = document.querySelector("#response_commentId")?.value;
 
 function getCommentList(url) {
     fetch(url)
@@ -14,13 +15,22 @@ function getCommentList(url) {
         .then((data) => {
             writeContent(replacePosition, data);
             const foodCode_hide = document.querySelector('.foodCode_hide')
-        });
+            if(response_commentId != null || undefined){
+                const commentNode = this.document.getElementById(String(response_commentId));
+                console.dir(commentNode);
+        
+                window.scrollTo(0,findScrollValue(commentNode));
+                response_commentId = null;
+            }
+        })
 }
 function writeContent(postion, content) {
     postion.innerHTML = content;
 }
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     getCommentList(getCommentURL + "?foodCode=" + foodCode + "&reciveMemberId=" + memberId);
+    
+    
 })
 
 function submitComment(target) {
@@ -222,4 +232,13 @@ function deleteComment(element) {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             console.log(err);
         });
+}
+
+
+function findScrollValue(commentNode){
+
+    let rect = commentNode.getBoundingClientRect();
+    console.log(rect.top)
+    console.log(window.scrollY)
+    return rect.top;
 }

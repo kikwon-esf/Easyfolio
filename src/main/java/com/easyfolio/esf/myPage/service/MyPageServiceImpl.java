@@ -90,4 +90,13 @@ public class MyPageServiceImpl implements MyPageService{
         return sqlSession.selectList("commentMapper.getReComment",commentVO);
     }
 
+    @Override
+    public List<FoodVO> getFoodByMember(FoodVO foodVO) {
+        return sqlSession.selectList("foodMapper.foodByMember", foodVO);
+    }
+
+    @Override
+    public List<CommentVO> getCommentByMember(CommentVO commentVO) {
+        return sqlSession.selectList("commentMapper.commentList", commentVO);
+    }
 }

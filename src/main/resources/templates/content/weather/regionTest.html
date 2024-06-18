@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/food/food_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <div id="wrap">
+                <div class="recipeTextBox">
+                    <p>[[${regionList}]]</p>
+                </div>
+            </a>
+    </div>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/food/food_detail.js"></script>
+    <script src="/js/content/myPage/favorite.js"></script>
+    <script src="/js/content/myPage/replace/food_comment.js"></script>
+</th:block>
+
+</html>

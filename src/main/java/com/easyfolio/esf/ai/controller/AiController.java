@@ -43,15 +43,21 @@ public class AiController {
 
     // ai 레거시 모델 프롬프트 호출
     @PostMapping("/legacyPrompt")
-    public ResponseEntity<Map<String, Object>> selectLegacyPrompt(@RequestBody CompleDto completionDto) {
+    public String selectLegacyPrompt(@RequestBody CompleDto completionDto) {
+        System.err.println(completionDto);
         log.debug("param :: " + completionDto.toString());
         Map<String, Object> result = aiService.legacyPrompt(completionDto);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        List<Map<String, Object>> choices = (List<Map<String, Object>>) result.get("choices");
+        Map<String, Object> firstChoice = choices.get(0);
+        String AiAnswer = (String) firstChoice.get("text");
+
+        return AiAnswer;
     }
 
     // ai 최신 모델 프롬프트 호출
     @PostMapping("/prompt")
     public ResponseEntity<Map<String, Object>> selectPrompt(@RequestBody AiCompleDto aiCompleDto) {
+
         log.debug("param :: " + aiCompleDto.toString());
         Map<String, Object> result = aiService.prompt(aiCompleDto);
         return new ResponseEntity<>(result, HttpStatus.OK);

@@ -101,7 +101,7 @@ public class FoodController {
 
 
     @GetMapping(value = "detail")
-    public String foodDtl(Model model, FoodVO foodVO) {
+    public String foodDtl(Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
         foodService.updateFoodInqCnt(foodVO);
         model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
@@ -137,6 +137,9 @@ public class FoodController {
             mtrlMt2.add(new ArrayList<>());
         }
         model.addAttribute("mtrlMt2", mtrlMt2);
+
+
+        model.addAttribute("foodCommentId", foodCommentId);
 
         return "/content/food/food_detail";
     }
