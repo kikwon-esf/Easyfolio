@@ -95,6 +95,9 @@ function deletePopUp() {
 function displayOff(element) {
     element.classList.add('pu_blind');
 }
+function displayOff_pu(element) {
+    element.closest('.pu_delete').classList.add('pu_blind');
+}
 
 puBtnNo.addEventListener('click', () => {
     displayOff(puDelete);

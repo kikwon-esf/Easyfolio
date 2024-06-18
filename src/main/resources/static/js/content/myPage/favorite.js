@@ -2,10 +2,10 @@ const url = "/myPage/deleteFav"
 const askDelete = document.querySelector('.commentCheckInner');
 const commentAlarmInner = document.querySelector('.commentAlarmInner');
 let currentElement = null;
-function deleteFav(ele){
+function deleteFav(){
     
 
-    const foodCode = ele.closest('.recipeTextBox1').querySelector(".foodCode").value;
+    const foodCode = currentElement.closest('.recipeTextBox1').querySelector(".foodCode").value;
     let data = {
         method: 'POST',
         cache: 'no-cache',
@@ -13,39 +13,47 @@ function deleteFav(ele){
             'Content-Type': 'application/json; charset=UTF-8'
         },
         body: JSON.stringify({
-            foodCode
+            "foodCode" : foodCode,
+            "type" : "fetch"
         })
     }
 
-
-    fetch(url,data)
-        .then((response)=>{
-            return response.text();
-        }).then((data)=>{
-            if(data != "complete"){
-                alert("실패");
-            }else{
-                
-                ele.closest('.recipe').remove();
-                
-                // commentAlarmInner를 표시
-                commentAlarmInner.style.display = "block";
-            }
-        })
+    fetch(addFavURL,data)
+    .then((resp)=>{
+        let status = resp["status"];
+        if(status != 200) {
+            popup(askFrame);
+        }
+        
+        return resp.text();
+    })
+    .then((data)=>{
+        if(data == "addComplete"){
+            console.log(resp)
+            onOff(fillHeart,biHeart);
+            onOffAnime(fillHeart,biHeart);
+            rcmmCnt.innerHTML=(parseInt(rcmmCntVal)+1)
+        }else if(data == "deleteComplete"){
+            onOff(biHeart,fillHeart);
+            onOffAnime(biHeart,fillHeart);
+            console.log(resp)
+            rcmmCnt.innerHTML=(parseInt(rcmmCntVal)-1)
+        }
+    })
+    return false;
         
 }
 
 const addFavBtn = document.querySelectorAll(".cartBox");
 const addFavURL = "/myPage/addFav";
-let list = null;
+var list = null;
 //페이지 로딩시 하트색칠
 
 window.addEventListener('load',()=>{
-    const listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
+    let listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
     
     list = JSON.parse(listdata);
-    
-    
+    console.log(list)
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){
             const foodCode = addFavBtn[i].closest('.recipe').querySelector(".foodCode").value;
@@ -73,44 +81,51 @@ function addOrDelFav(ele){
     const rcmmCntVal = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt").textContent;
     const memberId = ele.closest(".recipeTextBox1").querySelector(".writer").value;
     
-    let lfla\
-    let data = {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-        },
-        body: JSON.stringify({
-            "memberId" : memberId,
-            "foodCode" : foodCode,
-            "type" : "fetch"
-        })
-    }
+    let listFalg = list.includes(foodCode);
 
-    fetch(addFavURL,data)
-    .then((resp)=>{
-        let status = resp["status"];
-        if(status != 200) {
-            popup(askFrame);
+    // if(listFalg){
+    //     currentElement = ele;
+    //     deletePopUp()
+    // }else{
+        let data = {
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify({
+                "memberId" : memberId,
+                "foodCode" : foodCode,
+                "type" : "fetch"
+            })
         }
-        
-        return resp.text();
-    })
-    .then((data)=>{
-        if(data == "addComplete"){
-            onOff(fillHeart,biHeart);
-            onOffAnime(fillHeart,biHeart);
-            rcmmCnt.innerHTML=(parseInt(rcmmCntVal)+1)
-        }else if(data == "deleteComplete"){
-            onOff(biHeart,fillHeart);
-            onOffAnime(biHeart,fillHeart);
-            rcmmCnt.innerHTML=(parseInt(rcmmCntVal)-1)
-        }
-    })
-    return false;
+    
+        fetch(addFavURL,data)
+        .then((resp)=>{
+            let status = resp["status"];
+            if(status != 200) {
+                popup(askFrame);
+            }
+            // console.log(resp)
+            return resp.text();
+        })
+        .then((data)=>{
+            if(data == "addComplete"){
+                onOff(fillHeart,biHeart);
+                onOffAnime(fillHeart,biHeart);
+                rcmmCnt.innerHTML=(parseInt(rcmmCntVal)+1)
+            }else if(data == "deleteComplete"){
+                onOff(biHeart,fillHeart);
+                onOffAnime(biHeart,fillHeart);
+                rcmmCnt.innerHTML=(parseInt(rcmmCntVal)-1)
+            }
+        })
+        return false;
+    }
+    
     
 
-}
+// }
 //animation mouseDown
 const mouseDown = document.querySelectorAll('.mousedown');
 for(let ele=0 ; ele < addFavBtn.length ; ele++){
