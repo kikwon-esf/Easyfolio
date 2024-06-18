@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class WeatherVO {
-    private int temp;
-    private int humid;
+    private String temperature;
+    private String humidity;
 }

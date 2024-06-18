@@ -9,9 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -23,12 +20,8 @@ public class WeatherController {
 
     @GetMapping("/region")
     public String allRegionList(RegionVO regionVO, Model model) {
-        regionVO.setNx(60);
-        regionVO.setNy(127);
-        model.addAttribute("regionList", weatherService.getWeatherByRegion(regionVO));
+
+//        model.addAttribute("regionList", weather);
         return "/content/weather/regionTest";
-
     }
-
 }
-
