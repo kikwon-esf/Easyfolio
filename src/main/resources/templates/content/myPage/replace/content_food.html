@@ -6,7 +6,7 @@
 
 <body th:fragment="">
 
-    <link rel="stylesheet" href="/css/content/myPage/replace/food_comment.css">
+    <link rel="stylesheet" href="/css/content/myPage/replace/content_food.css">
 
     <div th:each="food, state : ${foodList}" class="recipe">
         <input type="hidden" id="nowPage" th:value="${nowPage}">
@@ -66,9 +66,10 @@
                     >
                         <!-- <a class="page_numBtn" th:href="@{/myPage/myContent/food(nowPage=${pageNum})}"> -->
                             <a  class="page_numBtn"
-                               ><span  
-                               th:id="page+${pageNum}"
-                               th:attr="onclick=|foodPaging(${pageNum})|" th:text="${pageNum}"></span>
+                            th:id="page+${pageNum}"
+                            th:attr="onclick=|foodPaging(${pageNum})|" 
+                               ><span th:text="${pageNum}"  
+                               ></span>
                             </a>
                             <!-- </a> -->
                     </th:block>

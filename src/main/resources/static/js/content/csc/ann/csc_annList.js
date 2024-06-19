@@ -16,3 +16,15 @@ document.addEventListener("click", function (event) {
     }
 
 });
+
+
+function searchTip(element){
+    var data = element.textContent;
+    var url = '/csc/annListForm?allSearchKeyword=' + data;
+    location.href = url;
+}
+
+searchTip.addEventListener('click', function(){
+
+
+})

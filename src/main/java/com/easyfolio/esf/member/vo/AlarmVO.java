@@ -1,9 +1,10 @@
 package com.easyfolio.esf.member.vo;
 
+import com.easyfolio.esf.csc.vo.PageVO;
 import lombok.Data;
 
 @Data
-public class AlarmVO {
+public class AlarmVO extends PageVO {
     private String alarmCode;
     private String reciveMemberId;
     private String sendMemberId;
