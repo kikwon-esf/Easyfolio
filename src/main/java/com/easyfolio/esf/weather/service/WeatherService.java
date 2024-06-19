@@ -6,6 +6,8 @@ import com.easyfolio.esf.weather.vo.WeatherVO;
 import java.util.List;
 
 public interface WeatherService {
-    public List<RegionVO> allRegionList(RegionVO regionVO);
+    public List<RegionVO> regionParent();
+
+    public List<RegionVO> regionChild();
 
 }

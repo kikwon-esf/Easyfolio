@@ -20,8 +20,13 @@ public class WeatherServiceImpl implements WeatherService {
 
 
     @Override
-    public List<RegionVO> allRegionList(RegionVO regionVO) {
-        return sqlSession.selectList("weatherMapper.allRegionList", regionVO);
+    public List<RegionVO> regionParent() {
+        return sqlSession.selectList("weatherMapper.regionParentList");
+    }
+
+    @Override
+    public List<RegionVO> regionChild() {
+        return sqlSession.selectList("weatherMapper.regionChildList");
     }
 
 }

@@ -21,7 +21,8 @@ public class WeatherController {
     @GetMapping("/region")
     public String allRegionList(RegionVO regionVO, Model model) {
 
-//        model.addAttribute("regionList", weather);
+        model.addAttribute("regionParents", weatherService.regionParent());
+        model.addAttribute("regionChilds", weatherService.regionChild());
         return "/content/weather/regionTest";
     }
 }
