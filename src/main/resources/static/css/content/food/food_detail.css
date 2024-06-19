@@ -186,6 +186,9 @@ textarea {
 .recipe_info_bot {
     padding: 20px 30px;
 }
+.recipe_info_text {
+    padding: 20px 30px;
+}
 
 .recipe_img {
     margin: 0 10px;
@@ -245,6 +248,47 @@ textarea {
     font-weight: 700;
     color: #f3c053;
 }
+
+.recipe_steps {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
+    height: auto;
+    border-radius: 10px;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+}
+
+.steps_title {
+    display: flex;
+    top: -16px;
+    position: absolute;
+    right: 50%;
+    margin-right: -110px;
+    background-color: #fff;
+    padding: 0px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px 0 rgba(68, 68, 68, 0.2);
+}
+
+.steps_title1 {
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+
+.steps_title2 {
+    margin: 2px 0 3px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f3c053;
+}
+
 .recipe_info_right{
     width: 100%;
     margin: 0 10px 0 0;
