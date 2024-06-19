@@ -65,7 +65,7 @@ textarea {
     width: 300px;
 }
 .weatherTextBox{
-    width: 150px;
+    width: 140px;
     height: 250px;
     overflow-y: scroll;
 }
@@ -83,14 +83,15 @@ textarea {
 }
 .parentBox:hover, .regionChildBox:hover{
     color: #fff;
-    background-color: #ffd57a;
+    background: linear-gradient(180deg, #f3c053 0%, #ffd57a 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
 .regionChildBlock{
+    width: 140px;
     overflow-y: scroll;
     display: none;
     position: absolute;
     top: 0;
-    left: 150px;
+    left: 142px;
     height: 250px;
 }
 .regionChildBlock.on {
@@ -98,11 +99,11 @@ textarea {
 }
 .parentBox.selected, .regionChildBox.selected {
     color: #fff;
-    background-color: #f3c053;
+    background: linear-gradient(180deg, rgb(242, 146, 33) 0%, #f3c053 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
 .weatherImgBox{
     background: linear-gradient(180deg, rgba(242, 244, 247, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
-    width: 700px;
+    width: 763px;
     box-sizing: border-box;
 }
 .weatherImgHeader{
@@ -169,4 +170,45 @@ textarea {
 }
 .rainPer, .rainState{
     margin-left: 5px;
+}
+/* .regionChildBlock::-webkit-scrollbar,
+.outputbox::-webkit-scrollbar {
+  width: 12px;
+}
+
+.regionChildBlock::-webkit-scrollbar-track,
+.outputbox::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.regionChildBlock::-webkit-scrollbar-thumb,
+.outputbox::-webkit-scrollbar-thumb {
+  background-color: #dadada;
+  border-radius: 6px;
+  border: 3px solid #fff;
+}
+
+.regionChildBlock::-webkit-scrollbar-thumb:hover,
+.outputbox::-webkit-scrollbar-thumb:hover {
+  background-color: #b0b0b0;
+  cursor: pointer;
+} */
+
+::-webkit-scrollbar {
+
+    width: 8px; /* 스크롤바 너비 */
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent; /* 스크롤바 track 배경색 */
+}
+
+::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #dadada; /* 스크롤바 thumb 색상 */
+    border-radius: 2px; /* 스크롤바 thumb 모서리 반경 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #999; /* 스크롤바 thumb에 호버시 색상 */
 }

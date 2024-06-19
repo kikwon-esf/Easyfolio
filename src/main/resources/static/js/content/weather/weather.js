@@ -206,14 +206,14 @@ function updateWeatherImage(skyCondition, precipitationType) {
     } else {
         switch (skyCondition) {
             case "맑음":
-                if (currentHour >= 18) {
+                if (currentHour >= 18 || currentHour <= 6) {
                     imgSrc = "/img/weather/weather_moon.svg";
                 } else {
                     imgSrc = "/img/weather/weather_sun.svg";
                 }
                 break;
             case "구름많음":
-                if (currentHour >= 18) { 
+                if (currentHour >= 18 || currentHour <= 6) { 
                     imgSrc = "/img/weather/weather_nightCloud.svg";
                 } else {
                     imgSrc = "/img/weather/weather_dayCloud.svg";
