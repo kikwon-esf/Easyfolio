@@ -1,6 +1,7 @@
 package com.easyfolio.esf.myPage.controller;
 
 
+import com.easyfolio.esf.config.Transfer;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.AlarmService;
@@ -208,12 +209,18 @@ public class MyPageController {
     //댓글 등록 후 댓글창 업로드
     @Transactional
     @PostMapping("/comment")
-    public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal, Model model){
+    public String submitComment(MemberVO memberVO,CommentVO commentVO, Principal principal, Model model, HttpServletResponse response){
 //        alarmService.alarmCntPlus(memberVO);
         commentVO.setFoodCommentId(myPageService.nextComtCode());
         commentVO.setSendMemberId(principal.getName());
-        myPageService.submitComment(commentVO); // 댓글 등록하는 코드
-        alarmService.insertAlarm(commentVO);
+        if(!Transfer.reqexTest(commentVO.getContent())){
+            myPageService.submitComment(commentVO); // 댓글 등록하는 코드
+            alarmService.insertAlarm(commentVO);
+        }else{
+            response.setStatus(400);
+        }
+
+
 
         String sendMember = commentVO.getReciveMemberId();
         List alarmList = alarmService.alarmList(new MemberVO().withMemberId(sendMember));
@@ -256,8 +263,12 @@ public class MyPageController {
     // 댓글 수정
     @ResponseBody
     @PostMapping("/updateComment")
-    public void updateComment(CommentVO commentVO){
+    public ResponseEntity<String> updateComment(CommentVO commentVO){
+        if(Transfer.reqexTest(commentVO.getContent())){
+            return new ResponseEntity<>("!!notBlank!!", HttpStatus.BAD_REQUEST);
+        }
         myPageService.updateComment(commentVO);
+        return new ResponseEntity<>("ok",HttpStatus.OK);
     }
 
     @GetMapping(value = "/myAlarm")
