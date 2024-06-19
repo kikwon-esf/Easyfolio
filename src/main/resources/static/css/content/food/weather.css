@@ -1,0 +1,105 @@
+/* 기본셋팅, 공통값 */
+body,
+input {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+
+img,
+input,
+button {
+    vertical-align: top;
+}
+
+input,
+button {
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+    resize: none;
+}
+
+.hide {
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+.weatherWrap {
+    width: 100%;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+.weatherInner {
+    position: relative;
+    width: 1260px;
+    height: auto;
+    margin: 0 auto 50px auto;
+}
+.weatherBlock{
+    position: relative;
+}
+.weatherBlockInner{
+    width: 1000px;
+    position: relative;
+    margin: 0 auto;
+    height: 250px;
+    box-sizing: border-box;
+    display: flex;
+}
+.weatherLeftBlock{
+    width: 300px;
+}
+.weatherTextBox{
+    width: 150px;
+    height: 250px;
+    overflow-y: scroll;
+}
+.regionParentBlock{
+    display: flex;
+}
+.parentBox, .regionChildBox{
+    color: #666;
+    cursor: pointer;
+    padding: 9px 0 9px 7px;
+    box-sizing: border-box;
+    width: 130px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.parentBox:hover, .regionChildBox:hover{
+    color: #fff;
+    background-color: #ffd57a;
+}
+.regionChildBlock{
+    overflow-y: scroll;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 150px;
+    height: 250px;
+}
+.regionChildBlock.on {
+    display: block; /* on 클래스가 있는 경우 보이도록 설정 */
+}
+.parentBox.selected, .regionChildBox.selected {
+    color: #fff;
+    background-color: #f3c053;
+}
+.weatherImgBox{
+    width: 700px;
+}

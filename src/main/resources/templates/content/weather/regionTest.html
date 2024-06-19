@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/csc/csc_layout}">
+    layout:decorate="~{fragment/main/main_layout}">
 
 <head>
     <meta charset="UTF-8">
     <title></title>
     <!-- css 영역 -->
     <th:block layout:fragment="content_css">
-        <link rel="stylesheet" href="/css/content/csc/inq/csc_inqDetail.css">
+        <link rel="stylesheet" href="/css/content/food/weather.css">
     </th:block>
 </head>
 
 <body>
     <th:block layout:fragment="content">
-        <div class="vis-weather">
-            <div class="inqImgBlock" th:each="regionParent : ${regionParents}">
-                <p>[[${regionParent.regionParent}]]</p>
-                <div th:if="${regionParent.areaCode == regionChild.areaCode}" class="inqImgBlock" th:each="regionChild : ${regionChilds}">
-                    <p>[[${regionChild.regionChild}]]</p>
+        <div class="weatherWrap">
+            <div class="weatherInner">
+                <div class="weatherBlock">
+                    <div class="weatherBlockInner">
+                        <div class="weatherLeftBlock">
+                            <div class="weatherTextBox">
+                                <div class="regionParentBlock" th:each="regionParent : ${regionParents}">
+                                    <p class="parentBox" onclick="toggleRegionChildBox(this)">[[${regionParent.regionParent}]]</p>
+                                    <div class="regionChildBlock">
+                                        <div class="regionChildBox" onclick="selectRegionChildBox(this)" th:if="${regionParent.areaCode == regionChild.areaCode}"
+                                            th:each="regionChild : ${regionChilds}">
+                                            <input class="nxValue" type="hidden" th:value="${regionChild.nx}">
+                                            <input class="nyValue" type="hidden" th:value="${regionChild.ny}">
+                                            <p>[[${regionChild.regionChild}]]</p>
+                                        </div>
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                        </div>
+                        
+                        <div class="weatherImgBox">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,4 +51,3 @@
 </th:block>
 
 </html>
-
