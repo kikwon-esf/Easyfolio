@@ -45,7 +45,11 @@ public class CommentVO extends PageVO {
         Iterator<CommentVO> it = reCommentList.listIterator();
         while (it.hasNext()){
             CommentVO each = it.next();
-            commentMap.get(each.getReCode()).addReCommentList(each);
+            try{
+                commentMap.get(each.getReCode()).addReCommentList(each);
+            }catch(NullPointerException n){
+            }
+
         }
         //Map으로 가져온 녀석들을 List형식으로 반환
         Set<Map.Entry<String, CommentVO>> commentEntry = commentMap.entrySet();
