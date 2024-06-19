@@ -337,25 +337,3 @@ textarea {
 
 
 
-
-/* paging */
-.pageBtn{
-    cursor: pointer;
-    margin: 0 auto;
-    display: flex;
-}
-.pageBtn a{
-    display: block;
-    color: #444;
-    margin: 5px;
-}
-.pageBtn a:hover{
-    color: #f3c053;
-}
-.page_numBtn.active > span{
-    color: #f29221;
-    border-bottom: 1px solid #f29221;
-}
-.pageBtn a svg{
-    margin-top: 3px;
-}
