@@ -101,5 +101,72 @@ textarea {
     background-color: #f3c053;
 }
 .weatherImgBox{
+    background: linear-gradient(180deg, rgba(242, 244, 247, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
     width: 700px;
+    box-sizing: border-box;
+}
+.weatherImgHeader{
+    display: flex;
+    position: relative;
+    padding: 19px 93px 8px 50px;
+    vertical-align: top;
+}
+.weatherImgHeader p {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #000;
+    color: rgba(var(--gray0), 1);
+    vertical-align: top;
+}
+.parentArea{
+    margin-right: 5px;
+}
+.weatherImgMid{
+    margin-bottom: -5px;
+    display: flex;
+}
+.weatherImg{
+    width: 110px;
+    margin-left: 235px;
+}
+.weatherImg img{
+    width: 100%;
+    height: auto;
+}
+.weatherTemp{
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: -0.95px;
+    color: #202020;
+    margin: 7px 0 0 -39px;
+}
+.weatherTextTop{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.weatherTextTop p{
+    font-size: 20px;
+    letter-spacing: -0.7px;
+    color: #222225;
+}
+.skyState{
+    margin-left: 6px;
+}
+.weatherTextBot{
+    font-size: 16px;
+    justify-content: center;
+    display: flex;
+    letter-spacing: -0.7px;
+    color: #222225;
+}
+.weatherRainLeft, .weatherRainRight{
+    display: flex;
+}
+.weatherRainLeft{
+    margin-right: 20px;
+}
+.rainPer, .rainState{
+    margin-left: 5px;
 }

@@ -39,4 +39,6 @@ public interface FoodService {
     public FoodVO selectFoodCode(FoodVO foodVO);
 
     public void updateFoodInqCnt(FoodVO foodVO);
+
+    public List<FoodStepsVO> getFoodSteps(FoodVO foodVO);
 }

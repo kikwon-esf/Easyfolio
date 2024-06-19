@@ -47,6 +47,11 @@
         <result column="FOOD_TYPE_TEXT" property="foodTypeText" />
     </resultMap>
 
+    <resultMap id="foodSteps" type="com.easyfolio.esf.food.vo.FoodStepsVO">
+        <id column="FOOD_CODE" property="foodCode" />
+        <result column="FOOD_EX" property="foodEx" />
+    </resultMap>
+
 
 <!--   종류별-->
     <select id="foodKindList" resultMap="foodKind">
@@ -287,6 +292,12 @@
         SELECT COUNT(FOOD_CODE)
         FROM FOOD
         WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <select id="getFoodSteps" resultMap="foodSteps">
+        SELECT FOOD_EX
+        FROM FOOD_RECIPE
+        WHERE FOOD_CODE = #{foodCode}
     </select>
 
 

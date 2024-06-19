@@ -99,6 +99,12 @@ public class FoodServiceImpl implements FoodService{
         return sqlSession.selectOne("foodMapper.searchFoodCnt", foodVO);
     }
 
+
+    @Override
+    public List<FoodStepsVO> getFoodSteps(FoodVO foodVO) {
+        return sqlSession.selectList("foodMapper.getFoodSteps", foodVO);
+    }
+
 //
 
 }

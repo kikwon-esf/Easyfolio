@@ -1,6 +1,7 @@
 package com.easyfolio.esf.food.controller;
 
 import com.easyfolio.esf.food.service.FoodService;
+import com.easyfolio.esf.food.vo.FoodStepsVO;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.AlarmVO;
@@ -137,9 +138,15 @@ public class FoodController {
             mtrlMt2.add(new ArrayList<>());
         }
         model.addAttribute("mtrlMt2", mtrlMt2);
-
-
         model.addAttribute("foodCommentId", foodCommentId);
+        if(foodService.getFoodSteps(foodVO) != null && foodService.getFoodSteps(foodVO).size() > 0){
+            String foodStepsStr = String.valueOf(foodService.getFoodSteps(foodVO).get(0).getFoodEx());
+            List<String> foodStepsList = Arrays.asList(foodStepsStr.split("%"));
+            model.addAttribute("foodSteps", foodStepsList);
+        }else{
+            model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
+        }
+
 
         return "/content/food/food_detail";
     }

@@ -26,17 +26,41 @@
                                             th:each="regionChild : ${regionChilds}">
                                             <input class="nxValue" type="hidden" th:value="${regionChild.nx}">
                                             <input class="nyValue" type="hidden" th:value="${regionChild.ny}">
-                                            <p>[[${regionChild.regionChild}]]</p>
+                                            <p class="regionChildText">[[${regionChild.regionChild}]]</p>
                                         </div>
                                     </div>
-    
                                 </div>
-    
                             </div>
                         </div>
-                        
                         <div class="weatherImgBox">
-
+                            <div class="weatherImgTop">
+                                <div class="weatherImgHeader">
+                                    <p class="parentArea"></p>
+                                    <p class="childArea"></p>
+                                </div>
+                            </div>
+                            <div class="weatherImgMid">
+                                <div class="weatherImg">
+                                    <img class="" src="">
+                                </div>
+                                <div class="weatherTemp"></div>
+                            </div>
+                            <div class="weatherImgBot">
+                                <div class="weatherTextTop">
+                                    <p>하늘 상태 :</p>
+                                    <p class="skyState"></p>
+                                </div>
+                                <div class="weatherTextBot">
+                                    <div class="weatherRainLeft">
+                                        <p>강수 확률 :</p>
+                                        <p class="rainPer"></p>
+                                    </div>
+                                    <div class="weatherRainRight">
+                                        <p>강수 형태 :</p>
+                                        <p class="rainState"></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
