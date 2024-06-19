@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         logoutErrorDisplay.classList.remove('hide')
     }
 })
-function close(ele){
+function closePopup(ele){
     ele.closest('.logoutError').classList.add('hide')
 }
 //input의 값이 공백일 경우
