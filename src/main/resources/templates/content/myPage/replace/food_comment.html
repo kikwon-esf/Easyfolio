@@ -31,8 +31,7 @@
                                     <input class="foodCommentId" name="foodCommentId" type="hidden"
                                         th:value="${commentVO.foodCommentId}">
                                     <textarea type="text" class="input_textarea" id="inputUpdateComment"
-                                        name="inputUpdateComment">
-                                </textarea>
+                                        name="inputUpdateComment"></textarea>
                                     <button class="comment_submit" type="button" onclick="updateCheck(this)">댓글
                                         수정</button>
                                 </div>
@@ -65,8 +64,7 @@
                             <input type="hidden" name="reciveMemberId" class="detailMemberId"
                                 th:value="${commentVO.memberId}">
                             <div>
-                                <textarea name="content" class="content" placeholder="댓글을 입력해주세요">
-                                </textarea>
+                                <textarea name="content" class="content" placeholder="댓글을 입력해주세요"></textarea>
                             </div>
                             <button class="comment_submit" type="button" onclick="submitComment(this)">댓글 쓰기</button>
                         </form>
