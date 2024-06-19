@@ -65,9 +65,17 @@ function callWeatherAPI(regionChildBox) {
     var day = ('0' + currentDate.getDate()).slice(-2);
     var hours = ('0' + currentDate.getHours()).slice(-2);
     var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+
+    // 현재 시간 기준으로 baseTime 설정
     var baseTime = "";
     if (hours >= "23" || hours < "02") {
         baseTime = "2300";
+        // 자정 이후부터 새벽 2시 이전까지는 전날 2300을 기준으로 함
+        var prevDate = new Date(currentDate);
+        prevDate.setDate(currentDate.getDate() - 1);
+        year = prevDate.getFullYear();
+        month = ('0' + (prevDate.getMonth() + 1)).slice(-2);
+        day = ('0' + prevDate.getDate()).slice(-2);
     } else if (hours < "05") {
         baseTime = "0200";
     } else if (hours < "08") {
@@ -83,10 +91,10 @@ function callWeatherAPI(regionChildBox) {
     } else if (hours < "23") {
         baseTime = "2000";
     }
-    var baseDate1 = `${year}${month}${day}`;
+
+    var baseDate = `${year}${month}${day}`;
     var baseTime1 = `${hours}00`;
     var apiKey = "3Rb5ATbVd0%2BgY821Hz8%2F%2F7ZsRJUK0o%2FtJsjpaoMRh%2F8MSD3%2B1HPjEzTtMyYOhq37TtKEdFpTMZEOJDsDAnyx2A%3D%3D";
-    var baseDate = `${year}${month}${day}`;
     var nx = regionChildBox.querySelector('.nxValue').value;
     var ny = regionChildBox.querySelector('.nyValue').value;
     var apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
@@ -103,12 +111,14 @@ function callWeatherAPI(regionChildBox) {
             var skyCondition = null;
             var precipitationType = null;
             var precipitationProbability = null;
-    
+
+            console.log(data);
+
             var items = data.response.body.items.item;
             for (var i = 0; i < items.length; i++) {
                 var category = items[i].category;
                 var fcstValue = items[i].fcstValue;
-    
+
                 switch (category) {
                     case "TMP":
                         temperature = fcstValue + " ℃";
@@ -163,15 +173,15 @@ function callWeatherAPI(regionChildBox) {
             document.querySelector('.skyState').textContent = skyCondition;
             document.querySelector('.rainPer').textContent = precipitationProbability;
             document.querySelector('.rainState').textContent = precipitationType;
-    
-            updateWeatherImage(skyCondition, precipitationType);
-        },  
-        error: function (jqXHR, textStatus, errorThrown) {
 
+            updateWeatherImage(skyCondition, precipitationType);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
             console.error("API 요청 실패:", textStatus, errorThrown);
         }
     });
-};
+}
+
 function updateWeatherImage(skyCondition, precipitationType) {
     let imgSrc = "";
     const currentHour = new Date().getHours();
