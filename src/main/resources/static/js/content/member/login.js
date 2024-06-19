@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 })
 function close(ele){
-    ele.classList.add('hide')
+    ele.closest('.logoutError').classList.add('hide')
 }
 //input의 값이 공백일 경우
 

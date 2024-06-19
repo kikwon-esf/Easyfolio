@@ -311,7 +311,7 @@ function alarmCountRender(){
         bell_empty.classList.add('hide');
     }
 
-    if(alarmCount<=0 || alarmCount == ""){
+    if(alarmCount<=0 || alarmCount == ""||alarmCount == undefined){
         alarmNumber.classList.add("alarmCountHide");
         alarmDeleteBtn.classList.add('hide');
         bell_fill.classList.add('hide');

@@ -224,9 +224,10 @@ public class MyPageController {
 
         String sendMember = commentVO.getReciveMemberId();
         List alarmList = alarmService.alarmList(new MemberVO().withMemberId(sendMember));
-
         Map<String, CommentVO> commentMap = myPageService.getCommentVOList(commentVO.withMemberId(null));
         List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
+        System.err.println(commentMap);
+        System.err.println(reCommentList);
 
         //코멘트, 리코멘트 맵핑
         List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);

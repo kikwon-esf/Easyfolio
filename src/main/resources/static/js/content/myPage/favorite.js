@@ -81,7 +81,7 @@ function addOrDelFav(ele){
     const rcmmCntVal = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt").textContent;
 
     
-    let listFalg = list.includes(foodCode);
+    let listFalg = list?.includes(foodCode);
 
     // if(listFalg){
     //     currentElement = ele;
