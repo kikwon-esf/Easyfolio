@@ -42,11 +42,21 @@ function submitComment(target) {
     }
     fetch(submitURL, options)
         .then((resp) => {
+            console.log(resp);
+            if(!resp.ok){
+                throw new Error();
+                return;
+            }
             return resp.text();
         })
         .then((data) => {
             writeContent(replacePosition, data);
             const foodCode_hide = document.querySelector('.foodCode_hide')
+        })
+        .catch(e=>{
+            // alert("부정확한 값입니다!");
+            console.log("ee");
+            pu_error();
         })
 
 
@@ -155,8 +165,11 @@ function updateComment(element) {
             })
         })
             .then((response) => {
+                console.log(response)
                 if (!response.ok) {
-                    alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                    // alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                    
+                    throw new Error();
                     return;
                 }
                 return response.text();
@@ -186,7 +199,9 @@ function updateComment(element) {
                 updateAlarmCheck();
             })
             .catch(err => {
-                alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                // alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                // alert('부정확한 값입니다!!');
+                pu_error();
                 console.log(err);
             });
     }
