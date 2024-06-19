@@ -1,7 +1,18 @@
 let allSearchKeyword = document.querySelector('.allSearchKeyword');
 
-var wrap = document.querySelector('#wrap')
-var searchblock = document.querySelector('.searchblock')
+var wrap = document.querySelector('#wrap');
+var searchblock = document.querySelector('.searchblock');
+
+
+
+const bell_empty = document.getElementById('bell-empty');
+const bell_fill = document.getElementById('bell-fill');
+const alarmDeleteBtn = document.getElementById('delete-all-btn');
+
+
+
+
+
 
 allSearchKeyword.addEventListener("click", function () {
     searchblock.style.border = "2px solid rgb(242,146,33)";
@@ -95,6 +106,9 @@ function deletePopUp() {
 function displayOff(element) {
     element.classList.add('pu_blind');
 }
+function displayOff_pu(element) {
+    element.closest('.pupu').classList.add('pu_blind');
+}
 
 puBtnNo.addEventListener('click', () => {
     displayOff(puDelete);
@@ -114,10 +128,12 @@ function deleteAlarmAll() {
     })
         .then((data) => {
             deleteAlarms();
+            alarmCountZero();
 
         })
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            // pu_error();
             console.log(err);
         });
 }
@@ -234,6 +250,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 sessionStorage.setItem("alarmList",data);
                 alarmList = JSON.parse(sessionStorage.getItem("alarmList"));
                 alarmListRander();
+                alarmCountRender();
                 return;
             }
             alarmCountRender(); 
@@ -289,10 +306,38 @@ function alarmCountRender(){
     if(alarmCount>=0){
         alarmNumber.classList.remove("alarmCountHide");
         alarmNumber.textContent=alarmCount;
+        alarmDeleteBtn.classList.remove('hide');
+        bell_fill.classList.remove('hide');
+        bell_empty.classList.add('hide');
     }
 
     if(alarmCount<=0 || alarmCount == ""){
         alarmNumber.classList.add("alarmCountHide");
+        alarmDeleteBtn.classList.add('hide');
+        bell_fill.classList.add('hide');
+        bell_empty.classList.remove('hide');
     }
+}
+function alarmCountZero(){
+    let alarmCount = document.querySelector('#alarmCount');
+    alarmCount.value = 0;
+    alarmCountRender();
+}
+function alarmListStatus(){
+    let alarmCount = document.querySelector('#alarmCount')?.value;
+    return alarmCount>0 ? true : false;
+}
+// function Switch(element, bool){
+//     if(bool){
+//         element.classList.remove('hide');
+//     }else{
+//         element.classList.add('hide')
+//     }
+// }
+
+function pu_error (){
     
+    const popUp = document.querySelector('.pu_error');
+    console.log(popUp)
+    popUp.classList.remove('pu_blind');
 }

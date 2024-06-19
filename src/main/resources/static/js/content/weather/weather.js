@@ -1,126 +1,222 @@
-$(document).ready(function() {
-    var arr = [];
-    var today = new Date();
-    var week = new Array('일', '월', '화', '수', '목', '금', '토');
-    var year = today.getFullYear();
-    var month = today.getMonth() + 1;
-    var day = today.getDate();
-    var hours = today.getHours();
-    var minutes = today.getMinutes();
-    var hours_al = new Array('02', '05', '08', '11', '14', '17', '20', '23');
-    var korea = [
-        {'region': '서울', 'nx': 60, 'ny': 127},
-        {'region': '인천', 'nx': 55, 'ny': 124},
-        {'region': '경기도', 'nx': 60, 'ny': 121},
-        {'region': '강원도', 'nx': 92, 'ny': 131},
-        {'region': '충청북도', 'nx': 69, 'ny': 106},
-        {'region': '충청남도', 'nx': 68, 'ny': 100},
-        {'region': '전라북도', 'nx': 63, 'ny': 89},
-        {'region': '전라남도', 'nx': 50, 'ny': 67},
-        {'region': '경상남도', 'nx': 90, 'ny': 77},
-        {'region': '경상북도', 'nx': 91, 'ny': 106},
-        {'region': '제주도', 'nx': 52, 'ny': 38}
-    ];
 
-    for (var i = 0; i < hours_al.length; i++) {
-        var h = hours_al[i] - hours;
-        if (h == -1 || h == 0 || h == -2) {
-            var now = hours_al[i];
-        }
-        if (hours == 0) {
-            var now = hours_al[7];
+document.addEventListener("DOMContentLoaded", function () {
+    const firstParentBox = document.querySelector('.parentBox');
+    if (firstParentBox) {
+        firstParentBox.classList.add('selected'); 
+        const firstChildBlock = firstParentBox.nextElementSibling;
+        if (firstChildBlock) {
+            firstChildBlock.classList.add('on');
+            const firstChildBox = firstChildBlock.querySelector('.regionChildBox');
+            if (firstChildBox) {
+                firstChildBox.classList.add('selected'); 
+                updateWeatherArea(firstChildBox);
+                callWeatherAPI(firstChildBox);
+            }
         }
     }
+});
+function updateWeatherArea(childElement) {
+    const childText = childElement.querySelector('.regionChildText').textContent.trim();
+    document.querySelector('.childArea').textContent = childText;
 
-    if (hours < 10) {
-        hours = '0' + hours;
+    const parentText = childElement.closest('.regionParentBlock').querySelector('.parentBox').textContent.trim();
+    document.querySelector('.parentArea').textContent = parentText;
+}
+
+function toggleRegionChildBox(parentElement) {
+    const currentOnBlock = document.querySelector('.regionChildBlock.on');
+    if (currentOnBlock) {
+        currentOnBlock.classList.remove('on');
+        const currentSelectedBox = currentOnBlock.querySelector('.regionChildBox.selected');
+        if (currentSelectedBox) {
+            currentSelectedBox.classList.remove('selected');
+        }
     }
-    if (month < 10) {
-        month = '0' + month;
+
+    const selectedChildBlock = parentElement.nextElementSibling;
+    if (selectedChildBlock) {
+        selectedChildBlock.classList.add('on');
+        const firstChildBox = selectedChildBlock.querySelector('.regionChildBox');
+        if (firstChildBox) {
+            firstChildBox.classList.add('selected');
+            selectRegionChildBox(firstChildBox);
+        }
     }
-    if (day < 10) {
-        day = '0' + day;
+
+    const allParentBoxes = document.querySelectorAll('.parentBox');
+    allParentBoxes.forEach(box => box.classList.remove('selected'));
+
+    parentElement.classList.add('selected');
+}
+function selectRegionChildBox(childElement) {
+    const allChildBoxes = document.querySelectorAll('.regionChildBox');
+    allChildBoxes.forEach(box => box.classList.remove('selected'));
+
+    childElement.classList.add('selected');
+    callWeatherAPI(childElement);
+
+    updateWeatherArea(childElement);
+}
+
+function callWeatherAPI(regionChildBox) {
+    var currentDate = new Date();
+    var year = currentDate.getFullYear();
+    var month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // 월은 0부터 시작하므로 1을 더해준다.
+    var day = ('0' + currentDate.getDate()).slice(-2);
+    var hours = ('0' + currentDate.getHours()).slice(-2);
+    var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+    var baseTime = "";
+    if (hours >= "23" || hours < "02") {
+        baseTime = "2300";
+    } else if (hours < "05") {
+        baseTime = "0200";
+    } else if (hours < "08") {
+        baseTime = "0500";
+    } else if (hours < "11") {
+        baseTime = "0800";
+    } else if (hours < "14") {
+        baseTime = "1100";
+    } else if (hours < "17") {
+        baseTime = "1400";
+    } else if (hours < "20") {
+        baseTime = "1700";
+    } else if (hours < "23") {
+        baseTime = "2000";
     }
+    var baseDate1 = `${year}${month}${day}`;
+    var baseTime1 = `${hours}00`;
+    var apiKey = "3Rb5ATbVd0%2BgY821Hz8%2F%2F7ZsRJUK0o%2FtJsjpaoMRh%2F8MSD3%2B1HPjEzTtMyYOhq37TtKEdFpTMZEOJDsDAnyx2A%3D%3D";
+    var baseDate = `${year}${month}${day}`;
+    var nx = regionChildBox.querySelector('.nxValue').value;
+    var ny = regionChildBox.querySelector('.nyValue').value;
+    var apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
+    var dataType = "JSON";
 
-    today = year + "" + month + "" + day;
+    var url = `${apiUrl}?ServiceKey=${apiKey}&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}&dataType=${dataType}`;
 
-    $.each(korea, function(j, k) {
-        var _nx = korea[j].nx,
-            _ny = korea[j].ny,
-            region = korea[j].region,
-            apikey = "3Rb5ATbVd0%2BgY821Hz8%2F%2F7ZsRJUK0o%2FtJsjpaoMRh%2F8MSD3%2B1HPjEzTtMyYOhq37TtKEdFpTMZEOJDsDAnyx2A%3D%3D",
-            ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
-        ForecastGribURL += "?ServiceKey=" + apikey;
-        ForecastGribURL += "&base_date=" + today;
-        ForecastGribURL += "&base_time=" + now + "00";
-        ForecastGribURL += "&nx=" + _nx + "&ny=" + _ny;
-        ForecastGribURL += "&dataType=JSON"; // JSON 형식으로 요청
-
-        arr.push({'url': ForecastGribURL, 'region': region});
-
-        $.ajax({
-            url: arr[j].url,
-            type: 'GET',
-            dataType: 'json', // JSON 형식으로 응답 받기
-            success: function(data) {
-                var items = data.response.body.items.item;
-                var temp = '';
-                var sky = '';
-                var rain = '';
-
-                $.each(items, function(i, item) {
-                    if (item.category == 'T3H') {
-                        temp = item.fcstValue; // 3시간 온도
-                    }
-                    if (item.category == 'SKY') {
-                        sky = item.fcstValue; // 하늘상태
-                    }
-                    if (item.category == 'PTY') {
-                        rain = item.fcstValue; // 강수형태
-                    }
-                });
-
-                $('.weather').append('<li class="list-group-item weather_li' + j + '"></li>');
-                $('.weather_li' + j).addClass('in' + j);
-                $('.in' + j).html(temp + " ℃"); // 온도
-                $('.in' + j).prepend(arr[j].region + '&emsp;'); // 지역이름
-
-                if (rain != 0) {
-                    switch (rain) {
-                        case '1':
-                            $('.in' + j).append(" / 비");
-                            $('.in' + j).prepend('<i class="fas fa-cloud-showers-heavy"></i>&emsp;');
-                            break;
-                        case '2':
-                            $('.in' + j).append(" / 비/눈");
-                            $('.in' + j).prepend('<i class="fas fa-cloud-rain"></i>&emsp;');
-                            break;
-                        case '3':
-                            $('.in' + j).append(" / 눈");
-                            $('.in' + j).prepend('<i class="fas fa-snowflake"></i>&emsp;');
-                            break;
-                    }
-                } else {
-                    switch (sky) {
-                        case '1':
-                            $('.in' + j).append(" / 맑음");
-                            $('.in' + j).prepend('<i class="fas fa-sun"></i>&emsp;');
-                            break;
-                        case '2':
-                            $('.in' + j).append(" / 구름조금");
-                            $('.in' + j).prepend('<i class="fas fa-cloud-sun"></i>&emsp;');
-                            break;
-                        case '3':
-                            $('.in' + j).append(" / 구름많음");
-                            $('.in' + j).prepend('<i class="fas fa-cloud"></i>&emsp;');
-                            break;
-                        case '4':
-                            $('.in' + j).append(" / 흐림");
-                            $('.in' + j).prepend('<i class="fas fa-smog"></i>&emsp;');
-                            break;
-                    }
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var temperature = null;
+            var skyCondition = null;
+            var precipitationType = null;
+            var precipitationProbability = null;
+    
+            var items = data.response.body.items.item;
+            for (var i = 0; i < items.length; i++) {
+                var category = items[i].category;
+                var fcstValue = items[i].fcstValue;
+    
+                switch (category) {
+                    case "TMP":
+                        temperature = fcstValue + " ℃";
+                        break;
+                    case "SKY":
+                        switch (fcstValue) {
+                            case "1":
+                                skyCondition = "맑음";
+                                break;
+                            case "3":
+                                skyCondition = "구름많음";
+                                break;
+                            case "4":
+                                skyCondition = "흐림";
+                                break;
+                            default:
+                                skyCondition = "알 수 없음";
+                                break;
+                        }
+                        break;
+                    case "PTY":
+                        switch (fcstValue) {
+                            case "0":
+                                precipitationType = "없음";
+                                break;
+                            case "1":
+                                precipitationType = "비";
+                                break;
+                            case "2":
+                                precipitationType = "비/눈";
+                                break;
+                            case "3":
+                                precipitationType = "눈";
+                                break;
+                            case "4":
+                                precipitationType = "소나기";
+                                break;
+                            default:
+                                precipitationType = "알 수 없음";
+                                break;
+                        }
+                        break;
+                    case "POP":
+                        precipitationProbability = fcstValue + " %";
+                        break;
+                    default:
+                        break;
                 }
             }
-        });
+
+            document.querySelector('.weatherTemp').textContent = temperature;
+            document.querySelector('.skyState').textContent = skyCondition;
+            document.querySelector('.rainPer').textContent = precipitationProbability;
+            document.querySelector('.rainState').textContent = precipitationType;
+    
+            updateWeatherImage(skyCondition, precipitationType);
+        },  
+        error: function (jqXHR, textStatus, errorThrown) {
+
+            console.error("API 요청 실패:", textStatus, errorThrown);
+        }
     });
-});
+};
+function updateWeatherImage(skyCondition, precipitationType) {
+    let imgSrc = "";
+    const currentHour = new Date().getHours();
+    if (precipitationType !== "없음" && precipitationType !== "알 수 없음") { 
+        switch (precipitationType) {
+            case "비":
+                imgSrc = "/img/weather/weather_rain.svg";
+                break;
+            case "비/눈":
+                imgSrc = "/img/weather/weather_rainNsnow.svg";
+                break;
+            case "눈":
+                imgSrc = "/img/weather/weather_snow.svg";
+                break;
+            case "소나기":
+                imgSrc = "/img/weather/weather_sunNrain.svg";
+                break;
+            default:
+                imgSrc = "/img/weather/weather_sun.svg";  
+                break;
+        }
+    } else {
+        switch (skyCondition) {
+            case "맑음":
+                if (currentHour >= 18) {
+                    imgSrc = "/img/weather/weather_moon.svg";
+                } else {
+                    imgSrc = "/img/weather/weather_sun.svg";
+                }
+                break;
+            case "구름많음":
+                if (currentHour >= 18) { 
+                    imgSrc = "/img/weather/weather_nightCloud.svg";
+                } else {
+                    imgSrc = "/img/weather/weather_dayCloud.svg";
+                }
+                break;
+            case "흐림":
+                imgSrc = "/img/weather/weather_cloud.svg";
+                break;
+            default:
+                imgSrc = "/img/weather/weather_sun.svg";  
+                break;
+        }
+    }
+
+    document.querySelector('.weatherImg img').src = imgSrc; 
+}
