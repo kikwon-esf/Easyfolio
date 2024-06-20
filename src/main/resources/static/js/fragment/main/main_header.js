@@ -106,6 +106,7 @@ function deletePopUp() {
 function displayOff(element) {
     element.classList.add('pu_blind');
 }
+
 function displayOff_pu(element) {
     element.closest('.pupu').classList.add('pu_blind');
 }

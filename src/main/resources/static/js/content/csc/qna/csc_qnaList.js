@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // 제이쿼리로 slideToggle() 적용
             qnaInner.parent().find('.ansBox').slideToggle();
-
+            const dnuBtnBox = qnaInner.siblings('.dnuBtnBox');
+            dnuBtnBox.toggleClass('on');
             qnaInner.parent().find('.qnaBox').addClass('on');
             qnaInner.parent().find('.qnaArrow').addClass('rotate');
         }

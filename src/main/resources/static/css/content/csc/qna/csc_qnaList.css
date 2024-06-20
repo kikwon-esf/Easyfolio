@@ -118,15 +118,14 @@ textarea {
     border-bottom: 1px solid #dadada;
 }
 .dnuBtnBox{
-    display: flex;
-    opacity: 0;
+    display: none;
     position: absolute;
     right: -100px;
     top: 7px;
     transition: opacity 0.2s ease;
 }
 .dnuBtnBox.on{
-    opacity: 1;
+    display: flex;
     transition: opacity 0.2s ease;
 }
 .dnuBtn{
