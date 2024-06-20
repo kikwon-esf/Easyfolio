@@ -18,6 +18,11 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
+    public List<FoodVO> allRecipeList() {
+        return sqlSession.selectList("foodMapper.allRecipeList");
+    }
+
+    @Override
     public List<FoodKindVO> foodKindList() {
         return sqlSession.selectList("foodMapper.foodKindList");
     }
@@ -103,6 +108,21 @@ public class FoodServiceImpl implements FoodService{
     @Override
     public List<FoodStepsVO> getFoodSteps(FoodVO foodVO) {
         return sqlSession.selectList("foodMapper.getFoodSteps", foodVO);
+    }
+
+    @Override
+    public List<FoodVO> ddabongRecipeList(List<String> foodNames) {
+        return sqlSession.selectList("foodMapper.ddabongRecipeList", foodNames);
+    }
+
+    @Override
+    public int ddabongRecipeCount(List<String> foodNames) {
+        return sqlSession.selectOne("foodMapper.ddabongRecipeCount",foodNames);
+    }
+
+    @Override
+    public int allRecipeCount() {
+        return sqlSession.selectOne("foodMapper.allRecipeCount");
     }
 
 //

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/food/food_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/content/food/food_detail.css">
+        <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <div id="wrap">
+            <div class="inner">
+                <div class="header">
+                    <div class="food_title">
+                        <p class="food_title1">레시피 등록</p>
+                        <p class="food_title2">INSERT Recipe</p>
+                    </div>
+                </div>
+                <div class="recipeBlock">
+                    <div class="recipe_header">
+                        <div class="recipe_header_top">
+                            <div class="recipe_title_box">
+                                <p class="recipe_cate">
+                                    <span class="cateText">[</span>
+                                    <span class="cateText">음식 종류</span>
+                                    <span class="cateText">]</span>
+                                </p>
+                                <p class="recipe_title">레시피 이름</p>
+                            </div>
+                            <div class="recipe_cate_block">
+                                <a class="recipe_cate1">
+                                    <span>종류별 :</span>
+                                    <span>종류별</span>
+                                </a>
+                                <a class="recipe_cate1">
+                                    <span>상황별 :</span>
+                                    <span>상황별</span>
+                                </a>
+                                <a class="recipe_cate1">
+                                    <span>재료별 :</span>
+                                    <span>재료별</span>
+                                </a>
+                                <a class="recipe_cate1">
+                                    <span>방법별 :</span>
+                                    <span>방법별</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="recipe_header_bot">
+                            <div class="recipe_header_bot_left">
+
+                                <div class="recipe_info_block">
+                                    <p class="recipe_info">
+                                        <span>작성자 : </span>
+                                        <span>작성자 입력</span>
+                                    </p>
+                                    <p class="recipe_info">
+                                        <span>작성일 : </span>
+                                        <span>작성일은 자동으로</span>
+                                    </p>
+                                </div>
+                                <div class="recipe_info_block">
+                                    <p class="recipe_info">
+                                        <span>조회수 :</span>
+                                        <span>조회수는 해당사항 없음</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recipe_content">
+                        <div class="recipe_content_inner">
+                            <div class="recipe_content_info">
+                                <div class="recipe_info_top">
+                                    <div class="recipe_info_left">
+                                        <div class="recipe_img">
+                                            <img src="/img/food/examImg.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="recipe_info_right">
+                                        <div class="recipe_mtrl_block">
+                                            <div class="mtrl_block_title">
+                                                <p class="mtrl_block_title1">
+                                                    재료
+                                                </p>
+                                                <p class="mtrl_block_title2">
+                                                    Ingredients
+                                                </p>
+                                            </div>
+                                            <div class="recipe_mtrl">
+                                                <div class="mtrlTitle">
+                                                    <span>[</span>
+                                                    <span>주 재료 등
+                                                    </span>
+                                                    <span>]</span>
+                                                </div>
+                                                <div class="mtrlMt">
+                                                    <div>
+                                                        <p class="mtText">재료명</p>
+                                                        <p class="mtNum">개수</p>
+                                                        <p class="mtNum">개수</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="recipe_mtrl">
+                                                <p class="mtrlTitle">
+                                                    <span>[</span>
+                                                    <span>부재료</span>
+                                                    <span>]</span>
+                                                </p>
+                                                <div class="mtrlMt">
+                                                    <div>
+                                                        <p class="mtText">주재료</p>
+                                                        <p class="mtNum">개수</p>
+                                                        <p class="mtNum">단위</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recipe_info_bot">
+                                    <div class="recipe_indc">
+                                        <div class="indc_title">
+                                            <p class="indc_title1">
+                                                레시피 소개
+                                            </p>
+                                            <p class="indc_title2">
+                                                Introduce
+                                            </p>
+                                        </div>
+                                        <p class="recipe_indc_text">레시피 설명</p>
+                                    </div>
+                                </div>
+                                <div class="recipe_info_text">
+                                    <div class="recipe_steps">
+                                        <div class="steps_title">
+                                            <p class="steps_title1">
+                                                조리순서
+                                            </p>
+                                            <p class="steps_title2">
+                                                Steps
+                                            </p>
+                                        </div>
+                                        <p class="steps_text">
+                                        <p class="steps_text">
+                                            레시피 설명
+                                        </p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/food/food_detail.js"></script>
+    <script src="/js/content/myPage/favorite.js"></script>
+    <script src="/js/content/myPage/replace/food_comment.js"></script>
+</th:block>
+
+</html>

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentPage === link) {
             element.classList.add('active-sideForm'); 
         }
-        if (currentPage.includes('/myPage/editInform') ) {
+        if (currentPage.includes('/editInform') ) {
             document.querySelector('.sideForm.myDetails').classList.add('active-sideForm'); 
         }
     });

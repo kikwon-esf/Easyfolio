@@ -118,7 +118,6 @@ function callWeatherAPI(regionChildBox) {
             for (var i = 0; i < items.length; i++) {
                 var category = items[i].category;
                 var fcstValue = items[i].fcstValue;
-
                 switch (category) {
                     case "TMP":
                         temperature = fcstValue + " ℃";
@@ -175,6 +174,8 @@ function callWeatherAPI(regionChildBox) {
             document.querySelector('.rainState').textContent = precipitationType;
 
             updateWeatherImage(skyCondition, precipitationType);
+
+            updateFoodRecommendations(items[0].fcstValue, precipitationType);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("API 요청 실패:", textStatus, errorThrown);
@@ -206,14 +207,14 @@ function updateWeatherImage(skyCondition, precipitationType) {
     } else {
         switch (skyCondition) {
             case "맑음":
-                if (currentHour >= 18 || currentHour <= 6) {
+                if (currentHour >= 18) {
                     imgSrc = "/img/weather/weather_moon.svg";
                 } else {
                     imgSrc = "/img/weather/weather_sun.svg";
                 }
                 break;
             case "구름많음":
-                if (currentHour >= 18 || currentHour <= 6) { 
+                if (currentHour >= 18) { 
                     imgSrc = "/img/weather/weather_nightCloud.svg";
                 } else {
                     imgSrc = "/img/weather/weather_dayCloud.svg";
@@ -228,5 +229,49 @@ function updateWeatherImage(skyCondition, precipitationType) {
         }
     }
 
+
     document.querySelector('.weatherImg img').src = imgSrc; 
 }
+
+function updateFoodRecommendations(fcstValue, precipitationType) {
+    console.log(fcstValue, precipitationType);
+    fetch('/food/ddabong', {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'temperature': fcstValue,
+            'precipitationType': precipitationType
+        })
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+        }
+        return response.text(); // 응답을 텍스트로 받기
+    })
+    .then((html) => {
+        console.log(html);
+        document.querySelector('.ddabongRecipeContainer').innerHTML = html; // 지정된 컨테이너에 HTML 교체
+    })
+    .catch(err => {
+        alert('fetch error!\n' + err.message + '\n콘솔창을 확인하세요!');
+        console.error(err);
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var currentPage = window.location.pathname;
+
+    var sideFormElements = document.querySelectorAll('.foodTap');
+    sideFormElements.forEach(function (element) {
+        var link = element.closest('a') ? element.closest('a').getAttribute('href') : null;
+        
+        if (link && currentPage === link) {
+            element.classList.add('selected'); 
+        }
+    });
+});

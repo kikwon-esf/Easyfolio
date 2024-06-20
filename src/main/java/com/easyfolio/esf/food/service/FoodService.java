@@ -1,11 +1,14 @@
 package com.easyfolio.esf.food.service;
 
 import com.easyfolio.esf.food.vo.*;
+import com.easyfolio.esf.weather.vo.DdabongVO;
 
 import java.util.List;
 
 public interface FoodService {
-    public List<FoodVO> allFoodList(FoodVO foodVO); // 음식 전체 목록
+    public List<FoodVO> allFoodList(FoodVO foodVO);// 음식 전체 목록
+
+    public List<FoodVO> allRecipeList();
     // 음식 카테고리
     public List<FoodKindVO> foodKindList();
     public FoodKindVO foodKindText(FoodVO foodVO);
@@ -41,4 +44,10 @@ public interface FoodService {
     public void updateFoodInqCnt(FoodVO foodVO);
 
     public List<FoodStepsVO> getFoodSteps(FoodVO foodVO);
+
+    public List<FoodVO> ddabongRecipeList(List<String> foodNames);
+
+    public int ddabongRecipeCount(List<String> foodNames);
+
+    public int allRecipeCount();
 }

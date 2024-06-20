@@ -1,5 +1,6 @@
 package com.easyfolio.esf.weather.service;
 
+import com.easyfolio.esf.weather.vo.DdabongVO;
 import com.easyfolio.esf.weather.vo.RegionVO;
 import com.easyfolio.esf.weather.vo.WeatherResponse;
 import com.easyfolio.esf.weather.vo.WeatherVO;
@@ -29,4 +30,8 @@ public class WeatherServiceImpl implements WeatherService {
         return sqlSession.selectList("weatherMapper.regionChildList");
     }
 
+    @Override
+    public List<DdabongVO> ddabongFoodList(String ddabongCode) {
+        return sqlSession.selectList("weatherMapper.ddabongFoodList", ddabongCode);
+    }
 }

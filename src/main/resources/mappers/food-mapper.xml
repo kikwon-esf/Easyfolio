@@ -300,5 +300,47 @@
         WHERE FOOD_CODE = #{foodCode}
     </select>
 
+    <select id="ddabongRecipeList" resultMap="food">
+        SELECT FOOD_CODE
+        , FOOD_TTL
+        , FOOD_DIF
+        , FOOD_INQ_CNT
+        , FOOD_RCMM_CNT
+        , MEMBER_ID
+        FROM FOOD
+        <where>
+            <foreach item="foodName" collection="list" separator="OR" open="(" close=")">
+                FOOD_TTL LIKE '%' || #{foodName} || '%'
+            </foreach>
+        </where>
+        ORDER BY FOOD_INQ_CNT DESC
+        FETCH FIRST 10 ROWS ONLY
+    </select>
+
+    <select id="allRecipeList" resultMap="food">
+        SELECT FOOD_CODE
+        , FOOD_TTL
+        , FOOD_DIF
+        , FOOD_INQ_CNT
+        , FOOD_RCMM_CNT
+        , MEMBER_ID
+        FROM FOOD
+        ORDER BY FOOD_INQ_CNT DESC
+        FETCH FIRST 10 ROWS ONLY
+    </select>
+
+    <select id="allRecipeCount" resultType="int">
+        SELECT COUNT(FOOD_CODE)
+        FROM FOOD
+    </select>
+
+    <select id="ddabongRecipeCount" resultType="int">
+        SELECT COUNT(FOOD_CODE)
+        FROM FOOD
+        WHERE <foreach item="foodName" collection="list" separator="OR" open="(" close=")">
+        FOOD_TTL LIKE '%' || #{foodName} || '%'
+    </foreach>
+    </select>
+
 
 </mapper>

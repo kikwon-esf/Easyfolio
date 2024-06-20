@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class WeatherVO {
     private String temperature;
-    private String humidity;
+    private String  precipitationType;
 }
