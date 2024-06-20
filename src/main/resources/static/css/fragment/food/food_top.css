@@ -128,7 +128,7 @@ textarea {
     box-sizing: border-box;
     margin: 0 auto;
     position: absolute;
-    top: 0;
+    top: 45px;
 }
 .menuInner{
     display: none;
@@ -198,4 +198,40 @@ textarea {
 .menuTextBox a:last-child{
     position: absolute;
     right: 28px;
+}
+.foodTapBlock{
+    background: linear-gradient(180deg, #0000000f 0%, rgba(255, 255, 255, 0.75) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    width: 100%;
+}
+.foodTapInner{
+    position: relative;
+    margin: 0 auto;
+    width: 1200px;
+}
+.foodTaps{
+    width: 100%;
+    display: flex;
+}
+.foodTap{
+    cursor: pointer;
+    background: linear-gradient(180deg, #0000000f 0%, rgba(255, 255, 255, 0.75) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    box-sizing: border-box;
+    width: 300px;
+    height: 45px;
+    padding: 10px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    border-right: 3px solid #fff;
+}
+.foodTap.myRecipe{
+    border: 0;
+}
+.foodTap:hover{
+    color: #fff;
+    background: linear-gradient(180deg, #f3c053cf 0%, #ffd57a7d 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+.foodTap.selected, .regionChildBox.selected {
+    color: #fff;
+    background: linear-gradient(180deg, #f29221d1 0%, #ffd57a 100%), linear-gradient(0deg, #fff, #FFFFFF);
 }

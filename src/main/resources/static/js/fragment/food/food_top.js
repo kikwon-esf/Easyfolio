@@ -42,3 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var currentPage = window.location.pathname;
+
+    var sideFormElements = document.querySelectorAll('.foodTap');
+    sideFormElements.forEach(function (element) {
+        var link = element.closest('a') ? element.closest('a').getAttribute('href') : null;
+        
+        if (link && currentPage === link) {
+            element.classList.add('selected'); 
+        }
+    });
+});

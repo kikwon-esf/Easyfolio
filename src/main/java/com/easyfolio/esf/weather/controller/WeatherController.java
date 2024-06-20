@@ -23,6 +23,6 @@ public class WeatherController {
 
         model.addAttribute("regionParents", weatherService.regionParent());
         model.addAttribute("regionChilds", weatherService.regionChild());
-        return "/content/weather/regionTest";
+        return "/content/food/weatherFood";
     }
 }

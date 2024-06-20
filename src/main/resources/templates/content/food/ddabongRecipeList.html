@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ddabong Recipe List</title>
+</head>
+<body>
+    <div class="ddabongRecipeContainer">
+        <!-- <img src="/img/weather/banner_winter.jpg"> -->
+        <div th:fragment="ddabongRecipeFragment">
+            <ul>
+                <li th:each="foodList : ${foodLists}" th:text="${foodList.foodTtl}"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

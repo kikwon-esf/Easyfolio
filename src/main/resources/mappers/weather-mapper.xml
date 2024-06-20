@@ -15,11 +15,25 @@
         <result column="NY" property="ny" />
     </resultMap>
 
+    <resultMap id="ddabongFood" type="com.easyfolio.esf.weather.vo.DdabongVO">
+        <result column="DDABONG_CODE" property="ddabongCode" />
+        <result column="DDABONG_NOW" property="ddabongNow" />
+        <result column="DDABONG_FOOD" property="ddabongFood" />
+    </resultMap>
+
     <select id="regionParentList" resultMap="regionParent">
         SELECT * FROM REGION_PARENT
     </select>
 
     <select id="regionChildList" resultMap="regionChild">
         SELECT * FROM REGION_CHILD
+    </select>
+
+    <select id="ddabongFoodList" resultMap="ddabongFood">
+        SELECT
+        DDABONG_NOW,
+        DDABONG_FOOD
+        FROM DDABONG_FOOD
+        WHERE DDABONG_CODE = #{ddabongCode}
     </select>
 </mapper>

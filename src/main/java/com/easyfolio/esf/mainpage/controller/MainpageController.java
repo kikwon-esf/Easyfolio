@@ -16,10 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -55,7 +52,7 @@ public class MainpageController {
     @Autowired
     private FoodService foodService;
 
-    @PostMapping("/wideSearch")
+    @RequestMapping(value = "/wideSearch", method = {RequestMethod.GET, RequestMethod.POST})
     public String wideSearch(@RequestParam(value = "allSearchKeyword", required = false) String allSearchKeyword, Model model, AnnVO annVO) {
             annVO.setAllSearchKeyword(allSearchKeyword);
             model.addAttribute("asAnnList", cscService.allSearchAnn(allSearchKeyword));
