@@ -52,6 +52,7 @@ textarea {
 }
 .weatherBlock{
     position: relative;
+    margin-bottom: 50px;
 }
 .weatherBlockInner{
     width: 1200px;

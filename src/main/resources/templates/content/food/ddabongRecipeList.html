@@ -1,16 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Ddabong Recipe List</title>
 </head>
+
 <body>
     <div class="ddabongRecipeContainer">
+        <link rel="stylesheet" href="/css/content/food/ddabongRecipeList.css">
         <!-- <img src="/img/weather/banner_winter.jpg"> -->
-        <div th:fragment="ddabongRecipeFragment">
-            <ul>
-                <li th:each="foodList : ${foodLists}" th:text="${foodList.foodTtl}"></li>
-            </ul>
+        <div class="ddabongInner" th:fragment="ddabongRecipeFragment">
+            <div class="ddabongBanner">
+                <img th:src="${urlText}"></img>
+            </div>
+            <div class="ddabong_title">
+                <p class="ddabong_title1">추천 레시피</p>
+                <p class="ddabong_title2">Recipe</p>
+            </div>
+            <div class="recipeBox">
+                <div class="recipes">
+                    <div th:each="food, state : ${foodList}" class="recipe">
+                        <a th:href="@{/food/detail(foodCode=${food.foodCode})}">
+                            <div class="recipeImgBox">
+                                <img src="/img/food/examImg.jpg" alt="">
+                            </div>
+                            <div class="recipeTextBox">
+                                <p>[[${food.foodTtl}]]</p>
+                            </div>
+                        </a>
+                        <div class="recipeTextBox1">
+                            <div class="recipeTextBox11">
+                                <p class="foodDifBox">
+                                    <span>난이도</span>
+                                    <span>:</span>
+                                    <span>[[${food.foodDif}]]</span>
+                                </p>
+                                <p class="cntBox">
+                                    <span>조회수</span>
+                                    <span>[[${food.foodInqCnt}]]</span>
+                                </p>
+                            </div>
+                            <input type="hidden" class="foodCode" th:value="${food.foodCode}">
+                            <input type="hidden" class="writer" th:value="${food.memberId}">
+                            <div class="cartBox" onclick="addOrDelFav(this)">
+                                <div class="heartBox">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ff3f3f"
+                                        class="bi bi-heart mousedown" viewBox="0 0 16 16">
+                                        <path
+                                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ff3f3f"
+                                        class="bi bi-heart-fill heartOff mousedown" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                    </svg>
+                                </div>
+                                <p>
+                                    <span>(</span>
+                                    <span class="RcmmCnt">[[${food.foodRcmmCnt}]]</span>
+                                    <span>)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
+
 </html>

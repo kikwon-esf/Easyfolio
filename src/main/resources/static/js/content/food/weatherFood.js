@@ -112,8 +112,6 @@ function callWeatherAPI(regionChildBox) {
             var precipitationType = null;
             var precipitationProbability = null;
 
-            console.log(data);
-
             var items = data.response.body.items.item;
             for (var i = 0; i < items.length; i++) {
                 var category = items[i].category;
@@ -175,7 +173,7 @@ function callWeatherAPI(regionChildBox) {
 
             updateWeatherImage(skyCondition, precipitationType);
 
-            updateFoodRecommendations(items[0].fcstValue, precipitationType);
+            updateFoodRecommendations(items[0].fcstValue, precipitationType, baseTime);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("API 요청 실패:", textStatus, errorThrown);
@@ -207,14 +205,14 @@ function updateWeatherImage(skyCondition, precipitationType) {
     } else {
         switch (skyCondition) {
             case "맑음":
-                if (currentHour >= 18) {
+                if (currentHour >= 18 || currentHour < 6) {
                     imgSrc = "/img/weather/weather_moon.svg";
                 } else {
                     imgSrc = "/img/weather/weather_sun.svg";
                 }
                 break;
             case "구름많음":
-                if (currentHour >= 18) { 
+                if (currentHour >= 18 || currentHour < 6) { 
                     imgSrc = "/img/weather/weather_nightCloud.svg";
                 } else {
                     imgSrc = "/img/weather/weather_dayCloud.svg";
@@ -233,7 +231,7 @@ function updateWeatherImage(skyCondition, precipitationType) {
     document.querySelector('.weatherImg img').src = imgSrc; 
 }
 
-function updateFoodRecommendations(fcstValue, precipitationType) {
+function updateFoodRecommendations(fcstValue, precipitationType, baseTime) {
     console.log(fcstValue, precipitationType);
     fetch('/food/ddabong', {
         method: 'POST',
@@ -243,7 +241,8 @@ function updateFoodRecommendations(fcstValue, precipitationType) {
         },
         body: JSON.stringify({
             'temperature': fcstValue,
-            'precipitationType': precipitationType
+            'precipitationType': precipitationType,
+            'baseTime' : baseTime
         })
     })
     .then((response) => {

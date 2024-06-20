@@ -192,16 +192,32 @@ public class FoodController {
     public String ddabongFoodList(@RequestBody WeatherVO weatherVO, RedirectAttributes redirectAttributes) {
         int temperature = Integer.parseInt(weatherVO.getTemperature());
         String precipitationType = weatherVO.getPrecipitationType();
-
+        int baseTimeInt = Integer.parseInt(weatherVO.getBaseTime());
+        String urlText = "";
         String ddabongCode = "";
         if (temperature <= 10) {
-            ddabongCode = "DDABONG_001";
+            if(temperature == -999){
+                ddabongCode = "DDABONG_006";
+                urlText = "/img/weather/weatherBanner_normal.png";
+            }else {
+                urlText = "/img/weather/weatherBanner_cold.png";
+                ddabongCode = "DDABONG_001";
+            }
         } else if (temperature >= 25) {
             ddabongCode = "DDABONG_002";
+            urlText = "/img/weather/weatherBanner_hot.png";
         } else if ("비".equals(precipitationType)) {
             ddabongCode = "DDABONG_003";
+            urlText = "/img/weather/weatherBanner_rain.png";
         } else if ("눈".equals(precipitationType)) {
             ddabongCode = "DDABONG_004";
+            urlText = "/img/weather/weatherBanner_snow.png";
+        } else if (baseTimeInt >= 2300 || baseTimeInt < 800){
+            ddabongCode = "DDABONG_005";
+            urlText = "/img/weather/weatherBanner_night.png";
+        } else{
+            ddabongCode = "DDABONG_006";
+            urlText = "/img/weather/weatherBanner_normal.png";
         }
 
         List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongCode);
@@ -215,11 +231,12 @@ public class FoodController {
         }
 
         redirectAttributes.addFlashAttribute("foodNames", foodNames);
+        redirectAttributes.addFlashAttribute("urlText", urlText);
         return "redirect:/food/ddabongRecipeList"; // 이 부분은 필요 없으며 아래 부분이 중요합니다
     }
 
     @GetMapping("/ddabongRecipeList")
-    public String ddabongRecipeList(@ModelAttribute("foodNames") List<String> foodNames, Model model, FoodVO foodVO) {
+    public String ddabongRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
 //        List<FoodVO> ddabongFoodList = foodService.ddabongRecipeList(foodNames);
 //        model.addAttribute("foodLists", ddabongFoodList);
         FoodVO foodVO1 = new FoodVO();
@@ -234,8 +251,8 @@ public class FoodController {
         }
         foodVO1.setPageInfo();
         model.addAttribute("nowPage", foodVO1.getNowPage());
-
-        model.addAttribute("foodLists", ddabongFoodList);
+        model.addAttribute("urlText", urlText);
+        model.addAttribute("foodList", ddabongFoodList);
         return "content/food/ddabongRecipeList";
     }
 

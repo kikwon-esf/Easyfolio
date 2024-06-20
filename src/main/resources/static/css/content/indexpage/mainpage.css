@@ -232,8 +232,8 @@ textarea {
 
 .sa_img img {
     border: 3px solid #3f5595;
-    width: 230px;
-    height: 120px;
+    width: 275px;
+    height: 115px;
     object-fit: cover;
     opacity: 0.5;
     transition: opacity 0.5s ease;
@@ -246,11 +246,11 @@ textarea {
     font-size: 15px;
     transition: font-size 0.5s ease;
 }
-.sa_slide:hover > .sa_text{
+.sa_slide a:hover > .sa_text{
     color: #000;
     font-size: 16px;
 }
-.sa_slide:hover > .sa_img img{
+.sa_slide a:hover > .sa_img img{
     border: 3px solid #263d80;
     opacity: 1;
 }
