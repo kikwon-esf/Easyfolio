@@ -77,6 +77,8 @@ textarea {
     height: auto;
     box-sizing: border-box;
     border-top: 1px solid #333;
+    border-bottom: 1px solid #dadada;
+    margin-bottom: 30px;
 }
 
 .recipe_title_box {
@@ -170,7 +172,7 @@ textarea {
 
 /*레시피 내용 */
 .recipe_content_inner {
-    padding: 50px 20px;
+    padding: 50px 20px 30px 20px;
     border-bottom: 1px solid #dadada;
 }
 
@@ -258,7 +260,7 @@ textarea {
     box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
     height: auto;
     border-radius: 10px;
-    padding: 20px 20px;
+    padding: 40px 20px 20px 20px;
     box-sizing: border-box;
     margin: 0 auto;
     background-color: #f4f4f4;
@@ -269,7 +271,7 @@ textarea {
     top: -16px;
     position: absolute;
     right: 50%;
-    margin-right: -110px;
+    margin-right: -82px;
     background-color: #fff;
     padding: 0px 20px;
     border-radius: 10px;
@@ -442,6 +444,7 @@ textarea {
 }
 
 .recipeInsertBox {
+    position: relative;
     cursor: pointer;
     width: 300px;
     height: 300px;
@@ -451,8 +454,8 @@ textarea {
     text-align: center;
     background: linear-gradient(180deg, #9999992e 5%, #99999900 100%), linear-gradient(0deg, #99999952, #fff);
 }
-
 .recipeInsertBox svg {
+    z-index: 2;
     transition: box-shadow 0.3s ease;
     border-radius: 50%;
     box-shadow: 0 0px 5px 3px rgba(68, 68, 68, 0.2);
@@ -525,22 +528,24 @@ textarea {
     color: #666;
     width: 1100px;
     height: 130px;
-    border: 2px solid transparent;
     border-radius: 10px;
     padding: 15px 10px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    outline: 0;
     transition: border 0.3s ease;
     font-size: 17px;
 }
-
-.recipeIndcInput:hover {
+.recipeTextarea{
+    transition: border 0.3s ease;
+    box-sizing: border-box;
+    overflow-y: auto;
+    outline: 0;
+    border: 2px solid transparent;
+}
+.recipeTextarea:hover {
     transition: border 0.3s ease;
     border: 2px solid #f3c053;
 }
 
-.recipeIndcInput:focus {
+.recipeTextarea:focus {
     transition: border 0.3s ease;
     border: 2px solid #f29221;
 }
@@ -570,4 +575,100 @@ textarea {
 }
 .stepsTextInputBox{
     display: flex;
+}
+.stepsTextInputBox{
+    width: 950px;
+    margin : 0 auto 27px auto;
+}
+.stepsNumber p{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #f29221;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    margin-right: 20px;
+}
+.stepsTextInput{
+    width: 890px;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 2px 10px;
+}
+.recipeTextPlusBtn {
+    margin: 0 auto;
+    cursor: pointer;
+    width: 30px;
+}
+
+.recipeTextPlusBtn svg {
+    transition: all 0.3s ease;
+}
+
+.recipeTextPlusBtn:hover svg {
+    transition: all 0.3s ease;
+    fill: #333;
+}
+.deleteRecipeText {
+    cursor: pointer;
+    margin: 8px 14px 0 -38px;
+}
+.deleteRecipeText:hover svg {
+    fill: #333;
+}
+.recipeInsertBtnBlock{
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin-bottom: 100px;
+}
+.recipeInsertBtnBox{
+    display: inline-block;
+}
+.recipeInsertBtn{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+.recipeInsertBtn:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
+}
+.check{
+    border: 1px solid #ff3f3f;
+}
+.recipeImg{
+    cursor: pointer;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+}
+.imgLookBox{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    z-index: 1;
+}
+.mtrlNext{
+    width: 100px;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+}
+.mtrlMt.plus{
+    margin-bottom: 2px;
 }
