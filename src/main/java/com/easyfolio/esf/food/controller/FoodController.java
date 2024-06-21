@@ -258,7 +258,11 @@ public class FoodController {
 
     // 레시피 등록 페이지로 이동
     @GetMapping("/insertFoodForm")
-    public String insertFoodForm() {
+    public String insertFoodForm(Model model) {
+        model.addAttribute("foodUsageList", foodService.foodUsageList());
+        model.addAttribute("foodKindList", foodService.foodKindList());
+        model.addAttribute("foodMtrlList", foodService.foodMtrlList());
+        model.addAttribute("foodTypeList", foodService.foodTypeList());
         return "/content/food/food_insert";
     }
 

@@ -28,28 +28,38 @@
                             <div class="recipe_title_box">
                                 <p class="recipe_cate">
                                     <span class="cateText">[</span>
-                                    <span class="cateText">음식 종류</span>
+                                    <span class="cateText">
+                                        <input class="cateInput recipeInput" type="text" placeholder="음식 종류 입력">
+                                    </span>
                                     <span class="cateText">]</span>
                                 </p>
-                                <p class="recipe_title">레시피 이름</p>
+                                <input class="ttlInput recipeInput" type="text" placeholder="레시피 이름">
                             </div>
                             <div class="recipe_cate_block">
-                                <a class="recipe_cate1">
-                                    <span>종류별 :</span>
-                                    <span>종류별</span>
-                                </a>
-                                <a class="recipe_cate1">
-                                    <span>상황별 :</span>
-                                    <span>상황별</span>
-                                </a>
-                                <a class="recipe_cate1">
-                                    <span>재료별 :</span>
-                                    <span>재료별</span>
-                                </a>
-                                <a class="recipe_cate1">
-                                    <span>방법별 :</span>
-                                    <span>방법별</span>
-                                </a>
+                                <select class="cateSelect select">
+                                    <option value="noCheck">종류 선택</option>
+                                    <p th:each="foodKind : ${foodKindList}">
+                                        <option value="${foodKind.foodKindCode}">[[${foodKind.foodKindText}]]</option>
+                                    </p>
+                                </select>
+                                <select class="usageSelect select">
+                                    <option value="noCheck">종류 선택</option>
+                                    <p th:each="foodUsage : ${foodUsageList}">
+                                        <option value="${foodUsage.foodUsageCode}">[[${foodUsage.foodUsageText}]]</option>
+                                    </p>
+                                </select>
+                                <select class="mtrlSelect select">
+                                    <option value="noCheck">종류 선택</option>
+                                    <p th:each="foodMtrl : ${foodMtrlList}">
+                                        <option value="${foodMtrl.foodMtrlCode}">[[${foodMtrl.foodMtrlText}]]</option>
+                                    </p>
+                                </select>
+                                <select class="typeSelect select">
+                                    <option value="noCheck">종류 선택</option>
+                                    <p th:each="foodType : ${foodTypeList}">
+                                        <option value="${foodType.foodTypeCode}">[[${foodType.foodTypeText}]]</option>
+                                    </p>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -59,7 +69,11 @@
                                 <div class="recipe_info_top">
                                     <div class="recipe_info_left">
                                         <div class="recipe_img">
-                                            <img src="/img/food/examImg.jpg" alt="">
+                                            <div class="recipeInsertBox">
+                                                <p><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#f4f4f4" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                                  </svg></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="recipe_info_right">
@@ -72,33 +86,57 @@
                                                     Ingredients
                                                 </p>
                                             </div>
-                                            <div class="recipe_mtrl">
+                                            <div class="recipe_mtrl mainMtrl">
                                                 <div class="mtrlTitle">
                                                     <span>[</span>
-                                                    <span>주 재료 등
+                                                    <input class="mtrlTitleInput recipeInput" type="text" placeholder="주 재료">
                                                     </span>
                                                     <span>]</span>
                                                 </div>
                                                 <div class="mtrlMt">
                                                     <div>
-                                                        <p class="mtText">재료명</p>
-                                                        <p class="mtNum">개수</p>
-                                                        <p class="mtNum">개수</p>
+                                                        <p class="mtText"><input class="mtrlFirstInput recipeInput" type="text" placeholder="재료명"></p>
+                                                        <p class="mtNum"><input class="mtrlSecondInput recipeInput" type="text" placeholder="개수, 용량"></p>
+                                                        <p class="mtNum"><input class="mtrlThirdInput recipeInput" type="text" placeholder="단위 (L, 개)"></p>
                                                     </div>
                                                 </div>
+                                                <div class="mtrlMt plus">
+                                                    <div>
+                                                        <p class="mtText"><input class="mtrlFirstInput recipeInput" type="text" placeholder="재료명"></p>
+                                                        <p class="mtNum"><input class="mtrlSecondInput recipeInput" type="text" placeholder="개수, 용량"></p>
+                                                        <p class="mtNum"><input class="mtrlThirdInput recipeInput" type="text" placeholder="단위 (L, 개)"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="mtrlPlusBtnBox">
+                                                    <p class="mtrlPlusBtn" onclick="mainMtrlPlus()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#999" class="bi bi-plus-square-dotted" viewBox="0 0 16 16">
+                                                        <path d="M2.5 0q-.25 0-.487.048l.194.98A1.5 1.5 0 0 1 2.5 1h.458V0zm2.292 0h-.917v1h.917zm1.833 0h-.917v1h.917zm1.833 0h-.916v1h.916zm1.834 0h-.917v1h.917zm1.833 0h-.917v1h.917zM13.5 0h-.458v1h.458q.151 0 .293.029l.194-.981A2.5 2.5 0 0 0 13.5 0m2.079 1.11a2.5 2.5 0 0 0-.69-.689l-.556.831q.248.167.415.415l.83-.556zM1.11.421a2.5 2.5 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415zM16 2.5q0-.25-.048-.487l-.98.194q.027.141.028.293v.458h1zM.048 2.013A2.5 2.5 0 0 0 0 2.5v.458h1V2.5q0-.151.029-.293zM0 3.875v.917h1v-.917zm16 .917v-.917h-1v.917zM0 5.708v.917h1v-.917zm16 .917v-.917h-1v.917zM0 7.542v.916h1v-.916zm15 .916h1v-.916h-1zM0 9.375v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .916v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .917v.458q0 .25.048.487l.98-.194A1.5 1.5 0 0 1 1 13.5v-.458zm16 .458v-.458h-1v.458q0 .151-.029.293l.981.194Q16 13.75 16 13.5M.421 14.89c.183.272.417.506.69.689l.556-.831a1.5 1.5 0 0 1-.415-.415zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373Q2.25 16 2.5 16h.458v-1H2.5q-.151 0-.293-.029zM13.5 16q.25 0 .487-.048l-.194-.98A1.5 1.5 0 0 1 13.5 15h-.458v1zm-9.625 0h.917v-1h-.917zm1.833 0h.917v-1h-.917zm1.834-1v1h.916v-1zm1.833 1h.917v-1h-.917zm1.833 0h.917v-1h-.917zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                                      </svg></p>
+                                                </div>
                                             </div>
-                                            <div class="recipe_mtrl">
+                                            <div class="recipe_mtrl subMtrl">
                                                 <p class="mtrlTitle">
                                                     <span>[</span>
-                                                    <span>부재료</span>
+                                                    <input class="mtrlSuvTitleInput recipeInput" type="text" placeholder="부 재료">
                                                     <span>]</span>
                                                 </p>
                                                 <div class="mtrlMt">
                                                     <div>
-                                                        <p class="mtText">주재료</p>
-                                                        <p class="mtNum">개수</p>
-                                                        <p class="mtNum">단위</p>
+                                                        <p class="mtText"><input class="mtrlFirstInput recipeInput" type="text" placeholder="재료명"></p>
+                                                        <p class="mtNum"><input class="mtrlSecondInput recipeInput" type="text" placeholder="개수, 용량"></p>
+                                                        <p class="mtNum"><input class="mtrlThirdInput recipeInput" type="text" placeholder="단위 (L, 개)"></p>
                                                     </div>
+                                                </div>
+                                                <div class="mtrlMt plus">
+                                                    <div>
+                                                        <p class="mtText"><input class="mtrlFirstInput recipeInput" type="text" placeholder="재료명"></p>
+                                                        <p class="mtNum"><input class="mtrlSecondInput recipeInput" type="text" placeholder="개수, 용량"></p>
+                                                        <p class="mtNum"><input class="mtrlThirdInput recipeInput" type="text" placeholder="단위 (L, 개)"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="mtrlPlusBtnBox">
+                                                    <p class="mtrlPlusBtn" onclick="subMtrlPlus()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#999" class="bi bi-plus-square-dotted" viewBox="0 0 16 16">
+                                                        <path d="M2.5 0q-.25 0-.487.048l.194.98A1.5 1.5 0 0 1 2.5 1h.458V0zm2.292 0h-.917v1h.917zm1.833 0h-.917v1h.917zm1.833 0h-.916v1h.916zm1.834 0h-.917v1h.917zm1.833 0h-.917v1h.917zM13.5 0h-.458v1h.458q.151 0 .293.029l.194-.981A2.5 2.5 0 0 0 13.5 0m2.079 1.11a2.5 2.5 0 0 0-.69-.689l-.556.831q.248.167.415.415l.83-.556zM1.11.421a2.5 2.5 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415zM16 2.5q0-.25-.048-.487l-.98.194q.027.141.028.293v.458h1zM.048 2.013A2.5 2.5 0 0 0 0 2.5v.458h1V2.5q0-.151.029-.293zM0 3.875v.917h1v-.917zm16 .917v-.917h-1v.917zM0 5.708v.917h1v-.917zm16 .917v-.917h-1v.917zM0 7.542v.916h1v-.916zm15 .916h1v-.916h-1zM0 9.375v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .916v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .917v.458q0 .25.048.487l.98-.194A1.5 1.5 0 0 1 1 13.5v-.458zm16 .458v-.458h-1v.458q0 .151-.029.293l.981.194Q16 13.75 16 13.5M.421 14.89c.183.272.417.506.69.689l.556-.831a1.5 1.5 0 0 1-.415-.415zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373Q2.25 16 2.5 16h.458v-1H2.5q-.151 0-.293-.029zM13.5 16q.25 0 .487-.048l-.194-.98A1.5 1.5 0 0 1 13.5 15h-.458v1zm-9.625 0h.917v-1h-.917zm1.833 0h.917v-1h-.917zm1.834-1v1h.916v-1zm1.833 1h.917v-1h-.917zm1.833 0h.917v-1h-.917zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                                      </svg></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,7 +152,7 @@
                                                 Introduce
                                             </p>
                                         </div>
-                                        <p class="recipe_indc_text">레시피 설명</p>
+                                        <textarea placeholder="레시피 소개 입력" class="recipeIndcInput"></textarea>
                                     </div>
                                 </div>
                                 <div class="recipe_info_text">
@@ -127,11 +165,12 @@
                                                 Steps
                                             </p>
                                         </div>
-                                        <p class="steps_text">
-                                        <p class="steps_text">
-                                            레시피 설명
-                                        </p>
-                                        </p>
+                                        <div class="stepsTextInputBox">
+                                            <div class="stepsNumber">
+                                                <p>1</p>
+                                            </div>
+                                            <input class="stepsTextInput" placeholder="조리 방법을 입력 해 주세요.">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
