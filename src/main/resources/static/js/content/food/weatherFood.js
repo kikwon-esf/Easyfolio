@@ -252,8 +252,9 @@ function updateFoodRecommendations(fcstValue, precipitationType, baseTime) {
         return response.text(); // 응답을 텍스트로 받기
     })
     .then((html) => {
-        console.log(html);
+        // console.log(html);
         document.querySelector('.ddabongRecipeContainer').innerHTML = html; // 지정된 컨테이너에 HTML 교체
+        heartFill();
     })
     .catch(err => {
         alert('fetch error!\n' + err.message + '\n콘솔창을 확인하세요!');

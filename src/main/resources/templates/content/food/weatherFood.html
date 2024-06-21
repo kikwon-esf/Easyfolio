@@ -13,6 +13,7 @@
 
 <body>
     <th:block layout:fragment="content">
+        <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">
         <div class="weatherWrap">
             <div class="foodTapBlock">
                 <div class="foodTapInner">
@@ -83,6 +84,7 @@
 <th:block layout:fragment="content_js">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/content/food/weatherFood.js"></script>
+    <script src="/js/content/myPage/favorite.js"></script>
 </th:block>
 
 </html>
