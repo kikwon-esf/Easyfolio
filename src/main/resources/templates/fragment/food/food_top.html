@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8">
@@ -24,8 +26,10 @@
                         <div class="foodTaps">
                             <a href="/food/searchFoodPage"><p class="foodTap allRecipe">모든 레시피</p></a>
                             <a href="/food/weatherFood"><p class="foodTap weatherRecipe">현재 날씨 추천 레시피</p></a>
-                            <a href="/food/insertFoodForm"><p class="foodTap insertRecipe">나만의 레시피 등록</p></a>
-                            <a><p class="foodTap myRecipe">내가 쓴 레시피</p></a>
+                            <a sec:authorize="isAuthenticated()" href="/food/insertFoodForm"><p class="foodTap insertRecipe">나만의 레시피 등록</p></a>
+                            <a sec:authorize="isAuthenticated()"><p class="foodTap myRecipe">내가 쓴 레시피</p></a>
+                            <a class="anonymous" onclick="popup(askFrame)" sec:authorize="isAnonymous()" ><p class="foodTap insertRecipe">나만의 레시피 등록</p></a>
+                            <a class="anonymous" onclick="popup(askFrame)" sec:authorize="isAnonymous()"><p class="foodTap myRecipe">내가 쓴 레시피</p></a>
                         </div>
                     </div>
                 </div>

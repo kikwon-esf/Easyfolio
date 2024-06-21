@@ -24,6 +24,10 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
         sseService.deleteId(authentication.getName());
         String referer = request.getHeader("Referer");
         request.setAttribute("logoutSuccess","logoutSuccess");
+        System.err.println("referer"+referer);
+        System.err.println("queryString" + request.getQueryString());
+        System.err.println("requestURL" + request.getRequestURL());
+        System.err.println("sessionId" + request.getRequestedSessionId());
         response.sendRedirect(referer);
     }
 }

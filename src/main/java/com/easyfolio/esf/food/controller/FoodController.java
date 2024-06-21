@@ -1,5 +1,6 @@
 package com.easyfolio.esf.food.controller;
 
+import com.easyfolio.esf.csc.vo.PageVO;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodStepsVO;
 import com.easyfolio.esf.food.vo.FoodVO;
@@ -50,7 +51,7 @@ public class FoodController {
     private final MemberService memberService;
     private final WeatherService weatherService;
 
-    @RequestMapping(value = "/searchFoodPage", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/searchFoodPage", method = {RequestMethod.GET/*, RequestMethod.POST*/})
     public String searchFoodAllPage(Model model, FoodVO foodVO,
                                     Principal principal, MemberVO memberVO) throws Exception {
 
@@ -171,6 +172,8 @@ public class FoodController {
                         commentVO.getReciveMemberId()
                 )
         );
+        System.err.println(commentVO.getNowPage());
+        model.addAttribute("nowPage", commentVO.getNowPage());
         model.addAttribute("foodCode", commentVO.getFoodCode());
 
         return "content/myPage/replace/food_comment";
