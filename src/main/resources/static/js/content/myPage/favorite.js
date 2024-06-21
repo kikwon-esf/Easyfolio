@@ -44,14 +44,17 @@ function deleteFav(){
         
 }
 
-const addFavBtn = document.querySelectorAll(".cartBox");
+let addFavBtn = document.querySelectorAll(".cartBox");
 const addFavURL = "/myPage/addFav";
 var list = null;
 //페이지 로딩시 하트색칠
 
 window.addEventListener('load',()=>{
+    heartFill();
+})  
+function heartFill(){
     let listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
-    
+    addFavBtn = document.querySelectorAll(".cartBox");
     list = JSON.parse(listdata);
     console.log(list)
     if(list != null){
@@ -67,8 +70,7 @@ window.addEventListener('load',()=>{
             }       
         }
     }
-    
-})  
+}
 
 
   

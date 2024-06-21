@@ -52,7 +52,7 @@ public class MainpageController {
     @Autowired
     private FoodService foodService;
 
-    @RequestMapping(value = "/wideSearch", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/wideSearch", method = {RequestMethod.GET/*, RequestMethod.POST*/})
     public String wideSearch(@RequestParam(value = "allSearchKeyword", required = false) String allSearchKeyword, Model model, AnnVO annVO) {
             annVO.setAllSearchKeyword(allSearchKeyword);
             model.addAttribute("asAnnList", cscService.allSearchAnn(allSearchKeyword));

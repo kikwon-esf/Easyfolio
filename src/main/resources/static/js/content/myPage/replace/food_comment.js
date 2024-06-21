@@ -6,7 +6,7 @@ const getCommentURL = "/food/comment";
 const submitURL = "/myPage/comment"
 const replacePosition = document.querySelector('.replacePosition');
 let response_commentId = document.querySelector("#response_commentId")?.value;
-
+let nowPage = document.querySelector("#nowPage")?.value;
 function getCommentList(url) {
     fetch(url)
         .then((resp) => {
@@ -14,6 +14,7 @@ function getCommentList(url) {
         })
         .then((data) => {
             writeContent(replacePosition, data);
+            pagingCount();
             const foodCode_hide = document.querySelector('.foodCode_hide')
             if(response_commentId != null || undefined){
                 const commentNode = this.document.getElementById(String(response_commentId));
@@ -27,10 +28,14 @@ function getCommentList(url) {
 function writeContent(postion, content) {
     postion.innerHTML = content;
 }
+function commentPaging(pageNum){
+    let pagingURL = getCommentURL + "?foodCode="+ foodCode + "&reciveMemberId=" + memberId + "&nowPage="+pageNum;
+    console.log(pagingURL)
+    getCommentList(pagingURL);
+}
 window.addEventListener('DOMContentLoaded', () => {
     getCommentList(getCommentURL + "?foodCode=" + foodCode + "&reciveMemberId=" + memberId);
-    
-    
+
 })
 
 function submitComment(target) {
@@ -51,6 +56,7 @@ function submitComment(target) {
         })
         .then((data) => {
             writeContent(replacePosition, data);
+            pagingCount();
             const foodCode_hide = document.querySelector('.foodCode_hide')
         })
         .catch(e=>{
@@ -256,4 +262,11 @@ function findScrollValue(commentNode){
     console.log(rect.top)
     console.log(window.scrollY)
     return rect.top;
+}
+function pagingCount(){
+    
+    nowPage = document.querySelector("#nowPage").value;
+    console.log(nowPage)
+    let nowPageNode = document.getElementById('page'+nowPage);
+    nowPageNode.classList.add('active');
 }
