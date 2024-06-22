@@ -21,12 +21,11 @@
                 <div class="main">
                     <div class="csc_ann">
                         <div class="annHeader">
-                            <form action="/csc/qnaListForm" method="post">
+                            <form action="/csc/qnaListForm" method="post" class="qna_searchForm">
                                 <div class="annSearchBlock">
                                     <input type="text" class="annSearch" name="allSearchKeyword"
                                         placeholder="자주 찾는 질문 검색" th:value="${allSearchKeyword}">
-                                    <input type="submit" value="검색">
-                                    <div class="annSearchBtn">
+                                    <div class="annSearchBtn" onclick="qna_search()">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
                                             class="bi bi-search" viewBox="0 0 16 16">
                                             <path

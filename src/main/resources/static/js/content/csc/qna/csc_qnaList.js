@@ -143,3 +143,7 @@ $(document).ready(function () {
         placeholder: '내용을 입력하세요...'
     });
 });
+
+function qna_search(){
+    document.querySelector(".qna_searchForm").submit();
+}
