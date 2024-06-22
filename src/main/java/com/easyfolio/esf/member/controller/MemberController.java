@@ -146,6 +146,9 @@ public class MemberController {
     }
     @PostMapping(value = "/changePw")
     public String changePw(Principal principal ,MemberVO memberVO,HttpServletResponse response, HttpServletRequest request){
+        if(!PwdEditInterceptor.set.contains(request.getRequestedSessionId())){
+            return "redirect:/";
+        }
         if(memberVO.getMemberId() == null){
             memberVO.setMemberId(principal.getName());
         }

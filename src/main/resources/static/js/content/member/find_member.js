@@ -163,6 +163,8 @@ function findPw() {
     let findResult = document.querySelector('.findResult.pw');
     let resultBox = document.querySelector('.resultBox');
     let resultFail = document.querySelector('.resultFail.pw');
+    let resultSuc = document.querySelector('.resultsuc');
+    let changePw_href = document.querySelector('.changePw_href');
 
     let inputId = document.querySelector('.inputMem.id');
     let inputTel = document.querySelector('.inputMem.tel');
@@ -201,7 +203,7 @@ function findPw() {
         })
             .then((response) => {
                 if (400==response.status) {
-                    new Error();
+                    throw new Error();
                     return;
                 }else if (!response.ok) {
                     alert("!!")
@@ -218,12 +220,16 @@ function findPw() {
                     // data.forEach(data1 => {
                     //     console.log(data1)
                     // });
-                    console.log(data.memberId)
+                    // console.log(data.memberId)
                 // }
-                location.href='/member/changePw?memberId='+data.memberId;
+                resultSuc.style.display = "flex";
+                changePw_href.addEventListener('click',()=>{
+                    toChangePw(data.memberId);
+                })
             })
             .catch((err) => {
                 resultFail.style.display = "block";
+                resultSuc.style.display = 'none';
                 console.log(err);
             });
 
@@ -253,4 +259,8 @@ function authenticateForChangePw(){
 const pu_error = document.querySelector('.pu_error')
 function displayOff_pu(){
     pu_error.classList.add('pu_blind')
+}
+function toChangePw(memberId){
+    const changeUrl = '/member/changePw?memberId=';
+    location.href=changeUrl + memberId;
 }
