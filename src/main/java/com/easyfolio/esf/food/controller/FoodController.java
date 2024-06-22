@@ -285,14 +285,19 @@ public class FoodController {
             }
         }
 
+        if (ddabongVO.getDdabongCode().equals("DDABONG_006")) {
+            redirectAttributes.addAttribute("foodNames", null);
+        }else {
+            redirectAttributes.addAttribute("foodNames", foodNames);
+        }
+
         redirectAttributes.addAttribute("ddabongCode", ddabongVO.getDdabongCode());
-        redirectAttributes.addAttribute("foodNames", foodNames);
         redirectAttributes.addAttribute("urlText", urlText);
         return "redirect:/food/ddabongCodeRecipeList"; // 이 부분은 필요 없으며 아래 부분이 중요합니다
     }
 
     @GetMapping("/ddabongCodeRecipeList")
-    public String ddabongCodeRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
+    public String ddabongRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
 //        List<FoodVO> ddabongFoodList = foodService.ddabongRecipeList(foodNames);
 //        model.addAttribute("foodLists", ddabongFoodList);
         FoodVO foodVO1 = new FoodVO();
