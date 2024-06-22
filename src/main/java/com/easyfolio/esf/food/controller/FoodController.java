@@ -237,15 +237,15 @@ public class FoodController {
 
         List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongCode);
         System.err.println(foodList);
-//        List<String> foodNames = new ArrayList<>();
-//        for (DdabongVO ddabong : foodList) {
-//            if (ddabong.getDdabongFood() != null) {
-//                String[] foodArray = ddabong.getDdabongFood().split(",\\s*");
-//                foodNames.addAll(Arrays.asList(foodArray));
-//            }
-//        }
+        List<String> foodNames = new ArrayList<>();
+        for (DdabongVO ddabong : foodList) {
+            if (ddabong.getDdabongFood() != null) {
+                String[] foodArray = ddabong.getDdabongFood().split(",\\s*");
+                foodNames.addAll(Arrays.asList(foodArray));
+            }
+        }
 
-//        redirectAttributes.addAttribute("foodNames", foodNames);
+        redirectAttributes.addAttribute("foodNames", foodNames);
         redirectAttributes.addAttribute("urlText", urlText);
         return "redirect:/food/ddabongRecipeList";
     }
