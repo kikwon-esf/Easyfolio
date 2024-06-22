@@ -314,7 +314,7 @@ public class FoodController {
         model.addAttribute("nowPage", foodVO1.getNowPage());
         model.addAttribute("urlText", urlText);
         model.addAttribute("foodList", ddabongFoodList);
-        return "content/food/ddabongRecipeList";
+        return "content/food/weatherFood_direct";
     }
 
     @GetMapping("/ddabongRecipeList")
