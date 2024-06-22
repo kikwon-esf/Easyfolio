@@ -93,7 +93,6 @@ function allSearch() {
 
 const puDelete = document.querySelector(".pu_delete");
 const puBtnYes = document.querySelector(".pu_yes");
-const puBtnNo = document.querySelector(".pu_no");
 
 function displayOn(element) {
     element.classList.remove('pu_blind');
@@ -103,19 +102,9 @@ function deletePopUp() {
     displayOn(puDelete);
 }
 
-function displayOff(element) {
-    element.classList.add('pu_blind');
-}
-
 function displayOff_pu(element) {
     element.closest('.pupu').classList.add('pu_blind');
 }
-
-puBtnNo.addEventListener('click', () => {
-    displayOff(puDelete);
-})
-
-
 
 function deleteAlarmAll() {
     fetch('/member/deleteAlarmAll', { 

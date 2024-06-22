@@ -25,4 +25,6 @@ public interface MemberService {
 
     //회원정보 수정
     public int updateMember(MemberVO memberVO);
+
+    public MemberVO selectMemberName(String memberId);
 }

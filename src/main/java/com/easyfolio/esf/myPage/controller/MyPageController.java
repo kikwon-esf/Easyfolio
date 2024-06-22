@@ -216,6 +216,8 @@ public class MyPageController {
         if(!Transfer.reqexTest(commentVO.getContent())){
             myPageService.submitComment(commentVO); // 댓글 등록하는 코드
             alarmService.insertAlarm(commentVO);
+            commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
+            commentVO.setPageInfo();
         }else{
             response.setStatus(400);
         }
@@ -279,7 +281,7 @@ public class MyPageController {
         String user = principal.getName();
         memberVO.setTotalDataCnt(alarmService.alarmListCnt(memberVO.withMemberId(user)));
         memberVO.setPageInfo();
-        List<AlarmVO> list = alarmService.alarmList(memberVO.withMemberId(user));
+        List<AlarmVO> list = alarmService.alarmListPage(memberVO.withMemberId(user));
         model.addAttribute("alarmList", list);
 
         return "content/myPage/myPage_myAlarm";

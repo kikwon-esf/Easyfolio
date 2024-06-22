@@ -77,6 +77,8 @@ textarea {
     height: auto;
     box-sizing: border-box;
     border-top: 1px solid #333;
+    border-bottom: 1px solid #dadada;
+    margin-bottom: 70px;
 }
 
 .recipe_title_box {
@@ -162,14 +164,15 @@ textarea {
     font-size: 13px;
     color: #444;
 }
-.recipe_header_bot_left{
+
+.recipe_header_bot_left {
     display: flex;
     justify-content: space-between;
 }
 
 /*레시피 내용 */
 .recipe_content_inner {
-    padding: 50px 20px;
+    padding: 50px 20px 30px 20px;
     border-bottom: 1px solid #dadada;
 }
 
@@ -186,6 +189,7 @@ textarea {
 .recipe_info_bot {
     padding: 20px 30px;
 }
+
 .recipe_info_text {
     padding: 20px 30px;
 }
@@ -212,12 +216,12 @@ textarea {
     box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
     height: auto;
     border-radius: 10px;
-    padding: 20px 20px;
     box-sizing: border-box;
     margin: 0 auto;
     background-color: #f4f4f4;
 }
-.recipe_indc_text{
+
+.recipe_indc_text {
     font-size: 13px;
     color: #333;
 }
@@ -256,7 +260,7 @@ textarea {
     box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
     height: auto;
     border-radius: 10px;
-    padding: 20px 20px;
+    padding: 40px 20px 20px 20px;
     box-sizing: border-box;
     margin: 0 auto;
     background-color: #f4f4f4;
@@ -267,7 +271,7 @@ textarea {
     top: -16px;
     position: absolute;
     right: 50%;
-    margin-right: -110px;
+    margin-right: -82px;
     background-color: #fff;
     padding: 0px 20px;
     border-radius: 10px;
@@ -289,13 +293,13 @@ textarea {
     color: #f3c053;
 }
 
-.recipe_info_right{
+.recipe_info_right {
     width: 100%;
     margin: 0 10px 0 0;
     display: flex;
 }
 
-.recipe_mtrl_block{
+.recipe_mtrl_block {
     width: 100%;
     display: flex;
     position: relative;
@@ -306,6 +310,7 @@ textarea {
     box-sizing: border-box;
     background-color: #f4f4f4;
 }
+
 .mtrl_block_title {
     display: flex;
     top: -16px;
@@ -332,20 +337,24 @@ textarea {
     font-weight: 700;
     color: #f3c053;
 }
-.mtrlTitle span{
+
+.mtrlTitle span {
     font-size: 18px;
     color: #333;
 }
-.recipe_mtrl:last-child .mtrlTitle{
+
+.recipe_mtrl:last-child .mtrlTitle {
     margin-left: 25px;
 }
-.recipe_mtrl{
+
+.recipe_mtrl {
     position: relative;
     text-align: center;
     width: 100%;
     padding: 5px 20px;
 }
-.recipe_mtrl::after{
+
+.recipe_mtrl::after {
     content: "";
     display: block;
     width: 1px;
@@ -355,13 +364,16 @@ textarea {
     top: 7px;
     right: -7px;
 }
-.recipe_mtrl:last-child::after{
+
+.recipe_mtrl:last-child::after {
     display: none;
 }
-.mtrlMt{
+
+.mtrlMt {
     margin-top: 13px;
 }
-.mtrlMt div{
+
+.mtrlMt div {
     color: #333;
     font-size: 13px;
     padding: 5px 0;
@@ -371,12 +383,304 @@ textarea {
     justify-content: space-between;
     margin-bottom: 10px;
 }
-.mtrlMt.full{
+
+.mtrlMt.full {
     display: grid;
     grid-template-columns: 48% 48%;
     gap: 0 25px;
     grid-template-rows: 42px 42px 42px 42px 42px;
 }
-.menuBlock{
+
+.menuBlock {
     display: none;
+}
+
+.recipeInput {
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    padding: 2px 8px;
+    box-sizing: border-box;
+    outline: 0;
+    color: #666;
+}
+
+.recipeInput:focus {
+    border: 1px solid #f3c053;
+}
+
+.cateInput {
+    width: 150px;
+    height: 27px;
+    margin-top: 4px;
+    font-size: 19px;
+}
+
+.ttlInput {
+    margin-top: -2px;
+    width: 950px;
+    height: 37px;
+    font-size: 20px;
+}
+
+.select {
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 110px;
+    padding: 6px 3px 3px 9px;
+    height: 37px;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #f29221d1 0%, rgb(242, 146, 33) 100%), linear-gradient(0deg, #fff, #FFFFFF);
+    font-size: 15px;
+    color: #fff;
+    outline: 0;
+    margin-right: 10px;
+}
+
+.select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+.recipeInsertBox {
+    border: 1px solid transparent;
+    position: relative;
+    cursor: pointer;
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 125px;
+    text-align: center;
+    background: linear-gradient(180deg, #9999992e 5%, #99999900 100%), linear-gradient(0deg, #99999952, #fff);
+}
+.recipeInsertBox svg {
+    z-index: 2;
+    transition: box-shadow 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 0px 5px 3px rgba(68, 68, 68, 0.2);
+}
+
+.recipeInsertBox:hover svg {
+    transition: box-shadow 0.3s ease;
+    border-radius: 50%;
+    box-shadow: 0 0px 5px 3px rgba(68, 68, 68, 0.7);
+}
+
+.recipeInsertBox:hover p {
+    transition: all 0.3s ease;
+    background-color: #666;
+}
+
+.recipeInsertBox p {
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.mtrlTitleInput,
+.mtrlSecondInput,
+.mtrlThirdInput,
+.mtrlSuvTitleInput,
+.mtrlFirstInput {
+    width: 100px;
+}
+
+.mtrlTitleInput {
+    margin-top: 2px;
+}
+
+.mtrlPlusBtn {
+    margin: 0 auto;
+    cursor: pointer;
+    width: 30px;
+}
+
+.mtrlPlusBtn svg {
+    transition: all 0.3s ease;
+}
+
+.mtrlPlusBtn:hover svg {
+    transition: all 0.3s ease;
+    fill: #333;
+}
+
+.mtrlMt.plus {
+    opacity: 0.3;
+}
+
+.deleteMtrlMt {
+    cursor: pointer;
+    margin: 5px -8px 0 -25px;
+}
+
+.deleteMtrlMt:hover svg {
+    fill: #333;
+}
+
+.recipe_mtrl.subMtrl>.mtrlMt {
+    margin-left: 27px;
+    margin-right: -27px;
+}
+
+.recipeIndcInput {
+    color: #666;
+    width: 1100px;
+    height: 130px;
+    border-radius: 10px;
+    padding: 15px 10px;
+    transition: border 0.3s ease;
+    font-size: 17px;
+}
+.recipeTextarea{
+    transition: border 0.3s ease;
+    box-sizing: border-box;
+    overflow-y: auto;
+    outline: 0;
+    border: 2px solid transparent;
+}
+.recipeTextarea:hover {
+    transition: border 0.3s ease;
+    border: 2px solid #f3c053;
+}
+
+.recipeTextarea:focus {
+    transition: border 0.3s ease;
+    border: 2px solid #f29221;
+}
+
+::-webkit-scrollbar {
+
+    width: 8px;
+    /* 스크롤바 너비 */
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* 스크롤바 track 배경색 */
+}
+
+::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #dadada;
+    /* 스크롤바 thumb 색상 */
+    border-radius: 2px;
+    /* 스크롤바 thumb 모서리 반경 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+    /* 스크롤바 thumb에 호버시 색상 */
+}
+.stepsTextInputBox{
+    display: flex;
+}
+.stepsTextInputBox{
+    width: 950px;
+    margin : 0 auto 27px auto;
+}
+.stepsNumber p{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #f29221;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    margin-right: 20px;
+}
+.stepsTextInput{
+    width: 890px;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 2px 10px;
+}
+.recipeTextPlusBtn {
+    margin: 0 auto;
+    cursor: pointer;
+    width: 30px;
+}
+
+.recipeTextPlusBtn svg {
+    transition: all 0.3s ease;
+}
+
+.recipeTextPlusBtn:hover svg {
+    transition: all 0.3s ease;
+    fill: #333;
+}
+.deleteRecipeText {
+    cursor: pointer;
+    margin: 8px 14px 0 -38px;
+}
+.deleteRecipeText:hover svg {
+    fill: #333;
+}
+.recipeInsertBtnBlock{
+    width: 100%;
+    position: relative;
+    text-align: center;
+    margin-bottom: 100px;
+}
+.recipeInsertBtnBox{
+    display: inline-block;
+}
+.recipeInsertBtn{
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 300px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.recipeInsertBtn:hover{
+    background-color: #f08509;
+    transition: background-color 0.5s ease;
+}
+.check{
+    border: 1px solid #ff3f3f;
+}
+.recipeInput.check::placeholder{
+    color: #ff3f3f;
+}
+.recipeImg{
+    cursor: pointer;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+}
+.imgLookBox{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    z-index: 1;
+}
+.mtrlNext{
+    width: 100px;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+}
+.mtrlMt.plus{
+    margin-bottom: 2px;
+}
+.select.check{
+    background: linear-gradient(180deg, #f22121d1 0%, rgb(242 33 33) 100%), linear-gradient(0deg, #fff, #FFFFFF);
+}
+.recipeTextarea.check::placeholder{
+    color: #ff3f3f;
 }

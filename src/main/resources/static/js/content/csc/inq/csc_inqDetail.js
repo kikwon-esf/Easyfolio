@@ -21,14 +21,23 @@ closeBtn.onclick = function() {
 // 삭제 팝업
 
 const deleteinqBtn = document.querySelector('.deleteinqBtn')
+const deleteIsRes = document.querySelector('.deleteIsRes');
+const isResponse = document.querySelector('.isResponse');
 
 deleteinqBtn.addEventListener("click", function(){
     deletePopUp();
     puBtnYes.addEventListener('click', ()=>{
         const deleteInqCode =  document.querySelector('.deleteInqCode').value;
-        const deleteResCode =  document.querySelector('.deleteResCode').value;
-        var url = '/csc/deleteInq?inqCode=' + deleteInqCode +'&resCode=' + deleteResCode;
-        location.href = url;
+        if(deleteIsRes == 'Y'){
+            const deleteResCode =  document.querySelector('.deleteInqCode').value;
+            var url = '/csc/deleteInq?inqCode=' + deleteInqCode +'&resCode=' + deleteResCode;
+            location.href = url;
+        }
+        else {
+            var url = '/csc/deleteInq?inqCode=' + deleteInqCode + '&inqResponse=' + deleteIsRes;
+            location.href = url;
+        }
+
     })
 
 });

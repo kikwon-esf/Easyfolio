@@ -152,8 +152,10 @@ public class CscController {
     // 문의 사항 삭제 후 목록 페이지 이동
     @GetMapping("/deleteInq")
     public String deleteInq(InqVO inqVO, ResVO resVO){
-        cscService.deleteResImg(resVO);
-        cscService.deleteResponse(resVO);
+        if (inqVO.inqResponse.equals("Y")){
+            cscService.deleteResImg(resVO);
+            cscService.deleteResponse(resVO);
+        }
         cscService.deleteInqImg(inqVO);
         cscService.deleteInq(inqVO);
         return "redirect:/csc/inqListForm";
@@ -231,10 +233,11 @@ public class CscController {
     }
 
 //     자주 찾는 질문 수정 (비동기)
-    @ResponseBody
+
     @PostMapping("/updateQna")
-    public void updateQna(QnaVO qnaVO){
+    public String updateQna(QnaVO qnaVO){
         cscService.updateQna(qnaVO);
+        return "redirect:/csc/qnaListForm";
     }
 
 

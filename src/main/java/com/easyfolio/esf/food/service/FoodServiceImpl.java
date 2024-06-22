@@ -1,9 +1,11 @@
 package com.easyfolio.esf.food.service;
 
 import com.easyfolio.esf.food.vo.*;
+import com.easyfolio.esf.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -123,6 +125,24 @@ public class FoodServiceImpl implements FoodService{
     @Override
     public int allRecipeCount() {
         return sqlSession.selectOne("foodMapper.allRecipeCount");
+    }
+
+    @Override
+    public String nextFoodCode() {
+        return sqlSession.selectOne("foodMapper.nextFoodCode");
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void insertFood(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO) {
+        sqlSession.insert("foodMapper.insertFood", foodVO);
+        sqlSession.insert("foodMapper.insertFoodSteps", foodStepsVO);
+        sqlSession.insert("foodMapper.insertFoodImg", foodImgVO);
+    }
+
+    @Override
+    public FoodImgVO selectFoodImg(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.selectFoodImg", foodVO);
     }
 
 //

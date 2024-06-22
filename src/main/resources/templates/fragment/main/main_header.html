@@ -219,19 +219,6 @@
                                         <p sec:authorize="isAuthenticated()">마이페이지</p>
                                     </a>
                                 </div>
-                                <!-- 로그아웃 시 팝업 버튼 -->
-                                <div class="logout pu_blind">
-                                    <div class="pu_inner">
-                                        <div class="pu_text_box">
-                                            <h1 class="pu_title">정말 로그아웃 하시겠습니까?</h1>
-                                        </div>
-                                        <div class="pu_btn_box">
-                                            <input type="hidden" th:value="${qnaCode}">
-                                            <button class="pu_btn pu_yes" onclick="logoutYes()">예</button>
-                                            <button class="pu_btn pu_no" onclick="logoutNo()">아니오</button>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <!-- 삭제 시 팝업 버튼 -->
                                 <div class="pu_delete pu_blind pupu">
@@ -240,10 +227,7 @@
                                             <h1 class="pu_title">정말 삭제 하시겠습니까?</h1>
                                         </div>
                                         <div class="pu_btn_box">
-                                            <input type="hidden" th:value="${annCode}">
-                                            <input type="hidden" th:value="${inqCode}">
-                                            <input type="hidden" th:value="${qnaCode}">
-                                            <button class="pu_btn pu_yes" onclick="deleteFav()">예</button>
+                                            <button class="pu_btn pu_yes" onclick="displayFav()">예</button>
                                             <button class="pu_btn pu_no" onclick="displayOff_pu(this)">아니오</button>
                                         </div>
                                     </div>
@@ -258,6 +242,19 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                                                <!-- 로그아웃 시 팝업 버튼 -->
+                                <!-- <div class="logout pu_blind">
+                                    <div class="pu_inner">
+                                        <div class="pu_text_box">
+                                            <h1 class="pu_title">정말 로그아웃 하시겠습니까?</h1>
+                                        </div>
+                                        <div class="pu_btn_box">
+                                            <button class="pu_btn pu_yes" onclick="logoutYes()">예</button>
+                                            <button class="pu_btn pu_no" onclick="logoutNo()">아니오</button>
+                                        </div>
+                                    </div>
+                                </div> -->
 
                             </div>
                         </div>

@@ -1,7 +1,9 @@
 package com.easyfolio.esf.food.controller;
 
 import com.easyfolio.esf.csc.vo.PageVO;
+import com.easyfolio.esf.csc.vo.inq.InqImgVO;
 import com.easyfolio.esf.food.service.FoodService;
+import com.easyfolio.esf.food.vo.FoodImgVO;
 import com.easyfolio.esf.food.vo.FoodStepsVO;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
@@ -10,6 +12,8 @@ import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
+import com.easyfolio.esf.util.UploadUtillFoodImg;
+import com.easyfolio.esf.util.UploadUtillInq;
 import com.easyfolio.esf.weather.service.WeatherService;
 import com.easyfolio.esf.weather.vo.DdabongVO;
 import com.easyfolio.esf.weather.vo.RegionVO;
@@ -29,6 +33,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
@@ -79,6 +84,7 @@ public class FoodController {
 
     private void setupFoodList(Model model, FoodVO foodVO) {
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        System.err.println(foodService.searchFoodAll(foodVO));
     }
 
     private void setupSearchDetails(Model model, FoodVO foodVO) {
@@ -108,7 +114,10 @@ public class FoodController {
 
 
     @GetMapping(value = "detail")
-    public String foodDtl(Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
+    public String foodDtl(Principal principal ,@ModelAttribute("foodCode") String foodCode,Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
+        if(foodCode.equals("") || foodCode != null){
+            foodVO.setFoodCode(foodCode);
+        }
         foodService.updateFoodInqCnt(foodVO);
         model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
@@ -138,6 +147,7 @@ public class FoodController {
         }
 
         // 결과 출력
+        model.addAttribute("foodImg", foodService.selectFoodImg(foodVO));
         model.addAttribute("mtrlTitles", mtrlTitle);
         model.addAttribute("mtrlMt1", mtrlMt1);
         if (mtrlMt2.isEmpty()) {
@@ -152,7 +162,7 @@ public class FoodController {
         }else{
             model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
         }
-
+        model.addAttribute("memberId", principal.getName());
 
         return "/content/food/food_detail";
     }
@@ -261,8 +271,34 @@ public class FoodController {
 
     // 레시피 등록 페이지로 이동
     @GetMapping("/insertFoodForm")
-    public String insertFoodForm() {
+    public String insertFoodForm(Model model, Principal principal, MemberVO memberVO) {
+        MemberVO memberVO1 = new MemberVO();
+        memberVO1.setMemberName((memberService.selectMemberName(principal.getName())).getMemberName());
+        memberVO1.setMemberId(principal.getName());
+        System.err.println(memberVO1);
+
+        model.addAttribute("memberInfo", memberVO1);
+        model.addAttribute("foodUsageList", foodService.foodUsageList());
+        model.addAttribute("foodKindList", foodService.foodKindList());
+        model.addAttribute("foodMtrlList", foodService.foodMtrlList());
+        model.addAttribute("foodTypeList", foodService.foodTypeList());
         return "/content/food/food_insert";
+    }
+
+    @PostMapping("/recipeInsert")
+    public String recipeInsert(RedirectAttributes redirectAttributes,FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
+        String foodCode = foodService.nextFoodCode();
+
+        FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
+        uploadedImg.setFoodCode(foodCode);
+        foodVO.setFoodCode(foodCode);
+        foodStepsVO.setFoodCode(foodCode);
+        System.err.println(foodVO);
+        System.err.println(foodStepsVO);
+        System.err.println(uploadedImg);
+        foodService.insertFood(foodVO, foodStepsVO, uploadedImg);
+        redirectAttributes.addFlashAttribute("foodCode", foodCode);
+        return "redirect:/food/detail";
     }
 
 }
