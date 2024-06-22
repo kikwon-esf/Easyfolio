@@ -15,7 +15,7 @@ public class PwdEditThread extends Thread{
     public void run() {
         PwdEditInterceptor.set.add(userSessionId);
         try {
-            Thread.sleep(100000);
+            Thread.sleep(10000);
             PwdEditInterceptor.set.remove(userSessionId);
         }catch (Exception e){
             e.printStackTrace();

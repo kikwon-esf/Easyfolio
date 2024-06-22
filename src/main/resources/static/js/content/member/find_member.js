@@ -215,11 +215,12 @@ function findPw() {
                 // if (data.length === 0) {
                 //     resultFail.style.display = "block";
                 // } else {
-                //     data.forEach(data1 => {
-                //         console.log(data1)
-                //     });
+                    // data.forEach(data1 => {
+                    //     console.log(data1)
+                    // });
+                    console.log(data.memberId)
                 // }
-                location.href='/member/changePw';
+                location.href='/member/changePw?memberId='+data.memberId;
             })
             .catch((err) => {
                 resultFail.style.display = "block";

@@ -1,5 +1,6 @@
 package com.easyfolio.esf.config.loginHandler;
 
+import com.easyfolio.esf.config.interceptor.PwdEditInterceptor;
 import com.easyfolio.esf.otherProtocol.sse.service.SseService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,9 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         sseService.deleteId(authentication.getName());
+
+        removeSessionId(request.getRequestedSessionId());
+
         String referer = request.getHeader("Referer");
         if(referer.equals("http://localhost:8081/member/changePw")){
             response.sendRedirect("http://localhost:8081/member/loginForm");
@@ -29,5 +33,9 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
             response.sendRedirect(referer);
         }
 
+
+    }
+    private void removeSessionId(String sessionId){
+        PwdEditInterceptor.set.remove(sessionId);
     }
 }

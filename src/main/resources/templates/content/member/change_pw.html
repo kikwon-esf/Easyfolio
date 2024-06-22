@@ -18,6 +18,7 @@ layout:decorate="~{fragment/member_layout}">
         <link rel="stylesheet" href="/css/content/member/find_member.css">
         <form action="/member/changePw" method="post" id="joinForm">
             <div id="wrap">
+                <input type="hidden" th:value="${memberId}" name="memberId">
                 <div id="inner">
                     <div class="logoBlock">
                         <div class="logo">
