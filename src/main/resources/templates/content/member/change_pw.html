@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"    
+layout:decorate="~{fragment/member_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <link rel="stylesheet" href="/css/content/member/find_member.css">
+        <form action="/member/changePw" method="post" id="joinForm">
+            <div id="wrap">
+                <input type="hidden" th:value="${memberId}" name="memberId">
+                <div id="inner">
+                    <div class="logoBlock">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="/img/logo1.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div id="container">
+                        <div class="findHeader">
+                           <p class="findHeaderTap alreadyLogin on">비밀번호 변경</p>
+                        
+                        </div>
+                        <form class="findBlock id on">
+                            <div class="inputBox name">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                        class="bi bi-person-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                    </svg>
+                                </div>
+                                <input type="password" class="inputMem name" id="input_password" name="memberPw"
+                                    placeholder="비밀번호" required>
+                                    
+                            </div>
+                            <div class="inputBox phoneNum">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#dadada"
+                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                                    </svg>
+                                </div>
+                                <input type="password" class="inputMem name" id="repeat_password"
+                                    placeholder="비밀번호 확인" >
+                            </div>
+                            
+                            <div class="findBtnForm">
+                                <input id="btn" class="findBtn" type="submit" value="변경" onclick="">
+                            </div>
+                            
+                            <div sec:authorize="isAnonymous()" class="findFooter">
+                                <p><a href="/member/loginForm">로그인</a></p>
+                                <p><a href="/member/joinForm">회원가입</a></p>
+                            </div>
+                        </form>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/content/member/changePw.js"></script>
+    </th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+
+</th:block>
+
+</html>

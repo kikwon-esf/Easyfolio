@@ -25,7 +25,7 @@ public class CreateSessionInterceptor implements HandlerInterceptor {
 
         HttpSession session = request.getSession();
         String prevPage = request.getHeader("Referer");
-        if(prevPage!=null&&!prevPage.contains("/member/login")){
+        if(prevPage!=null&&!prevPage.contains("/member/login")&&!prevPage.contains("/member")){
             session.setAttribute("prevPage", request.getHeader("Referer"));
         }
 

@@ -120,16 +120,17 @@
                     
                     <p>비밀번호</p>
                     <div class="defaultBox">
-                        <p></p>
+                        <!-- <p></p>
                         <button type="button" class="updateBtn" onclick="updateFormGo(this)">수정하기</button>
-                    </div>
-                    <div class="pw updateForm off">
-                        <input class="pw_input" type="password" name="memberPw">
-                        <input class="pw_input" type="password" id="password_repeat">
-                    </div>
-                    <button id="pw_submit" type="submit" class="submit pw_btn off">수정완료</button>
-                        <!-- <p class="checkPw">
-                            <a href="/member/findMemberForm">
+                    </div>-->
+                    <!-- <div class="pw updateForm off"> -->
+                        <!-- <input class="pw_input" type="password" name="memberPw">
+                        <input class="pw_input" type="password" id="password_repeat"> -->
+                    <!-- </div> -->
+                    <!-- <button id="pw_submit" type="submit" class="submit pw_btn off">수정완료</button> -->
+                        <p class="checkPw">
+                            <a
+                            th:href="@{/member/changePw}">
                                 <span class="checkIcon">*</span>
                                 <span class="checkText">비밀번호 찾기 페이지로 이동</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#666"
@@ -139,8 +140,8 @@
                                     </path>
                                 </svg>
                             </a>
-                        </p> -->
-
+                        </p>
+                    </div>
                     
                 </form>
 

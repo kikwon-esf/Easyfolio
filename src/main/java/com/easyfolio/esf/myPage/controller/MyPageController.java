@@ -2,6 +2,7 @@ package com.easyfolio.esf.myPage.controller;
 
 
 import com.easyfolio.esf.config.Transfer;
+import com.easyfolio.esf.config.interceptor.PwdEditInterceptor;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.AlarmService;
@@ -140,8 +141,6 @@ public class MyPageController {
     @ResponseBody
     public ResponseEntity<String> submitInform(HttpServletRequest request, Principal principal, HttpServletResponse response, MemberVO memberVO){
 
-        HttpSession session = request.getSession();
-        session.setAttribute("authenticatedInform","true");
         memberVO.setMemberId(principal.getName());
         System.err.println(memberVO);
         try{
@@ -162,8 +161,7 @@ public class MyPageController {
         UserDetails userDetails = loginService.loadUserByUsername(user);
         if(chkUser(userDetails, memberVO)) {
             System.err.println("참");
-            HttpSession session = request.getSession();
-            session.setAttribute("authenticatedInform", "true");
+            PwdEditInterceptor.set.add(request.getRequestedSessionId());
             return null;
         }
         response.setStatus(202);
@@ -222,25 +220,25 @@ public class MyPageController {
             response.setStatus(400);
         }
 
-
-
+        System.err.println(commentVO);
         String sendMember = commentVO.getReciveMemberId();
         List alarmList = alarmService.alarmList(new MemberVO().withMemberId(sendMember));
         Map<String, CommentVO> commentMap = myPageService.getCommentVOList(commentVO.withMemberId(null));
         List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
-        System.err.println(commentMap);
-        System.err.println(reCommentList);
+//        System.err.println(commentMap);
+//        System.err.println(reCommentList);
 
         //코멘트, 리코멘트 맵핑
         List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
 //        commentList.sort();
 
+        commentVO.setPageInfo();
+        commentVO.setNowPage(commentVO.getEndPage());
         model.addAttribute("commentList", commentList);
         model.addAttribute("inputComment",new CommentVO()
                 .withReciveMemberId(
                 commentVO.getReciveMemberId()
         ));
-
         model.addAttribute("foodCode", commentVO.getFoodCode());
         model.addAttribute("nowPage", commentVO.getNowPage());
         //client로 알람 전달

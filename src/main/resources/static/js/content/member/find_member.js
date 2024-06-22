@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (event) {
         inputArray.forEach(function (input) {
             if (!input.contains(event.target)) {
-                input.closest('.inputBox').classList.remove('on');
+                input.closest('.inputBox')?.classList.remove('on');
             }
         });
     });
@@ -200,8 +200,11 @@ function findPw() {
             })
         })
             .then((response) => {
-                if (!response.ok) {
-                    alert('fetch error!\n컨트롤러로 통신 중에 오류가 발생했습니다.');
+                if (400==response.status) {
+                    new Error();
+                    return;
+                }else if (!response.ok) {
+                    alert("!!")
                     return;
                 }
 
@@ -209,18 +212,45 @@ function findPw() {
             })
             .then((data) => {
                 console.log(data)
-                if (data.length === 0) {
-                    resultFail.style.display = "block";
-                } else {
-                    data.forEach(data1 => {
-                        console.log(data1)
-                    });
-                }
+                // if (data.length === 0) {
+                //     resultFail.style.display = "block";
+                // } else {
+                    // data.forEach(data1 => {
+                    //     console.log(data1)
+                    // });
+                    console.log(data.memberId)
+                // }
+                location.href='/member/changePw?memberId='+data.memberId;
             })
             .catch((err) => {
-                alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                resultFail.style.display = "block";
                 console.log(err);
             });
 
     }
+}
+function authenticateForChangePw(){
+    const authenticateForChangePwURL = "/member/authenticateForChangePw";
+    
+    const options ={
+        method : 'POST',
+        cache : "no-cache",
+        body : new FormData(document.querySelector('#joinForm'))
+    }
+    fetch(authenticateForChangePwURL,options)
+    .then((resp)=>{
+        console.log(resp);
+        if(resp.status!=200){
+            throw new Error();
+        }else{
+            location.href='/member/changePw';
+        }
+    })
+    .catch((err)=>{
+        pu_error.classList.remove('pu_blind')
+    })
+}
+const pu_error = document.querySelector('.pu_error')
+function displayOff_pu(){
+    pu_error.classList.add('pu_blind')
 }
