@@ -21,10 +21,10 @@
             </div>
             <div class="csc_inner">
                 <div class="csc_searchBox">
-                    <form action="/csc/cscForm" method="post">
+                    <form action="/csc/cscForm" method="post" class="csc_searchForm">
                         <div class="csc_searchBlock">
                             <input type="text" class="csc_search" placeholder="궁금한 점을 간단하게" name="allSearchKeyword" th:value="${allSearchKeyword}">
-                            <div class="csc_searchBtn" onclick="cscSearch()">
+                            <div class="csc_searchBtn" onclick="csc_search()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffd57a"
                                     class="bi bi-search" viewBox="0 0 16 16">
                                     <path
