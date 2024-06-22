@@ -1,7 +1,9 @@
 package com.easyfolio.esf.food.controller;
 
 import com.easyfolio.esf.csc.vo.PageVO;
+import com.easyfolio.esf.csc.vo.inq.InqImgVO;
 import com.easyfolio.esf.food.service.FoodService;
+import com.easyfolio.esf.food.vo.FoodImgVO;
 import com.easyfolio.esf.food.vo.FoodStepsVO;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.MemberService;
@@ -10,6 +12,8 @@ import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.myPage.service.MyPageService;
 import com.easyfolio.esf.myPage.vo.CommentVO;
 import com.easyfolio.esf.myPage.vo.FavoriteVO;
+import com.easyfolio.esf.util.UploadUtillFoodImg;
+import com.easyfolio.esf.util.UploadUtillInq;
 import com.easyfolio.esf.weather.service.WeatherService;
 import com.easyfolio.esf.weather.vo.DdabongVO;
 import com.easyfolio.esf.weather.vo.RegionVO;
@@ -29,6 +33,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
@@ -276,9 +281,28 @@ public class FoodController {
     }
 
     @PostMapping("/recipeInsert")
-    public String recipeInsert(FoodVO foodVO, FoodStepsVO foodStepsVO) {
-        foodVO.setFoodCode(foodService.nextFoodCode());
-        foodStepsVO.setFoodCode(foodService.nextFoodCode());
+    public String recipeInsert(FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
+        //0. 다음에 들어가야 할 ITEM_CODE를 조회
+        String foodCode = foodService.nextFoodCode();
+
+        //2. 이미지 정보 하나가 들어갈 수 있는 통!
+
+        //첨부파일 기능 다중
+//        FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
+//
+//
+//        for(InqImgVO inqImgVO : imgList){
+//            inqImgVO.setInqCode(inqCode);
+//        }
+//
+//        inqVO.setInqImgList(imgList);
+//
+//        //상품 등록  + 이미지 등록 쿼리
+//        inqVO.setInqCode(inqCode);
+//        cscService.insertInq(inqVO);
+
+        foodVO.setFoodCode(foodCode);
+        foodStepsVO.setFoodCode(foodCode);
         System.err.println(foodVO);
         System.err.println(foodStepsVO);
         return "/content/food/food_insert";
