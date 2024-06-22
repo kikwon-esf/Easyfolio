@@ -162,7 +162,10 @@ public class FoodController {
         }else{
             model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
         }
-        model.addAttribute("memberIdCheck", principal.getName());
+        if(principal != null){
+            model.addAttribute("memberIdCheck", principal.getName());
+        }
+
 
         return "/content/food/food_detail";
     }
