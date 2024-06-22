@@ -199,31 +199,77 @@
     </select>
 
     <!--  음식명 검색 api  -->
+<!--    <select id="searchFoodAll" resultMap="food">-->
+<!--        SELECT F.FOOD_CODE-->
+<!--        , F.FOOD_TTL-->
+<!--        , F.FOOD_DIF-->
+<!--        , F.FOOD_INQ_CNT-->
+<!--        , F.FOOD_RCMM_CNT-->
+<!--        , F.MEMBER_ID-->
+<!--        , FI.ATTACHED_FILE_NAME-->
+<!--        FROM FOOD F, FOOD_IMG FI-->
+<!--        <where>-->
+<!--            <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">-->
+<!--                AND FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'-->
+<!--            </if>-->
+<!--            <if test="foodKindCode != null and not foodKindCode.isEmpty()">-->
+<!--                AND FOOD_KIND_CODE = #{foodKindCode}-->
+<!--            </if>-->
+<!--            <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">-->
+<!--                AND FOOD_USAGE_CODE = #{foodUsageCode}-->
+<!--            </if>-->
+<!--            <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">-->
+<!--                AND FOOD_MTRL_CODE = #{foodMtrlCode}-->
+<!--            </if>-->
+<!--            <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">-->
+<!--                AND FOOD_TYPE_CODE = #{foodTypeCode}-->
+<!--            </if>-->
+<!--            F.FOOD_CODE = FI.FOOD_CODE-->
+<!--        </where>-->
+<!--        ORDER BY FOOD_INQ_CNT DESC-->
+<!--        OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY-->
+<!--    </select>-->
+
     <select id="searchFoodAll" resultMap="food">
-        SELECT FOOD_CODE
-        , FOOD_TTL
-        , FOOD_DIF
-        , FOOD_INQ_CNT
-        , FOOD_RCMM_CNT
-        , MEMBER_ID
-        FROM FOOD
-        <where>
+        SELECT F.FOOD_CODE
+        , F.FOOD_TTL
+        , F.FOOD_DIF
+        , F.FOOD_INQ_CNT
+        , F.FOOD_RCMM_CNT
+        , F.MEMBER_ID
+        , FI.ATTACHED_FILE_NAME
+        FROM FOOD F LEFT JOIN FOOD_IMG FI
+        ON F.FOOD_CODE = FI.FOOD_CODE
+        <if test="(searchFoodValue != null and not searchFoodValue.isEmpty()) or (foodKindCode != null and not foodKindCode.isEmpty()) or (foodUsageCode != null and not foodUsageCode.isEmpty()) or (foodMtrlCode != null and not foodMtrlCode.isEmpty()) or (foodTypeCode != null and not foodTypeCode.isEmpty())" >
+            WHERE
+        </if>
             <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">
-                AND FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
+                FOOD_TTL LIKE '%' || #{searchFoodValue} || '%'
             </if>
             <if test="foodKindCode != null and not foodKindCode.isEmpty()">
-                AND FOOD_KIND_CODE = #{foodKindCode}
+                <if test="searchFoodValue != null and not searchFoodValue.isEmpty()">
+                    AND
+                </if>
+                FOOD_KIND_CODE = #{foodKindCode}
             </if>
             <if test="foodUsageCode != null and not foodUsageCode.isEmpty()">
-                AND FOOD_USAGE_CODE = #{foodUsageCode}
+                <if test="(searchFoodValue != null and not searchFoodValue.isEmpty()) or (foodKindCode != null and not foodKindCode.isEmpty())" >
+                    AND
+                </if>
+                FOOD_USAGE_CODE = #{foodUsageCode}
             </if>
             <if test="foodMtrlCode != null and not foodMtrlCode.isEmpty()">
-                AND FOOD_MTRL_CODE = #{foodMtrlCode}
+                <if test="(searchFoodValue != null and not searchFoodValue.isEmpty()) or (foodKindCode != null and not foodKindCode.isEmpty()) or (foodUsageCode != null and not foodUsageCode.isEmpty())" >
+                    AND
+                </if>
+                FOOD_MTRL_CODE = #{foodMtrlCode}
             </if>
             <if test="foodTypeCode != null and not foodTypeCode.isEmpty()">
-                AND FOOD_TYPE_CODE = #{foodTypeCode}
+                <if test="(searchFoodValue != null and not searchFoodValue.isEmpty()) or (foodKindCode != null and not foodKindCode.isEmpty()) or (foodUsageCode != null and not foodUsageCode.isEmpty()) or (foodMtrlCode != null and not foodMtrlCode.isEmpty())" >
+                    AND
+                </if>
+                FOOD_TYPE_CODE = #{foodTypeCode}
             </if>
-        </where>
         ORDER BY FOOD_INQ_CNT DESC
         OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
@@ -234,14 +280,11 @@
     SELECT *
     FROM (
         SELECT
-            F.FOOD_CODE,
-            F.FOOD_TTL,
-            F.FOOD_DIF,
-            F.FOOD_INQ_CNT,
-            F.FOOD_RCMM_CNT,
-            FI.FOOD_IMG_CODE,
-            FI.ORIGIN_FILE_NAME,
-            FI.ATTACHED_FILE_NAME,
+            FOOD_CODE,
+            FOOD_TTL,
+            FOOD_DIF,
+            FOOD_INQ_CNT,
+            FOOD_RCMM_CNT,
             ROWNUM AS rnum
         FROM (
             SELECT
@@ -257,14 +300,12 @@
                 OR FOOD_MTRL_CODE = #{allSearchKeyword}
                 OR FOOD_TYPE_CODE = #{allSearchKeyword}
             ORDER BY FOOD_INQ_CNT DESC
-        ) F
-        LEFT JOIN FOOD_IMG FI ON F.FOOD_CODE = FI.FOOD_CODE
+        )
         WHERE ROWNUM <= 5
     )
     WHERE rnum <= 5
     ]]>
     </select>
-
 
     <select id="allSearchFoodCnt" resultType="int">
         SELECT COUNT(FOOD_CODE)

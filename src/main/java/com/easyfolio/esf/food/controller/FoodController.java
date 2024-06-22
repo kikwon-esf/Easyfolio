@@ -114,7 +114,7 @@ public class FoodController {
 
 
     @GetMapping(value = "detail")
-    public String foodDtl(@ModelAttribute("foodCode") String foodCode,Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
+    public String foodDtl(Principal principal ,@ModelAttribute("foodCode") String foodCode,Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
         if(foodCode.equals("") || foodCode != null){
             foodVO.setFoodCode(foodCode);
         }
@@ -162,7 +162,7 @@ public class FoodController {
         }else{
             model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
         }
-
+        model.addAttribute("memberId", principal.getName());
 
         return "/content/food/food_detail";
     }
