@@ -240,7 +240,9 @@ public class MyPageController {
                 .withReciveMemberId(
                 commentVO.getReciveMemberId()
         ));
+
         model.addAttribute("foodCode", commentVO.getFoodCode());
+        model.addAttribute("nowPage", commentVO.getNowPage());
         //client로 알람 전달
         sseService.notify(sendMember, alarmList);
         return "content/myPage/replace/food_comment";

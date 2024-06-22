@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="searchAndBtn">
-                            <form action="/food/searchFoodPage" class="searchFoodForm" method="post">
+                            <form action="/food/searchFoodPage" class="searchFoodForm" method="get">
                                 <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
                                 <input type="hidden" name="foodKindCode" th:value="${foodKindCode}">
                                 <input type="hidden" name="foodUsageCode" th:value="${foodUsageCode}">
