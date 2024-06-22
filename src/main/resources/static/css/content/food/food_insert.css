@@ -444,6 +444,7 @@ textarea {
 }
 
 .recipeInsertBox {
+    border: 1px solid transparent;
     position: relative;
     cursor: pointer;
     width: 300px;
@@ -645,6 +646,9 @@ textarea {
 .check{
     border: 1px solid #ff3f3f;
 }
+.recipeInput.check::placeholder{
+    color: #ff3f3f;
+}
 .recipeImg{
     cursor: pointer;
     width: 300px;
@@ -673,4 +677,10 @@ textarea {
 }
 .mtrlMt.plus{
     margin-bottom: 2px;
+}
+.select.check{
+    background: linear-gradient(180deg, #f22121d1 0%, rgb(242 33 33) 100%), linear-gradient(0deg, #fff, #FFFFFF);
+}
+.recipeTextarea.check::placeholder{
+    color: #ff3f3f;
 }
