@@ -27,11 +27,11 @@
                                 <a th:href="@{/csc/annListForm(annCate=${annCate.cateCode}, allSearchKeyword=${allSearchKeyword})}">[[${annCate.cateName}]]</a>
                             </p>
                         </div>
-                        <form action="/csc/annListForm" method="post">
+                        <form action="/csc/annListForm" method="post" class="ann_searchForm">
                             <div class="annSearchBlock">
                                 <input type="text" class="annSearch" placeholder="공지사항 검색" name="allSearchKeyword" th:value="${allSearchKeyword}">
                                 <input type="hidden" name="annCate" id="annCateNum" th:value="${annCate}">
-                                <div class="annSearchBtn">
+                                <div class="annSearchBtn" onclick="ann_search()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ffd57a"
                                         class="bi bi-search" viewBox="0 0 16 16">
                                         <path
