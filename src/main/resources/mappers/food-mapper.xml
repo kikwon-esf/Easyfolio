@@ -296,7 +296,7 @@
 
     <select id="getFoodSteps" resultMap="foodSteps">
         SELECT FOOD_EX
-        FROM FOOD_RECIPE
+        FROM FOOD_STEPS
         WHERE FOOD_CODE = #{foodCode}
     </select>
 
@@ -341,6 +341,36 @@
         FOOD_TTL LIKE '%' || #{foodName} || '%'
     </foreach>
     </select>
+
+    <insert id="insertFood">
+        INSERT INTO FOOD (
+        FOOD_CODE
+        , FOOD_TTL
+        , FOOD_NAME
+        , MEMBER_NAME
+        , FOOD_TYPE_CODE
+        , FOOD_USAGE_CODE
+        , FOOD_MTRL_CODE
+        , FOOD_KIND_CODE
+        , FOOD_INDC
+        , FOOD_MTRL_CN
+        , MEMBER_ID
+        )
+        VALUES (
+        (SELECT 'FOOD_' || LPAD(NVL(MAX(TO_NUMBER(SUBSTR(FOOD_CODE, 6))), 0) + 1, 6, '0')
+        FROM FOOD)
+        , #{foodTtl}
+        , #{foodName}
+        , #{memberName}
+        , #{foodTypeCode}
+        , #{foodUsageCode}
+        , #{foodMtrlCode}
+        , #{foodKindCode}
+        , #{foodIndc}
+        , #{foodMtrlCn}
+        , #{memberId}
+        )
+    </insert>
 
 
 </mapper>

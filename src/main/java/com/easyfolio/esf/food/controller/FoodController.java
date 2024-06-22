@@ -261,11 +261,24 @@ public class FoodController {
 
     // 레시피 등록 페이지로 이동
     @GetMapping("/insertFoodForm")
-    public String insertFoodForm(Model model) {
+    public String insertFoodForm(Model model, Principal principal, MemberVO memberVO) {
+        MemberVO memberVO1 = new MemberVO();
+        memberVO1.setMemberName((memberService.selectMemberName(principal.getName())).getMemberName());
+        memberVO1.setMemberId(principal.getName());
+        System.err.println(memberVO1);
+
+        model.addAttribute("memberInfo", memberVO1);
         model.addAttribute("foodUsageList", foodService.foodUsageList());
         model.addAttribute("foodKindList", foodService.foodKindList());
         model.addAttribute("foodMtrlList", foodService.foodMtrlList());
         model.addAttribute("foodTypeList", foodService.foodTypeList());
+        return "/content/food/food_insert";
+    }
+
+    @PostMapping("/recipeInsert")
+    public String recipeInsert(FoodVO foodVO, FoodStepsVO foodStepsVO) {
+        System.err.println(foodVO);
+        System.err.println(foodStepsVO);
         return "/content/food/food_insert";
     }
 
