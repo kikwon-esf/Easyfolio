@@ -21,6 +21,7 @@
         <result column="FOOD_TIME" property="foodTime"/>
         <result column="FOOD_REG_DT" property="foodRegDt"/>
         <result column="MEMBER_ID" property="memberId"/>
+        <collection property="foodImgVO" resultMap="foodImg"/>
         <collection property="foodKindVO" resultMap="foodKind"/>
         <collection property="foodUsageVO" resultMap="foodUsage"/>
         <collection property="foodMtrlVO" resultMap="foodMtrl"/>
@@ -233,11 +234,14 @@
     SELECT *
     FROM (
         SELECT
-            FOOD_CODE,
-            FOOD_TTL,
-            FOOD_DIF,
-            FOOD_INQ_CNT,
-            FOOD_RCMM_CNT,
+            F.FOOD_CODE,
+            F.FOOD_TTL,
+            F.FOOD_DIF,
+            F.FOOD_INQ_CNT,
+            F.FOOD_RCMM_CNT,
+            FI.FOOD_IMG_CODE,
+            FI.ORIGIN_FILE_NAME,
+            FI.ATTACHED_FILE_NAME,
             ROWNUM AS rnum
         FROM (
             SELECT
@@ -253,12 +257,15 @@
                 OR FOOD_MTRL_CODE = #{allSearchKeyword}
                 OR FOOD_TYPE_CODE = #{allSearchKeyword}
             ORDER BY FOOD_INQ_CNT DESC
-        )
+        ) F
+        LEFT JOIN FOOD_IMG FI ON F.FOOD_CODE = FI.FOOD_CODE
         WHERE ROWNUM <= 5
     )
     WHERE rnum <= 5
     ]]>
     </select>
+
+
     <select id="allSearchFoodCnt" resultType="int">
         SELECT COUNT(FOOD_CODE)
         FROM FOOD
@@ -331,7 +338,11 @@
         , FOOD_INQ_CNT
         , FOOD_RCMM_CNT
         , MEMBER_ID
-        FROM FOOD
+        , FOOD_IMG_CODE
+        , ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        FROM FOOD, FOOD_IMG
+        ON FOOD.FOOD_CODE = FOOD_IMG.FOOD_CODE
         ORDER BY FOOD_INQ_CNT DESC
         FETCH FIRST 10 ROWS ONLY
     </select>
@@ -383,7 +394,7 @@
         )
     </insert>
 
-    <insert id="insertFoodStpes">
+    <insert id="insertFoodSteps">
         INSERT INTO FOOD_STEPS (
         FOOD_CODE
         , FOOD_EX
@@ -393,6 +404,31 @@
         , #{foodEx}
         )
     </insert>
+
+    <insert id="insertFoodImg" parameterType="Map">
+        INSERT INTO FOOD_IMG (
+        FOOD_IMG_CODE,
+        ORIGIN_FILE_NAME,
+        ATTACHED_FILE_NAME,
+        FOOD_CODE
+        )
+        VALUES (
+        'FOOD_IMG_' || LPAD(NVL((SELECT TO_NUMBER(SUBSTR(MAX(FOOD_IMG_CODE), 10)) + 1 FROM FOOD_IMG), 1), 3, '0'),
+        #{originFileName},
+        #{attachedFileName},
+        #{foodCode}
+        )
+    </insert>
+
+    <select id="selectFoodImg" resultMap="foodImg">
+        SELECT FOOD_IMG_CODE
+        , ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        , FOOD_CODE
+        FROM FOOD_IMG
+        WHERE FOOD_CODE = #{foodCode}
+    </select>
+
 
 
 </mapper>

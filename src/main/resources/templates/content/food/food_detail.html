@@ -111,7 +111,9 @@
                                 <div class="recipe_info_top">
                                     <div class="recipe_info_left">
                                         <div class="recipe_img">
-                                            <img src="/img/food/examImg.jpg" alt="">
+                                            
+                                            <img th:if="${foodImg == null}" src="/img/food/examImg.jpg" alt="">
+                                            <img th:if="${foodImg != null}" th:src="${'/img/food/recipe/'+ foodImg.attachedFileName}" alt="">
                                         </div>
                                     </div>
                                     <div class="recipe_info_right">
