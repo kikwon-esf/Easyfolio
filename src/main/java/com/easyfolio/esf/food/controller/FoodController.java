@@ -297,7 +297,7 @@ public class FoodController {
     }
 
     @GetMapping("/ddabongCodeRecipeList")
-    public String ddabongRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
+    public String ddabongCodeRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
 //        List<FoodVO> ddabongFoodList = foodService.ddabongRecipeList(foodNames);
 //        model.addAttribute("foodLists", ddabongFoodList);
         FoodVO foodVO1 = new FoodVO();
