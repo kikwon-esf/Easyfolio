@@ -373,17 +373,17 @@
     </select>
 
     <select id="allRecipeList" resultMap="food">
-        SELECT FOOD_CODE
-        , FOOD_TTL
-        , FOOD_DIF
-        , FOOD_INQ_CNT
-        , FOOD_RCMM_CNT
-        , MEMBER_ID
-        , FOOD_IMG_CODE
-        , ORIGIN_FILE_NAME
-        , ATTACHED_FILE_NAME
-        FROM FOOD, FOOD_IMG
-        ON FOOD.FOOD_CODE = FOOD_IMG.FOOD_CODE
+        SELECT F.FOOD_CODE
+        , F.FOOD_TTL
+        , F.FOOD_DIF
+        , F.FOOD_INQ_CNT
+        , F.FOOD_RCMM_CNT
+        , F.MEMBER_ID
+        , FI.FOOD_IMG_CODE
+        , FI.ORIGIN_FILE_NAME
+        , FI.ATTACHED_FILE_NAME
+        FROM FOOD F LEFT JOIN FOOD_IMG FI
+        ON F.FOOD_CODE = FI.FOOD_CODE
         ORDER BY FOOD_INQ_CNT DESC
         FETCH FIRST 10 ROWS ONLY
     </select>
