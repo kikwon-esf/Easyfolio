@@ -84,6 +84,7 @@ public class FoodController {
 
     private void setupFoodList(Model model, FoodVO foodVO) {
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        System.err.println(foodService.searchFoodAll(foodVO));
     }
 
     private void setupSearchDetails(Model model, FoodVO foodVO) {
@@ -113,7 +114,10 @@ public class FoodController {
 
 
     @GetMapping(value = "detail")
-    public String foodDtl(Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
+    public String foodDtl(Principal principal ,@ModelAttribute("foodCode") String foodCode,Model model, FoodVO foodVO,@RequestParam(value = "foodCommentId", required = false) String foodCommentId ) {
+        if(foodCode.equals("") || foodCode != null){
+            foodVO.setFoodCode(foodCode);
+        }
         foodService.updateFoodInqCnt(foodVO);
         model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
@@ -143,6 +147,7 @@ public class FoodController {
         }
 
         // 결과 출력
+        model.addAttribute("foodImg", foodService.selectFoodImg(foodVO));
         model.addAttribute("mtrlTitles", mtrlTitle);
         model.addAttribute("mtrlMt1", mtrlMt1);
         if (mtrlMt2.isEmpty()) {
@@ -157,7 +162,7 @@ public class FoodController {
         }else{
             model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
         }
-
+        model.addAttribute("memberId", principal.getName());
 
         return "/content/food/food_detail";
     }
@@ -281,31 +286,19 @@ public class FoodController {
     }
 
     @PostMapping("/recipeInsert")
-    public String recipeInsert(FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
-        //0. 다음에 들어가야 할 ITEM_CODE를 조회
+    public String recipeInsert(RedirectAttributes redirectAttributes,FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
         String foodCode = foodService.nextFoodCode();
 
-        //2. 이미지 정보 하나가 들어갈 수 있는 통!
-
-        //첨부파일 기능 다중
-//        FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
-//
-//
-//        for(InqImgVO inqImgVO : imgList){
-//            inqImgVO.setInqCode(inqCode);
-//        }
-//
-//        inqVO.setInqImgList(imgList);
-//
-//        //상품 등록  + 이미지 등록 쿼리
-//        inqVO.setInqCode(inqCode);
-//        cscService.insertInq(inqVO);
-
+        FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
+        uploadedImg.setFoodCode(foodCode);
         foodVO.setFoodCode(foodCode);
         foodStepsVO.setFoodCode(foodCode);
         System.err.println(foodVO);
         System.err.println(foodStepsVO);
-        return "/content/food/food_insert";
+        System.err.println(uploadedImg);
+        foodService.insertFood(foodVO, foodStepsVO, uploadedImg);
+        redirectAttributes.addFlashAttribute("foodCode", foodCode);
+        return "redirect:/food/detail";
     }
 
 }

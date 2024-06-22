@@ -111,7 +111,9 @@
                                 <div class="recipe_info_top">
                                     <div class="recipe_info_left">
                                         <div class="recipe_img">
-                                            <img src="/img/food/examImg.jpg" alt="">
+                                            
+                                            <img th:if="${foodImg == null}" src="/img/food/examImg.jpg" alt="">
+                                            <img th:if="${foodImg != null}" th:src="${'/img/food/recipe/'+ foodImg.attachedFileName}" alt="">
                                         </div>
                                     </div>
                                     <div class="recipe_info_right">
@@ -194,6 +196,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="updateBtnBlock">
+                        <div class="updateBtnBox">
+                            <a th:href="@{/food/updateFood(foodCode=${foodDetail.foodCode}, memberId=${memberId})}"><p>수정하기</p></a>
                         </div>
                     </div>
                     <div class="newComment">

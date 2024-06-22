@@ -1,6 +1,7 @@
 package com.easyfolio.esf.food.service;
 
 import com.easyfolio.esf.food.vo.*;
+import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.weather.vo.DdabongVO;
 
 import java.util.List;
@@ -53,5 +54,7 @@ public interface FoodService {
 
     public String nextFoodCode();
 
-    public void insertFood(FoodVO foodVO, FoodStepsVO foodStepsVO);
+    public void insertFood(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO);
+
+    public FoodImgVO selectFoodImg(FoodVO foodVO);
 }
