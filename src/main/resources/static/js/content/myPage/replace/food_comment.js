@@ -57,11 +57,10 @@ function submitComment(target) {
         .then((data) => {
             writeContent(replacePosition, data);
             pagingCount();
-            const foodCode_hide = document.querySelector('.foodCode_hide')
+            // const foodCode_hide = document.querySelector('.foodCode_hide')
         })
         .catch(e=>{
             // alert("부정확한 값입니다!");
-            console.log("ee");
             pu_error();
         })
 
@@ -266,7 +265,7 @@ function findScrollValue(commentNode){
 function pagingCount(){
     
     nowPage = document.querySelector("#nowPage").value;
-    console.log(nowPage)
+    console.log("nowpage : "+nowPage)
     let nowPageNode = document.getElementById('page'+nowPage);
     nowPageNode.classList.add('active');
 }
