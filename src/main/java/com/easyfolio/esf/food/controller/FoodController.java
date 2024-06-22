@@ -277,6 +277,8 @@ public class FoodController {
 
     @PostMapping("/recipeInsert")
     public String recipeInsert(FoodVO foodVO, FoodStepsVO foodStepsVO) {
+        foodVO.setFoodCode(foodService.nextFoodCode());
+        foodStepsVO.setFoodCode(foodService.nextFoodCode());
         System.err.println(foodVO);
         System.err.println(foodStepsVO);
         return "/content/food/food_insert";

@@ -52,6 +52,13 @@
         <result column="FOOD_EX" property="foodEx" />
     </resultMap>
 
+    <resultMap id="foodImg" type="com.easyfolio.esf.csc.vo.food.FoodImgVO">
+        <id column="FOOD_IMG_CODE" property="foodImgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="FOOD_CODE" property="foodCode"/>
+    </resultMap>
+
 
 <!--   종류별-->
     <select id="foodKindList" resultMap="foodKind">
@@ -342,6 +349,11 @@
     </foreach>
     </select>
 
+    <select id="nextFoodCode" resultType="String">
+        SELECT 'FOOD_' || LPAD(NVL(MAX(TO_NUMBER(SUBSTR(FOOD_CODE, 6))), 0) + 1, 6, '0')
+        FROM FOOD
+    </select>
+
     <insert id="insertFood">
         INSERT INTO FOOD (
         FOOD_CODE
@@ -357,8 +369,7 @@
         , MEMBER_ID
         )
         VALUES (
-        (SELECT 'FOOD_' || LPAD(NVL(MAX(TO_NUMBER(SUBSTR(FOOD_CODE, 6))), 0) + 1, 6, '0')
-        FROM FOOD)
+        #{foodCode}
         , #{foodTtl}
         , #{foodName}
         , #{memberName}
@@ -369,6 +380,17 @@
         , #{foodIndc}
         , #{foodMtrlCn}
         , #{memberId}
+        )
+    </insert>
+
+    <insert id="insertFoodStpes">
+        INSERT INTO FOOD_STEPS (
+        FOOD_CODE
+        , FOOD_EX
+        )
+        VALUES (
+        #{foodCode}
+        , #{foodEx}
         )
     </insert>
 
