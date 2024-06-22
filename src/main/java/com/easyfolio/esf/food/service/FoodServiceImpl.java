@@ -159,6 +159,14 @@ public class FoodServiceImpl implements FoodService{
         sqlSession.update("foodMapper.updateFood", foodVO);
         sqlSession.update("foodMapper.updateFoodSteps", foodStepsVO);
     }
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateAndInsertImg(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO) {
+        sqlSession.update("foodMapper.updateFood", foodVO);
+        sqlSession.update("foodMapper.updateFoodSteps", foodStepsVO);
+        sqlSession.insert("foodMapper.insertFoodImg", foodImgVO);
+    }
+
 
 //
 

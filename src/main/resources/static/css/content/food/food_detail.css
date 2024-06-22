@@ -247,11 +247,11 @@ textarea {
     margin: 2px 0 3px 0;
     font-size: 15px;
     font-weight: 700;
-    color: #f3c053;
+    color: #f3c053;s
 }
 
 .recipe_steps {
-    text-align: center;
+    text-align: left;
     position: relative;
     width: 100%;
     box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
@@ -411,4 +411,27 @@ textarea {
 }
 .rcmmCntBox{
     font-size: 17px;
+}
+.stepsTextBox{
+    display: flex;
+}
+.stepsTextBox{
+    width: 950px;
+    margin : 0 auto 27px auto;
+}
+.stepsNumber p{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #f29221;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    margin-right: 20px;
+}
+.stepsText{
+    width: 890px;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 2px 10px;
 }

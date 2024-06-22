@@ -210,14 +210,16 @@
                                                 Steps
                                             </p>
                                         </div>
-                                        <p class="steps_text">
-                                        <p class="steps_text"
-                                            th:if="${foodSteps != null && #lists.size(foodSteps) != 0 }"
-                                            th:each="step : ${foodSteps}" th:text="${step}">
-                                        </p>
-                                        <p th:if="${foodSteps == null || #lists.size(foodSteps) == 0 }">등록된 조리순서가 없습니다.
-                                        </p>
-                                        </p>
+                                        <div class="stepsTextBox" th:each="foodStep,state : ${foodSteps}">
+                                            <div class="stepsNumber">
+                                                <p th:text="${state.index + 1}"></p>
+                                            </div>
+                                            <p class="stepsText" th:text="${foodStep}"></p>
+                                        </div>
+                                        <div class="stepsTextBox"
+                                            th:if="${foodSteps == null || #lists.size(foodSteps) == 0 }">
+                                            <p class="stepsText">등록된 조리순서가 없습니다.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

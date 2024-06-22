@@ -84,7 +84,6 @@ public class FoodController {
 
     private void setupFoodList(Model model, FoodVO foodVO) {
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
-        System.err.println(foodService.searchFoodAll(foodVO));
     }
 
     private void setupSearchDetails(Model model, FoodVO foodVO) {
@@ -350,12 +349,17 @@ public class FoodController {
     public String foodUpdate(RedirectAttributes redirectAttributes,FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
         String foodCode = foodVO.getFoodCode();
         FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
-        if(uploadedImg != null){
+
+        if (uploadedImg != null) {
             uploadedImg.setFoodCode(foodCode);
-            foodService.updateFood(foodVO, foodStepsVO, uploadedImg);
-        } else{
+            if (foodService.selectFoodImg(foodVO) != null) {
+                foodService.updateFood(foodVO, foodStepsVO, uploadedImg);
+            } else if (foodService.selectFoodImg(foodVO) == null) {
+                foodService.updateAndInsertImg(foodVO, foodStepsVO, uploadedImg);
+            }
+        }else{
             foodService.updateFood(foodVO, foodStepsVO);
-        }
+    }
 
         redirectAttributes.addFlashAttribute("foodCode", foodCode);
         return "redirect:/food/detail";
