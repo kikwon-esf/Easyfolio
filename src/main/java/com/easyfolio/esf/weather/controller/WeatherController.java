@@ -1,6 +1,7 @@
 package com.easyfolio.esf.weather.controller;
 
 import com.easyfolio.esf.weather.service.WeatherService;
+import com.easyfolio.esf.weather.vo.DdabongVO;
 import com.easyfolio.esf.weather.vo.RegionVO;
 import com.easyfolio.esf.weather.vo.WeatherVO;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,11 @@ public class WeatherController {
         model.addAttribute("regionParents", weatherService.regionParent());
         model.addAttribute("regionChilds", weatherService.regionChild());
         return "/content/food/weatherFood";
+    }
+
+    @GetMapping("/food")
+    public String foodWeather(DdabongVO ddabongVO, Model model) {
+        model.addAttribute("weather", weatherService.ddabongFoodList(ddabongVO.getDdabongCode()));
+        return "/content/food/weatherFood_direct";
     }
 }

@@ -249,6 +249,69 @@ public class FoodController {
         return "redirect:/food/ddabongRecipeList";
     }
 
+    @GetMapping("/ddabongcode")
+    public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes) {
+        String urlText = "";
+
+        switch (ddabongVO.getDdabongCode()) {
+            case "DDABONG_001":
+                urlText = "/img/weather/weatherBanner_cold.png";
+                break;
+            case "DDABONG_002":
+                urlText = "/img/weather/weatherBanner_hot.png";
+                break;
+            case "DDABONG_003":
+                urlText = "/img/weather/weatherBanner_rain.png";
+                break;
+            case "DDABONG_004":
+                urlText = "/img/weather/weatherBanner_snow.png";
+                break;
+            case "DDABONG_005":
+                urlText = "/img/weather/weatherBanner_night.png";
+                break;
+            case "DDABONG_006":
+                urlText = "/img/weather/weatherBanner_normal.png";
+                break;
+        }
+
+
+        List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongVO.getDdabongCode());
+
+        List<String> foodNames = new ArrayList<>();
+        for (DdabongVO ddabong : foodList) {
+            if (ddabong.getDdabongFood() != null) {
+                String[] foodArray = ddabong.getDdabongFood().split(",\\s*"); // 쉼표 뒤에 공백이 있을 수 있으므로 \\s* 추가
+                foodNames.addAll(Arrays.asList(foodArray));
+            }
+        }
+
+        redirectAttributes.addAttribute("ddabongCode", ddabongVO.getDdabongCode());
+        redirectAttributes.addAttribute("foodNames", foodNames);
+        redirectAttributes.addAttribute("urlText", urlText);
+        return "redirect:/food/ddabongCodeRecipeList"; // 이 부분은 필요 없으며 아래 부분이 중요합니다
+    }
+
+    @GetMapping("/ddabongCodeRecipeList")
+    public String ddabongCodeRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
+//        List<FoodVO> ddabongFoodList = foodService.ddabongRecipeList(foodNames);
+//        model.addAttribute("foodLists", ddabongFoodList);
+        FoodVO foodVO1 = new FoodVO();
+        List<FoodVO> ddabongFoodList;
+
+        if (foodNames == null || foodNames.isEmpty()) {
+            // foodNames가 비어있는 경우 모든 데이터를 조회하도록 처리
+            ddabongFoodList = foodService.allRecipeList();
+        }
+        else {
+            ddabongFoodList = foodService.ddabongRecipeList(foodNames);
+        }
+        foodVO1.setPageInfo();
+        model.addAttribute("nowPage", foodVO1.getNowPage());
+        model.addAttribute("urlText", urlText);
+        model.addAttribute("foodList", ddabongFoodList);
+        return "content/food/ddabongRecipeList";
+    }
+
     @GetMapping("/ddabongRecipeList")
     public String ddabongRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
 //        List<FoodVO> ddabongFoodList = foodService.ddabongRecipeList(foodNames);
