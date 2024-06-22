@@ -86,6 +86,7 @@ textarea {
 }
 
 .recipe_header_top {
+    position: relative;
     border-bottom: 1px solid #dadada;
 }
 
@@ -399,4 +400,15 @@ textarea {
 }
 .updateBtnBox:hover p{
     background-color: #f29221;
+}
+.cartBox{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+.heartBox{
+    margin-bottom: 10px;
+}
+.rcmmCntBox{
+    font-size: 17px;
 }

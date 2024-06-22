@@ -16,7 +16,7 @@
     <th:block layout:fragment="content">
         <input id="response_commentId" type="hidden" th:if="${foodCommentId != null}" th:value="${foodCommentId}">
         <input class="foodCode_hidden" type="hidden" th:value="${foodDetail.foodCode}">
-        <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">                   
+        <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">
         <div id="wrap">
             <div class="inner">
                 <div class="header">
@@ -35,6 +35,27 @@
                                     <span class="cateText">]</span>
                                 </p>
                                 <p class="recipe_title">[[${foodDetail.foodTtl}]]</p>
+                            </div>
+                            <div class="recipeTopRight">
+                                <div class="cartBox" onclick="addOrDelFav(this)">
+                                    <div class="heartBox">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ff3f3f"
+                                            class="bi bi-heart mousedown" viewBox="0 0 16 16">
+                                            <path
+                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ff3f3f"
+                                            class="bi bi-heart-fill heartOff mousedown" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                        </svg>
+                                    </div>
+                                    <p class="rcmmCntBox">
+                                        <span>(</span>
+                                        <span class="RcmmCnt">[[${foodDetail.foodRcmmCnt}]]</span>
+                                        <span>)</span>
+                                    </p>
+                                </div>
                             </div>
                             <div class="recipe_cate_block">
                                 <a th:href="@{/food/searchFoodPage(foodKindCode=${foodDetail.foodKindCode})}"
@@ -111,9 +132,10 @@
                                 <div class="recipe_info_top">
                                     <div class="recipe_info_left">
                                         <div class="recipe_img">
-                                            
+
                                             <img th:if="${foodImg == null}" src="/img/food/examImg.jpg" alt="">
-                                            <img th:if="${foodImg != null}" th:src="${'/img/food/recipe/'+ foodImg.attachedFileName}" alt="">
+                                            <img th:if="${foodImg != null}"
+                                                th:src="${'/img/food/recipe/'+ foodImg.attachedFileName}" alt="">
                                         </div>
                                     </div>
                                     <div class="recipe_info_right">
@@ -189,22 +211,28 @@
                                             </p>
                                         </div>
                                         <p class="steps_text">
-                                            <p class="steps_text" th:if="${foodSteps != null && #lists.size(foodSteps) != 0 }" th:each="step : ${foodSteps}" th:text="${step}">
-                                            </p>
-                                            <p th:if="${foodSteps == null || #lists.size(foodSteps) == 0 }">등록된 조리순서가 없습니다.</p>
+                                        <p class="steps_text"
+                                            th:if="${foodSteps != null && #lists.size(foodSteps) != 0 }"
+                                            th:each="step : ${foodSteps}" th:text="${step}">
+                                        </p>
+                                        <p th:if="${foodSteps == null || #lists.size(foodSteps) == 0 }">등록된 조리순서가 없습니다.
+                                        </p>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="updateBtnBlock" th:if="${memberIdCheck != null and foodDetail.memberId == memberIdCheck}">
+                    <div class="updateBtnBlock"
+                        th:if="${memberIdCheck != null and foodDetail.memberId == memberIdCheck}">
                         <div class="updateBtnBox">
-                            <a th:href="@{/food/updateFoodForm(foodCode=${foodDetail.foodCode})}"><p>수정하기</p></a>
+                            <a th:href="@{/food/updateFoodForm(foodCode=${foodDetail.foodCode})}">
+                                <p>수정하기</p>
+                            </a>
                         </div>
                     </div>
                     <div class="newComment">
-                         <div class="replacePosition"></div>
+                        <div class="replacePosition"></div>
                     </div>
                 </div>
             </div>
