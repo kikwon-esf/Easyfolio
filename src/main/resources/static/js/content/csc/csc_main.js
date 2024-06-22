@@ -17,7 +17,13 @@ document.addEventListener("click", function (event) {
 
 });
 
+function searchTip(element){
+    var data = element.textContent;
+    var url = '/csc/cscForm?allSearchKeyword=' + data;
+    location.href = url;
+}
 
 function csc_search() {
     document.querySelector(".csc_searchForm").submit();
 }
+

@@ -233,10 +233,11 @@ public class CscController {
     }
 
 //     자주 찾는 질문 수정 (비동기)
-    @ResponseBody
+
     @PostMapping("/updateQna")
-    public void updateQna(QnaVO qnaVO){
+    public String updateQna(QnaVO qnaVO){
         cscService.updateQna(qnaVO);
+        return "redirect:/csc/qnaListForm";
     }
 
 
