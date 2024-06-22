@@ -52,7 +52,7 @@
         <result column="FOOD_EX" property="foodEx" />
     </resultMap>
 
-    <resultMap id="foodImg" type="com.easyfolio.esf.csc.vo.food.FoodImgVO">
+    <resultMap id="foodImg" type="com.easyfolio.esf.food.vo.FoodImgVO">
         <id column="FOOD_IMG_CODE" property="foodImgCode"/>
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
         <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>

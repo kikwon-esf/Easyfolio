@@ -1,6 +1,7 @@
 package com.easyfolio.esf.util;
 
 import com.easyfolio.esf.csc.vo.ResImgVO;
+import com.easyfolio.esf.food.vo.FoodImgVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
