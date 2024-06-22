@@ -12,12 +12,12 @@ import java.util.UUID;
 public class UploadUtillFoodImg {
 
     // 파일 첨부 기능(단일 파일 업로드)
-    public static ResImgVO uploadFile(MultipartFile img) {
-        ResImgVO resImgVO = null;
+    public static FoodImgVO uploadFile(MultipartFile img) {
+        FoodImgVO foodImgVO = null;
 
         // 첨부파일을 선택했다면
         if (!img.isEmpty()) {
-            resImgVO = new ResImgVO();
+            foodImgVO = new FoodImgVO();
             // 첨부파일
             String originFileName = img.getOriginalFilename();
             // 첨부된 파일명
@@ -32,13 +32,13 @@ public class UploadUtillFoodImg {
                 File file = new File(ConstantVariable.UPLOAD_PATH_FOOD_IMG + attachedFileName);
                 img.transferTo(file);
 
-                resImgVO.setOriginFileName(originFileName);
-                resImgVO.setAttachedFileName(attachedFileName);
+                foodImgVO.setOriginFileName(originFileName);
+                foodImgVO.setAttachedFileName(attachedFileName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        return resImgVO;
+        return foodImgVO;
 
 
     }
