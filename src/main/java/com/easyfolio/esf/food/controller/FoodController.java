@@ -162,7 +162,7 @@ public class FoodController {
         }else{
             model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
         }
-        model.addAttribute("memberId", principal.getName());
+        model.addAttribute("memberIdCheck", principal.getName());
 
         return "/content/food/food_detail";
     }
@@ -299,6 +299,12 @@ public class FoodController {
         foodService.insertFood(foodVO, foodStepsVO, uploadedImg);
         redirectAttributes.addFlashAttribute("foodCode", foodCode);
         return "redirect:/food/detail";
+    }
+
+    @GetMapping("/updateFoodForm")
+    public String updateFoodForm(FoodVO foodVO){
+
+        return "/content/food/food_update";
     }
 
 }

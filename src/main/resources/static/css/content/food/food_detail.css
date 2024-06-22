@@ -377,4 +377,26 @@ textarea {
     gap: 0 25px;
     grid-template-rows: 42px 42px 42px 42px 42px;
 }
-
+.updateBtnBlock{
+    margin-top: 50px;
+    text-align: center;
+}
+.updateBtnBox{
+    display: inline-block;
+}
+.updateBtnBox p{
+    text-align: center;
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #ffa43b;
+    width: 200px;
+    height: 45px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.updateBtnBox:hover p{
+    background-color: #f29221;
+}

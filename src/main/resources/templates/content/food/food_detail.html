@@ -198,9 +198,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="updateBtnBlock">
+                    <div class="updateBtnBlock" th:if="${memberIdCheck != null and foodDetail.memberId == memberIdCheck}">
                         <div class="updateBtnBox">
-                            <a th:href="@{/food/updateFood(foodCode=${foodDetail.foodCode}, memberId=${memberId})}"><p>수정하기</p></a>
+                            <a th:href="@{/food/updateFoodForm(foodCode=${foodDetail.foodCode})}"><p>수정하기</p></a>
                         </div>
                     </div>
                     <div class="newComment">
