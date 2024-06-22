@@ -262,7 +262,7 @@ function logoutYes(){
     location.href="/logout";
 }
 function logoutNo(){
-    displayOff(logoutDisplay);
+    logoutDisplay.classList.add('pu_blind');
 }
 
 //알람 변화 감지시 replace하는 함수

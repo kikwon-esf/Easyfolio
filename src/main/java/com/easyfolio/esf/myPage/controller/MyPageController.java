@@ -2,6 +2,7 @@ package com.easyfolio.esf.myPage.controller;
 
 
 import com.easyfolio.esf.config.Transfer;
+import com.easyfolio.esf.config.interceptor.PwdEditInterceptor;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.AlarmService;
@@ -140,8 +141,6 @@ public class MyPageController {
     @ResponseBody
     public ResponseEntity<String> submitInform(HttpServletRequest request, Principal principal, HttpServletResponse response, MemberVO memberVO){
 
-        HttpSession session = request.getSession();
-        session.setAttribute("authenticatedInform","true");
         memberVO.setMemberId(principal.getName());
         System.err.println(memberVO);
         try{
@@ -162,8 +161,7 @@ public class MyPageController {
         UserDetails userDetails = loginService.loadUserByUsername(user);
         if(chkUser(userDetails, memberVO)) {
             System.err.println("참");
-            HttpSession session = request.getSession();
-            session.setAttribute("authenticatedInform", "true");
+            PwdEditInterceptor.set.add(request.getRequestedSessionId());
             return null;
         }
         response.setStatus(202);

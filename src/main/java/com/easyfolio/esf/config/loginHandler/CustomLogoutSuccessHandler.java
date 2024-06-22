@@ -20,14 +20,14 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
     private final SseService sseService;
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        System.err.println("로그아웃이 동작이 되나요?  :" + authentication.getName());
         sseService.deleteId(authentication.getName());
         String referer = request.getHeader("Referer");
-        request.setAttribute("logoutSuccess","logoutSuccess");
-        System.err.println("referer"+referer);
-        System.err.println("queryString" + request.getQueryString());
-        System.err.println("requestURL" + request.getRequestURL());
-        System.err.println("sessionId" + request.getRequestedSessionId());
-        response.sendRedirect(referer);
+        if(referer.equals("http://localhost:8081/member/changePw")){
+            response.sendRedirect("http://localhost:8081/member/loginForm");
+        }else{
+            request.setAttribute("logoutSuccess","logoutSuccess");
+            response.sendRedirect(referer);
+        }
+
     }
 }

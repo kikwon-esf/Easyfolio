@@ -1,6 +1,8 @@
 package com.easyfolio.esf.member.controller;
 
+import com.easyfolio.esf.config.PwdEditThread;
 import com.easyfolio.esf.config.interceptor.CreateSessionInterceptor;
+import com.easyfolio.esf.config.interceptor.PwdEditInterceptor;
 import com.easyfolio.esf.member.service.AlarmService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.AlarmVO;
@@ -12,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.boot.Banner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -61,8 +64,9 @@ public class MemberController {
         return "content/member/join";
     }
     @GetMapping("/findMemberForm")
-    public String findMemberForm(){
+    public String findMemberForm(Principal principal, Model model){
 
+        model.addAttribute("user", principal== null ? null : principal.getName());
         return "content/member/find_member";
     }
     // 아이디 중복 체크
@@ -89,12 +93,68 @@ public class MemberController {
         return members;
     }
 
-    // 비밀번호 찾기
+    // 비밀번호 찾기 멤버검사
     @ResponseBody
     @PostMapping("/findPw")
-    public List<MemberVO> findPw(MemberVO memberVO) {
+    public MemberVO findPw(MemberVO memberVO, Principal principal, HttpServletResponse response, HttpServletRequest request) {
+        String userSessionId = request.getRequestedSessionId();
+        if(principal!=null){
+            memberVO.setMemberId(principal.getName());
+        }
         List<MemberVO> members = memberService.findPw(memberVO);
-        return members;
+        try{
+            MemberVO member = members.get(0);
+            try {
+                Thread thread = new PwdEditThread(userSessionId);
+                thread.start();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return member;
+        }catch (Exception e){
+            response.setStatus(400);
+            return null;
+        }
+    }
+    @ResponseBody
+    @PostMapping("/authenticateForChangePw")
+    public MemberVO chkUser(MemberVO memberVO, Principal principal, HttpServletResponse response, HttpServletRequest request) {
+        String userSessionId = request.getRequestedSessionId();
+        memberVO.setMemberId(principal.getName());
+
+        MemberVO member = memberService.findMemberById(memberVO.getMemberId());
+
+        try{
+            if(!areYouQualify(member.getMemberPw(), memberVO.getMemberPw())){
+                response.setStatus(401);
+                return null;
+            }
+            try {
+                Thread thread = new PwdEditThread(userSessionId);
+                thread.start();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return member;
+        }catch (Exception e){
+            response.setStatus(402);
+            return null;
+        }
+    }
+    private boolean areYouQualify(String originalPw,String inputPassWord){
+        return passwordEncoder.encode(inputPassWord).matches(originalPw);
+    }
+    @PostMapping(value = "/changePw")
+    public String changePw(Principal principal ,MemberVO memberVO,HttpServletResponse response, HttpServletRequest request){
+        memberVO.setMemberId(principal.getName());
+        memberService.updateMember(memberVO);
+        PwdEditInterceptor.set.remove(request.getRequestedSessionId());
+        return "redirect:/logout";
+    }
+    //비밀번호 수정
+    @GetMapping(value = "/changePw")
+    public String changePwSubmit(HttpServletResponse response){
+        return "content/member/change_pw";
     }
 
     // 알림창에서 이동

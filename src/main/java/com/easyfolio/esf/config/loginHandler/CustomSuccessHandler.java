@@ -54,6 +54,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             response.sendRedirect("http://localhost:8081" + target);
             session.removeAttribute("target");
         }else { //그게 아니라면
+            System.err.println("sss");
             String redirectPage = (String)session.getAttribute("prevPage"); //세션에서 이전 페이지 값 추출
             response.sendRedirect(redirectPage != null ? redirectPage : "/"); // 세션에서 이전 페이지 값이 없을시, 메인페이지로 이동
         }
