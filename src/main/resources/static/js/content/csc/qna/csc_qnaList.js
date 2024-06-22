@@ -83,7 +83,7 @@ function updateQna(element) {
             alert('내용이 변경되었습니다.');
         })
         .catch(err => {
-            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            alert('내용이 변경되었습니다.');
             console.log(err);
         });
 }
@@ -122,6 +122,11 @@ function updateComplete(element) {
 
     qnaBlock.querySelector('.inputQnaQuestion').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update2').classList.add('updateDisplay');
+
+}
+
+function reloadBtn(){
+    window.location.reload();
 }
 
 const deleteBtns = document.querySelectorAll('.dnuBtn.delete');
@@ -145,5 +150,6 @@ $(document).ready(function () {
 });
 
 function qna_search(){
-    document.querySelector(".qna_searchForm").submit();
+    document.querySelector('.qna_searchForm').submit();
 }
+

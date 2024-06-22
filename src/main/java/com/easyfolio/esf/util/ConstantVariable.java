@@ -13,5 +13,7 @@ public class ConstantVariable {
 
         public static final String UPLOAD_PATH_RES="D:\\dev\\WorkspaceSpring\\EasyFolio\\src\\main\\resources\\static\\img\\csc\\res\\";
 
+        public static final String UPLOAD_PATH_FOOD_IMG="D:\\dev\\WorkspaceSpring\\EasyFolio\\src\\main\\resources\\static\\img\\food\\recipe\\";
+
 
 }
