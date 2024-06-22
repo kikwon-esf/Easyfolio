@@ -124,10 +124,6 @@ function updateComplete(element) {
     qnaBlock.querySelector('.dnuBtn.update2').classList.add('updateDisplay');
 }
 
-function deletePopUp() {
-    displayOn(puDelete);
-}
-
 const deleteBtns = document.querySelectorAll('.dnuBtn.delete');
 
 deleteBtns.forEach((deleteBtn) => {
@@ -138,7 +134,6 @@ deleteBtns.forEach((deleteBtn) => {
             var url = '/csc/deleteQna?qnaCode=' + textCode;
             location.href = url;
         })
-
     })
 });
 

@@ -216,6 +216,8 @@ public class MyPageController {
         if(!Transfer.reqexTest(commentVO.getContent())){
             myPageService.submitComment(commentVO); // 댓글 등록하는 코드
             alarmService.insertAlarm(commentVO);
+            commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
+            commentVO.setPageInfo();
         }else{
             response.setStatus(400);
         }

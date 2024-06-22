@@ -78,6 +78,7 @@
                         <p>답변하기</p>
                     </a>
                     <input type="hidden" th:value="${inqDetail.inqCode}" class="deleteInqCode">
+                    <input type="hidden" th:value="${inqDetail.inqResponse}" class="deleteIsRes">
                     <input th:if="${inqDetail.inqResponse == 'Y'}" type="hidden" th:value="${resInq.resCode}" class="deleteResCode">
                     <div class="btn deleteinqBtn" onclick="deletePopUp()">삭제하기</div>
                 </div>
