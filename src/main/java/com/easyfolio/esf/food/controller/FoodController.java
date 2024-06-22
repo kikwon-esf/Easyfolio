@@ -185,7 +185,6 @@ public class FoodController {
                         commentVO.getReciveMemberId()
                 )
         );
-        System.err.println(commentVO.getNowPage());
         model.addAttribute("nowPage", commentVO.getNowPage());
         model.addAttribute("foodCode", commentVO.getFoodCode());
 
@@ -278,7 +277,6 @@ public class FoodController {
         MemberVO memberVO1 = new MemberVO();
         memberVO1.setMemberName((memberService.selectMemberName(principal.getName())).getMemberName());
         memberVO1.setMemberId(principal.getName());
-        System.err.println(memberVO1);
 
         model.addAttribute("memberInfo", memberVO1);
         model.addAttribute("foodUsageList", foodService.foodUsageList());
@@ -291,23 +289,76 @@ public class FoodController {
     @PostMapping("/recipeInsert")
     public String recipeInsert(RedirectAttributes redirectAttributes,FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
         String foodCode = foodService.nextFoodCode();
-
         FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
         uploadedImg.setFoodCode(foodCode);
         foodVO.setFoodCode(foodCode);
         foodStepsVO.setFoodCode(foodCode);
-        System.err.println(foodVO);
-        System.err.println(foodStepsVO);
-        System.err.println(uploadedImg);
         foodService.insertFood(foodVO, foodStepsVO, uploadedImg);
         redirectAttributes.addFlashAttribute("foodCode", foodCode);
         return "redirect:/food/detail";
     }
 
     @GetMapping("/updateFoodForm")
-    public String updateFoodForm(FoodVO foodVO){
+    public String updateFoodForm(FoodVO foodVO, Model model){
+        foodService.updateFoodInqCnt(foodVO);
+        model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
+        FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
+        model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
+        setupSearchDetails(model, foodVO);
+        String mtrl = detailFoodVO.getFoodMtrlCn();
+        Pattern pattern = Pattern.compile("\\[([^\\]]+)\\]([^\\[]+)(?=\\[|$)");
+        Matcher matcher = pattern.matcher(mtrl);
 
+        List<String> mtrlTitle = new ArrayList<>();
+        List<List<String>> mtrlMt1 = new ArrayList<>();
+        List<List<String>> mtrlMt2 = new ArrayList<>();
+
+        while (matcher.find()) {
+            mtrlTitle.add(matcher.group(1).trim());
+            String materials = matcher.group(2).trim();
+            String[] mtrls = materials.split("\\|");
+            for (int i = 0; i < mtrls.length; i++) {
+                String[] splitMtrls = mtrls[i].trim().split("\\s+(?=[^\\s]*$)");
+                List<String> mtrlList = Arrays.asList(splitMtrls);
+                if (mtrlTitle.size() == 1) {
+                    mtrlMt1.add(mtrlList);
+                } else {
+                    mtrlMt2.add(mtrlList);
+                }
+            }
+        }
+
+        // 결과 출력
+        model.addAttribute("foodImg", foodService.selectFoodImg(foodVO));
+        model.addAttribute("mtrlTitles", mtrlTitle);
+        model.addAttribute("mtrlMt1", mtrlMt1);
+        if (mtrlMt2.isEmpty()) {
+            mtrlMt2.add(new ArrayList<>());
+        }
+        model.addAttribute("mtrlMt2", mtrlMt2);
+        if(foodService.getFoodSteps(foodVO) != null && foodService.getFoodSteps(foodVO).size() > 0){
+            String foodStepsStr = String.valueOf(foodService.getFoodSteps(foodVO).get(0).getFoodEx());
+            List<String> foodStepsList = Arrays.asList(foodStepsStr.split("%"));
+            model.addAttribute("foodSteps", foodStepsList);
+        }else{
+            model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
+        }
         return "/content/food/food_update";
+    }
+
+    @PostMapping("/foodUpdate")
+    public String foodUpdate(RedirectAttributes redirectAttributes,FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
+        String foodCode = foodVO.getFoodCode();
+        FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
+        if(uploadedImg != null){
+            uploadedImg.setFoodCode(foodCode);
+            foodService.updateFood(foodVO, foodStepsVO, uploadedImg);
+        } else{
+            foodService.updateFood(foodVO, foodStepsVO);
+        }
+
+        redirectAttributes.addFlashAttribute("foodCode", foodCode);
+        return "redirect:/food/detail";
     }
 
 }

@@ -470,6 +470,32 @@
         WHERE FOOD_CODE = #{foodCode}
     </select>
 
+    <update id="updateFood">
+        UPDATE FOOD
+        SET
+        FOOD_TTL = #{foodTtl}
+        , FOOD_NAME = #{foodName}
+        , FOOD_TYPE_CODE = #{foodTypeCode}
+        , FOOD_USAGE_CODE = #{foodUsageCode}
+        , FOOD_MTRL_CODE = #{foodMtrlCode}
+        , FOOD_KIND_CODE = #{foodKindCode}
+        , FOOD_INDC = #{foodIndc}
+        , FOOD_MTRL_CN = #{foodMtrlCn}
+        WHERE FOOD_CODE = #{foodCode}
+    </update>
+
+    <update id="updateFoodImg">
+        UPDATE FOOD_IMG
+        SET ORIGIN_FILE_NAME = #{originFileName}
+        , ATTACHED_FILE_NAME = #{attachedFileName}
+        WHERE FOOD_CODE = #{foodCode}
+    </update>
+
+    <update id="updateFoodSteps">
+        UPDATE FOOD_STEPS
+        SET FOOD_EX = #{foodEx}
+        WHERE FOOD_CODE = #{foodCode}
+    </update>
 
 
 </mapper>

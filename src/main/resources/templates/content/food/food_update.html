@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/food/food_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/content/food/food_update.css">
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <form class="foodUpdateForm" action="/food/foodUpdate" method="post" enctype="multipart/form-data">
+            <div id="wrap">
+                <div class="inner">
+                    <input type="hidden" name="foodCode" th:value="${foodDetail.foodCode}">
+                    <div class="header">
+                        <div class="food_title">
+                            <p class="food_title1">레시피 수정</p>
+                            <p class="food_title2">INSERT Update</p>
+                        </div>
+                    </div>
+                    <div class="recipeBlock">
+                        <div class="recipe_header">
+                            <div class="recipe_header_top">
+                                <div class="recipe_title_box">
+                                    <p class="recipe_cate">
+                                        <span class="cateText">[</span>
+                                        <span class="cateText">
+                                            <input class="cateInput recipeInput" name="foodName" type="text"
+                                                th:value="${foodDetail.foodName}">
+                                        </span>
+                                        <span class="cateText">]</span>
+                                    </p>
+                                    <input class="ttlInput recipeInput" name="foodTtl" type="text"
+                                        th:value="${foodDetail.foodTtl}">
+                                </div>
+                                <div class="recipe_cate_block">
+                                    <select class="cateSelect select" th:selected="${foodDetail.foodKindCode}"
+                                        name="foodKindCode">
+                                        <p th:each="foodKind : ${foodKindList}">
+                                            <option th:value="${foodKind.foodKindCode}"
+                                                th:selected="${foodKind.foodKindCode eq foodDetail.foodKindCode}">
+                                                [[${foodKind.foodKindText}]]
+                                            </option>
+                                        </p>
+                                    </select>
+                                    <select class="usageSelect select" th:selected="${foodDetail.foodUsageCode}"
+                                        name="foodUsageCode">
+                                        <p th:each="foodUsage : ${foodUsageList}">
+                                            <option th:value="${foodUsage.foodUsageCode}"
+                                                th:selected="${foodUsage.foodUsageCode eq foodDetail.foodUsageCode}">
+                                                [[${foodUsage.foodUsageText}]]
+                                            </option>
+                                        </p>
+                                    </select>
+                                    <select class="mtrlSelect select" name="foodMtrlCode">
+                                        <p th:each="foodMtrl : ${foodMtrlList}">
+                                            <option th:value="${foodMtrl.foodMtrlCode}"
+                                                th:selected="${foodMtrl.foodMtrlCode eq foodDetail.foodMtrlCode}">
+                                                [[${foodMtrl.foodMtrlText}]]
+                                            </option>
+                                        </p>
+                                    </select>
+                                    <select class="typeSelect select" th:selected="${foodDetail.foodTypeCode}"
+                                        name="foodTypeCode">
+                                        <p th:each="foodType : ${foodTypeList}">
+                                            <option th:value="${foodType.foodTypeCode}"
+                                                th:selected="${foodType.foodTypeCode eq foodDetail.foodTypeCode}">
+                                                [[${foodType.foodTypeText}]]
+                                            </option>
+                                        </p>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recipe_content">
+                            <div class="recipe_content_inner">
+                                <div class="recipe_content_info">
+                                    <div class="recipe_info_top">
+                                        <div class="recipe_info_left">
+                                            <div class="recipe_img">
+                                                <div class="recipeInsertBox">
+                                                    <input th:value="${'/img/food/recipe/'+ foodImg.attachedFileName}" class="recipeImg" type="file" id="file" name="foodImg"
+                                                        onchange="readURL(this);">
+                                                    <div th:if="${foodImg != null}" class="imgLookBox">
+                                                        <img th:src="${'/img/food/recipe/'+ foodImg.attachedFileName}">
+                                                    </div>
+                                                    <div th:if="${foodImg == null}" class="imgLookBox">
+                                                    </div>
+                                                    <p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                            fill="#f4f4f4" class="bi bi-plus-circle-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                                                        </svg>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recipe_info_right">
+                                            <div class="recipe_mtrl_block">
+                                                <div class="mtrl_block_title">
+                                                    <p class="mtrl_block_title1">
+                                                        재료
+                                                    </p>
+                                                    <p class="mtrl_block_title2">
+                                                        Ingredients
+                                                    </p>
+                                                </div>
+                                                <div class="recipe_mtrl mainMtrl">
+                                                    <div class="mtrlTitle">
+                                                        <span>[</span>
+                                                        <span>재료</span>
+                                                        <span>]</span>
+                                                    </div>
+                                                    <input id="foodMtrlCn" name="foodMtrlCn" type="hidden" value="">
+                                                    <div class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt1}">
+                                                        <div class="mainMtrl">
+                                                            <p th:if="${state.index != 0}" class="deleteMtrlMt" onclick="deleteMtrl(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#555" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
+                                                              </svg></p>
+                                                            <p class="mtText"><input id="mainMtrl"
+                                                                    class="mtrlFirstInput recipeInput" type="text"
+                                                                    th:value="${mtrlMt[0]}"></p>
+                                                            <p th:if="${mtrlMt.size() > 1 and mtrlMt[1] != null}"
+                                                                class="mtNum"><input id="mainMtrl"
+                                                                    class="mtrlSecondInput recipeInput" type="text"
+                                                                    th:value="${mtrlMt[1]}"></p>
+                                                            <p th:if="${mtrlMt.size() > 2 and mtrlMt[2] != null}"
+                                                                class="mtNum"><input id="mainMtrl"
+                                                                    class="mtrlThirdInput recipeInput" type="text"
+                                                                    th:value="${mtrlMt[2]}"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mtrlMt plus">
+                                                        <div>
+                                                            <p class="mtText"><span
+                                                                    class="mtrlNext recipeInput">재료명</span></p>
+                                                            <p class="mtNum"><span class="mtrlNext recipeInput">개수,
+                                                                    용량</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mtrlPlusBtnBox plusBtn">
+                                                        <p class="mtrlPlusBtn" onclick="mainMtrlPlus()"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="30"
+                                                                height="30" fill="#999" class="bi bi-plus-square-dotted"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.5 0q-.25 0-.487.048l.194.98A1.5 1.5 0 0 1 2.5 1h.458V0zm2.292 0h-.917v1h.917zm1.833 0h-.917v1h.917zm1.833 0h-.916v1h.916zm1.834 0h-.917v1h.917zm1.833 0h-.917v1h.917zM13.5 0h-.458v1h.458q.151 0 .293.029l.194-.981A2.5 2.5 0 0 0 13.5 0m2.079 1.11a2.5 2.5 0 0 0-.69-.689l-.556.831q.248.167.415.415l.83-.556zM1.11.421a2.5 2.5 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415zM16 2.5q0-.25-.048-.487l-.98.194q.027.141.028.293v.458h1zM.048 2.013A2.5 2.5 0 0 0 0 2.5v.458h1V2.5q0-.151.029-.293zM0 3.875v.917h1v-.917zm16 .917v-.917h-1v.917zM0 5.708v.917h1v-.917zm16 .917v-.917h-1v.917zM0 7.542v.916h1v-.916zm15 .916h1v-.916h-1zM0 9.375v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .916v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .917v.458q0 .25.048.487l.98-.194A1.5 1.5 0 0 1 1 13.5v-.458zm16 .458v-.458h-1v.458q0 .151-.029.293l.981.194Q16 13.75 16 13.5M.421 14.89c.183.272.417.506.69.689l.556-.831a1.5 1.5 0 0 1-.415-.415zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373Q2.25 16 2.5 16h.458v-1H2.5q-.151 0-.293-.029zM13.5 16q.25 0 .487-.048l-.194-.98A1.5 1.5 0 0 1 13.5 15h-.458v1zm-9.625 0h.917v-1h-.917zm1.833 0h.917v-1h-.917zm1.834-1v1h.916v-1zm1.833 1h.917v-1h-.917zm1.833 0h.917v-1h-.917zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                                                            </svg></p>
+                                                    </div>
+                                                </div>
+                                                <div class="recipe_mtrl subMtrl">
+                                                    <p class="mtrlTitle">
+                                                        <span>[</span>
+                                                        <span>양념</span>
+                                                        <span>]</span>
+                                                    </p>
+                                                    <div class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt2}">
+                                                        <div>
+                                                            <p th:if="${state.index != 0}" class="deleteMtrlMt" onclick="deleteMtrl(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#555" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
+                                                              </svg></p>
+                                                            <p class="mtText"><input id="subMtrl"
+                                                                    class="mtrlFirstInput recipeInput" type="text"
+                                                                    th:value="${mtrlMt[0]}"></p>
+                                                            <p th:if="${mtrlMt.size() > 1 and mtrlMt[1] != null}"
+                                                                class="mtNum"><input id="subMtrl"
+                                                                    class="mtrlSecondInput recipeInput" type="text"
+                                                                    th:value="${mtrlMt[1]}"></p>
+                                                            <p th:if="${mtrlMt.size() > 2 and mtrlMt[2] != null}"
+                                                                class="mtNum"><input id="subMtrl"
+                                                                    class="mtrlThirdInput recipeInput" type="text"
+                                                                    th:value="${mtrlMt[2]}"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mtrlMt plus">
+                                                        <div>
+                                                            <p class="mtText"><span
+                                                                    class="mtrlNext recipeInput">재료명</span></p>
+                                                            <p class="mtNum"><span class="mtrlNext recipeInput">개수,
+                                                                    용량</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mtrlPlusBtnBox">
+                                                        <p class="mtrlPlusBtn" onclick="subMtrlPlus()">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="30"
+                                                                height="30" fill="#999" class="bi bi-plus-square-dotted"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M2.5 0q-.25 0-.487.048l.194.98A1.5 1.5 0 0 1 2.5 1h.458V0zm2.292 0h-.917v1h.917zm1.833 0h-.917v1h.917zm1.833 0h-.916v1h.916zm1.834 0h-.917v1h.917zm1.833 0h-.917v1h.917zM13.5 0h-.458v1h.458q.151 0 .293.029l.194-.981A2.5 2.5 0 0 0 13.5 0m2.079 1.11a2.5 2.5 0 0 0-.69-.689l-.556.831q.248.167.415.415l.83-.556zM1.11.421a2.5 2.5 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415zM16 2.5q0-.25-.048-.487l-.98.194q.027.141.028.293v.458h1zM.048 2.013A2.5 2.5 0 0 0 0 2.5v.458h1V2.5q0-.151.029-.293zM0 3.875v.917h1v-.917zm16 .917v-.917h-1v.917zM0 5.708v.917h1v-.917zm16 .917v-.917h-1v.917zM0 7.542v.916h1v-.916zm15 .916h1v-.916h-1zM0 9.375v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .916v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .917v.458q0 .25.048.487l.98-.194A1.5 1.5 0 0 1 1 13.5v-.458zm16 .458v-.458h-1v.458q0 .151-.029.293l.981.194Q16 13.75 16 13.5M.421 14.89c.183.272.417.506.69.689l.556-.831a1.5 1.5 0 0 1-.415-.415zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373Q2.25 16 2.5 16h.458v-1H2.5q-.151 0-.293-.029zM13.5 16q.25 0 .487-.048l-.194-.98A1.5 1.5 0 0 1 13.5 15h-.458v1zm-9.625 0h.917v-1h-.917zm1.833 0h.917v-1h-.917zm1.834-1v1h.916v-1zm1.833 1h.917v-1h-.917zm1.833 0h.917v-1h-.917zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                                                            </svg>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="recipe_info_bot">
+                                        <div class="recipe_indc">
+                                            <div class="indc_title">
+                                                <p class="indc_title1">
+                                                    레시피 소개
+                                                </p>
+                                                <p class="indc_title2">
+                                                    Introduce
+                                                </p>
+                                            </div>
+                                            <textarea th:text="${foodDetail.foodIndc}"
+                                                class="recipeIndcInput recipeTextarea" name="foodIndc"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="recipe_info_text">
+                                        <div class="recipe_steps">
+                                            <input id="foodEx" type="hidden" name="foodEx" value="">
+                                            <div class="steps_title">
+                                                <p class="steps_title1">
+                                                    조리순서
+                                                </p>
+                                                <p class="steps_title2">
+                                                    Steps
+                                                </p>
+                                            </div>
+                                            <div class="stepsTextInputBox" th:each="foodStep,state : ${foodSteps}">
+                                                <p th:if="${state.index != 0}" class="deleteRecipeText"
+                                                    onclick="deleteRecipeText(this)"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                        fill="#555" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z" />
+                                                    </svg></p>
+                                                <div class="stepsNumber">
+                                                    <p th:text="${state.index + 1}"></p>
+                                                </div>
+                                                <input class="stepsTextInput recipeTextarea" th:value="${foodStep}">
+                                            </div>
+                                            <div class="recipeTextPlusBtn">
+                                                <p class="mtrlPlusBtn" onclick="recipeTextPlus()"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                                        fill="#999" class="bi bi-plus-square-dotted"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M2.5 0q-.25 0-.487.048l.194.98A1.5 1.5 0 0 1 2.5 1h.458V0zm2.292 0h-.917v1h.917zm1.833 0h-.917v1h.917zm1.833 0h-.916v1h.916zm1.834 0h-.917v1h.917zm1.833 0h-.917v1h.917zM13.5 0h-.458v1h.458q.151 0 .293.029l.194-.981A2.5 2.5 0 0 0 13.5 0m2.079 1.11a2.5 2.5 0 0 0-.69-.689l-.556.831q.248.167.415.415l.83-.556zM1.11.421a2.5 2.5 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415zM16 2.5q0-.25-.048-.487l-.98.194q.027.141.028.293v.458h1zM.048 2.013A2.5 2.5 0 0 0 0 2.5v.458h1V2.5q0-.151.029-.293zM0 3.875v.917h1v-.917zm16 .917v-.917h-1v.917zM0 5.708v.917h1v-.917zm16 .917v-.917h-1v.917zM0 7.542v.916h1v-.916zm15 .916h1v-.916h-1zM0 9.375v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .916v.917h1v-.917zm16 .917v-.917h-1v.917zm-16 .917v.458q0 .25.048.487l.98-.194A1.5 1.5 0 0 1 1 13.5v-.458zm16 .458v-.458h-1v.458q0 .151-.029.293l.981.194Q16 13.75 16 13.5M.421 14.89c.183.272.417.506.69.689l.556-.831a1.5 1.5 0 0 1-.415-.415zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373Q2.25 16 2.5 16h.458v-1H2.5q-.151 0-.293-.029zM13.5 16q.25 0 .487-.048l-.194-.98A1.5 1.5 0 0 1 13.5 15h-.458v1zm-9.625 0h.917v-1h-.917zm1.833 0h.917v-1h-.917zm1.834-1v1h.916v-1zm1.833 1h.917v-1h-.917zm1.833 0h.917v-1h-.917zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                                                    </svg></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recipeInsertBtnBlock">
+                        <div class="recipeInsertBtnBox">
+                            <p onclick="recipeInsertCheck()" class="recipeInsertBtn">
+                                등록
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="/js/content/food/food_update.js"></script>
+</th:block>
+
+</html>

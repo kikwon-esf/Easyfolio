@@ -9,7 +9,6 @@ function mainMtrlPlus() {
 </svg></p>
                 <p class="mtText"><input id="mainMtrl" class="mtrlFirstInput recipeInput" type="text" placeholder="재료명"></p>
                 <p class="mtNum"><input id="mainMtrl" class="mtrlSecondInput recipeInput" type="text" placeholder="개수, 용량"></p>
-                <p class="mtNum"><input id="mainMtrl" class="mtrlThirdInput recipeInput" type="text" placeholder="단위 (L, 개)"></p>
             </div>
         </div>`;
 
@@ -29,7 +28,6 @@ function subMtrlPlus() {
 </svg></p>
                 <p class="mtText"><input id="subMtrl" class="mtrlFirstInput recipeInput" type="text" placeholder="재료명"></p>
                 <p class="mtNum"><input id="subMtrl" class="mtrlSecondInput recipeInput" type="text" placeholder="개수, 용량"></p>
-                <p class="mtNum"><input id="subMtrl" class="mtrlThirdInput recipeInput" type="text" placeholder="단위 (L, 개)"></p>
             </div>
         </div>`;
 
@@ -127,10 +125,10 @@ function recipeInsertCheck() {
         return;
     } 
 
-    if (recipeImg.value == "") {
-        document.querySelector(".recipeInsertBox").classList.add('check');
-        return;
-    } 
+    // if (recipeImg.value == "") {
+    //     document.querySelector(".recipeInsertBox").classList.add('check');
+    //     return;
+    // } 
 
     // 주 재료 리스트 검증
     for (const mainMtrl of mainMtrlList) {
@@ -144,12 +142,10 @@ function recipeInsertCheck() {
             if (count == 1) {
                 mainMtrlPlus += mainMtrl.value + " ";
             } else if (count == 2) {
-                mainMtrlPlus += mainMtrl.value;
-            } else if (i == mainMtrlList.length) {
-                mainMtrlPlus += mainMtrl.value;
-            } else {
                 mainMtrlPlus += mainMtrl.value + "|";
                 count = 0;
+            } else if (i == mainMtrlList.length) {
+                mainMtrlPlus += mainMtrl.value;
             }
         }
     }
@@ -206,7 +202,7 @@ function recipeInsertCheck() {
     }
     document.querySelector('#foodEx').value = stepsTextInputResult;
 
-    document.querySelector('.recipeInsertForm').submit();
+    document.querySelector('.foodUpdateForm').submit();
 }
 
 function readURL(input) {
