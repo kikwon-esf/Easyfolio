@@ -78,7 +78,7 @@ textarea {
     box-sizing: border-box;
     border-top: 1px solid #333;
     border-bottom: 1px solid #dadada;
-    margin-bottom: 30px;
+    margin-bottom: 70px;
 }
 
 .recipe_title_box {
@@ -630,11 +630,13 @@ textarea {
     border: 1px solid #f4f4f4;
     border-radius: 5px;
     background-color: #ffa43b;
-    width: 200px;
+    width: 300px;
     height: 45px;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.5s ease;
+    box-sizing: border-box;
+    padding: 10px;
 }
 .recipeInsertBtn:hover{
     background-color: #f08509;
