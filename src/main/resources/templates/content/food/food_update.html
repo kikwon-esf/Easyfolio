@@ -84,7 +84,12 @@
                                         <div class="recipe_info_left">
                                             <div class="recipe_img">
                                                 <div class="recipeInsertBox">
-                                                    <input th:value="${'/img/food/recipe/'+ foodImg.attachedFileName}" class="recipeImg" type="file" id="file" name="foodImg"
+                                                    <input th:if="${foodImg != null}"
+                                                        th:value="${'/img/food/recipe/'+ foodImg.attachedFileName}"
+                                                        class="recipeImg" type="file" id="file" name="foodImg"
+                                                        onchange="readURL(this);">
+                                                    <input th:if="${foodImg == null}"
+                                                        class="recipeImg" type="file" id="file" name="foodImg"
                                                         onchange="readURL(this);">
                                                     <div th:if="${foodImg != null}" class="imgLookBox">
                                                         <img th:src="${'/img/food/recipe/'+ foodImg.attachedFileName}">
@@ -121,9 +126,14 @@
                                                     <input id="foodMtrlCn" name="foodMtrlCn" type="hidden" value="">
                                                     <div class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt1}">
                                                         <div class="mainMtrl">
-                                                            <p th:if="${state.index != 0}" class="deleteMtrlMt" onclick="deleteMtrl(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#555" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
-                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
-                                                              </svg></p>
+                                                            <p th:if="${state.index != 0}" class="deleteMtrlMt"
+                                                                onclick="deleteMtrl(this)"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="#555"
+                                                                    class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z" />
+                                                                </svg></p>
                                                             <p class="mtText"><input id="mainMtrl"
                                                                     class="mtrlFirstInput recipeInput" type="text"
                                                                     th:value="${mtrlMt[0]}"></p>
@@ -163,9 +173,14 @@
                                                     </p>
                                                     <div class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt2}">
                                                         <div>
-                                                            <p th:if="${state.index != 0}" class="deleteMtrlMt" onclick="deleteMtrl(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#555" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
-                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z"/>
-                                                              </svg></p>
+                                                            <p th:if="${state.index != 0}" class="deleteMtrlMt"
+                                                                onclick="deleteMtrl(this)"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="#555"
+                                                                    class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z" />
+                                                                </svg></p>
                                                             <p class="mtText"><input id="subMtrl"
                                                                     class="mtrlFirstInput recipeInput" type="text"
                                                                     th:value="${mtrlMt[0]}"></p>
