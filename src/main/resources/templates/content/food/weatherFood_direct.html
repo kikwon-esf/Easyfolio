@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/content/food/weatherFood.css">
+    </th:block>
+</head>
+
+<body>
+<th:block layout:fragment="content">
+    <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">
+    <div class="weatherWrap">
+        <div class="foodTapBlock">
+            <div class="foodTapInner">
+                <div class="foodTaps">
+                    <a href="/food/searchFoodPage"><p class="foodTap allRecipe">모든 레시피</p></a>
+                    <a href="/food/weatherFood"><p class="foodTap weatherRecipe">현재 날씨 추천 레시피</p></a>
+                    <a href="/food/insertFoodForm"><p class="foodTap insertRecipe">나만의 레시피 등록</p></a>
+                    <a><p class="foodTap myRecipe">내가 쓴 레시피</p></a>
+                </div>
+            </div>
+        </div>
+        <div class="ddabongRecipeContainer"></div>
+    </div>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/content/food/weatherFood.js"></script>
+    <script src="/js/content/myPage/favorite.js"></script>
+</th:block>
+
+</html>
