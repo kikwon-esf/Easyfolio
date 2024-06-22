@@ -281,7 +281,7 @@ public class MyPageController {
         String user = principal.getName();
         memberVO.setTotalDataCnt(alarmService.alarmListCnt(memberVO.withMemberId(user)));
         memberVO.setPageInfo();
-        List<AlarmVO> list = alarmService.alarmList(memberVO.withMemberId(user));
+        List<AlarmVO> list = alarmService.alarmListPage(memberVO.withMemberId(user));
         model.addAttribute("alarmList", list);
 
         return "content/myPage/myPage_myAlarm";

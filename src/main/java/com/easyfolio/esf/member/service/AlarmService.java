@@ -19,6 +19,9 @@ public interface AlarmService {
     // 알람 리스트
     public List<AlarmVO> alarmList(MemberVO memberVO);
 
+    // 알람 리스트 페이징
+    public List<AlarmVO> alarmListPage(MemberVO memberVO);
+
     //알람 리스트 카운트
     public int alarmListCnt(MemberVO memberVO);
 

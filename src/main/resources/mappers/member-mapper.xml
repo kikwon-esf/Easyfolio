@@ -152,6 +152,24 @@
         AND C.FOOD_COMMENT_ID = A.FOOD_COMMENT_ID
         AND D.MEMBER_ID = A.SEND_MEMBER_ID
         ORDER BY DESC_REG_DATE DESC
+    </select>
+
+    <select id="alarmListPage" resultMap="alarm">
+        SELECT DISTINCT D.MEMBER_NAME
+        , C.CONTENT
+        , TO_CHAR(C.REG_DATE, 'YY-MM-DD HH24:MI') AS REG_DATE
+        , A.FOOD_CODE
+        , A.ALARM_TYPE
+        , A.ALARM_CODE
+        , A.ALARM_CHECK
+        , A.FOOD_COMMENT_ID
+        , A.SEND_MEMBER_ID
+        , TO_CHAR(C.REG_DATE, 'YY-MM-DD HH24:MI:SS') AS DESC_REG_DATE
+        FROM ALARM A, FOOD_COMMENT C, DISH_MEMBER D
+        WHERE A.RECIVE_MEMBER_ID = #{memberId}
+        AND C.FOOD_COMMENT_ID = A.FOOD_COMMENT_ID
+        AND D.MEMBER_ID = A.SEND_MEMBER_ID
+        ORDER BY DESC_REG_DATE DESC
         OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 

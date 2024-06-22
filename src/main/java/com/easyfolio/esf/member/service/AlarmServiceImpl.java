@@ -36,6 +36,11 @@ public class AlarmServiceImpl implements AlarmService{
     }
 
     @Override
+    public List<AlarmVO> alarmListPage(MemberVO memberVO) {
+        return sqlSession.selectList("memberMapper.alarmListPage", memberVO);
+    }
+
+    @Override
     public int alarmListCnt(MemberVO memberVO) {
         return sqlSession.selectOne("memberMapper.alarmListCnt", memberVO);
     }
