@@ -50,4 +50,8 @@ public interface FoodService {
     public int ddabongRecipeCount(List<String> foodNames);
 
     public int allRecipeCount();
+
+    public String nextFoodCode();
+
+    public void insertFood(FoodVO foodVO, FoodStepsVO foodStepsVO);
 }
