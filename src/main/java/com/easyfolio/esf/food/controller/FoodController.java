@@ -239,14 +239,14 @@ public class FoodController {
         List<String> foodNames = new ArrayList<>();
         for (DdabongVO ddabong : foodList) {
             if (ddabong.getDdabongFood() != null) {
-                String[] foodArray = ddabong.getDdabongFood().split(",\\s*"); // 쉼표 뒤에 공백이 있을 수 있으므로 \\s* 추가
+                String[] foodArray = ddabong.getDdabongFood().split(",\\s*");
                 foodNames.addAll(Arrays.asList(foodArray));
             }
         }
 
-        redirectAttributes.addFlashAttribute("foodNames", foodNames);
-        redirectAttributes.addFlashAttribute("urlText", urlText);
-        return "redirect:/food/ddabongRecipeList"; // 이 부분은 필요 없으며 아래 부분이 중요합니다
+        redirectAttributes.addAttribute("foodNames", foodNames);
+        redirectAttributes.addAttribute("urlText", urlText);
+        return "redirect:/food/ddabongRecipeList";
     }
 
     @GetMapping("/ddabongRecipeList")
@@ -293,7 +293,7 @@ public class FoodController {
         foodVO.setFoodCode(foodCode);
         foodStepsVO.setFoodCode(foodCode);
         foodService.insertFood(foodVO, foodStepsVO, uploadedImg);
-        redirectAttributes.addFlashAttribute("foodCode", foodCode);
+        redirectAttributes.addAttribute("foodCode", foodCode);
         return "redirect:/food/detail";
     }
 
@@ -361,7 +361,7 @@ public class FoodController {
             foodService.updateFood(foodVO, foodStepsVO);
     }
 
-        redirectAttributes.addFlashAttribute("foodCode", foodCode);
+        redirectAttributes.addAttribute("foodCode", foodCode);
         return "redirect:/food/detail";
     }
 
