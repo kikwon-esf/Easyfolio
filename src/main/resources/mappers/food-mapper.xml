@@ -325,12 +325,16 @@
 
     <select id="foodByMember" resultMap="food">
         SELECT
-        FOOD_CODE,
-        FOOD_TTL,
-        FOOD_DIF,
-        FOOD_INQ_CNT,
-        FOOD_RCMM_CNT
-        FROM FOOD
+        F.FOOD_CODE,
+        F.FOOD_TTL,
+        F.FOOD_DIF,
+        F.FOOD_INQ_CNT,
+        F.FOOD_RCMM_CNT,
+        FI.FOOD_IMG_CODE,
+        FI.ORIGIN_FILE_NAME,
+        FI.ATTACHED_FILE_NAME
+        FROM FOOD F LEFT JOIN FOOD_IMG FI
+        ON F.FOOD_CODE = FI.FOOD_CODE
         WHERE MEMBER_ID = #{memberId}
         ORDER BY FOOD_INQ_CNT DESC
         OFFSET ((#{nowPage} - 1) * #{displayDataCnt8}) ROWS FETCH FIRST #{displayDataCnt8} ROWS ONLY
