@@ -270,7 +270,7 @@ public class FoodController {
                 urlText = "/img/weather/weatherBanner_night.png";
                 break;
             default:
-                urlText = "/img/weather/weatherBanner_nomal.png";
+                urlText = "/img/weather/weatherBanner_normal.png";
                 break;
         }
 

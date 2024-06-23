@@ -93,7 +93,7 @@ const closeItems = (itemsList, excludeItem) => {
         if (item !== excludeItem && item.clicked) {
             item.clicked = false;
             gsap.to(item, {
-                width: '8vw',
+                width: '180px',
                 duration: 2,
                 ease: 'elastic(1, .6)'
             });
@@ -104,7 +104,7 @@ const closeItems = (itemsList, excludeItem) => {
 const expandItem = (item) => {
     item.clicked = true;
     gsap.to(item, {
-        width: '20vw',
+        width: '415px',
         duration: 2.5,
         ease: 'elastic(1, .3)'
     });
@@ -113,7 +113,7 @@ const expandItem = (item) => {
 const collapseItem = (item) => {
     item.clicked = false;
     gsap.to(item, {
-        width: '8vw',
+        width: '180px',
         duration: 2,
         ease: 'elastic(1, .6)'
     });
