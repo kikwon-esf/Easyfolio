@@ -380,3 +380,10 @@
 .heartBox{
     margin-left: 17px;
 }
+.noSearchText{
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    padding: 50px;
+    text-align: center;
+    color: #666;
+}
