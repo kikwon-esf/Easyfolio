@@ -277,33 +277,26 @@
 
     <select id="allSearchFood" resultMap="food">
         <![CDATA[
-    SELECT *
-    FROM (
+    SELECT * FROM (
         SELECT
-            FOOD_CODE,
-            FOOD_TTL,
-            FOOD_DIF,
-            FOOD_INQ_CNT,
-            FOOD_RCMM_CNT,
-            ROWNUM AS rnum
-        FROM (
-            SELECT
-                FOOD_CODE,
-                FOOD_TTL,
-                FOOD_DIF,
-                FOOD_INQ_CNT,
-                FOOD_RCMM_CNT
-            FROM FOOD
-            WHERE FOOD_TTL LIKE '%' || #{allSearchKeyword} || '%'
-                OR FOOD_KIND_CODE = #{allSearchKeyword}
-                OR FOOD_USAGE_CODE = #{allSearchKeyword}
-                OR FOOD_MTRL_CODE = #{allSearchKeyword}
-                OR FOOD_TYPE_CODE = #{allSearchKeyword}
-            ORDER BY FOOD_INQ_CNT DESC
-        )
-        WHERE ROWNUM <= 5
+            F.FOOD_CODE,
+            F.FOOD_TTL,
+            F.FOOD_DIF,
+            F.FOOD_INQ_CNT,
+            F.FOOD_RCMM_CNT,
+            FI.FOOD_IMG_CODE,
+            FI.ORIGIN_FILE_NAME,
+            FI.ATTACHED_FILE_NAME,
+            ROW_NUMBER() OVER (ORDER BY F.FOOD_INQ_CNT DESC) AS rn
+        FROM FOOD F
+        LEFT JOIN FOOD_IMG FI ON F.FOOD_CODE = FI.FOOD_CODE
+        WHERE F.FOOD_TTL LIKE '%' || #{allSearchKeyword} || '%'
+            OR F.FOOD_KIND_CODE = #{allSearchKeyword}
+            OR F.FOOD_USAGE_CODE = #{allSearchKeyword}
+            OR F.FOOD_MTRL_CODE = #{allSearchKeyword}
+            OR F.FOOD_TYPE_CODE = #{allSearchKeyword}
     )
-    WHERE rnum <= 5
+    WHERE rn <= 5
     ]]>
     </select>
 
@@ -356,13 +349,17 @@
     </select>
 
     <select id="ddabongRecipeList" resultMap="food">
-        SELECT FOOD_CODE
-        , FOOD_TTL
-        , FOOD_DIF
-        , FOOD_INQ_CNT
-        , FOOD_RCMM_CNT
-        , MEMBER_ID
-        FROM FOOD
+        SELECT F.FOOD_CODE
+        , F.FOOD_TTL
+        , F.FOOD_DIF
+        , F.FOOD_INQ_CNT
+        , F.FOOD_RCMM_CNT
+        , F.MEMBER_ID
+        , FI.FOOD_IMG_CODE
+        , FI.ORIGIN_FILE_NAME
+        , FI.ATTACHED_FILE_NAME
+        FROM FOOD F LEFT JOIN FOOD_IMG FI
+        ON F.FOOD_CODE = FI.FOOD_CODE
         <where>
             <foreach item="foodName" collection="list" separator="OR" open="(" close=")">
                 FOOD_TTL LIKE '%' || #{foodName} || '%'
