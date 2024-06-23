@@ -64,30 +64,21 @@
         <div class="pageBtnBox">
             <div class="btn_group">
                 <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
-                    <!-- <span class="page_prevBtn"
-                        th:href="@{/myPage/myContent/food(nowPage=${foodVO.beginPage - 1})}"> -->
                         <a  class="page_prevBtn"
                             th:if="${foodVO.prev}" 
                             th:attr="onclick=|foodPaging(${foodVO.beginPage-1})|">이전</a>
-                        <!-- </span> -->
-                    <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}"
-                    >
-                        <!-- <a class="page_numBtn" th:href="@{/myPage/myContent/food(nowPage=${pageNum})}"> -->
+                    <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
                             <a  class="page_numBtn"
                             th:id="page+${pageNum}"
                             th:attr="onclick=|foodPaging(${pageNum})|" 
                                ><span th:text="${pageNum}"  
                                ></span>
                             </a>
-                            <!-- </a> -->
                     </th:block>
-                    <!-- <a class="page_nextBtn"
-                        th:href="@{/myPage/myContent/food(nowPage=${foodVO.endPage + 1})}"> -->
                         <a  class="page_nextBtn"
                         th:attr="onclick=|foodPaging(${foodVO.endPage + 1})|"
                             th:if="${foodVO.next}">다음
                         </a>
-                        <!-- </a> -->
                 </div>
             </div>
         </div>
