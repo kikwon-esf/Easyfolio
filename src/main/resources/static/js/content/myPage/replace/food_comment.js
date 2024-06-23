@@ -14,7 +14,7 @@ function getCommentList(url) {
         })
         .then((data) => {
             writeContent(replacePosition, data);
-            pagingCount();
+            // pagingCount();
             const foodCode_hide = document.querySelector('.foodCode_hide')
             if(response_commentId != null || undefined){
                 const commentNode = this.document.getElementById(String(response_commentId));
@@ -56,7 +56,7 @@ function submitComment(target) {
         })
         .then((data) => {
             writeContent(replacePosition, data);
-            pagingCount();
+            // pagingCount();
             // const foodCode_hide = document.querySelector('.foodCode_hide')
         })
         .catch(e=>{
@@ -262,10 +262,10 @@ function findScrollValue(commentNode){
     console.log(window.scrollY)
     return rect.top;
 }
-function pagingCount(){
+// function pagingCount(){
     
-    nowPage = document.querySelector("#nowPage").value;
-    console.log("nowpage : "+nowPage)
-    let nowPageNode = document.getElementById('page'+nowPage);
-    nowPageNode.classList.add('active');
-}
+//     nowPage = document.querySelector("#nowPage").value;
+//     console.log("nowpage : "+nowPage)
+//     let nowPageNode = document.getElementById('page'+nowPage);
+//     nowPageNode.classList.add('active');
+// }

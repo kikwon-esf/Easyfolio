@@ -146,14 +146,19 @@ public class MemberController {
     }
     @PostMapping(value = "/changePw")
     public String changePw(Principal principal ,MemberVO memberVO,HttpServletResponse response, HttpServletRequest request){
+        MemberVO updateMember = new MemberVO();
+        updateMember.setMemberPw(memberVO.getMemberPw());
         if(!PwdEditInterceptor.set.contains(request.getRequestedSessionId())){
             return "redirect:/";
         }
-        if(memberVO.getMemberId() == null){
-            memberVO.setMemberId(principal.getName());
-        }
-        memberService.updateMember(memberVO);
         PwdEditInterceptor.set.remove(request.getRequestedSessionId());
+
+        if(principal != null){
+            updateMember.setMemberId(principal.getName());
+        }else{
+            updateMember.setMemberId(memberVO.getMemberId());
+        }
+        memberService.updateMember(updateMember);
         return "redirect:/logout";
     }
     //비밀번호 수정

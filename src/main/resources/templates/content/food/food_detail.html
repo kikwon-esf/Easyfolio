@@ -16,6 +16,8 @@
     <th:block layout:fragment="content">
         <input id="response_commentId" type="hidden" th:if="${foodCommentId != null}" th:value="${foodCommentId}">
         <input class="foodCode_hidden" type="hidden" th:value="${foodDetail.foodCode}">
+        <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">
+        
         <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">
         <div id="wrap">
             <div class="inner">
@@ -244,7 +246,7 @@
 <!-- js 영역 -->
 <th:block layout:fragment="content_js">
     <script src="/js/content/food/food_detail.js"></script>
-    <script src="/js/content/myPage/favorite.js"></script>
+    <script src="/js/content/myPage/favorite_detail.js"></script>
     <script src="/js/content/myPage/replace/food_comment.js"></script>
 </th:block>
 
