@@ -8,6 +8,8 @@
     <!-- css 영역 -->
     <th:block layout:fragment="content_css">
         <link rel="stylesheet" href="/css/content/food/weatherFood.css">
+        <link rel="stylesheet" href="/css/content/food/food_search.css">
+        <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
     </th:block>
 </head>
 
@@ -77,14 +79,45 @@
                     </div>
                 </div>
             </div>
+            <div class="btnBlock">
+                <div class="btn_group">
+                    <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
+                        <a class="page_prevBtn"
+                           th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                                th:if="${foodVO.prev}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                        <path
+                                                d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                    </svg>
+                                </span></a>
+                        <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
+                            <a class="page_numBtn"
+                               th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                                    th:text="${pageNum}"></span></a>
+                        </th:block>
+                        <a class="page_nextBtn"
+                           th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue},foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                                th:if="${foodVO.next}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                        <path
+                                                d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                    </svg>
+                                </span></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </th:block>
 </body>
 <!-- js 영역 -->
 <th:block layout:fragment="content_js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/content/food/weatherFood.js"></script>
+    <script src="/js/content/food/food_search.js"></script>
     <script src="/js/content/myPage/favorite.js"></script>
 </th:block>
 
