@@ -172,3 +172,26 @@ const handleMouseLeave = (event) => {
 // 초기화
 initializeItems();
 
+Splitting();
+
+// 모든 .card 요소를 선택
+/*
+var cards = document.querySelectorAll('.card');
+
+cards.forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+        var x = e.offsetX;
+        var y = e.offsetY;
+        var rotateY = -(x - card.offsetWidth / 2) / 10; // x 위치에 따라 회전 각도를 조정
+        var rotateX = (y - card.offsetHeight / 2) / 10; // y 위치에 따라 회전 각도를 조정
+
+        card.style.transform = `perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        card.style.transition = `transform 0.5s ease-out`;
+    });
+
+    card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(350px) rotateX(0) rotateY(0)';
+        card.style.transition = 'transform 0.5s ease-out'; // 원래 상태로 되돌아가는 시간 조정
+    });
+});
+*/
