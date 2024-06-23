@@ -382,6 +382,7 @@ public class FoodController {
             }
         }
 
+
         // 결과 출력
         model.addAttribute("foodImg", foodService.selectFoodImg(foodVO));
         model.addAttribute("mtrlTitles", mtrlTitle);
