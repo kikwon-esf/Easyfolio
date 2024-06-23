@@ -236,49 +236,7 @@ public class FoodController {
         }
 
         List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongCode);
-<<<<<<< HEAD
         System.err.println(foodList);
-        List<String> foodNames = new ArrayList<>();
-        for (DdabongVO ddabong : foodList) {
-            if (ddabong.getDdabongFood() != null) {
-                String[] foodArray = ddabong.getDdabongFood().split(",\\s*");
-                foodNames.addAll(Arrays.asList(foodArray));
-            }
-        }
-
-        redirectAttributes.addAttribute("foodNames", foodNames);
-        redirectAttributes.addAttribute("urlText", urlText);
-        return "redirect:/food/ddabongRecipeList";
-    }
-
-    @GetMapping("/ddabongcode")
-    public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes) {
-        String urlText = "";
-        switch (ddabongVO.getDdabongCode()) {
-            case "DDABONG_001":
-                urlText = "/img/weather/weatherBanner_cold.png";
-                break;
-            case "DDABONG_002":
-                urlText = "/img/weather/weatherBanner_hot.png";
-                break;
-            case "DDABONG_003":
-                urlText = "/img/weather/weatherBanner_rain.png";
-                break;
-            case "DDABONG_004":
-                urlText = "/img/weather/weatherBanner_snow.png";
-                break;
-            case "DDABONG_005":
-                urlText = "/img/weather/weatherBanner_night.png";
-                break;
-            default:
-                urlText = "/img/weather/weatherBanner_nomal.png";
-                break;
-        }
-
-        List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongVO.getDdabongCode());
-=======
->>>>>>> 170c17f7c40a31f6ac8cd93c219ef06c2af8974d
-
         List<String> foodNames = new ArrayList<>();
         for (DdabongVO ddabong : foodList) {
             if (ddabong.getDdabongFood() != null) {
