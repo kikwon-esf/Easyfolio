@@ -393,7 +393,7 @@ textarea {
 }
 
 .item1 {
-    width: 180px;
+    width: 140px;
     height: 300px; /* 50vh를 300px로 변경 */
     background-image: url('/img/situation/diet.jpeg');
     background-position: center;
@@ -405,7 +405,7 @@ textarea {
 }
 
 .item2 {
-    width: 180px;
+    width: 140px;
     height: 300px; /* 50vh를 300px로 변경 */
     background-image: url('/img/situation/haejang.jpg');
     background-position: center;
@@ -417,7 +417,7 @@ textarea {
 }
 
 .item3 {
-    width: 180px;
+    width: 140px;
     height: 300px; /* 50vh를 300px로 변경 */
     background-image: url('/img/situation/ilsang.jpg');
     background-position: center;
@@ -429,7 +429,7 @@ textarea {
 }
 
 .item4 {
-    width: 180px;
+    width: 140px;
     height: 300px; /* 50vh를 300px로 변경 */
     background-image: url('/img/situation/myongjeol.jpg');
     background-position: center;
@@ -441,7 +441,7 @@ textarea {
 }
 
 .item5 {
-    width: 180px;
+    width: 140px;
     height: 300px; /* 50vh를 300px로 변경 */
     background-image: url('/img/situation/speed.jpg');
     background-position: center;

@@ -88,16 +88,20 @@ const items = {
     items5: document.querySelectorAll('.item5'),
 };
 
-const closeItems = (itemsList, excludeItem) => {
-    itemsList.forEach(item => {
-        if (item !== excludeItem && item.clicked) {
-            item.clicked = false;
-            gsap.to(item, {
-                width: '180px',
-                duration: 2,
-                ease: 'elastic(1, .6)'
-            });
-        }
+let currentOpenedItem = null; // 현재 열려있는 아이템 추적
+
+const closeItems = (exceptItem) => {
+    Object.values(items).forEach(itemList => {
+        itemList.forEach(item => {
+            if (item !== exceptItem) {
+                item.clicked = false;
+                gsap.to(item, {
+                    width: '140px',
+                    duration: 2,
+                    ease: 'elastic(1, .6)'
+                });
+            }
+        });
     });
 };
 
@@ -113,37 +117,58 @@ const expandItem = (item) => {
 const collapseItem = (item) => {
     item.clicked = false;
     gsap.to(item, {
-        width: '180px',
+        width: '140px',
         duration: 2,
         ease: 'elastic(1, .6)'
     });
 };
 
-const toggleItem = (item) => {
-    if (item.clicked) {
-        collapseItem(item);
-    } else {
-        expandItem(item);
-    }
-};
+const initializeItems = () => {
+    // 초기에 3번 아이템만 열기
+    expandItem(items.items3[0]);
+    currentOpenedItem = items.items3[0]; // 현재 열려있는 아이템 업데이트
 
-const expandItems = (itemsList) => {
-    itemsList.forEach(item => {
-        item.addEventListener('click', () => {
-            if (!item.clicked) {
-                // 현재 열린 아이템 확인 후 닫기
-                Object.values(items).forEach(itemList => {
-                    closeItems(itemList, item);
-                });
-
-                // 클릭된 아이템 열기
-                toggleItem(item);
-            } else {
-                // 이미 열린 아이템 클릭 시 닫기
+    // 나머지 아이템들은 닫기
+    Object.values(items).forEach(itemList => {
+        itemList.forEach(item => {
+            if (item !== items.items3[0]) {
                 collapseItem(item);
             }
+            item.addEventListener('mouseover', handleMouseOver);
+            item.addEventListener('mouseleave', handleMouseLeave);
         });
     });
 };
 
-Object.values(items).forEach(itemList => expandItems(itemList));
+const handleMouseOver = (event) => {
+    const item = event.currentTarget;
+    if (!item.clicked) {
+        // 현재 열린 아이템이 있으면 닫기
+        if (currentOpenedItem) {
+            collapseItem(currentOpenedItem);
+        }
+
+        // 클릭된 아이템 열기
+        expandItem(item);
+        currentOpenedItem = item;
+    }
+};
+
+const handleMouseLeave = (event) => {
+    const item = event.currentTarget;
+    if (item.clicked) {
+        // 마우스가 벗어났을 때 닫기
+        collapseItem(item);
+    } else {
+        // 아이템을 오버하지 않을 때 .item3만 열기
+        if (currentOpenedItem !== item3) {
+            closeItems();
+            expandItem(item3);
+            currentOpenedItem = item3;
+        }
+    }
+};
+
+// 초기화
+initializeItems();
+
