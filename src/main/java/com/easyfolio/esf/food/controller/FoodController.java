@@ -236,45 +236,6 @@ public class FoodController {
         }
 
         List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongCode);
-        System.err.println(foodList);
-//        List<String> foodNames = new ArrayList<>();
-//        for (DdabongVO ddabong : foodList) {
-//            if (ddabong.getDdabongFood() != null) {
-//                String[] foodArray = ddabong.getDdabongFood().split(",\\s*");
-//                foodNames.addAll(Arrays.asList(foodArray));
-//            }
-//        }
-
-//        redirectAttributes.addAttribute("foodNames", foodNames);
-        redirectAttributes.addAttribute("urlText", urlText);
-        return "redirect:/food/ddabongRecipeList";
-    }
-
-    @GetMapping("/ddabongcode")
-    public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes) {
-        String urlText = "";
-        switch (ddabongVO.getDdabongCode()) {
-            case "DDABONG_001":
-                urlText = "/img/weather/weatherBanner_cold.png";
-                break;
-            case "DDABONG_002":
-                urlText = "/img/weather/weatherBanner_hot.png";
-                break;
-            case "DDABONG_003":
-                urlText = "/img/weather/weatherBanner_rain.png";
-                break;
-            case "DDABONG_004":
-                urlText = "/img/weather/weatherBanner_snow.png";
-                break;
-            case "DDABONG_005":
-                urlText = "/img/weather/weatherBanner_night.png";
-                break;
-            default:
-                urlText = "/img/weather/weatherBanner_nomal.png";
-                break;
-        }
-
-        List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongVO.getDdabongCode());
 
         List<String> foodNames = new ArrayList<>();
         for (DdabongVO ddabong : foodList) {
@@ -284,37 +245,63 @@ public class FoodController {
             }
         }
 
-        String foodNamesString = foodNames.isEmpty() ? "" : String.join(",", foodNames);
+        redirectAttributes.addAttribute("foodNames", foodNames);
+        redirectAttributes.addAttribute("urlText", urlText);
+        return "redirect:/food/ddabongRecipeList";
+    }
+
+    @GetMapping("/ddabongcode")
+    public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes) {
+        String urlText = "";
+        if((ddabongVO.getDdabongCode()).equals("DDABONG_001")){
+            urlText = "/img/weather/weatherBanner_cold.png";
+        } else if((ddabongVO.getDdabongCode()).equals("DDABONG_002")){
+            urlText = "/img/weather/weatherBanner_hot.png";
+        }else if((ddabongVO.getDdabongCode()).equals("DDABONG_003")){
+            urlText = "/img/weather/weatherBanner_rain.png";
+        }else if((ddabongVO.getDdabongCode()).equals("DDABONG_004")){
+            urlText = "/img/weather/weatherBanner_snow.png";
+        }else if((ddabongVO.getDdabongCode()).equals("DDABONG_005")){
+            urlText = "/img/weather/weatherBanner_night.png";
+        }else{
+            urlText = "/img/weather/weatherBanner_nomal.png";
+        }
+
+        List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongVO.getDdabongCode());
+
+        List<String> foodNames = new ArrayList<>();
+        for (DdabongVO ddabong : foodList) {
+            if (ddabong.getDdabongFood() != null) {
+                String[] foodArray = ddabong.getDdabongFood().split(",\\s*"); // 쉼표 뒤에 공백이 있을 수 있으므로 \\s* 추가
+                foodNames.addAll(Arrays.asList(foodArray));
+            }
+        }
+
 
         redirectAttributes.addAttribute("ddabongCode", ddabongVO.getDdabongCode());
-        redirectAttributes.addAttribute("foodNames", foodNamesString); // 문자열로 합쳐서 전송
+        redirectAttributes.addAttribute("foodNames", foodNames);
         redirectAttributes.addAttribute("urlText", urlText);
-        return "redirect:/food/ddabongCodeRecipeList";
+        return "redirect:/food/ddabongCodeRecipeList"; // 이 부분은 필요 없으며 아래 부분이 중요합니다
     }
 
     @GetMapping("/ddabongCodeRecipeList")
-    public String ddabongCodeRecipeList(@ModelAttribute("foodNames") String foodNamesString, @ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
-        System.err.println(foodNamesString);
+    public String ddabongCodeRecipeList(@ModelAttribute("foodNames") List<String> foodNames,@ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
+        System.err.println(foodNames);
         FoodVO foodVO1 = new FoodVO();
         List<FoodVO> ddabongFoodList;
-        List<String> foodNames = new ArrayList<>();
 
-        if (foodNamesString != null && !foodNamesString.isEmpty()) {
-            foodNames = Arrays.asList(foodNamesString.split(","));
-        }
-
-        if (foodNames.isEmpty()) {
+        if (foodNames == null || foodNames.isEmpty()) {
             // foodNames가 비어있는 경우 모든 데이터를 조회하도록 처리
             ddabongFoodList = foodService.allRecipeList();
-        } else {
+        }
+        else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
-
         foodVO1.setPageInfo();
         model.addAttribute("nowPage", foodVO1.getNowPage());
         model.addAttribute("urlText", urlText);
         model.addAttribute("foodList", ddabongFoodList);
-        return "content/food/weatherFood_direct";
+        return "content/food/ddabongRecipeList";
     }
 
     @GetMapping("/ddabongRecipeList")
