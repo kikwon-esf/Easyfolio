@@ -30,6 +30,8 @@ public class PwdEditInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String userSessionId = request.getRequestedSessionId();
+        request.getHttpServletMapping();
+
         if(!sessionChk(userSessionId)){
             response.sendRedirect("/member/findMemberForm");
             return false;
