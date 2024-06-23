@@ -383,3 +383,68 @@ textarea {
     color: #333;
     font-weight: 500;
 }
+.group {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.item1 {
+    width: 8vw;
+    height: 50vh;
+    background-image: url('/img/situation/diet.jpeg');
+    background-position: center;
+    background-size: 50vh;
+    margin: 1vw;
+    border-radius: 3vw;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item2 {
+    width: 8vw;
+    height: 50vh;
+    background-image: url('/img/situation/haejang.jpg');
+    background-position: center;
+    background-size: 50vh;
+    margin: 1vw;
+    border-radius: 3vw;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item3 {
+    width: 8vw;
+    height: 50vh;
+    background-image: url('/img/situation/ilsang.jpg');
+    background-position: center;
+    background-size: 50vh;
+    margin: 1vw;
+    border-radius: 3vw;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item4 {
+    width: 8vw;
+    height: 50vh;
+    background-image: url('/img/situation/myongjeol.jpg');
+    background-position: center;
+    background-size: 50vh;
+    margin: 1vw;
+    border-radius: 3vw;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item5 {
+    width: 8vw;
+    height: 50vh;
+    background-image: url('/img/situation/speed.jpg');
+    background-position: center;
+    background-size: 50vh;
+    margin: 1vw;
+    border-radius: 3vw;
+    display: inline-block;
+    cursor: pointer;
+}
