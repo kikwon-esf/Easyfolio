@@ -168,13 +168,11 @@ function recipeInsertCheck() {
             if (count1 == 1) {
                 subMtrlPlus += subMtrl.value + " ";
             } else if (count1 == 2) {
-                subMtrlPlus += subMtrl.value;
-            } else if (i1 == subMtrlList.length) {
-                subMtrlPlus += subMtrl.value;
-            } else {
                 subMtrlPlus += subMtrl.value + "|";
                 count1 = 0;
-            }
+            } else if (i1 == subMtrlList.length) {
+                subMtrlPlus += subMtrl.value;
+            } 
         }
     }
     subMtrlResult += "[양념]" + subMtrlPlus;

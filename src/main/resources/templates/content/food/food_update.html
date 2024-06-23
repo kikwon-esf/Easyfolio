@@ -165,7 +165,7 @@
                                                             </svg></p>
                                                     </div>
                                                 </div>
-                                                <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and mtrlMt2.isEmpty()}" class="recipe_mtrl subMtrl">
+                                                <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty()}" class="recipe_mtrl subMtrl">
                                                     <p class="mtrlTitle">
                                                         <span>[</span>
                                                         <span>양념</span>
