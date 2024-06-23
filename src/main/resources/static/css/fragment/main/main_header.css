@@ -236,6 +236,9 @@ textarea{
     border-radius: 6px;
     transition: all 0.2s ease;
 }
+.alarmBox:last-child{
+    margin-bottom: 0;
+}
 .alarmTop{
     display: flex;
 }

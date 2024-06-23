@@ -47,4 +47,7 @@ public interface MyPageService {
 
     public int foodByMemberCnt(FoodVO foodVO);
 
+    public List<CommentVO> selectMyComment(CommentVO commentVO);
+
+    public int countMyComment(CommentVO commentVO);
 }

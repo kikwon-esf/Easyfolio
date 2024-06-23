@@ -12,6 +12,7 @@
         <result column="RE_CODE" property="reCode" />
         <result column="DEL_CHECK" property="delCheck" />
         <result column="UP_CHECK" property="upCheck" />
+        <result column="ORIGINAL_CONTENT" property="originalContent"/>
         <collection property="foodVO" resultMap="foodMapper.food"/>
         <collection property="memberVO" resultMap="memberMapper.member"/>
     </resultMap>
@@ -164,4 +165,47 @@
 
         WHERE FOOD_COMMENT_ID = #{foodCommentId}
     </update>
+
+
+    <!--    내가 쓴 댓글 개수-->
+    <select id="selectMyCommentList" resultMap="commentEach">
+        <![CDATA[
+    SELECT
+        F.FOOD_TTL,
+        C.FOOD_CODE,
+        C.FOOD_COMMENT_ID,
+        C.CONTENT,
+        TO_CHAR(C.REG_DATE, 'YYYY-MM-DD HH24:MI:SS') AS REG_DATE,
+        C.DEL_CHECK,
+        (CASE
+            WHEN C.RE_CODE IS NOT NULL THEN
+                (SELECT DM2.MEMBER_NAME
+                 FROM FOOD_COMMENT PC
+                 JOIN DISH_MEMBER DM2 ON PC.MEMBER_ID = DM2.MEMBER_ID
+                 WHERE PC.FOOD_COMMENT_ID = C.RE_CODE)
+            ELSE NULL
+         END) AS MEMBER_NAME,
+        (SELECT ORIG_C.CONTENT
+         FROM FOOD_COMMENT ORIG_C
+         WHERE ORIG_C.FOOD_COMMENT_ID = C.RE_CODE) AS ORIGINAL_CONTENT
+    FROM FOOD_COMMENT C
+    JOIN FOOD F ON C.FOOD_CODE = F.FOOD_CODE
+    WHERE C.MEMBER_ID = #{memberId}
+      AND C.DEL_CHECK != 'Y'
+    ORDER BY REG_DATE DESC
+    OFFSET ((#{nowPage} - 1) * #{displayDataCnt}) ROWS
+    FETCH FIRST #{displayDataCnt} ROWS ONLY
+    ]]>
+    </select>
+
+    <select id="countMyComment" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM
+        FOOD_COMMENT C JOIN FOOD F
+        ON C.FOOD_CODE = F.FOOD_CODE
+        WHERE
+        C.MEMBER_ID = #{memberId}
+        AND C.DEL_CHECK != 'Y'
+    </select>
 </mapper>

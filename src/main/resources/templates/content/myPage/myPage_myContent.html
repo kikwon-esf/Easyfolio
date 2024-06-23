@@ -4,8 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>즐겨찾기</title>
-
+    <link rel="stylesheet" href="/css/content/myPage/myPage_myContent.css">
     <!-- css영역 -->
     <th:block layout:fragment="content_css">
 
@@ -14,12 +13,13 @@
 
 <body>
 <th:block layout:fragment="content">
-
-    <h1> my content </h1>
     <div class="wrap">
-
+        <div class="myContent_title">
+            <p class="myContent_title1">내가 쓴 글</p>
+            <p class="myContent_title2">My Content</p>
+        </div>
         <div class="upper_bar">
-            <div id="content_food" class="up btn">레시피</div>
+            <div id="content_food" class="up btn on">레시피</div>
             <div id="content_comment" class="up_btn">댓글</div>
         </div>
 

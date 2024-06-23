@@ -50,12 +50,13 @@
                     </div>
 
                     <div class="recipeBox">
-                        <div class="recipes">
-                            <div th:if="${not #lists.isEmpty(asFoodList)}" th:each="asfood, state : ${asFoodList}">
+                        <div class="recipes" th:if="${not #lists.isEmpty(asFoodList)}">
+                            <div  th:each="asfood, state : ${asFoodList}">
                                 <div class="recipe">
                                     <a th:href="@{/food/detail(foodCode=${asfood.foodCode})}">
                                         <div class="recipeImgBox">
-                                            <img src="/img/food/examImg.jpg" alt="">
+                                            <img th:if="${asfood.foodImgVO.attachedFileName == null}" src="/img/food/examImg.jpg" alt="">
+                                            <img th:if="${asfood.foodImgVO.attachedFileName != null}" th:src="${'/img/food/recipe/'+ asfood.foodImgVO.attachedFileName}" alt="">
                                         </div>
                                         <input type="hidden" class="foodCode" th:value="${asfood.foodCode}">
                                         <div class="recipeTextBox">
@@ -97,8 +98,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <p th:if="${#lists.isEmpty(asFoodList)}">일치하는 검색결과가 없습니다.</p>
                         </div>
+                        <p class="noSearchText" th:if="${#lists.isEmpty(asFoodList)}">일치하는 검색결과가 없습니다.</p>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@
 
     <!-- css영역 -->
     <th:block layout:fragment="content_css">
-        <link rel="stylesheet" href="/css/content/csc/ann/csc_insertQna.css">
+        <link rel="stylesheet" href="/css/content/csc/qna/csc_insertQna.css">
     </th:block>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
@@ -18,20 +18,19 @@
         <form action="/csc/insertQna" method="post">
             <div class="csc_wrap">
                 <div class="csc_title">
-                    <p class="csc_title1">공지사항 작성</p>
+                    <p class="csc_title1">자주 찾는 질문 작성</p>
                     <p class="csc_title2">NOTICE WRITE</p>
                 </div>
                 <div class="csc_inner">
                     <div class="inqBlock">
                         <div class="box">
-                            <div class="inputBox">
-                            </div>
+                            <div class="inputBox"></div>
                             <div class="inputBox annTitle">
                                 <div class="label">질문</div>
                                 <input type="text" name="qnaQuestion">
                             </div>
                             <div class="inputBoxContent">
-                                <div class="label">답변</div>
+                                <div class="label answer">답변</div>
                                 <textarea id="summernote" name="qnaAnswer"></textarea>
                             </div>
                         </div>

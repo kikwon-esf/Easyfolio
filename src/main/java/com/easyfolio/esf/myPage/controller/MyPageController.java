@@ -112,9 +112,9 @@ public class MyPageController {
     public String myComment(Principal principal, Model model, CommentVO commentVO){
         String user = principal.getName();
         commentVO.setMemberId(user);
-        commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
+        commentVO.setTotalDataCnt(myPageService.countMyComment(commentVO));
         commentVO.setPageInfo();
-        List<CommentVO> commentList = myPageService.getCommentByMember(commentVO);
+        List<CommentVO> commentList = myPageService.selectMyComment(commentVO);
         int nowPage = commentVO.getNowPage();
         model.addAttribute("commentList",commentList);
         model.addAttribute("nowPage", nowPage);

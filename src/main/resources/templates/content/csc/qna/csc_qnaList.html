@@ -12,12 +12,23 @@
 <body>
     <th:block layout:fragment="content">
         <input class="aQnaCode" type="hidden" th:value="${qnaCode}">
+        <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
         <div id="csc_wrap">
             <div class="csc_title">
                 <p class="csc_title1">자주 찾는 질문</p>
                 <p class="csc_title2">QnA</p>
             </div>
             <div class="csc_inner">
+                <div class="commentAlarmInner pop_blind">
+                    <div class="commentAlarmPopup">
+                        <div class="alarmTextBox">
+                            <p class="alarmText"></p>
+                        </div>
+                        <div class="alarmBtnBox">
+                            <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="main">
                     <div class="csc_ann">
                         <div class="annHeader">
@@ -39,81 +50,131 @@
                             <div class="qnaBlock" th:each="qna, state : ${qnaList}"
                                 th:if="${#lists.size(qnaList) != 0}">
                                 <div class="qnaInner">
-                                    <input class="bQnaCode" type="hidden" th:value="${qna.qnaCode}">
-                                    <div class="qnaBox">
-                                        <div class="qnaIcon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-                                                fill="#f3c053" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                                <path
-                                                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
-                                            </svg>
-                                        </div>
-                                        <div class="qnaText">
-                                            <p class="labelQnaQuestion">[[${qna.qnaQuestion}]]</p>
-                                            <p>
-                                                <input type="text" class="inputQnaQuestion updateDisplay"
-                                                    name="inputQnaQuestion" th:value="${qna.qnaQuestion}">
-                                            </p>
-                                        </div>
-                                        <div class="qnaArrow">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#666"
-                                                class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="ansBox">
-                                        <div class="ansText">
-                                            <p class="labelQnaAnswer" th:utext="${qna.qnaAnswer}"></p>
-                                        </div>
-                                        <div class="summernoteBox updateDisplay">
-                                            <textarea class="editor inputQnaAnswer">[[${qna.qnaAnswer}]]</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dnuBtnBox">
                                     <input type="hidden" th:value="${qna.qnaCode}" class="textCode">
-                                    <div class="dnuBtn update" onclick="updateStart(this)">
-                                        <p>수정</p>
+                                    <div class="commentCheckInner pop_blind">
+                                        <div class="commentCheckPopup">
+                                            <div class="checkTextBox">
+                                                <p class="checkText">수정을 완료하시겠습니까?</p>
+                                            </div>
+                                            <div class="checkBtnBox">
+                                                <button class="comCheckBtn yes" onclick="updateQna(this)">확인</button>
+                                                <button class="comCheckBtn no" onclick="NoUpdate(this)">취소</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="dnuBtn update2 updateDisplay"
-                                        th:onclick="updateQna(this), updateComplete(this), reloadBtn() ">
-                                        <p>완료</p>
+                                    <div class="deleteCheckInner pop_blind">
+                                        <div class="commentCheckPopup">
+                                            <div class="checkTextBox">
+                                                <p class="checkText">삭제를 완료하시겠습니까?</p>
+                                            </div>
+                                            <div class="checkBtnBox">
+                                                <button class="comCheckBtn yes" onclick="deleteQna(this)">확인</button>
+                                                <button class="comCheckBtn no" onclick="NoDelete(this)">취소</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="dnuBtn delete" onclick="deletePopUp()">
-                                        <p>삭제</p>
+                                    <input class="bQnaCode" type="hidden" th:value="${qna.qnaCode}">
+                                    <div class="qnaNormalBlock">
+                                        <div class="qnaBox">
+                                            <div class="qnaIcon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                    fill="#f3c053" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                                    <path
+                                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                                </svg>
+                                            </div>
+                                            <div class="qnaText">
+                                                <p class="labelQnaQuestion">[[${qna.qnaQuestion}]]</p>
+                                            </div>
+                                        </div>
+                                        <div class="ansBox disNo">
+                                            <div class="ansText">
+                                                <p class="labelQnaAnswer" th:utext="${qna.qnaAnswer}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="qnaUpdateBox disNo">
+                                        <div class="qnaBox">
+                                            <div class="qnaIcon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                                    fill="#f3c053" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                                    <path
+                                                        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                                                </svg>
+                                            </div>
+                                            <div class="qnaText">
+                                                <p>
+                                                    <input type="text" class="inputQnaQuestion updateDisplay"
+                                                        name="inputQnaQuestion" th:value="${qna.qnaQuestion}">
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="ansBox disNo">
+                                            <div class="summernoteBox">
+                                                <textarea class="editor inputQnaAnswer">[[${qna.qnaAnswer}]]</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="qnaArrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#666"
+                                            class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
+                                        </svg>
+                                    </div>
+                                    <div class="dnuBtnBox disNo">
+                                        <div class="qnaBtnBox update_Delete">
+                                            <div class="dnuBtn" onclick="updateStart(this)">
+                                                <p>수정</p>
+                                            </div>
+                                            <div class="dnuBtn" onclick="deletePopUp(this)">
+                                                <p>삭제</p>
+                                            </div>
+                                        </div>
+                                        <div class="qnaBtnBox complate_Cancle deleteBtn">
+                                            <div class="dnuBtn" onclick="checkPopup(this)">
+                                                <p>완료</p>
+                                            </div>
+
+                                            <div class="dnuBtn" onclick="updateCancel(this)">
+                                                <p>취소</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-                            <div th:if="${#lists.size(qnaList) == 0}">
+                            <div class="noText" th:if="${#lists.size(qnaList) == 0}">
                                 내용이 없습니다.
                             </div>
                         </div>
-                        <div class="pageBtnBox">
-                            <div class="btn_group">
-                                <div class="pageBtn" th:if="${#lists.size(qnaList) != 0}">
-                                    <a class="page_prevBtn"
-                                        th:href="@{/csc/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span
-                                            th:if="${qnaVO.prev}">이전</span></a>
-                                    <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
-                                        <a class="page_numBtn" th:href="@{/csc/qnaListForm(nowPage=${pageNum})}"><span
-                                                th:text="${pageNum}"></span></a>
-                                    </th:block>
-                                    <a class="page_nextBtn"
-                                        th:href="@{/csc/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span
-                                            th:if="${qnaVO.next}">다음</span></a>
-                                </div>
+
+                    </div>
+                    <div class="pageBtnBox">
+                        <div class="btn_group">
+                            <div class="pageBtn" th:if="${#lists.size(qnaList) != 0}">
+                                <a class="page_prevBtn"
+                                    th:href="@{/csc/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span
+                                        th:if="${qnaVO.prev}">이전</span></a>
+                                <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
+                                    <a class="page_numBtn" th:href="@{/csc/qnaListForm(nowPage=${pageNum})}"><span
+                                            th:text="${pageNum}"></span></a>
+                                </th:block>
+                                <a class="page_nextBtn"
+                                    th:href="@{/csc/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span
+                                        th:if="${qnaVO.next}">다음</span></a>
                             </div>
                         </div>
-                        <div class="btnForm">
-                            <div>
-                                <a class="btnBox" href="/csc/insertQnaForm">
-                                    <p>글쓰기</p>
-                                </a>
-                            </div>
+                    </div>
+                    <div class="btnForm">
+                        <div>
+                            <a class="btnBox" href="/csc/insertQnaForm">
+                                <p>글쓰기</p>
+                            </a>
                         </div>
                     </div>
                 </div>

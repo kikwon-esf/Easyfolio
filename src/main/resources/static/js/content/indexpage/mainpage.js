@@ -79,3 +79,119 @@ $('.mainAccomSubImg').slick({
     slidesToShow: 1,
     speed: 500
 });
+
+const items = {
+    items1: document.querySelectorAll('.item1'),
+    items2: document.querySelectorAll('.item2'),
+    items3: document.querySelectorAll('.item3'),
+    items4: document.querySelectorAll('.item4'),
+    items5: document.querySelectorAll('.item5'),
+};
+
+let currentOpenedItem = null; // 현재 열려있는 아이템 추적
+
+const closeItems = (exceptItem) => {
+    Object.values(items).forEach(itemList => {
+        itemList.forEach(item => {
+            if (item !== exceptItem) {
+                item.clicked = false;
+                gsap.to(item, {
+                    width: '140px',
+                    duration: 2,
+                    ease: 'elastic(1, .6)'
+                });
+            }
+        });
+    });
+};
+
+const expandItem = (item) => {
+    item.clicked = true;
+    gsap.to(item, {
+        width: '415px',
+        duration: 2.5,
+        ease: 'elastic(1, .3)'
+    });
+};
+
+const collapseItem = (item) => {
+    item.clicked = false;
+    gsap.to(item, {
+        width: '140px',
+        duration: 2,
+        ease: 'elastic(1, .6)'
+    });
+};
+
+const initializeItems = () => {
+    // 초기에 3번 아이템만 열기
+    expandItem(items.items3[0]);
+    currentOpenedItem = items.items3[0]; // 현재 열려있는 아이템 업데이트
+
+    // 나머지 아이템들은 닫기
+    Object.values(items).forEach(itemList => {
+        itemList.forEach(item => {
+            if (item !== items.items3[0]) {
+                collapseItem(item);
+            }
+            item.addEventListener('mouseover', handleMouseOver);
+            item.addEventListener('mouseleave', handleMouseLeave);
+        });
+    });
+};
+
+const handleMouseOver = (event) => {
+    const item = event.currentTarget;
+    if (!item.clicked) {
+        // 현재 열린 아이템이 있으면 닫기
+        if (currentOpenedItem) {
+            collapseItem(currentOpenedItem);
+        }
+
+        // 클릭된 아이템 열기
+        expandItem(item);
+        currentOpenedItem = item;
+    }
+};
+
+const handleMouseLeave = (event) => {
+    const item = event.currentTarget;
+    if (item.clicked) {
+        // 마우스가 벗어났을 때 닫기
+        collapseItem(item);
+    } else {
+        // 아이템을 오버하지 않을 때 .item3만 열기
+        if (currentOpenedItem !== item3) {
+            closeItems();
+            expandItem(item3);
+            currentOpenedItem = item3;
+        }
+    }
+};
+
+// 초기화
+initializeItems();
+
+Splitting();
+
+// 모든 .card 요소를 선택
+/*
+var cards = document.querySelectorAll('.card');
+
+cards.forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+        var x = e.offsetX;
+        var y = e.offsetY;
+        var rotateY = -(x - card.offsetWidth / 2) / 10; // x 위치에 따라 회전 각도를 조정
+        var rotateX = (y - card.offsetHeight / 2) / 10; // y 위치에 따라 회전 각도를 조정
+
+        card.style.transform = `perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        card.style.transition = `transform 0.5s ease-out`;
+    });
+
+    card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(350px) rotateX(0) rotateY(0)';
+        card.style.transition = 'transform 0.5s ease-out'; // 원래 상태로 되돌아가는 시간 조정
+    });
+});
+*/

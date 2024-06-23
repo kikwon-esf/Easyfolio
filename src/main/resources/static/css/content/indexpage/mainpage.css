@@ -207,7 +207,7 @@ textarea {
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: 280px 280px 280px 280px;
+    grid-template-columns: 300px 300px 300px 300px;
     grid-template-rows: 175px;
     gap: 10px;
 }
@@ -237,7 +237,7 @@ textarea {
     object-fit: cover;
     opacity: 0.5;
     transition: opacity 0.5s ease;
-    
+
 }
 
 .sa_text {
@@ -266,7 +266,7 @@ textarea {
 }
 .btnClose:hover > .bi.bi-x-circle{
     fill: #F29221;
-} 
+}
 
 /* 메인2 */
 /* .c_inner.two{
@@ -328,7 +328,7 @@ textarea {
 /* 메인3 */
 .mainImgSlide-inner{
     overflow: hidden;
-    
+
 }
 .mainAccomSubImg{
 }
@@ -382,4 +382,231 @@ textarea {
     font-size: 20px;
     color: #333;
     font-weight: 500;
+}
+.sit_group {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.sit_inner{
+    padding: 0px 50px;
+}
+
+.item1 {
+    width: 140px;
+    height: 300px; /* 50vh를 300px로 변경 */
+    background-image: url('/img/situation/diet.jpeg');
+    background-position: center;
+    background-size: 535px; /* 50vh를 300px로 변경 */
+    margin: 10px; /* 1vw를 10px로 변경 */
+    border-radius: 30px; /* 3vw를 30px로 변경 */
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item2 {
+    width: 140px;
+    height: 300px; /* 50vh를 300px로 변경 */
+    background-image: url('/img/situation/haejang.jpg');
+    background-position: center;
+    background-size: 535px; /* 50vh를 300px로 변경 */
+    margin: 10px; /* 1vw를 10px로 변경 */
+    border-radius: 30px; /* 3vw를 30px로 변경 */
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item3 {
+    width: 140px;
+    height: 300px; /* 50vh를 300px로 변경 */
+    background-image: url('/img/situation/ilsang.jpg');
+    background-position: center;
+    background-size: 535px; /* 50vh를 300px로 변경 */
+    margin: 10px; /* 1vw를 10px로 변경 */
+    border-radius: 30px; /* 3vw를 30px로 변경 */
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item4 {
+    width: 140px;
+    height: 300px; /* 50vh를 300px로 변경 */
+    background-image: url('/img/situation/myongjeol.jpg');
+    background-position: center;
+    background-size: 535px; /* 50vh를 300px로 변경 */
+    margin: 10px; /* 1vw를 10px로 변경 */
+    border-radius: 30px; /* 3vw를 30px로 변경 */
+    display: inline-block;
+    cursor: pointer;
+}
+
+.item5 {
+    width: 140px;
+    height: 300px; /* 50vh를 300px로 변경 */
+    background-image: url('/img/situation/speed.jpg');
+    background-position: center;
+    background-size: 535px; /* 50vh를 300px로 변경 */
+    margin: 10px; /* 1vw를 10px로 변경 */
+    border-radius: 30px; /* 3vw를 30px로 변경 */
+    display: inline-block;
+    cursor: pointer;
+}
+
+:root {
+    --cover-timing: 0.5s;
+    --cover-ease: cubic-bezier(0.66, 0.08, 0.19, 0.97);
+    --cover-stagger: 0.15s;
+    --text-timing: .75s;
+    --text-stagger: 0.015s;
+    --text-ease: cubic-bezier(0.38, 0.26, 0.05, 1.07);
+    --title-stagger: 0.05s;
+    --highlight: white;
+}
+
+.weatherInner{
+    padding: 0px 50px;
+}
+
+.weatherCategoryBlock{
+    position: relative;
+}
+
+.weatherDivBlock{
+    display: flex;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px;
+    grid-gap: 2em;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 9/12;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 5vw 6vw -8vw, rgba(255, 255, 255, 0) 0 4.5vw 5vw -6vw, rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw, rgba(0, 0, 0, 0.8) 0px 4vw 5vw -3vw;
+    transition: box-shadow 1s var(--cover-ease);
+}
+.card > * {
+    z-index: 2;
+}
+.card > img {
+    z-index: 0;
+    transition: all 0.8s cubic-bezier(0.66, 0.08, 0.19, 0.97);
+}
+.card::before, .card::after {
+    content: "";
+    width: 100%;
+    height: 50%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.39);
+    position: absolute;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: all var(--cover-timing) var(--cover-ease);
+    z-index: 1;
+}
+.card::after {
+    transition-delay: var(--cover-stagger);
+    top: 50%;
+}
+.card:hover {
+    box-shadow: white 0 5vw 6vw -9vw, var(--highlight) 0 5.5vw 5vw -7.5vw, rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw, rgba(0, 0, 0, 0.8) 0px 4vw 5vw -3vw;
+}
+.card:hover::before, .card:hover::after {
+    transform: scaleX(1);
+}
+.card:hover h2 .char, .card:hover p .word {
+    opacity: 1;
+    transform: translateY(0);
+    color: inherit;
+}
+.card:hover h2 .char {
+    transition-delay: calc(0.1s + var(--char-index) * var(--title-stagger));
+}
+.card:hover p .word {
+    transition-delay: calc(0.1s + var(--word-index) * var(--text-stagger));
+}
+.card:hover img {
+    transform: scale(1.1);
+}
+.card:nth-of-type(1) {
+    --highlight: coral;
+}
+.card:nth-of-type(2) {
+    --highlight: #56ffe5;
+}
+
+.card:nth-of-type(3) {
+    --highlight: #ADFF1D;
+}
+
+.card:nth-of-type(4) {
+    --highlight: #F5FEFF;
+}
+
+.weathertext {
+    position: absolute;
+    inset: 20px;
+    top: auto;
+}
+
+.weathertext h2 {
+    font-size: 30px;
+    font-size: clamp(20px, 4vw, 40px);
+    font-weight: 800;
+    margin-bottom: 0.2em;
+    color: #000000;
+}
+
+.weathertext p {
+    font-size: 12px;
+    font-size: clamp(10px, 1.25vw, 14px);
+    line-height: 1.4;
+    text-align: justify;
+    margin-top: 0.2em;
+    margin-bottom: 0;
+    color : #000000;
+}
+
+.weathertext h2 .char,
+.weathertext p .word {
+    color: var(--highlight);
+    display: inline-block;
+    opacity: 0;
+    position: relative;
+    transform: translateY(20px);
+    transition-property: transform, opacity, color;
+    transition-timing-function: var(--text-ease);
+    transition-duration: var(--text-timing), var(--text-timing), calc(var(--text-timing)*2);
+}
+
+.card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+@media screen and (min-width: 600px) {
+    .weatherDivBlock {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: -webkit-min-content 1fr;
+        grid-template-rows: min-content 1fr;
+    }
+}
+
+.card {
+    width: 90vw;
+    max-width: 300px;
+}
+@media screen and (min-width: 600px) {
+    .card {
+        width: 40vw;
+    }
 }

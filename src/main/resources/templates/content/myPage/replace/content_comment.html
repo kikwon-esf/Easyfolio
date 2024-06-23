@@ -8,43 +8,59 @@
 
     <link rel="stylesheet" href="/css/content/myPage/replace/content_comment.css">
     <input type="hidden" id="nowPage" th:value="${nowPage}">
-    <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
-        <div class="commentEach">
-            <div class="commentBlock">
-                
-                <div class="noDeleteCom" th:if="${commentVO.delCheck == 'N'}">
-                    <!-- <p class="commentName"><span></span><span th:text="${commentVO.memberVO.memberName}"></span> -->
-                    </p>
-                    <input type="hidden" th:value="${commentVO.foodCommentId}">
-                    <a id="recipeBtn" th:href="@{/food/detail(foodCode=${commentVO.foodVO.foodCode})}" class="commentText"><span>레시피 : </span><span th:text="${commentVO.foodVO.foodTtl}"></span></a>
-                    <a id="commentBtn" th:href="@{/food/detail(foodCode=${commentVO.foodVO.foodCode}, foodCommentId=${commentVO.foodCommentId})}" class="commentText"><span>내용 : </span><span th:text="${commentVO.content}"></span></a>
-                    <p class="commentDate">
-                        <input class="upCheck" name="upCheck" type="hidden" th:value="${commentVO.upCheck}">
-                        <span th:text="${commentVO.reg_date}"></span>
-                        <span class="updateCheckBox" style="display: none;">( 수정함 )</span>
-                        <span th:if="${commentVO.upCheck == 'Y'}">( 수정함 )</span>
-                    </p>
+    <div class="commentBlock">
+        <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
+            <div class="commentEach">
+                <div class="commentBox">
+                    <div class="checkBlock">
+                        <input type="checkbox" class="myCheckBox" th:id="${'myCheckbox'+ state.index}" name="myCheckbox" />
+                    </div>
+                    <div class="myCommentBox">
+                        <input type="hidden" th:value="${commentVO.foodCommentId}">
+                        <div th:if="${commentVO.memberVO == null}" class="reciveBlock">
+                            <p class="reciveBox">
+                                <span>레시피 : </span>
+                                <span th:text="${commentVO.foodVO.foodTtl}"></span>
+                            </p>
+                        </div>
+                        <div th:if="${commentVO.memberVO != null}" class="reciveBlock">
+                            <p class="reciveBox">
+                                <span>[[${commentVO.memberVO.memberName}]]</span>
+                                <span>님의 댓글 :</span>
+                                <span>[[${commentVO.originalContent}]]</span>
+                            </p>
+                        </div>
+                        <a th:href="@{/food/detail(foodCode=${commentVO.foodVO.foodCode})}">
+                            <p class="commentText">
+                                <span>댓글 내용 : </span>
+                                <span th:text="${commentVO.content}"></span>
+                            </p>
+                        </a>
+                        <p class="commentDate">
+                            <input class="upCheck" name="upCheck" type="hidden" th:value="${commentVO.upCheck}">
+                            <span th:text="${commentVO.reg_date}"></span>
+                            <span th:if="${commentVO.upCheck == 'Y'}">( 수정함 )</span>
+                        </p>
+                    </div>
+                    
                 </div>
-
             </div>
-        </div>
+            </a>
+    </div>
     </th:block>
+
 
     <th:block>
         <div class="pageBtnBox">
             <div class="btn_group">
                 <div class="pageBtn" th:if="${#lists.size(commentList) != 0}">
-                    <a class="page_prevBtn"><span
-                        th:attr="onclick=|commentPaging(${commentVO.beginPage - 1})|"    
-                        th:if="${commentVO.prev}">이전</span></a>
+                    <a class="page_prevBtn"><span th:attr="onclick=|commentPaging(${commentVO.beginPage - 1})|"
+                            th:if="${commentVO.prev}">이전</span></a>
                     <th:block th:each="pageNum : ${#numbers.sequence(commentVO.beginPage, commentVO.endPage)}">
-                        <a class="page_numBtn"
-                        th:id="page+${pageNum}"
-                        th:attr="onclick=|commentPaging(${pageNum})|"><span
-                                th:text="${pageNum}"></span></a>
+                        <a class="page_numBtn" th:id="page+${pageNum}"
+                            th:attr="onclick=|commentPaging(${pageNum})|"><span th:text="${pageNum}"></span></a>
                     </th:block>
-                    <a class="page_nextBtn"
-                        th:attr="onclick=|commentPaging(${commentVO.endPage + 1})|"><span
+                    <a class="page_nextBtn" th:attr="onclick=|commentPaging(${commentVO.endPage + 1})|"><span
                             th:if="${commentVO.next}">다음</span></a>
                 </div>
             </div>

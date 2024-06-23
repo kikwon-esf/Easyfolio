@@ -109,4 +109,15 @@ public class MyPageServiceImpl implements MyPageService{
     public int foodByMemberCnt(FoodVO foodVO) {
         return sqlSession.selectOne("foodMapper.foodByMemberCnt", foodVO);
     }
+
+    @Override
+    public List<CommentVO> selectMyComment(CommentVO commentVO) {
+        return sqlSession.selectList("commentMapper.selectMyCommentList", commentVO);
+    }
+
+    @Override
+    public int countMyComment(CommentVO commentVO) {
+        return sqlSession.selectOne("commentMapper.countMyComment", commentVO);
+    }
+
 }
