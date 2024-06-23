@@ -1,4 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
+    var nowPage = document.querySelector('#nowPage').value;
+    var pageButtons = document.querySelectorAll('.page_numBtn');
+
+    pageButtons.forEach(function(button) {
+        if (button.textContent === nowPage) {
+            button.classList.add('active'); // 여기서 'active'는 원하는 클래스명입니다.
+        }
+    });
+
+    var currentPageUrl = window.location.href;
+    if (currentPageUrl.endsWith("/csc/qnaListForm")) {
+        var numBtnSpans = document.querySelectorAll(".page_numBtn span");
+        numBtnSpans.forEach(function(span) {
+            if (span.textContent.trim() === '1') {
+                span.closest('.page_numBtn').classList.add('active');
+            }
+        });
+        
+    }
+
     const aQnaCode = $('.aQnaCode').val();
     const bQnaCodes = $('.bQnaCode');
     bQnaCodes.each(function () {
@@ -13,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
             qnaInner.parent().find('.qnaBox').addClass('on');
             qnaInner.parent().find('.qnaArrow').addClass('rotate');
         }
+
     });
 
 

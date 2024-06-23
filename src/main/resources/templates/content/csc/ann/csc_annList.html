@@ -12,6 +12,7 @@
 </head>
 <body>
 <th:block layout:fragment="content">
+    <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
     <div id="csc_wrap">
         <div class="csc_title">
             <p class="csc_title1">공지사항</p>
@@ -65,13 +66,25 @@
                         <div class="btn_group">
                             <div class="pageBtn" th:if="${#lists.size(annList) != 0}">
                                 <a class="page_prevBtn"
-                                    th:href="@{/csc/annListForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">이전</span></a>
+                                    th:href="@{/csc/annListForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                    </svg>
+                                    </span></a>
                                 <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
                                     <a class="page_numBtn"
                                         th:href="@{/csc/annListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
                                 </th:block>
                                 <a class="page_nextBtn"
-                                    th:href="@{/csc/annListForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">다음</span></a>
+                                    th:href="@{/csc/annListForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                    </svg>
+                                    </span></a>
                             </div>
                         </div>
                     </div>
