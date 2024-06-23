@@ -41,6 +41,7 @@ public class CscController {
     public String annListForm(Model model, AnnVO annVO, AnnCateVO annCateVO){
         annVO.setTotalDataCnt(cscService.cscSearchAnnCnt(annVO));
         annVO.setPageInfo();
+        model.addAttribute("nowPage", annVO.getNowPage());
         model.addAttribute("annList", cscService.cscSearchAnn(annVO));
         model.addAttribute("annCateList", cscService.annCateList(annCateVO));
         model.addAttribute("allSearchKeyword", annVO.getAllSearchKeyword());
@@ -204,6 +205,7 @@ public class CscController {
     public String qnaListForm(Model model, QnaVO qnaVO){
         qnaVO.setTotalDataCnt(cscService.cscSearchQnaCnt(qnaVO));
         qnaVO.setPageInfo();
+        model.addAttribute("nowPage", qnaVO.getNowPage());
         model.addAttribute("qnaCode", qnaVO.getQnaCode());
         model.addAttribute("qnaList", cscService.cscSearchQna(qnaVO));
         model.addAttribute("allSearchKeyword", qnaVO.getAllSearchKeyword());

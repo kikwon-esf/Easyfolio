@@ -35,7 +35,10 @@
                         <div th:each="food, state : ${foodList}" class="recipe">
                             <a th:href="@{/food/detail(foodCode=${food.foodCode})}">
                                 <div class="recipeImgBox">
-                                    <img src="/img/food/examImg.jpg" alt="">
+                                    <img th:if="${food.foodImgVO.attachedFileName == null}"
+                                         src="/img/food/examImg.jpg" alt="">
+                                    <img th:if="${food.foodImgVO.attachedFileName != null}"
+                                         th:src="${'/img/food/recipe/'+ food.foodImgVO.attachedFileName}" alt="">
                                 </div>
                                 <div class="recipeTextBox">
                                     <p>[[${food.foodTtl}]]</p>
