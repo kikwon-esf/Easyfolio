@@ -55,38 +55,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function updateQna(element) {
-    const target = element.closest(".qnaBlock");
-    fetch('/csc/updateQna', {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        body: new URLSearchParams({
-            'qnaCode': target.querySelector('.bQnaCode').value,
-            'qnaQuestion': target.querySelector('.labelQnaQuestion').value,
-            'qnaAnswer': target.querySelector('.labelQnaAnswer').value,
-            'inputQnaQuestion': target.querySelector('.inputQnaQuestion').value,
-            'inputQnaAnswer': target.querySelector('.inputQnaAnswer').value
-        })
-    })
-        .then((response) => {
-            if (!response.ok) {
-                alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-                return;
-            }
+// function updateQna(element) {
+//     const target = element.closest(".qnaBlock");
+//     fetch('/csc/updateQna', {
+//         method: 'POST',
+//         cache: 'no-cache',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+//         },
+//         body: new URLSearchParams({
+//             'qnaCode': target.querySelector('.bQnaCode').value,
+//             'qnaQuestion': target.querySelector('.labelQnaQuestion').value,
+//             'qnaAnswer': target.querySelector('.labelQnaAnswer').value,
+//             'inputQnaQuestion': target.querySelector('.inputQnaQuestion').value,
+//             'inputQnaAnswer': target.querySelector('.inputQnaAnswer').value
+//         })
+//     })
+//         .then((response) => {
+//             if (!response.ok) {
+//                 alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+//                 return;
+//             }
 
-            return response.text();
-        })
-        .then((data) => {
-            alert('내용이 변경되었습니다.');
-        })
-        .catch(err => {
-            alert('내용이 변경되었습니다.');
-            console.log(err);
-        });
-}
+//             return response.text();
+//         })
+//         .then((data) => {
+//             alert('내용이 변경되었습니다.');
+//         })
+//         .catch(err => {
+//             alert('내용이 변경되었습니다.');
+//             console.log(err);
+//         });
+// }
 
 function updateStart(element) {
     const qnaBlock = element.closest('.qnaBlock');
@@ -99,8 +99,10 @@ function updateStart(element) {
 
     qnaBlock.querySelector('.inputQnaQuestion').classList.remove('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update2').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.cancel').classList.remove('updateDisplay');
     qnaBlock.querySelector('.labelQnaQuestion').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update').classList.add('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.delete').classList.add('updateDisplay');
 }
 
 function updateComplete(element) {
@@ -123,6 +125,22 @@ function updateComplete(element) {
     qnaBlock.querySelector('.inputQnaQuestion').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update2').classList.add('updateDisplay');
 
+}
+
+function updateCancel(element){
+    const qnaBlock = element.closest('.qnaBlock');
+    const ansText = qnaBlock.querySelector('.ansText');
+
+    ansText.classList.remove('updateDisplay');
+    qnaBlock.querySelector('.summernoteBox').classList.add('updateDisplay');
+    qnaBlock.querySelector('.labelQnaAnswer').classList.remove('updateDisplay');
+
+    qnaBlock.querySelector('.inputQnaQuestion').classList.add('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.update2').classList.add('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.cancel').classList.add('updateDisplay');
+    qnaBlock.querySelector('.labelQnaQuestion').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.update').classList.remove('updateDisplay');
+    qnaBlock.querySelector('.dnuBtn.delete').classList.remove('updateDisplay');
 }
 
 function reloadBtn(){

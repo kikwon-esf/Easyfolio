@@ -89,8 +89,18 @@ textarea {
     padding: 20px 0;
     border-right: 1px solid #dadada;
 }
+
+.label.answer{
+    font-size: 15px;
+    color: #333;
+    width: 800px;
+
+    text-align: center;
+    padding: 10px 0;
+}
+
 .inputBox.annTitle{
-    border-bottom: 0;
+    border-bottom: 1px solid #dadada;
 }
 select{
     font-size: 15px;
