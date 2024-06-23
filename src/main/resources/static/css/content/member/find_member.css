@@ -284,3 +284,13 @@ textarea {
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
 }
+.changePw_href{
+    text-align: center;
+    display: block;
+    color: #29353d;
+    margin: 0 auto;
+    
+}
+.changePw_href:hover{
+    color: #f3c053;
+}
