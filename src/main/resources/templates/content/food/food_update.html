@@ -165,15 +165,15 @@
                                                             </svg></p>
                                                     </div>
                                                 </div>
-                                                <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty()}" class="recipe_mtrl subMtrl">
+                                                <div class="recipe_mtrl subMtrl">
                                                     <p class="mtrlTitle">
                                                         <span>[</span>
                                                         <span>양념</span>
                                                         <span>]</span>
                                                     </p>
-                                                    <div class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt2}">
-                                                        <div>
-                                                            <p th:if="${state.index != 0}" class="deleteMtrlMt"
+                                                    <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty()}" class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt2}">
+                                                        <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty()}">
+                                                            <p th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty() and state.index != 0}" class="deleteMtrlMt"
                                                                 onclick="deleteMtrl(this)"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="16"
                                                                     height="16" fill="#555"
@@ -181,7 +181,7 @@
                                                                     <path
                                                                         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z" />
                                                                 </svg></p>
-                                                            <p class="mtText"><input id="subMtrl"
+                                                            <p th:if="${mtrlMt.size() > 0 and mtrlMt[0] != null}" class="mtText"><input id="subMtrl"
                                                                     class="mtrlFirstInput recipeInput" type="text"
                                                                     th:value="${mtrlMt[0]}"></p>
                                                             <p th:if="${mtrlMt.size() > 1 and mtrlMt[1] != null}"
