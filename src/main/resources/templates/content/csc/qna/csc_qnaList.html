@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="dnuBtnBox">
                                     <input type="hidden" th:value="${qna.qnaCode}" class="textCode">
-                                    <div class="dnuBtn update" onclick="updateStart(this)">
+                                    <div class="dnuBtn update" onclick="updateStart(this), removeToggleEvent()">
                                         <p>수정</p>
                                     </div>
                                     <div class="dnuBtn update2 updateDisplay"
@@ -86,7 +86,7 @@
                                     <div class="dnuBtn delete" onclick="deletePopUp()">
                                         <p>삭제</p>
                                     </div>
-                                    <div class="dnuBtn cancel updateDisplay" onclick="updateCancel(this)">
+                                    <div class="dnuBtn cancel updateDisplay" onclick="updateCancel(this), addToggleEvent()">
                                         <p>취소</p>
                                     </div>
                                 </div>

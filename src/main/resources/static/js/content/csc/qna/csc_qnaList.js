@@ -15,25 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    var qnaBlocks = document.querySelectorAll('.qnaBlock');
-    var qnaBlocksArray = Array.from(qnaBlocks);
-
-    qnaBlocksArray.forEach(function (qnaBlock) {
-        var dnuBtnBox = qnaBlock.querySelector('.dnuBtnBox');
-        var qnaInner = qnaBlock.querySelector('.qnaInner');
-        var ansBox = qnaBlock.querySelector('.ansBox');
-
-        qnaInner.addEventListener('click', function () {
-            $(dnuBtnBox).toggleClass('on');
-            $(ansBox).slideToggle();
-            $(qnaInner).find('.qnaBox').toggleClass('on');
-            $(qnaInner).find('.qnaArrow').toggleClass('rotate');
-        });
-
-        ansBox.addEventListener('click', function (event) {
-            event.stopPropagation();
-        });
-    });
 
     var annSearch = document.querySelector('.annSearch');
     var annSearchBlock = document.querySelector('.annSearchBlock');
@@ -55,38 +36,63 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// function updateQna(element) {
-//     const target = element.closest(".qnaBlock");
-//     fetch('/csc/updateQna', {
-//         method: 'POST',
-//         cache: 'no-cache',
-//         headers: {
-//             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-//         },
-//         body: new URLSearchParams({
-//             'qnaCode': target.querySelector('.bQnaCode').value,
-//             'qnaQuestion': target.querySelector('.labelQnaQuestion').value,
-//             'qnaAnswer': target.querySelector('.labelQnaAnswer').value,
-//             'inputQnaQuestion': target.querySelector('.inputQnaQuestion').value,
-//             'inputQnaAnswer': target.querySelector('.inputQnaAnswer').value
-//         })
-//     })
-//         .then((response) => {
-//             if (!response.ok) {
-//                 alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-//                 return;
-//             }
 
-//             return response.text();
-//         })
-//         .then((data) => {
-//             alert('내용이 변경되었습니다.');
-//         })
-//         .catch(err => {
-//             alert('내용이 변경되었습니다.');
-//             console.log(err);
-//         });
-// }
+function removeToggleEvent(){
+    var qnaBlocks = Array.from(qnaBlocks);
+    qnaBlocks.forEach(function(qnaBlock){
+        var qnaInner = qnaBlock.querySelector('.qnaInner');
+        var ansBox = qnaBlock.querySelector('.ansBox');
+
+        qnaInner.removeEventListener('click', qnaInnerClickHandler);
+        ansBox.removeEventListener('click', ansBoxClickHandler);
+    })
+}
+
+function qnaInnerClickHandler(){
+    var dnuBtnBox = this.querySelector('.dnuBtnBox');
+    var ansBox = this.querySelector('.ansBox');
+
+    $(dnuBtnBox).toggleClass('on');
+    $(ansBox).slideToggle();
+    $(this).find('.qnaBox').toggleClass('on');
+    $(this).find('.qnaArrow').toggleClass('rotate');
+}
+
+function ansBoxClickHandler(event){
+    event.stopPropagation();
+}
+
+function addToggleEvent(){
+    var qnaBlocks = Array.from(qnaBlocks);('.qnaBlock');
+    qnaBlocks.forEach(function(qnaBlock){
+        var qnaInner = qnaBlock.querySelector('.qnaInner');
+        var ansBox = qnaBlock.querySelector('.ansBox');
+
+        qnaInner.addEventListener('click', qnaInnerClickHandler);
+        ansBox.addEventListener('click', ansBoxClickHandler);
+    })
+}
+
+var qnaBlocks = document.querySelectorAll('.qnaBlock');
+var qnaBlocksArray = Array.from(qnaBlocks);
+
+qnaBlocksArray.forEach(function (qnaBlock) {
+    var dnuBtnBox = qnaBlock.querySelector('.dnuBtnBox');
+    var qnaInner = qnaBlock.querySelector('.qnaInner');
+    var ansBox = qnaBlock.querySelector('.ansBox');
+
+    qnaInner.addEventListener('click', function () {
+        $(dnuBtnBox).toggleClass('on');
+        $(ansBox).slideToggle();
+        $(qnaInner).find('.qnaBox').toggleClass('on');
+        $(qnaInner).find('.qnaArrow').toggleClass('rotate');
+    });
+
+    ansBox.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+});
+
 
 function updateStart(element) {
     const qnaBlock = element.closest('.qnaBlock');
@@ -103,6 +109,8 @@ function updateStart(element) {
     qnaBlock.querySelector('.labelQnaQuestion').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update').classList.add('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.delete').classList.add('updateDisplay');
+    
+
 }
 
 function updateComplete(element) {
@@ -141,6 +149,8 @@ function updateCancel(element){
     qnaBlock.querySelector('.labelQnaQuestion').classList.remove('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.update').classList.remove('updateDisplay');
     qnaBlock.querySelector('.dnuBtn.delete').classList.remove('updateDisplay');
+
+    
 }
 
 function reloadBtn(){
@@ -171,3 +181,36 @@ function qna_search(){
     document.querySelector('.qna_searchForm').submit();
 }
 
+
+// function updateQna(element) {
+//     const target = element.closest(".qnaBlock");
+//     fetch('/csc/updateQna', {
+//         method: 'POST',
+//         cache: 'no-cache',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+//         },
+//         body: new URLSearchParams({
+//             'qnaCode': target.querySelector('.bQnaCode').value,
+//             'qnaQuestion': target.querySelector('.labelQnaQuestion').value,
+//             'qnaAnswer': target.querySelector('.labelQnaAnswer').value,
+//             'inputQnaQuestion': target.querySelector('.inputQnaQuestion').value,
+//             'inputQnaAnswer': target.querySelector('.inputQnaAnswer').value
+//         })
+//     })
+//         .then((response) => {
+//             if (!response.ok) {
+//                 alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+//                 return;
+//             }
+
+//             return response.text();
+//         })
+//         .then((data) => {
+//             alert('내용이 변경되었습니다.');
+//         })
+//         .catch(err => {
+//             alert('내용이 변경되었습니다.');
+//             console.log(err);
+//         });
+// }
