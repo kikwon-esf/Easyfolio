@@ -79,3 +79,71 @@ $('.mainAccomSubImg').slick({
     slidesToShow: 1,
     speed: 500
 });
+
+const items = {
+    items1: document.querySelectorAll('.item1'),
+    items2: document.querySelectorAll('.item2'),
+    items3: document.querySelectorAll('.item3'),
+    items4: document.querySelectorAll('.item4'),
+    items5: document.querySelectorAll('.item5'),
+};
+
+const closeItems = (itemsList, excludeItem) => {
+    itemsList.forEach(item => {
+        if (item !== excludeItem && item.clicked) {
+            item.clicked = false;
+            gsap.to(item, {
+                width: '180px',
+                duration: 2,
+                ease: 'elastic(1, .6)'
+            });
+        }
+    });
+};
+
+const expandItem = (item) => {
+    item.clicked = true;
+    gsap.to(item, {
+        width: '415px',
+        duration: 2.5,
+        ease: 'elastic(1, .3)'
+    });
+};
+
+const collapseItem = (item) => {
+    item.clicked = false;
+    gsap.to(item, {
+        width: '180px',
+        duration: 2,
+        ease: 'elastic(1, .6)'
+    });
+};
+
+const toggleItem = (item) => {
+    if (item.clicked) {
+        collapseItem(item);
+    } else {
+        expandItem(item);
+    }
+};
+
+const expandItems = (itemsList) => {
+    itemsList.forEach(item => {
+        item.addEventListener('click', () => {
+            if (!item.clicked) {
+                // 현재 열린 아이템 확인 후 닫기
+                Object.values(items).forEach(itemList => {
+                    closeItems(itemList, item);
+                });
+
+                // 클릭된 아이템 열기
+                toggleItem(item);
+            } else {
+                // 이미 열린 아이템 클릭 시 닫기
+                collapseItem(item);
+            }
+        });
+    });
+};
+
+Object.values(items).forEach(itemList => expandItems(itemList));
