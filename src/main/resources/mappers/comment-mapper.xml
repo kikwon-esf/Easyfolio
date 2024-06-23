@@ -157,4 +157,11 @@
         </if>
         WHERE FOOD_COMMENT_ID = #{foodCommentId}
     </update>
+    <update id="deleteComment">
+        UPDATE FOOD_COMMENT
+        SET
+        DEL_CHECK = 'Y'
+
+        WHERE FOOD_COMMENT_ID = #{foodCommentId}
+    </update>
 </mapper>

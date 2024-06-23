@@ -71,7 +71,7 @@ public class MyPageServiceImpl implements MyPageService{
 
     @Override
     public int deleteComment(CommentVO commentVO) {
-        return sqlSession.insert("commentMapper.deleteFoodComment",commentVO);
+        return sqlSession.insert("commentMapper.deleteComment",commentVO);
     }
 
     @Override

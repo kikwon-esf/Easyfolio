@@ -175,8 +175,27 @@ public class FoodController {
         Map<String,CommentVO> commentMap = myPageService.getCommentVOList(commentVO);
         List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
 
-        commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
-        commentVO.setPageInfo();
+//        commentVO.setTotalDataCnt(myPageService.commentListCnt(commentVO));
+        List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
+        model.addAttribute("commentList", commentList);
+        model.addAttribute("inputComment",new CommentVO()
+                .withReciveMemberId(
+                        commentVO.getReciveMemberId()
+                )
+        );
+//        model.addAttribute("nowPage", commentVO.getNowPage());
+        model.addAttribute("totalCount",myPageService.commentListCnt(commentVO));
+        model.addAttribute("foodCode", commentVO.getFoodCode());
+
+        return "content/myPage/replace/food_comment";
+    }
+    //댓글 더 보여줘!!
+    @GetMapping(value = "/moreComment")
+    public String getMoreCommentList(Model model, CommentVO commentVO){
+        System.err.println("??");
+        System.err.println(commentVO.getNowPage());
+        Map<String,CommentVO> commentMap = myPageService.getCommentVOList(commentVO);
+        List<CommentVO> reCommentList = myPageService.getReComment(commentVO);
 
         List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
         model.addAttribute("commentList", commentList);
@@ -185,10 +204,9 @@ public class FoodController {
                         commentVO.getReciveMemberId()
                 )
         );
-        model.addAttribute("nowPage", commentVO.getNowPage());
         model.addAttribute("foodCode", commentVO.getFoodCode());
 
-        return "content/myPage/replace/food_comment";
+        return "content/myPage/replace/commentOnly";
     }
 
     private List<CommentVO> sortReComment(List<CommentVO> commentList, List<CommentVO> reCommentList){

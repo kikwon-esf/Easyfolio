@@ -30,6 +30,7 @@
     width: 25px;
     height: 25px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 .heartBox:hover{
     opacity: 0.6;
