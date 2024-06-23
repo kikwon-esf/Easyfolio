@@ -171,7 +171,7 @@
                                                         <span>양념</span>
                                                         <span>]</span>
                                                     </p>
-                                                    <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty()}" class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt2}">
+                                                    <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty() and mtrlMt.size() > 0 and mtrlMt[0] != null}" class="mtrlMt" th:each="mtrlMt, state : ${mtrlMt2}">
                                                         <div th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty()}">
                                                             <p th:if="${mtrlMt2 != null and #lists.size(mtrlMt2) > 0 and !mtrlMt2.isEmpty() and state.index != 0}" class="deleteMtrlMt"
                                                                 onclick="deleteMtrl(this)"><svg

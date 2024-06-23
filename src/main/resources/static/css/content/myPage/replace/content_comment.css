@@ -1,5 +1,5 @@
 .commentEach{
-    margin-bottom : 5px;
+    border-bottom: 1px solid #dadada;
 }
 
 a {
@@ -9,7 +9,6 @@ a {
 .commentBlock{
     box-shadow: 0 0px 5px 3px rgba(68,68,68,.05);
     width: 970px;
-    padding: 10px;
     border-radius: 0 0 10px 10px;
     border: 1px solid #f4f4f4;
     border-top: 0;
