@@ -57,4 +57,10 @@ public interface FoodService {
     public void insertFood(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO);
 
     public FoodImgVO selectFoodImg(FoodVO foodVO);
+
+    public void updateFood(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO);
+
+    public void updateFood(FoodVO foodVO, FoodStepsVO foodStepsVO);
+
+    public void updateAndInsertImg(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO);
 }

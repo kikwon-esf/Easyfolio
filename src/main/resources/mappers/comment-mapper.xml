@@ -92,19 +92,15 @@
 
     <select id="commentListCnt" resultType="int">
         SELECT COUNT(FOOD_COMMENT_ID)
-        FROM FOOD_COMMENT C
+        FROM FOOD_COMMENT
         <choose>
             <!-- MYPAGE에서 조회시 -->
             <when test="foodCode == null or foodCode.isEmpty()">
-                ,FOOD F
-                WHERE C.MEMBER_ID = #{memberId}
-                AND C.FOOD_CODE = F.FOOD_CODE
+                WHERE MEMBER_ID = #{memberId}
             </when>
             <!-- FOODDTL에서 조회시 -->
             <otherwise>
-                ,DISH_MEMBER M
-                WHERE C.FOOD_CODE = #{foodCode}
-                AND C.MEMBER_ID = M.MEMBER_ID
+                WHERE FOOD_CODE = #{foodCode}
                 AND RE_CODE IS NULL
             </otherwise>
         </choose>

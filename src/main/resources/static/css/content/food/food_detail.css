@@ -86,6 +86,7 @@ textarea {
 }
 
 .recipe_header_top {
+    position: relative;
     border-bottom: 1px solid #dadada;
 }
 
@@ -250,7 +251,7 @@ textarea {
 }
 
 .recipe_steps {
-    text-align: center;
+    text-align: left;
     position: relative;
     width: 100%;
     box-shadow: 0 5px 8px 0 rgba(68, 68, 68, .04);
@@ -267,7 +268,7 @@ textarea {
     top: -16px;
     position: absolute;
     right: 50%;
-    margin-right: -110px;
+    margin-right: -83px;
     background-color: #fff;
     padding: 0px 20px;
     border-radius: 10px;
@@ -399,4 +400,38 @@ textarea {
 }
 .updateBtnBox:hover p{
     background-color: #f29221;
+}
+.cartBox{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+.heartBox{
+    margin-bottom: 10px;
+}
+.rcmmCntBox{
+    font-size: 17px;
+}
+.stepsTextBox{
+    display: flex;
+}
+.stepsTextBox{
+    width: 950px;
+    margin : 0 auto 27px auto;
+}
+.stepsNumber p{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #f29221;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+    margin-right: 20px;
+}
+.stepsText{
+    width: 890px;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 2px 10px;
 }

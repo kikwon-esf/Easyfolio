@@ -204,7 +204,6 @@ function recipeInsertCheck() {
             stepsTextInputResult += stepsTextInput.value + "%";
         }
     }
-    console.log(stepsTextInputResult);
     document.querySelector('#foodEx').value = stepsTextInputResult;
 
     document.querySelector('.recipeInsertForm').submit();
@@ -228,7 +227,7 @@ function readURL(input) {
         a++;
         reader.readAsDataURL(file);
     };
-
+    
 }
 document.addEventListener('DOMContentLoaded', function () {
     const inputs = document.querySelectorAll('input.recipeInput, textarea.recipeTextarea');

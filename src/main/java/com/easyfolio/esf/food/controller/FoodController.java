@@ -24,6 +24,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.groovy.parser.antlr4.SyntaxErrorReportable;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -84,7 +85,6 @@ public class FoodController {
 
     private void setupFoodList(Model model, FoodVO foodVO) {
         model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
-        System.err.println(foodService.searchFoodAll(foodVO));
     }
 
     private void setupSearchDetails(Model model, FoodVO foodVO) {
@@ -185,7 +185,6 @@ public class FoodController {
                         commentVO.getReciveMemberId()
                 )
         );
-        System.err.println(commentVO.getNowPage());
         model.addAttribute("nowPage", commentVO.getNowPage());
         model.addAttribute("foodCode", commentVO.getFoodCode());
 
@@ -237,18 +236,85 @@ public class FoodController {
         }
 
         List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongCode);
-
+        System.err.println(foodList);
         List<String> foodNames = new ArrayList<>();
         for (DdabongVO ddabong : foodList) {
             if (ddabong.getDdabongFood() != null) {
-                String[] foodArray = ddabong.getDdabongFood().split(",\\s*"); // 쉼표 뒤에 공백이 있을 수 있으므로 \\s* 추가
+                String[] foodArray = ddabong.getDdabongFood().split(",\\s*");
                 foodNames.addAll(Arrays.asList(foodArray));
             }
         }
 
-        redirectAttributes.addFlashAttribute("foodNames", foodNames);
-        redirectAttributes.addFlashAttribute("urlText", urlText);
-        return "redirect:/food/ddabongRecipeList"; // 이 부분은 필요 없으며 아래 부분이 중요합니다
+        redirectAttributes.addAttribute("foodNames", foodNames);
+        redirectAttributes.addAttribute("urlText", urlText);
+        return "redirect:/food/ddabongRecipeList";
+    }
+
+    @GetMapping("/ddabongcode")
+    public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes) {
+        String urlText = "";
+        switch (ddabongVO.getDdabongCode()) {
+            case "DDABONG_001":
+                urlText = "/img/weather/weatherBanner_cold.png";
+                break;
+            case "DDABONG_002":
+                urlText = "/img/weather/weatherBanner_hot.png";
+                break;
+            case "DDABONG_003":
+                urlText = "/img/weather/weatherBanner_rain.png";
+                break;
+            case "DDABONG_004":
+                urlText = "/img/weather/weatherBanner_snow.png";
+                break;
+            case "DDABONG_005":
+                urlText = "/img/weather/weatherBanner_night.png";
+                break;
+            default:
+                urlText = "/img/weather/weatherBanner_nomal.png";
+                break;
+        }
+
+        List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongVO.getDdabongCode());
+
+        List<String> foodNames = new ArrayList<>();
+        for (DdabongVO ddabong : foodList) {
+            if (ddabong.getDdabongFood() != null) {
+                String[] foodArray = ddabong.getDdabongFood().split(",\\s*");
+                foodNames.addAll(Arrays.asList(foodArray));
+            }
+        }
+
+        String foodNamesString = foodNames.isEmpty() ? "" : String.join(",", foodNames);
+
+        redirectAttributes.addAttribute("ddabongCode", ddabongVO.getDdabongCode());
+        redirectAttributes.addAttribute("foodNames", foodNamesString); // 문자열로 합쳐서 전송
+        redirectAttributes.addAttribute("urlText", urlText);
+        return "redirect:/food/ddabongCodeRecipeList";
+    }
+
+    @GetMapping("/ddabongCodeRecipeList")
+    public String ddabongCodeRecipeList(@ModelAttribute("foodNames") String foodNamesString, @ModelAttribute("urlText") String urlText, Model model, FoodVO foodVO) {
+        System.err.println(foodNamesString);
+        FoodVO foodVO1 = new FoodVO();
+        List<FoodVO> ddabongFoodList;
+        List<String> foodNames = new ArrayList<>();
+
+        if (foodNamesString != null && !foodNamesString.isEmpty()) {
+            foodNames = Arrays.asList(foodNamesString.split(","));
+        }
+
+        if (foodNames.isEmpty()) {
+            // foodNames가 비어있는 경우 모든 데이터를 조회하도록 처리
+            ddabongFoodList = foodService.allRecipeList();
+        } else {
+            ddabongFoodList = foodService.ddabongRecipeList(foodNames);
+        }
+
+        foodVO1.setPageInfo();
+        model.addAttribute("nowPage", foodVO1.getNowPage());
+        model.addAttribute("urlText", urlText);
+        model.addAttribute("foodList", ddabongFoodList);
+        return "content/food/weatherFood_direct";
     }
 
     @GetMapping("/ddabongRecipeList")
@@ -262,7 +328,7 @@ public class FoodController {
             // foodNames가 비어있는 경우 모든 데이터를 조회하도록 처리
             ddabongFoodList = foodService.allRecipeList();
         }
-             else {
+        else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
         foodVO1.setPageInfo();
@@ -278,7 +344,6 @@ public class FoodController {
         MemberVO memberVO1 = new MemberVO();
         memberVO1.setMemberName((memberService.selectMemberName(principal.getName())).getMemberName());
         memberVO1.setMemberId(principal.getName());
-        System.err.println(memberVO1);
 
         model.addAttribute("memberInfo", memberVO1);
         model.addAttribute("foodUsageList", foodService.foodUsageList());
@@ -291,23 +356,81 @@ public class FoodController {
     @PostMapping("/recipeInsert")
     public String recipeInsert(RedirectAttributes redirectAttributes,FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
         String foodCode = foodService.nextFoodCode();
-
         FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
         uploadedImg.setFoodCode(foodCode);
         foodVO.setFoodCode(foodCode);
         foodStepsVO.setFoodCode(foodCode);
-        System.err.println(foodVO);
-        System.err.println(foodStepsVO);
-        System.err.println(uploadedImg);
         foodService.insertFood(foodVO, foodStepsVO, uploadedImg);
-        redirectAttributes.addFlashAttribute("foodCode", foodCode);
+        redirectAttributes.addAttribute("foodCode", foodCode);
         return "redirect:/food/detail";
     }
 
     @GetMapping("/updateFoodForm")
-    public String updateFoodForm(FoodVO foodVO){
+    public String updateFoodForm(FoodVO foodVO, Model model){
+        foodService.updateFoodInqCnt(foodVO);
+        model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
+        FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
+        model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
+        setupSearchDetails(model, foodVO);
+        String mtrl = detailFoodVO.getFoodMtrlCn();
+        Pattern pattern = Pattern.compile("\\[([^\\]]+)\\]([^\\[]+)(?=\\[|$)");
+        Matcher matcher = pattern.matcher(mtrl);
 
+        List<String> mtrlTitle = new ArrayList<>();
+        List<List<String>> mtrlMt1 = new ArrayList<>();
+        List<List<String>> mtrlMt2 = new ArrayList<>();
+
+        while (matcher.find()) {
+            mtrlTitle.add(matcher.group(1).trim());
+            String materials = matcher.group(2).trim();
+            String[] mtrls = materials.split("\\|");
+            for (int i = 0; i < mtrls.length; i++) {
+                String[] splitMtrls = mtrls[i].trim().split("\\s+(?=[^\\s]*$)");
+                List<String> mtrlList = Arrays.asList(splitMtrls);
+                if (mtrlTitle.size() == 1) {
+                    mtrlMt1.add(mtrlList);
+                } else {
+                    mtrlMt2.add(mtrlList);
+                }
+            }
+        }
+
+        // 결과 출력
+        model.addAttribute("foodImg", foodService.selectFoodImg(foodVO));
+        model.addAttribute("mtrlTitles", mtrlTitle);
+        model.addAttribute("mtrlMt1", mtrlMt1);
+        if (mtrlMt2.isEmpty()) {
+            mtrlMt2.add(new ArrayList<>());
+        }
+        model.addAttribute("mtrlMt2", mtrlMt2);
+        if(foodService.getFoodSteps(foodVO) != null && foodService.getFoodSteps(foodVO).size() > 0){
+            String foodStepsStr = String.valueOf(foodService.getFoodSteps(foodVO).get(0).getFoodEx());
+            List<String> foodStepsList = Arrays.asList(foodStepsStr.split("%"));
+            model.addAttribute("foodSteps", foodStepsList);
+        }else{
+            model.addAttribute("foodSteps",foodService.getFoodSteps(foodVO));
+        }
         return "/content/food/food_update";
+    }
+
+    @PostMapping("/foodUpdate")
+    public String foodUpdate(RedirectAttributes redirectAttributes,FoodVO foodVO, FoodStepsVO foodStepsVO,FoodImgVO foodImgVO, @RequestParam("foodImg") MultipartFile foodImg) {
+        String foodCode = foodVO.getFoodCode();
+        FoodImgVO uploadedImg = UploadUtillFoodImg.uploadFile(foodImg);
+
+        if (uploadedImg != null) {
+            uploadedImg.setFoodCode(foodCode);
+            if (foodService.selectFoodImg(foodVO) != null) {
+                foodService.updateFood(foodVO, foodStepsVO, uploadedImg);
+            } else if (foodService.selectFoodImg(foodVO) == null) {
+                foodService.updateAndInsertImg(foodVO, foodStepsVO, uploadedImg);
+            }
+        }else{
+            foodService.updateFood(foodVO, foodStepsVO);
+        }
+
+        redirectAttributes.addAttribute("foodCode", foodCode);
+        return "redirect:/food/detail";
     }
 
 }
