@@ -24,6 +24,7 @@ public class CommentVO extends PageVO {
     private List<CommentVO> reCommentList;
     private String delCheck;
     private String upCheck;
+    private String originalContent;
 
     public CommentVO withMemberId(String memberId){
         this.memberId = memberId;

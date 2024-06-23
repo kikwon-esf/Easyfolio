@@ -1,7 +1,13 @@
 .commentEach{
+    padding: 10px;
     border-bottom: 1px solid #dadada;
 }
-
+.commentEach:hover{
+    background-color: #f4f4f4;
+}
+.commentEach:last-child{
+    border: 0;
+}
 a {
     text-decoration: none;
 }
@@ -16,7 +22,28 @@ a {
     box-sizing: border-box;
     margin-bottom: 30px;
 }
-
+.reciveBox span{
+    font-size: 15px;
+    color: #444;
+}
+.commentBox{
+    display: flex;
+}
+.myCheckBox{
+    cursor: pointer;
+    margin: 60% 20px 0 12px;
+    width: 20px;
+    height: 20px;
+}
+.commentText{
+    padding: 7px 0;
+    font-size: 18px;
+    color: #333;
+}
+.commentDate span{
+    color: #666;
+    font-size: 13px;
+}
 
 /* paging */
 .pageBtnBox{
