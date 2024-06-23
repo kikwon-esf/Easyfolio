@@ -1,3 +1,26 @@
+.myContent_title{
+    margin-bottom: 35px;
+    display: -webkit-inline-box;
+    margin-left: 20px;
+}
+.myContent_title0{
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.myContent_title1{
+    color: #333;
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.myContent_title2{
+    margin: 5px 10px 3px -5px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #f3c053;
+}
 .pageBtn{
     margin: 0 auto;
     display: flex;
@@ -16,4 +39,29 @@
 }
 .pageBtn a svg{
     margin-top: 3px;
+}
+.upper_bar{
+    display: flex;
+    width: 970px;
+    box-sizing: border-box;
+    margin-left: -30px;
+}
+.upper_bar div{
+    background-color: #f4f4f4;
+    cursor: pointer;
+    width: 50%;
+    text-align: center;
+    border: 1px solid #f4f4f4;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.up{
+    border-radius: 10px 0 0 0;
+    border-right: 0;
+}
+.up_btn{
+    border-radius: 0 10px 0 0;
+}
+.upper_bar >.on{
+    background-color: #fff;
 }

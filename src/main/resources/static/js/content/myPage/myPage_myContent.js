@@ -36,12 +36,19 @@ function cookieCheck(){
 }
 
 foodBtn.addEventListener('click', function(){
-    
+    if (commentBtn.classList.contains('on')) {
+        commentBtn.classList.remove('on');
+    }
     paging(content_URL+"food");
+    foodBtn.classList.add('on');
     cookie("food");
 
 });
 commentBtn.addEventListener('click', function(){
+    if (foodBtn.classList.contains('on')) {
+        foodBtn.classList.remove('on');
+    }
+    commentBtn.classList.add('on');
     paging(content_URL+"comment")
     cookie("comment");
 });
