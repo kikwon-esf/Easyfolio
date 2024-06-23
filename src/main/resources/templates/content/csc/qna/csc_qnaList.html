@@ -80,11 +80,14 @@
                                         <p>수정</p>
                                     </div>
                                     <div class="dnuBtn update2 updateDisplay"
-                                        th:onclick="updateQna(this), updateComplete(this), reloadBtn() ">
+                                        th:onclick="updateComplete(this), reloadBtn() ">
                                         <p>완료</p>
                                     </div>
                                     <div class="dnuBtn delete" onclick="deletePopUp()">
                                         <p>삭제</p>
+                                    </div>
+                                    <div class="dnuBtn cancel updateDisplay" onclick="updateCancel(this)">
+                                        <p>취소</p>
                                     </div>
                                 </div>
                             </div>
