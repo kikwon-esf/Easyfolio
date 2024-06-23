@@ -8,9 +8,10 @@
 
     <link rel="stylesheet" href="/css/content/myPage/replace/content_comment.css">
     <input type="hidden" id="nowPage" th:value="${nowPage}">
-    <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
+    <div class="commentBlock">
+        <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
         <div class="commentEach">
-            <div class="commentBlock">
+            <div class="commentBox">
                 
                 <div class="noDeleteCom" th:if="${commentVO.delCheck == 'N'}">
                     <!-- <p class="commentName"><span></span><span th:text="${commentVO.memberVO.memberName}"></span> -->
@@ -29,6 +30,8 @@
             </div>
         </div>
     </th:block>
+    </div>
+    
 
     <th:block>
         <div class="pageBtnBox">

@@ -41,6 +41,8 @@
     margin-top: 3px;
 }
 .upper_bar{
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0px 5px 3px rgba(68,68,68,.05);
     display: flex;
     width: 970px;
     box-sizing: border-box;
