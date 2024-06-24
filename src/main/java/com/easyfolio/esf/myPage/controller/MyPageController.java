@@ -211,6 +211,12 @@ public class MyPageController {
 //        alarmService.alarmCntPlus(memberVO);
         commentVO.setFoodCommentId(myPageService.nextComtCode());
         commentVO.setSendMemberId(principal.getName());
+
+        String content = commentVO.getContent();
+        content = content.replaceAll("<","&lt;");
+        content = content.replaceAll(">","&gt;");
+        content = content.replaceAll(System.getProperty("line.separator"),"<p class='commentText'></p>");
+        commentVO.setContent(content);
         if(!Transfer.reqexTest(commentVO.getContent())){
             myPageService.submitComment(commentVO); // 댓글 등록하는 코드
             alarmService.insertAlarm(commentVO);
@@ -258,7 +264,7 @@ public class MyPageController {
 
     //댓글 삭제
     @ResponseBody
-    @GetMapping(value = "/deleteComment")
+    @PostMapping(value = "/deleteComment")
     public ResponseEntity<String> deleteComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
 
         myPageService.deleteComment(commentVO);
@@ -269,6 +275,12 @@ public class MyPageController {
     @ResponseBody
     @PostMapping("/updateComment")
     public ResponseEntity<String> updateComment(CommentVO commentVO){
+        System.err.println("get" + commentVO.getContent());
+        String content = commentVO.getContent().replaceAll(System.getProperty("line.separator"),"<p></p>");
+
+//        content = content.replaceAll("[\n\r]","|| CHR(10) || ");
+        commentVO.setContent(content);
+        System.err.println(content);
         if(Transfer.reqexTest(commentVO.getContent())){
             return new ResponseEntity<>("!!notBlank!!", HttpStatus.BAD_REQUEST);
         }

@@ -43,6 +43,8 @@ public class Transfer {
     }
     //공백문자열검사
     public static boolean reqexTest(String str){
-        return !(str.matches("^(?=.*\\S).+$")||str.matches("^\\\\s*$"));
+
+        return !(str.matches("(?s).*\\S.*"));
+        //||str.matches("^\\\\s*$")
     }
 }
