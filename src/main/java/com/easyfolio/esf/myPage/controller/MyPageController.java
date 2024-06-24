@@ -280,7 +280,7 @@ public class MyPageController {
     public String myAlarm(Principal principal, Model model,FoodVO foodVO){
         foodVO.setMemberId(principal.getName());
         foodVO.setTotalDataCnt(foodService.myRecentViewCnt(foodVO));
-        foodVO.setPageInfo();
+        foodVO.setPageInfo(8);
         model.addAttribute("nowPage", foodVO.getNowPage());
         model.addAttribute("recentViewList", foodService.myRecentView(foodVO));
         return "content/myPage/myPage_myRecentView";
@@ -300,6 +300,5 @@ public class MyPageController {
 //        System.err.println("a2.isAfter(a1) : " + a2.isAfter(a1));
 //        System.err.println("a2.isBefore(a1) : " + a2.isBefore(a1));
 //    }
-
 
 }

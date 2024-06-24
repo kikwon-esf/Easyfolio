@@ -8,15 +8,39 @@
 
     <link rel="stylesheet" href="/css/content/myPage/replace/content_comment.css">
     <input type="hidden" id="nowPage" th:value="${nowPage}">
+    <div class="mydeleteCheckInner pop_blind">
+        <div class="commentCheckPopup">
+            <div class="checkTextBox">
+                <p class="checkText">삭제를 완료하시겠습니까?</p>
+            </div>
+            <div class="checkBtnBox">
+                <button class="comCheckBtn yes" onclick="deleteSelectedComments()">확인</button>
+                <button class="comCheckBtn no" onclick="NoDelete(this)">취소</button>
+            </div>
+        </div>
+    </div>
+    <div class="commentAlarmInner pop_blind">
+        <div class="commentAlarmPopup">
+            <div class="alarmTextBox">
+                <p class="alarmText"></p>
+            </div>
+            <div class="alarmBtnBox">
+                <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+            </div>
+        </div>
+    </div>
     <div class="commentBlock">
+        <button type="button" onclick="deletePopUp()">선택한 댓글 삭제</button>
         <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
             <div class="commentEach">
+                <input class="foodCommentId" type="hidden" th:value="${commentVO.foodCommentId}">
                 <div class="commentBox">
                     <div class="checkBlock">
-                        <input type="checkbox" class="myCheckBox" th:id="${'myCheckbox'+ state.index}" name="myCheckbox" />
+                        <input type="checkbox" class="myCheckBox" th:id="${'myCheckbox'+ state.index}"
+                            name="myCheckbox" />
                     </div>
                     <div class="myCommentBox">
-                        <input type="hidden" th:value="${commentVO.foodCommentId}">
+                        
                         <div th:if="${commentVO.memberVO == null}" class="reciveBlock">
                             <p class="reciveBox">
                                 <span>레시피 : </span>
@@ -42,7 +66,6 @@
                             <span th:if="${commentVO.upCheck == 'Y'}">( 수정함 )</span>
                         </p>
                     </div>
-                    
                 </div>
             </div>
             </a>
@@ -66,6 +89,7 @@
             </div>
         </div>
     </th:block>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
 
 </html>
