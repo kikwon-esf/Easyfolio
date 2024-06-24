@@ -5,6 +5,7 @@ import com.easyfolio.esf.csc.service.CscService;
 
 
 import com.easyfolio.esf.csc.vo.ann.AnnVO;
+import com.easyfolio.esf.csc.vo.qna.QnaVO;
 import com.easyfolio.esf.food.service.FoodService;
 
 import com.easyfolio.esf.member.service.AlarmService;
@@ -31,8 +32,9 @@ public class MainpageController {
 
     // 메인페이지
     @GetMapping("/main")
-    public String mainpage(Principal principal, MemberVO memberVO, Model model){
-
+    public String mainpage(Principal principal, MemberVO memberVO, Model model, QnaVO qnaVO, AnnVO annVO){
+        model.addAttribute("annList", cscService.cscSearchAnn(annVO));
+        model.addAttribute("qnaList", cscService.cscSearchQna(qnaVO));
         List<AlarmVO> alarmList = null;
         if(principal != null && principal.getName() != null){
             memberVO.setMemberId(principal.getName());
