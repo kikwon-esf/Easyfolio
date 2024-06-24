@@ -120,4 +120,9 @@ public class MyPageServiceImpl implements MyPageService{
         return sqlSession.selectOne("commentMapper.countMyComment", commentVO);
     }
 
+    @Override
+    public void myDeleteComment(List<String> foodCommentIds) {
+        sqlSession.update("commentMapper.myDeleteComment", foodCommentIds);
+    }
+
 }

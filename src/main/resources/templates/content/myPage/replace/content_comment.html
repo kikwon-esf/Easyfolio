@@ -25,14 +25,13 @@
                 <p class="alarmText"></p>
             </div>
             <div class="alarmBtnBox">
-                <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                <button class="alarmBtn yes" onclick="okayBtn()">확인</button>
             </div>
         </div>
     </div>
     <div class="commentBlock">
-        <button type="button" onclick="deletePopUp()">선택한 댓글 삭제</button>
         <th:block th:if="${commentList != null}" th:each="commentVO, state : ${commentList}">
-            <div class="commentEach">
+            <div class="commentEach" th:if="${commentVO.delCheck == 'N'}">
                 <input class="foodCommentId" type="hidden" th:value="${commentVO.foodCommentId}">
                 <div class="commentBox">
                     <div class="checkBlock">
@@ -40,7 +39,7 @@
                             name="myCheckbox" />
                     </div>
                     <div class="myCommentBox">
-                        
+
                         <div th:if="${commentVO.memberVO == null}" class="reciveBlock">
                             <p class="reciveBox">
                                 <span>레시피 : </span>
@@ -70,24 +69,24 @@
             </div>
             </a>
     </div>
-    </th:block>
-
-
-    <th:block>
-        <div class="pageBtnBox">
-            <div class="btn_group">
-                <div class="pageBtn" th:if="${#lists.size(commentList) != 0}">
-                    <a class="page_prevBtn"><span th:attr="onclick=|commentPaging(${commentVO.beginPage - 1})|"
-                            th:if="${commentVO.prev}">이전</span></a>
-                    <th:block th:each="pageNum : ${#numbers.sequence(commentVO.beginPage, commentVO.endPage)}">
-                        <a class="page_numBtn" th:id="page+${pageNum}"
-                            th:attr="onclick=|commentPaging(${pageNum})|"><span th:text="${pageNum}"></span></a>
-                    </th:block>
-                    <a class="page_nextBtn" th:attr="onclick=|commentPaging(${commentVO.endPage + 1})|"><span
-                            th:if="${commentVO.next}">다음</span></a>
-                </div>
+    <div class="deleteBtnBlock">
+        <button type="button" onclick="deletePopUp()">선택한 댓글 삭제</button>
+    </div>
+    <div class="pageBtnBox">
+        <div class="btn_group">
+            <div class="pageBtn" th:if="${#lists.size(commentList) != 0}">
+                <a class="page_prevBtn"><span th:attr="onclick=|commentPaging(${commentVO.beginPage - 1})|"
+                        th:if="${commentVO.prev}">이전</span></a>
+                <th:block th:each="pageNum : ${#numbers.sequence(commentVO.beginPage, commentVO.endPage)}">
+                    <a class="page_numBtn" th:id="page+${pageNum}" th:attr="onclick=|commentPaging(${pageNum})|"><span
+                            th:text="${pageNum}"></span></a>
+                </th:block>
+                <a class="page_nextBtn" th:attr="onclick=|commentPaging(${commentVO.endPage + 1})|"><span
+                        th:if="${commentVO.next}">다음</span></a>
             </div>
         </div>
+    </div>
+    
     </th:block>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>

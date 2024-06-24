@@ -309,4 +309,11 @@ public class MyPageController {
 //        System.err.println("a2.isBefore(a1) : " + a2.isBefore(a1));
 //    }
 
+    @ResponseBody
+    @PostMapping(value = "/myDeleteComment")
+    public List<String> myDeleteComment(@RequestBody List<String> foodCommentIds){
+        System.err.println(foodCommentIds);
+        myPageService.myDeleteComment(foodCommentIds);
+        return foodCommentIds;
+    }
 }
