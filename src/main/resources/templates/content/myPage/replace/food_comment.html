@@ -46,7 +46,7 @@
                             <div class="noDeleteCom" th:if="${commentVO.delCheck == 'N'}">
                                 <p class="commentName"><span th:text="${commentVO.memberVO.memberName}"></span>
                                 </p>
-                                <p class="commentText"><span th:text="${commentVO.content}"></span></p>
+                                <p class="commentText"><span th:utext="${commentVO.content}"></span></p>
                                 <div class="updateInputBlock" style="display: none;">
                                     <input class="foodCommentId" name="foodCommentId" type="hidden"
                                         th:value="${commentVO.foodCommentId}">
@@ -101,7 +101,7 @@
                                         </p>
                                         <!-- <p><span>foodCode</span><span class="comment_name" th:text="${commentVO.foodCode}"></span></p> -->
                                         <!-- <p><span>작성자id</span><span class="comment_name" th:text="${commentVO.memberId}"></span></p> -->
-                                        <p class="commentText"><span th:text="${reComment.content}"></span></p>
+                                        <p class="commentText"><span th:utext="${reComment.content}"></span></p>
                                         <div class="updateInputBlock" style="display: none;">
                                             <input class="foodCommentId" name="foodCommentId" type="hidden"
                                                 th:value="${reComment.foodCommentId}">

@@ -73,6 +73,7 @@ function submitComment(target) {
         })
         .then((data) => {
             writeContent(replacePosition, data);
+            commentTotalCountRender();
             // pagingCount();
             // const foodCode_hide = document.querySelector('.foodCode_hide')
         })

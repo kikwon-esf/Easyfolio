@@ -150,7 +150,9 @@
         UPDATE FOOD_COMMENT
         SET
         <if test="content != null and not content.isEmpty()">
+
             CONTENT = #{content}
+
             , UP_CHECK = 'Y'
         </if>
         <if test="content == null or content.isEmpty()">
