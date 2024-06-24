@@ -42,6 +42,7 @@ public class CscController {
         annVO.setTotalDataCnt(cscService.cscSearchAnnCnt(annVO));
         annVO.setPageInfo();
         model.addAttribute("nowPage", annVO.getNowPage());
+        model.addAttribute("annCate", annVO.getAnnCate());
         model.addAttribute("annList", cscService.cscSearchAnn(annVO));
         model.addAttribute("annCateList", cscService.annCateList(annCateVO));
         model.addAttribute("allSearchKeyword", annVO.getAllSearchKeyword());

@@ -13,6 +13,8 @@
 <body>
 <th:block layout:fragment="content">
     <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
+    <input type="hidden" class="activeCate" th:value="${annCate}">
+
     <div id="csc_wrap">
         <div class="csc_title">
             <p class="csc_title1">공지사항</p>
@@ -23,9 +25,10 @@
                 <div class="csc_ann">
                     <div class="annHeader">
                         <div class="annChoiceBlock">
-                            <p class="annChoice all active"><a href="/csc/annListForm">전체</a></p>
-                            <p class="annChoice" th:each="annCate, state : ${annCateList}">
-                                <a th:href="@{/csc/annListForm(annCate=${annCate.cateCode}, allSearchKeyword=${allSearchKeyword})}">[[${annCate.cateName}]]</a>
+                            <p class="annChoice all"><a href="/csc/annListForm">전체</a></p>
+                            <p th:class="'annChoice ' + 'CATE_00' + ${state.index + 1}" th:each="annCate, state : ${annCateList}">
+                                <a class="cateHref" th:href="@{/csc/annListForm(annCate=${annCate.cateCode}, allSearchKeyword=${allSearchKeyword})}">[[${annCate.cateName}]]</a>
+                                <input type="hidden" class="activeCateEach" th:value="${annCate}">
                             </p>
                         </div>
                         <form action="/csc/annListForm" method="post" class="ann_searchForm">
@@ -59,7 +62,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="csc_annBlock" th:if="${#lists.size(annList) == 0}">
+                    <div class="noText" th:if="${#lists.size(annList) == 0}">
                         내용이 없스무니다
                     </div>
                     <div class="pageBtnBox">
