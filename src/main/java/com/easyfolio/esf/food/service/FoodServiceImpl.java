@@ -92,6 +92,11 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
+    public void insertRecentView(FoodVO foodVO){
+        sqlSession.insert("foodMapper.insertRecentView", foodVO);
+    }
+
+    @Override
     public FoodVO selectFoodCode(FoodVO foodVO) {
         return sqlSession.selectOne("foodMapper.selectFoodCode",foodVO);
     }
@@ -165,6 +170,16 @@ public class FoodServiceImpl implements FoodService{
         sqlSession.update("foodMapper.updateFood", foodVO);
         sqlSession.update("foodMapper.updateFoodSteps", foodStepsVO);
         sqlSession.insert("foodMapper.insertFoodImg", foodImgVO);
+    }
+
+    @Override
+    public List<FoodVO> selectRecentView(String memberId) {
+        return sqlSession.selectList("foodMapper.selectRecentView", memberId);
+    }
+
+    @Override
+    public List<FoodVO> myRecentView(String memberId) {
+        return sqlSession.selectList("foodMapper.myRecentView", memberId);
     }
 
 
