@@ -807,7 +807,7 @@ textarea {
 }
 /* 자주 찾는 질문 */
 .csc_qna{
-    margin: 70px auto 30px auto;
+    margin: 70px auto 120px auto;
     width: 1200px;
 }
 .qnaBlock{
