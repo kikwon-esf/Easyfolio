@@ -66,7 +66,6 @@ public class FoodController {
         }
         foodVO.setTotalDataCnt(foodService.searchFoodCnt(foodVO));
         foodVO.setPageInfo();
-
         model.addAttribute("nowPage", foodVO.getNowPage());
 
         setupFoodList(model, foodVO);
@@ -89,7 +88,17 @@ public class FoodController {
     }
 
     private void setupFoodList(Model model, FoodVO foodVO) {
-        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        List<FoodVO> foodList = setCommentCnt(foodService.searchFoodAll(foodVO), myPageService);
+        model.addAttribute("foodList", foodList);
+    }
+    public static List<FoodVO> setCommentCnt(List<FoodVO> list, MyPageService myPageService){
+        for(int i = 0 ; i < list.size() ; i++){
+            FoodVO foodEach = list.get(i) ;
+            String foodCode = foodEach.getFoodCode();
+            int cnt = myPageService.commentListCnt(new CommentVO().withFoodCode(foodCode));
+            foodEach.setFoodCommentCnt(cnt);
+        }
+        return list;
     }
 
     private void setupSearchDetails(Model model, FoodVO foodVO) {
@@ -271,6 +280,7 @@ public class FoodController {
 
         List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongCode);
         System.err.println(foodList);
+//        foodList = FoodController.setCommentCnt(foodList,myPageService);
         List<String> foodNames = new ArrayList<>();
         for (DdabongVO ddabong : foodList) {
             if (ddabong.getDdabongFood() != null) {
@@ -349,10 +359,14 @@ public class FoodController {
         } else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
-
+        model.addAttribute("foodUsageList", foodService.foodUsageList());
+        model.addAttribute("foodKindList", foodService.foodKindList());
+        model.addAttribute("foodMtrlList", foodService.foodMtrlList());
+        model.addAttribute("foodTypeList", foodService.foodTypeList());
         foodVO1.setPageInfo();
         model.addAttribute("nowPage", foodVO1.getNowPage());
         model.addAttribute("urlText", urlText);
+        ddabongFoodList = FoodController.setCommentCnt(ddabongFoodList,myPageService);
         model.addAttribute("foodList", ddabongFoodList);
         return "content/food/weatherFood_direct";
     }
@@ -362,12 +376,14 @@ public class FoodController {
         if (foodNames == null) {
             foodNames = new ArrayList<>();
         }
+
         List<FoodVO> ddabongFoodList;
         if (foodNames.isEmpty()) {
             ddabongFoodList = foodService.allRecipeList();
         } else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
+        ddabongFoodList = FoodController.setCommentCnt(ddabongFoodList, myPageService);
         if(principal != null){
             model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
         }

@@ -50,4 +50,6 @@ public interface MyPageService {
     public List<CommentVO> selectMyComment(CommentVO commentVO);
 
     public int countMyComment(CommentVO commentVO);
+
+    public void myDeleteComment(List<String> foodCommentIds);
 }

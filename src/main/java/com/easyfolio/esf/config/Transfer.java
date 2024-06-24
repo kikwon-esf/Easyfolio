@@ -43,6 +43,14 @@ public class Transfer {
     }
     //공백문자열검사
     public static boolean reqexTest(String str){
-        return !(str.matches("^(?=.*\\S).+$")||str.matches("^\\\\s*$"));
+
+        return !(str.matches("(?s).*\\S.*"));
+        //||str.matches("^\\\\s*$")
+    }
+    public static String contentChangeLine(String content){
+        content = content.replaceAll("<","&lt;");
+        content = content.replaceAll(">","&gt;");
+        content = content.replaceAll(System.getProperty("line.separator"),"<p class='commentText'></p>");
+        return content;
     }
 }

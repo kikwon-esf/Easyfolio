@@ -3,6 +3,7 @@ package com.easyfolio.esf.myPage.controller;
 
 import com.easyfolio.esf.config.Transfer;
 import com.easyfolio.esf.config.interceptor.PwdEditInterceptor;
+import com.easyfolio.esf.food.controller.FoodController;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.AlarmService;
@@ -65,9 +66,19 @@ public class MyPageController {
         model.addAttribute("nowPage", favoriteVO.getNowPage());
         model.addAttribute("searchFavoriteCnt", favoriteVO.getTotalDataCnt());
         List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(favoriteVO);
+        favorite = setCommentCnt(favorite);
         model.addAttribute("myFavorite", favorite);
 
         return "content/myPage/myPage_favorite";
+    }
+    private List<FavoriteVO> setCommentCnt(List<FavoriteVO> list){
+        for(int i = 0 ; i < list.size() ; i++){
+            FoodVO each = list.get(i).getFoodVO();
+            String foodCode = each.getFoodCode();
+            int commentCnt = myPageService.commentListCnt(new CommentVO().withFoodCode(foodCode));
+            list.get(i).getFoodVO().setFoodCommentCnt(commentCnt);
+        }
+        return list;
     }
     @ResponseBody
     @PostMapping(value = "/deleteFav")
@@ -102,6 +113,7 @@ public class MyPageController {
         foodVO.setTotalDataCnt(myPageService.foodByMemberCnt(foodVO));
         foodVO.setPageInfo(8);
         List<FoodVO> foodList =  myPageService.getFoodByMember(foodVO);
+        foodList = FoodController.setCommentCnt(foodList,myPageService);
         model.addAttribute("nowPage", foodVO.getNowPage());
         model.addAttribute("foodList", foodList);
         return "content/myPage/replace/content_food";
@@ -211,6 +223,9 @@ public class MyPageController {
 //        alarmService.alarmCntPlus(memberVO);
         commentVO.setFoodCommentId(myPageService.nextComtCode());
         commentVO.setSendMemberId(principal.getName());
+
+        String content = commentVO.getContent();
+        commentVO.setContent(Transfer.contentChangeLine(content));
         if(!Transfer.reqexTest(commentVO.getContent())){
             myPageService.submitComment(commentVO); // 댓글 등록하는 코드
             alarmService.insertAlarm(commentVO);
@@ -258,7 +273,7 @@ public class MyPageController {
 
     //댓글 삭제
     @ResponseBody
-    @GetMapping(value = "/deleteComment")
+    @PostMapping(value = "/deleteComment")
     public ResponseEntity<String> deleteComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
 
         myPageService.deleteComment(commentVO);
@@ -269,6 +284,11 @@ public class MyPageController {
     @ResponseBody
     @PostMapping("/updateComment")
     public ResponseEntity<String> updateComment(CommentVO commentVO){
+        System.err.println("get" + commentVO.getContent());
+        String content = commentVO.getContent();
+        content = Transfer.contentChangeLine(content);
+        commentVO.setContent(content);
+        System.err.println(content);
         if(Transfer.reqexTest(commentVO.getContent())){
             return new ResponseEntity<>("!!notBlank!!", HttpStatus.BAD_REQUEST);
         }
@@ -280,7 +300,7 @@ public class MyPageController {
     public String myAlarm(Principal principal, Model model,FoodVO foodVO){
         foodVO.setMemberId(principal.getName());
         foodVO.setTotalDataCnt(foodService.myRecentViewCnt(foodVO));
-        foodVO.setPageInfo();
+        foodVO.setPageInfo(8);
         model.addAttribute("nowPage", foodVO.getNowPage());
         model.addAttribute("recentViewList", foodService.myRecentView(foodVO));
         return "content/myPage/myPage_myRecentView";
@@ -301,5 +321,11 @@ public class MyPageController {
 //        System.err.println("a2.isBefore(a1) : " + a2.isBefore(a1));
 //    }
 
-
+    @ResponseBody
+    @PostMapping(value = "/myDeleteComment")
+    public List<String> myDeleteComment(@RequestBody List<String> foodCommentIds){
+        System.err.println(foodCommentIds);
+        myPageService.myDeleteComment(foodCommentIds);
+        return foodCommentIds;
+    }
 }

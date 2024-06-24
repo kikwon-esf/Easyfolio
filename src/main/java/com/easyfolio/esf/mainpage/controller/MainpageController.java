@@ -5,12 +5,14 @@ import com.easyfolio.esf.csc.service.CscService;
 
 
 import com.easyfolio.esf.csc.vo.ann.AnnVO;
+import com.easyfolio.esf.csc.vo.qna.QnaVO;
 import com.easyfolio.esf.food.service.FoodService;
 
 import com.easyfolio.esf.member.service.AlarmService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
+import com.easyfolio.esf.myPage.service.MyPageService;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,13 @@ public class MainpageController {
     @Resource
     private final MemberService memberService;
     private final AlarmService alarmService;
+    private final MyPageService myPageService;
 
     // 메인페이지
     @GetMapping("/main")
-    public String mainpage(Principal principal, MemberVO memberVO, Model model){
-
+    public String mainpage(Principal principal, MemberVO memberVO, Model model, QnaVO qnaVO, AnnVO annVO){
+        model.addAttribute("annList", cscService.cscSearchAnn(annVO));
+        model.addAttribute("qnaList", cscService.cscSearchQna(qnaVO));
         List<AlarmVO> alarmList = null;
         if(principal != null && principal.getName() != null){
             memberVO.setMemberId(principal.getName());

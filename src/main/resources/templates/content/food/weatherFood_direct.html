@@ -7,7 +7,6 @@
     <title></title>
     <!-- css 영역 -->
     <th:block layout:fragment="content_css">
-        <link rel="stylesheet" href="/css/content/food/weatherFood.css">
         <link rel="stylesheet" href="/css/content/food/food_search.css">
         <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
     </th:block>
@@ -18,11 +17,60 @@
     <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">
     <div class="weatherWrap">
         <div class="ddabongRecipeContainer">
-            <link rel="stylesheet" href="/css/content/food/ddabongRecipeList.css">
+            <link rel="stylesheet" href="/css/content/food/weatherFood_direct.css">
             <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
             <!-- <img src="/img/weather/banner_winter.jpg"> -->
             <div class="ddabongInner" th:fragment="ddabongRecipeFragment">
-
+                    <div class="weatherFood_direct_Banner">
+                        <div class="c_inner">
+                            <div class="main6">
+                                <div class="weatherWrap">
+                                    <div class="weatherInner">
+                                        <div class="weatherCategoryBlock">
+                                            <div class="weatherDivBlock">
+                                                <div class="card" onclick="window.location.href='/food/ddabongcode?ddabongCode=DDABONG_002'"><img src="/img/weather/mainhot.jpg" alt="Recommended food according to the weather"/>
+                                                    <div class="weathertext">
+                                                        <h2 data-splitting="">Hot</h2>
+                                                        <p data-splitting=""> 더운날 입맛을 살리는 시원한 음식을 드시고 시원한 하루 보내세요!</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" onclick="window.location.href='/food/ddabongcode?ddabongCode=DDABONG_001'"><img src="/img/weather/maincold.jpg" alt="Recommended food according to the weather"/>
+                                                    <div class="weathertext">
+                                                        <h2 data-splitting="">Cold</h2>
+                                                        <p data-splitting="">추운날 따뜻한 온기를 전해주는 음식으로 몸과 마음을 녹여주세요!</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" onclick="window.location.href='/food/ddabongcode?ddabongCode=DDABONG_003'"><img src="/img/weather/mainrain.jpg" alt="Recommended food according to the weather"/>
+                                                    <div class="weathertext">
+                                                        <h2 data-splitting="">Rain</h2>
+                                                        <p data-splitting="">비오는 날 생각나는 음식으로 감성에 젖어보세요!</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" onclick="window.location.href='/food/ddabongcode?ddabongCode=DDABONG_004'"><img src="/img/weather/mainsnow.jpg" alt="Recommended food according to the weather"/>
+                                                    <div class="weathertext">
+                                                        <h2 data-splitting="">Snow</h2>
+                                                        <p data-splitting="">눈이 오는 날 낭만적인 음식으로 특별한 날을 만들어보세요!</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" onclick="window.location.href='/food/ddabongcode?ddabongCode=DDABONG_006'"><img src="/img/weather/achim.png" alt="Recommended food according to the weather"/>
+                                                    <div class="weathertext">
+                                                        <h2 data-splitting="">Daily</h2>
+                                                        <p data-splitting="">날씨 좋은 날 맛있는 음식으로 행복한 날을 만들어보세요!</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card" onclick="window.location.href='/food/ddabongcode?ddabongCode=DDABONG_005'"><img src="/img/weather/yasic.jpg" alt="Recommended food according to the weather"/>
+                                                    <div class="weathertext">
+                                                        <h2 data-splitting="">Night</h2>
+                                                        <p data-splitting="">고생했던 하루 맛있는 야식으로 하루를 마무리해보세요!</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="ddabongBanner">
                     <img th:src="${urlText}"></img>
                 </div>
@@ -119,6 +167,9 @@
 <th:block layout:fragment="content_js">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+    <script src='https://unpkg.com/splitting/dist/splitting.min.js'></script>
+    <script src="/js/slick.min.js"></script>
     <script src="/js/content/food/weatherFood.js"></script>
     <script src="/js/content/food/food_search.js"></script>
     <script src="/js/content/myPage/favorite.js"></script>

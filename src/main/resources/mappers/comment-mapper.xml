@@ -150,7 +150,9 @@
         UPDATE FOOD_COMMENT
         SET
         <if test="content != null and not content.isEmpty()">
+
             CONTENT = #{content}
+
             , UP_CHECK = 'Y'
         </if>
         <if test="content == null or content.isEmpty()">
@@ -165,7 +167,6 @@
 
         WHERE FOOD_COMMENT_ID = #{foodCommentId}
     </update>
-
 
     <!--    내가 쓴 댓글 개수-->
     <select id="selectMyCommentList" resultMap="commentEach">
@@ -208,4 +209,13 @@
         C.MEMBER_ID = #{memberId}
         AND C.DEL_CHECK != 'Y'
     </select>
+
+    <update id="myDeleteComment">
+    UPDATE FOOD_COMMENT
+    SET DEL_CHECK = 'Y'
+    WHERE FOOD_COMMENT_ID IN
+    <foreach item="foodCommentId" index="index" collection="list" open="(" separator="," close=")">
+        #{foodCommentId}
+    </foreach>
+    </update>
 </mapper>

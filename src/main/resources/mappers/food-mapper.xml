@@ -561,7 +561,7 @@
     INNER JOIN RECENT_VIEW RV ON F.FOOD_CODE = RV.FOOD_CODE
     WHERE RV.MEMBER_ID = #{memberId}
     ORDER BY RV.VIEW_DATE DESC
-    OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    OFFSET (#{nowPage} -1) * #{displayDataCnt8} ROWS FETCH FIRST #{displayDataCnt8} ROWS ONLY
     </select>
 
     <select id="myRecentViewCnt" resultType="int">
