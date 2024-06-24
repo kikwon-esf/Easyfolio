@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
 function updateWeatherArea(childElement) {
     const childText = childElement.querySelector('.regionChildText').textContent.trim();
     document.querySelector('.childArea').textContent = childText;
@@ -262,6 +263,7 @@ function updateFoodRecommendations(fcstValue, precipitationType, baseTime) {
     });
 }
 
+Splitting();
 
 document.addEventListener('DOMContentLoaded', function () {
     var currentPage = window.location.pathname;
