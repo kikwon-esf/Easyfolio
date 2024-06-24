@@ -63,4 +63,12 @@ public interface FoodService {
     public void updateFood(FoodVO foodVO, FoodStepsVO foodStepsVO);
 
     public void updateAndInsertImg(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO);
+
+    public List<FoodVO> selectRecentView(String memberId);
+
+    public List<FoodVO> myRecentView(FoodVO foodVO);
+
+    public int myRecentViewCnt(FoodVO foodVO);
+
+    public void insertRecentView(FoodVO foodVO);
 }

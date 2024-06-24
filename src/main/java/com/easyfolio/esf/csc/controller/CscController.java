@@ -7,6 +7,7 @@ import com.easyfolio.esf.csc.vo.ann.AnnVO;
 import com.easyfolio.esf.csc.vo.inq.InqImgVO;
 import com.easyfolio.esf.csc.vo.inq.InqVO;
 import com.easyfolio.esf.csc.vo.qna.QnaVO;
+import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.util.UploadUtillInq;
 import com.easyfolio.esf.util.UploadUtillRes;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,7 @@ public class CscController {
         annVO.setTotalDataCnt(cscService.cscSearchAnnCnt(annVO));
         annVO.setPageInfo();
         model.addAttribute("nowPage", annVO.getNowPage());
+        model.addAttribute("annCate", annVO.getAnnCate());
         model.addAttribute("annList", cscService.cscSearchAnn(annVO));
         model.addAttribute("annCateList", cscService.annCateList(annCateVO));
         model.addAttribute("allSearchKeyword", annVO.getAllSearchKeyword());

@@ -60,6 +60,12 @@
         <result column="FOOD_CODE" property="foodCode"/>
     </resultMap>
 
+    <resultMap id="recentView" type="com.easyfolio.esf.food.vo.RecentViewVO">
+        <result column="MEMBER_ID" property="memberId" />
+        <result column="FOOD_CODE" property="foodCode" />
+        <result column="VIEW_DATE" property="viewDate" />
+    </resultMap>
+
 
 <!--   종류별-->
     <select id="foodKindList" resultMap="foodKind">
@@ -498,5 +504,70 @@
         WHERE FOOD_CODE = #{foodCode}
     </update>
 
+<!--    최근 본 레시피 입력-->
+    <insert id="insertRecentView" parameterType="map">
+        <![CDATA[
+    MERGE INTO RECENT_VIEW RV
+    USING DUAL
+    ON (RV.FOOD_CODE = #{foodCode})
+    WHEN MATCHED THEN
+        UPDATE SET RV.MEMBER_ID = #{memberId}, RV.VIEW_DATE = TO_TIMESTAMP(TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS')
+    WHEN NOT MATCHED THEN
+        INSERT (MEMBER_ID, FOOD_CODE, VIEW_DATE) VALUES (#{memberId}, #{foodCode}, TO_TIMESTAMP(TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'))
+    ]]>
+    </insert>
 
+    <select id="selectRecentView" resultMap="food">
+        <![CDATA[
+    SELECT * FROM (
+        SELECT
+            A.*,
+            ROWNUM AS RN
+        FROM (
+            SELECT
+                F.FOOD_CODE,
+                F.FOOD_TTL,
+                F.FOOD_DIF,
+                F.FOOD_INQ_CNT,
+                F.FOOD_RCMM_CNT,
+                FI.FOOD_IMG_CODE,
+                FI.ORIGIN_FILE_NAME,
+                FI.ATTACHED_FILE_NAME,
+                RV.VIEW_DATE
+            FROM FOOD F
+            LEFT JOIN FOOD_IMG FI ON F.FOOD_CODE = FI.FOOD_CODE
+            INNER JOIN RECENT_VIEW RV ON F.FOOD_CODE = RV.FOOD_CODE
+            WHERE RV.MEMBER_ID = #{memberId}
+            ORDER BY RV.VIEW_DATE DESC
+        ) A
+        WHERE ROWNUM <= 5
+    )
+    ]]>
+    </select>
+
+    <select id="myRecentView" resultMap="food">
+    SELECT
+        F.FOOD_CODE,
+        F.FOOD_TTL,
+        F.FOOD_DIF,
+        F.FOOD_INQ_CNT,
+        F.FOOD_RCMM_CNT,
+        FI.FOOD_IMG_CODE,
+        FI.ORIGIN_FILE_NAME,
+        FI.ATTACHED_FILE_NAME,
+        RV.VIEW_DATE
+    FROM FOOD F
+    LEFT JOIN FOOD_IMG FI ON F.FOOD_CODE = FI.FOOD_CODE
+    INNER JOIN RECENT_VIEW RV ON F.FOOD_CODE = RV.FOOD_CODE
+    WHERE RV.MEMBER_ID = #{memberId}
+    ORDER BY RV.VIEW_DATE DESC
+    OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="myRecentViewCnt" resultType="int">
+        SELECT COUNT(F.FOOD_CODE)
+        FROM FOOD F, RECENT_VIEW RV
+        WHERE RV.MEMBER_ID = #{memberId}
+        AND F.FOOD_CODE = RV.FOOD_CODE
+    </select>
 </mapper>

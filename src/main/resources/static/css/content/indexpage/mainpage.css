@@ -485,7 +485,7 @@ textarea {
     display: flex;
     flex-direction: column;
     border-radius: 7px;
-    box-shadow: rgba(255, 255, 255, 0.3) 0 5vw 6vw -8vw, rgba(255, 255, 255, 0) 0 4.5vw 5vw -6vw, rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw, rgba(0, 0, 0, 0.8) 0px 4vw 5vw -3vw;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 5vw 6vw -8vw, rgba(255, 255, 255, 0) 0 4.5vw 5vw -6vw, rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw, rgba(0, 0, 0, 0.8) 0px 2vw 3vw -3vw;
     transition: box-shadow 1s var(--cover-ease);
 }
 .card > * {
@@ -610,3 +610,109 @@ textarea {
         width: 40vw;
     }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+
+.typeBlock {
+    display: flex;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    height: 100%;
+}
+
+.typeCard {
+    position: relative;
+    height: 28rem;
+    width: 20rem;
+    aspect-ratio: 5/7;
+    color: #ffffff;
+    perspective: 50rem;
+}
+.typeCard .shadow {
+    position: absolute;
+    inset: 0;
+    background: var(--url);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    filter: blur(2rem) saturate(0.9);
+    box-shadow: 0 -1.5rem 2rem -0.5rem rgba(0, 0, 0, 0.7);
+    transform: rotateX(var(--rotateX, 0deg)) rotateY(var(--rotateY, 0deg)) translate3d(0, 2rem, -2rem);
+}
+.typeCard .image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    -webkit-mask-image: var(--url);
+    mask-image: var(--url);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+.typeCard .image.background {
+    transform: rotateX(var(--rotateX, 0deg)) rotateY(var(--rotateY, 0deg)) translate3d(0, 0, 0rem) scale(0.9);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 40%), var(--url);
+}
+.typeCard .image.cutout {
+    transform: rotateX(var(--rotateX, 0deg)) rotateY(var(--rotateY, 0deg)) translate3d(0, 0, 3rem) scale(0.85); /* scale 값 수정 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 5%), var(--url);
+    z-index: 3;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.typeCard .typeContent {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    top: 190px;
+    padding: 3.5rem;
+    transform: rotateX(var(--rotateX, 0deg)) rotateY(var(--rotateY, 0deg)) translate3d(0, 0, 6rem);
+    z-index: 4;
+}
+.typeCard::after,
+.typeCard::before {
+    content: "";
+    position: absolute;
+    top: 3.5rem;   /* 위쪽 마진 */
+    bottom: 3.5rem;/* 아래쪽 마진 */
+    left: 3rem;    /* 왼쪽 마진 */
+    right: 3rem;   /* 오른쪽 마진 */
+    border: #e2c044 0.5rem solid;
+    transform: rotateX(var(--rotateX, 0deg)) rotateY(var(--rotateY, 0deg)) translate3d(0, 0, 2rem);
+}
+.typeCard::before {
+    z-index: 4;
+}
+.typeCard.border-left-behind::before {
+    border-left: transparent;
+}
+.typeCard.border-right-behind::before {
+    border-right: transparent;
+}
+.typeCard.border-bottom-behind::before {
+    border-bottom: transparent;
+}
+
+.typeContent h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+}
+
+.typeContent p {
+    font-size: 0.88rem;
+    font-weight: 400;
+    margin-top: 0.2rem;
+    text-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+}
+

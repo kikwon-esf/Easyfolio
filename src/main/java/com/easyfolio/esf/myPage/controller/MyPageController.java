@@ -288,15 +288,14 @@ public class MyPageController {
         return new ResponseEntity<>("ok",HttpStatus.OK);
     }
 
-    @GetMapping(value = "/myAlarm")
-    public String myAlarm(Principal principal, MemberVO memberVO, Model model){
-        String user = principal.getName();
-        memberVO.setTotalDataCnt(alarmService.alarmListCnt(memberVO.withMemberId(user)));
-        memberVO.setPageInfo();
-        List<AlarmVO> list = alarmService.alarmListPage(memberVO.withMemberId(user));
-        model.addAttribute("alarmList", list);
-
-        return "content/myPage/myPage_myAlarm";
+    @GetMapping(value = "/myRecentView")
+    public String myAlarm(Principal principal, Model model,FoodVO foodVO){
+        foodVO.setMemberId(principal.getName());
+        foodVO.setTotalDataCnt(foodService.myRecentViewCnt(foodVO));
+        foodVO.setPageInfo();
+        model.addAttribute("nowPage", foodVO.getNowPage());
+        model.addAttribute("recentViewList", foodService.myRecentView(foodVO));
+        return "content/myPage/myPage_myRecentView";
     }
 
 //테스트

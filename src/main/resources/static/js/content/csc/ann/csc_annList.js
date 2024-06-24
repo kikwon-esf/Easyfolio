@@ -19,22 +19,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    // var currentPage = window.location.pathname;
-
-    // var sideFormElements = document.querySelectorAll('.sideForm');
-    // sideFormElements.forEach(function (element) {
-    //     var link = element.querySelector('a').getAttribute('href');
-        
-    //     if (currentPage === link) {
-    //         element.classList.add('active-sideForm'); 
-    //     }
-    //     if (currentPage.includes('/csc/updateAnnForm') || currentPage.includes('/csc/annDetailForm') || currentPage === '/csc/insertAnnForm' || link === '/csc/annForm') {
-    //         document.querySelector('.sideForm.ann').classList.add('active-sideForm'); 
-    //     }
-    //     if (currentPage.includes('/csc/inqDetailForm')) {
-    //         document.querySelector('.sideForm.inquireList').classList.add('active-sideForm'); 
-    //     }
-    // });
+    
+    var activeCate = document.querySelector('.activeCate').value;
+    
+    if (activeCate == "") {
+        document.querySelector('.annChoice.all').classList.add('active'); 
+    }
+    if (activeCate == 'CATE_001') {
+        document.querySelector('.annChoice.CATE_001').classList.add('active'); 
+    }
+    if (activeCate == 'CATE_002') {
+        document.querySelector('.annChoice.CATE_002').classList.add('active'); 
+    }
+    if (activeCate == 'CATE_003') {
+        document.querySelector('.annChoice.CATE_003').classList.add('active'); 
+    }
+    if (activeCate == 'CATE_004') {
+        document.querySelector('.annChoice.CATE_004').classList.add('active'); 
+    }
+    if (activeCate == 'CATE_005') {
+        document.querySelector('.annChoice.CATE_005').classList.add('active'); 
+    }
 
 });
 
