@@ -84,7 +84,17 @@ public class FoodController {
     }
 
     private void setupFoodList(Model model, FoodVO foodVO) {
-        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        List<FoodVO> foodList = setCommentCnt(foodService.searchFoodAll(foodVO), myPageService);
+        model.addAttribute("foodList", foodList);
+    }
+    public static List<FoodVO> setCommentCnt(List<FoodVO> list, MyPageService myPageService){
+        for(int i = 0 ; i < list.size() ; i++){
+            FoodVO foodEach = list.get(i) ;
+            String foodCode = foodEach.getFoodCode();
+            int cnt = myPageService.commentListCnt(new CommentVO().withFoodCode(foodCode));
+            foodEach.setFoodCommentCnt(cnt);
+        }
+        return list;
     }
 
     private void setupSearchDetails(Model model, FoodVO foodVO) {
@@ -334,7 +344,7 @@ public class FoodController {
         } else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
-
+        ddabongFoodList = setCommentCnt(ddabongFoodList,myPageService);
         foodVO1.setPageInfo();
         model.addAttribute("nowPage", foodVO1.getNowPage());
         model.addAttribute("urlText", urlText);
@@ -354,7 +364,7 @@ public class FoodController {
         } else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
-
+        ddabongFoodList = setCommentCnt(ddabongFoodList,myPageService);
         model.addAttribute("urlText", urlText);
         model.addAttribute("foodList", ddabongFoodList);
         return "content/food/ddabongRecipeList";

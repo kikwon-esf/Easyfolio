@@ -5,12 +5,14 @@ import com.easyfolio.esf.csc.service.CscService;
 
 
 import com.easyfolio.esf.csc.vo.ann.AnnVO;
+import com.easyfolio.esf.food.controller.FoodController;
 import com.easyfolio.esf.food.service.FoodService;
 
 import com.easyfolio.esf.member.service.AlarmService;
 import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.AlarmVO;
 import com.easyfolio.esf.member.vo.MemberVO;
+import com.easyfolio.esf.myPage.service.MyPageService;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ public class MainpageController {
     @Resource
     private final MemberService memberService;
     private final AlarmService alarmService;
+    private final MyPageService myPageService;
 
     // 메인페이지
     @GetMapping("/main")
@@ -56,7 +59,7 @@ public class MainpageController {
     public String wideSearch(@RequestParam(value = "allSearchKeyword", required = false) String allSearchKeyword, Model model, AnnVO annVO) {
             annVO.setAllSearchKeyword(allSearchKeyword);
             model.addAttribute("asAnnList", cscService.allSearchAnn(allSearchKeyword));
-            model.addAttribute("asFoodList", foodService.allSearchFood(allSearchKeyword));
+            model.addAttribute("asFoodList", FoodController.setCommentCnt(foodService.allSearchFood(allSearchKeyword),myPageService));
             model.addAttribute("asFoodCnt", foodService.allSearchFoodCnt(allSearchKeyword));
             model.addAttribute("asQnaList", cscService.allSearchQna(allSearchKeyword));
             model.addAttribute("allSearchKeyword", allSearchKeyword);
