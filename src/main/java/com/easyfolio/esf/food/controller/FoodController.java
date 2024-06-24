@@ -72,7 +72,7 @@ public class FoodController {
         setupSearchDetails(model, foodVO);
 
         if(principal != null){
-            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+            model.addAttribute("recentViewList",FoodController.setCommentCnt(foodService.selectRecentView(principal.getName()),myPageService));
         }
 
         return "/content/food/food_search";
@@ -137,7 +137,7 @@ public class FoodController {
             foodVO.setMemberId(principal.getName());
             foodService.insertRecentView(foodVO);
 
-            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+            model.addAttribute("recentViewList", FoodController.setCommentCnt(foodService.selectRecentView(principal.getName()),myPageService));
         }
 
         foodService.updateFoodInqCnt(foodVO);
@@ -238,7 +238,7 @@ public class FoodController {
     @GetMapping("/weatherFood")
     public String allRegionList(RegionVO regionVO, Model model, Principal principal) {
         if(principal != null){
-            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+            model.addAttribute("recentViewList",FoodController.setCommentCnt(foodService.selectRecentView(principal.getName()),myPageService));
         }
         model.addAttribute("regionParents", weatherService.regionParent());
         model.addAttribute("regionChilds", weatherService.regionChild());
@@ -385,7 +385,7 @@ public class FoodController {
         }
         ddabongFoodList = FoodController.setCommentCnt(ddabongFoodList, myPageService);
         if(principal != null){
-            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+            model.addAttribute("recentViewList", FoodController.setCommentCnt(foodService.selectRecentView(principal.getName()),myPageService));
         }
         model.addAttribute("urlText", urlText);
         model.addAttribute("foodList", ddabongFoodList);

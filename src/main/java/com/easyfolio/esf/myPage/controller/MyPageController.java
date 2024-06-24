@@ -302,7 +302,7 @@ public class MyPageController {
         foodVO.setTotalDataCnt(foodService.myRecentViewCnt(foodVO));
         foodVO.setPageInfo(8);
         model.addAttribute("nowPage", foodVO.getNowPage());
-        model.addAttribute("recentViewList", foodService.myRecentView(foodVO));
+        model.addAttribute("recentViewList",FoodController.setCommentCnt(foodService.myRecentView(foodVO),myPageService));
         return "content/myPage/myPage_myRecentView";
     }
 
