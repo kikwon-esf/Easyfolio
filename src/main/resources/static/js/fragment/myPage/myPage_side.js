@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var currentPage = window.location.pathname;
-    console.log(currentPage);
+    // console.log(currentPage);
 
     var sideFormElements = document.querySelectorAll('.sideForm');
     sideFormElements.forEach(function (element) {

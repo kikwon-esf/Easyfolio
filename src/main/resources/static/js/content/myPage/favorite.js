@@ -56,7 +56,6 @@ function heartFill(){
     let listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
     addFavBtn = document.querySelectorAll(".cartBox");
     list = JSON.parse(listdata);
-    console.log(list)
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){
             const foodCode = addFavBtn[i].closest('.recipe').querySelector(".foodCode").value;

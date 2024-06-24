@@ -7,8 +7,9 @@
 <body th:fragment="">
 
     <link rel="stylesheet" href="/css/content/myPage/replace/content_food.css">
-
+    <link rel="stylesheet" href="/css/content/myPage/Toggle.css">
     <div class="recipeBox">
+        <input type="hidden" id="nowPage" th:value="${nowPage}">
         <div class="recipes">
             <div th:each="food, state : ${foodList}" class="recipe">
                 <a th:href="@{/food/detail(foodCode=${food.foodCode})}">

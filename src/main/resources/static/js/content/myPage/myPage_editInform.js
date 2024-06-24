@@ -41,7 +41,7 @@ function updateFormGo(element) {
     }
 }
 
-pw_submit.addEventListener('click', (e)=>{
+pw_submit?.addEventListener('click', (e)=>{
     e.preventDefault();
     let pw_input = document.querySelectorAll('.pw_input');
 
