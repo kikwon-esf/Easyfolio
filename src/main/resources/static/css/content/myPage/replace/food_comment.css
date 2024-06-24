@@ -359,3 +359,41 @@ textarea {
 .pageBtn a svg{
     margin-top: 3px;
 }
+
+/* 애니매이션 */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.rotate-animation {
+    animation: rotate 2s linear infinite;
+}
+#moreComment{
+    color: #f29221;
+    width:330px;
+    margin:0 auto;
+    cursor: pointer;
+}
+#moreComment:hover{
+    opacity: 0.3;
+}
+#noMoreComment{
+    display: inline-block;
+    color: #caaca0;
+    width:120px;
+    cursor: pointer;
+}
+#noMoreComment:hover{
+    opacity: 0.3;
+}
+#commentMenuContainer{
+    margin: 0 auto;
+    width: 400px;
+}
+.bi-arrow-counterclockwise{
+    margin-bottom:-3px;
+}

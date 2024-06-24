@@ -231,6 +231,7 @@ public class MyPageController {
         //코멘트, 리코멘트 맵핑
         List<CommentVO> commentList = CommentVO.sortReComment(commentMap, reCommentList);
 //        commentList.sort();
+        model.addAttribute("totalCount",myPageService.commentListCnt(commentVO));
 
         commentVO.setPageInfo();
         commentVO.setNowPage(commentVO.getEndPage());
@@ -256,11 +257,12 @@ public class MyPageController {
     }
 
     //댓글 삭제
-    @GetMapping(value = "deleteComment")
-    public String deleteComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
+    @ResponseBody
+    @GetMapping(value = "/deleteComment")
+    public ResponseEntity<String> deleteComment(MemberVO memberVO,CommentVO commentVO, Principal principal,  Model model){
 
-
-        return "content/myPage/replace/food_comment";
+        myPageService.deleteComment(commentVO);
+        return new ResponseEntity<String>("삭제성공",HttpStatus.OK);
     }
 
     // 댓글 수정

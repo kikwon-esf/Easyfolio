@@ -13,6 +13,8 @@
 
 <body>
 <th:block layout:fragment="content">
+    <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">
+        
     <div class="wrap">
         <div class="myContent_title">
             <p class="myContent_title1">내가 쓴 글</p>
@@ -31,6 +33,7 @@
 
     
     <script src="/js/content/myPage/myPage_myContent.js"></script>
+    <script src="/js/content/myPage/favorite.js"></script>
 </th:block>
 <th:block layout:fragment="content_js">
 

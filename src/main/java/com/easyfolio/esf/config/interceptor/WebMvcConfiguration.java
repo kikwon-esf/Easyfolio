@@ -39,7 +39,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         //model에 favorite list넣어주는 인터셉터(나중에 쿠키로 변경 - 시간 되면)
         registry.addInterceptor(myfavoriteInterceptor) // favorite필요한
                 .excludePathPatterns(exceptionPath) //list로 등록한 예외 적용
-                .addPathPatterns("/myPage/favorite","/food/**","/mainpage/wideSearch");
+                .addPathPatterns("/myPage/favorite","/food/**","/mainpage/wideSearch","/myPage/myContent");
         //sessionCreate interceptor
         registry.addInterceptor(createSessionInterceptor)
                 .excludePathPatterns(exceptionPath)

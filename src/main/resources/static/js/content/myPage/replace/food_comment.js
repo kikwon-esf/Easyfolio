@@ -3,18 +3,26 @@
 const foodCode = document.querySelector('.foodCode_hidden').value;
 const memberId = document.querySelector('.detailMemberId').value;
 const getCommentURL = "/food/comment";
-const submitURL = "/myPage/comment"
+const submitURL = "/myPage/comment";
 const replacePosition = document.querySelector('.replacePosition');
+let commentTotalCount = null;
+let nowCommentCount = null;
+let arrowNode = null;
+let responsetData = new XMLHttpRequest();
+let nowPage = 2;
+
 let response_commentId = document.querySelector("#response_commentId")?.value;
-let nowPage = document.querySelector("#nowPage")?.value;
+// let nowPage = document.querySelector("#nowPage")?.value;
 function getCommentList(url) {
+    let nowPage = 2;
     fetch(url)
         .then((resp) => {
             return resp.text();
         })
         .then((data) => {
             writeContent(replacePosition, data);
-            pagingCount();
+            commentTotalCountRender()
+            // pagingCount();
             const foodCode_hide = document.querySelector('.foodCode_hide')
             if(response_commentId != null || undefined){
                 const commentNode = this.document.getElementById(String(response_commentId));
@@ -22,21 +30,30 @@ function getCommentList(url) {
         
                 window.scrollTo(0,findScrollValue(commentNode));
                 response_commentId = null;
+                
             }
         })
+}
+function setCommentList() {
+    getCommentList(getCommentURL + "?foodCode=" + foodCode + "&reciveMemberId=" + memberId);
 }
 function writeContent(postion, content) {
     postion.innerHTML = content;
 }
-function commentPaging(pageNum){
-    let pagingURL = getCommentURL + "?foodCode="+ foodCode + "&reciveMemberId=" + memberId + "&nowPage="+pageNum;
-    console.log(pagingURL)
-    getCommentList(pagingURL);
-}
+
 window.addEventListener('DOMContentLoaded', () => {
     getCommentList(getCommentURL + "?foodCode=" + foodCode + "&reciveMemberId=" + memberId);
-
+    arrowNode = document.querySelector('.bi-arrow-clockwise');
+    
+    
 })
+function commentTotalCountRender(){
+    const renderPosition = document.querySelector('#commentCount');
+    commentTotalCount = document.querySelector('#commentTotalCount').value;
+    nowCommentCount = document.querySelectorAll('.mother').length;
+    renderPosition.innerHTML=nowCommentCount +"/" +commentTotalCount;
+
+}
 
 function submitComment(target) {
     let formData = new FormData(target.closest('.submitBlock'));
@@ -56,7 +73,7 @@ function submitComment(target) {
         })
         .then((data) => {
             writeContent(replacePosition, data);
-            pagingCount();
+            // pagingCount();
             // const foodCode_hide = document.querySelector('.foodCode_hide')
         })
         .catch(e=>{
@@ -217,7 +234,7 @@ function deleteComment(element) {
     var commentEach = element.closest('.commentEach');
     var foodCommentId = commentEach.querySelector('.foodCommentId').value;
 
-    fetch('/myPage/updateComment', { 
+    fetch('/myPage/deleteComment', { 
         method: 'POST',
         cache: 'no-cache',
         headers: {
@@ -262,10 +279,43 @@ function findScrollValue(commentNode){
     console.log(window.scrollY)
     return rect.top;
 }
-function pagingCount(){
+// function pagingCount(){
     
-    nowPage = document.querySelector("#nowPage").value;
-    console.log("nowpage : "+nowPage)
-    let nowPageNode = document.getElementById('page'+nowPage);
-    nowPageNode.classList.add('active');
+//     nowPage = document.querySelector("#nowPage").value;
+//     console.log("nowpage : "+nowPage)
+//     let nowPageNode = document.getElementById('page'+nowPage);
+//     nowPageNode.classList.add('active');
+// }
+
+//댓글 더보기 관련 - server로부터 request요청을 받아오고 쓰기
+
+function newReplaceFunction(){
+    let responsetData = new XMLHttpRequest();
+    const replaceMoreComment = document.querySelector('#moreCommentReplace');
+    responsetData.open('GET', '/food/moreComment?nowPage='+nowPage+"&foodCode="+foodCode+"&reciveMemberId=" + memberId, true);
+    arrowNode = document.querySelector('.bi-arrow-counterclockwise');
+    responsetData.send();
+    responsetData.onloadend = ()=>{
+        arrowNode.classList.remove('rotate-animation');
+        if(responsetData.readyState === 4 && responsetData.status === 200){
+            replaceMoreComment.insertAdjacentHTML('afterend', responsetData.responseText);
+            nowPage ++;
+        }else{
+            alert("!!!")
+        }
+        commentTotalCountRender()
+    };
+    responsetData.LOADING = ()=>{
+        
+        arrowNode.classList.add('rotate-animation');
+    }
+    // responsetData.onreadystatechange = ()=>{
+    //     console.log(responsetData)
+    //     if(responsetData.readyState === 4 && responsetData.status === 200){
+    //         replaceMoreComment.insertAdjacentHTML('afterend', responsetData.responseText);
+    //         nowPage ++;
+    //     }else{
+    //         alert("!!!")
+    //     }
+    // };
 }

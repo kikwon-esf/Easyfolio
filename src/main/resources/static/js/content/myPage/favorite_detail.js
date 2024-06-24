@@ -5,7 +5,7 @@ let currentElement = null;
 function deleteFav(){
     
 
-    const foodCode = currentElement.closest('.recipeTextBox1').querySelector(".foodCode").value;
+    const foodCode = document.querySelector(".foodCode_hidden").value;
     let data = {
         method: 'POST',
         cache: 'no-cache',
@@ -56,11 +56,12 @@ function heartFill(){
     let listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
     addFavBtn = document.querySelectorAll(".cartBox");
     list = JSON.parse(listdata);
+    console.log(list)
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){
-            const foodCode = addFavBtn[i].closest('.recipe').querySelector(".foodCode").value;
-            const biHeart = addFavBtn[i].closest('.recipe').querySelector(".bi-heart");
-            const fillHeart = addFavBtn[i].closest('.recipe').querySelector(".bi-heart-fill");
+            const foodCode = document.querySelector(".foodCode_hidden").value;
+            const biHeart = document.querySelector(".bi-heart");
+            const fillHeart = document.querySelector(".bi-heart-fill");
             
             if(list.includes(foodCode)){
                 onOff(fillHeart,biHeart);
@@ -77,9 +78,9 @@ function heartFill(){
 function addOrDelFav(ele){
     const biHeart = ele.querySelector(".bi-heart");
     const fillHeart = ele.querySelector(".bi-heart-fill");
-    const foodCode = ele.closest(".recipeTextBox1").querySelector(".foodCode").value;
-    const rcmmCnt = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt");
-    const rcmmCntVal = ele.closest(".recipeTextBox1").querySelector(".RcmmCnt").textContent;
+    const foodCode = document.querySelector(".foodCode_hidden").value;
+    const rcmmCnt = document.querySelector(".RcmmCnt");
+    const rcmmCntVal = document.querySelector(".RcmmCnt").textContent;
 
     
     let listFalg = list?.includes(foodCode);

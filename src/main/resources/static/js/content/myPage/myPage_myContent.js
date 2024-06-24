@@ -9,17 +9,22 @@ let nowPage = null;
 function paging(url){
     fetch(url)
     .then((resp)=>{
+        
         return resp.text();
     })
     .then((data)=>{
         writeHTMl(data);
         pagingCount()
         scrollTo(0,0);
+        if(url.includes("food")){
+            heartFill();
+        }
     })
 }
 function foodPaging(page){
     const foodURL = "/myPage/myContent/food?nowPage=";
     paging(foodURL+page);
+    heartFill();
 }
 function commentPaging(page){
     const commentURL = "/myPage/myContent/comment?nowPage=";
@@ -40,6 +45,8 @@ foodBtn.addEventListener('click', function(){
         commentBtn.classList.remove('on');
     }
     paging(content_URL+"food");
+    heartFill();
+    pagingCount();
     foodBtn.classList.add('on');
     cookie("food");
 
@@ -61,8 +68,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
 function pagingCount(){
     
-    nowPage = document.querySelector("#nowPage").value;
+    nowPage = document?.querySelector("#nowPage").value;
     console.log(nowPage)
     let nowPageNode = document.getElementById('page'+nowPage);
-    nowPageNode.classList.add('active');
+    nowPageNode?.classList.add('active');
 }
