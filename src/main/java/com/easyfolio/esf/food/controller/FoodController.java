@@ -349,7 +349,10 @@ public class FoodController {
         } else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
-
+        model.addAttribute("foodUsageList", foodService.foodUsageList());
+        model.addAttribute("foodKindList", foodService.foodKindList());
+        model.addAttribute("foodMtrlList", foodService.foodMtrlList());
+        model.addAttribute("foodTypeList", foodService.foodTypeList());
         foodVO1.setPageInfo();
         model.addAttribute("nowPage", foodVO1.getNowPage());
         model.addAttribute("urlText", urlText);
