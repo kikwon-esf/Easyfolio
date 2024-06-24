@@ -280,6 +280,7 @@ public class FoodController {
 
         List<DdabongVO> foodList = weatherService.ddabongFoodList(ddabongCode);
         System.err.println(foodList);
+//        foodList = FoodController.setCommentCnt(foodList,myPageService);
         List<String> foodNames = new ArrayList<>();
         for (DdabongVO ddabong : foodList) {
             if (ddabong.getDdabongFood() != null) {
@@ -365,6 +366,7 @@ public class FoodController {
         foodVO1.setPageInfo();
         model.addAttribute("nowPage", foodVO1.getNowPage());
         model.addAttribute("urlText", urlText);
+        ddabongFoodList = FoodController.setCommentCnt(ddabongFoodList,myPageService);
         model.addAttribute("foodList", ddabongFoodList);
         return "content/food/weatherFood_direct";
     }
@@ -381,6 +383,7 @@ public class FoodController {
         } else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
+        ddabongFoodList = FoodController.setCommentCnt(ddabongFoodList, myPageService);
         if(principal != null){
             model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
         }
