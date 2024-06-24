@@ -458,7 +458,7 @@ textarea{
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 401;
+    z-index: 501;
     width: 400px;
     height: 170px;
     margin: 15% auto;
@@ -494,6 +494,16 @@ textarea{
     transition: background-color 0.3s ease;
 }
 .pu_error{
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pu_delete{
     z-index: 400;
     width: 100%;
     height: 100%;
