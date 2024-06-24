@@ -14,6 +14,7 @@
 
 <body>
     <th:block layout:fragment="content">
+        <input type="hidden" id="nowPage" th:value="${nowPage}">
         <div id="wrap">
             <div class="myContent_title">
                 <p class="myContent_title1">최근 본 레시피</p>
@@ -75,23 +76,32 @@
             </div>
 
             <th:block>
-                <!-- <div class="pageBtnBox">
+                <div class="pageBtnBox">
                     <div class="btn_group">
-                        <div class="pageBtn" th:if="${#lists.size(alarmList) != 0}">
+                        <div class="pageBtn" th:if="${#lists.size(recentViewList) != 0}">
                             <a class="page_prevBtn"
-                                th:href="@{/myPage/myAlarm(nowPage=${memberVO.beginPage - 1},foodCode=${foodCode})}"><span
-                                    th:if="${memberVO.prev}">이전</span></a>
-                            <th:block th:each="pageNum : ${#numbers.sequence(memberVO.beginPage, memberVO.endPage)}">
+                                th:href="@{/myPage/myRecentView(nowPage=${foodVO.beginPage - 1})}"><span th:if="${foodVO.prev}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                </svg>
+                                </span></a>
+                            <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
                                 <a class="page_numBtn"
-                                    th:href="@{/myPage/myAlarm(nowPage=${pageNum},foodCode=${foodCode})}"><span
-                                        th:text="${pageNum}"></span></a>
+                                    th:href="@{/myPage/myRecentView(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
                             </th:block>
                             <a class="page_nextBtn"
-                                th:href="@{/myPage/myAlarm(nowPage=${memberVO.endPage + 1},foodCode=${foodCode})}"><span
-                                    th:if="${memberVO.next}">다음</span></a>
+                                th:href="@{/myPage/myRecentView(nowPage=${foodVO.endPage + 1})}"><span th:if="${foodVO.next}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                </svg>
+                                </span></a>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </th:block>
 
         </div>

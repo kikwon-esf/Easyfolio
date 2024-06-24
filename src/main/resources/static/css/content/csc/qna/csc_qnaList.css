@@ -409,6 +409,7 @@ textarea {
 /* 페이지 버튼 */
 .btnBlock{
     text-align: center;
+    cursor: pointer;
 }
 .btn_group{
     display: inline-block;

@@ -178,10 +178,14 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
-    public List<FoodVO> myRecentView(String memberId) {
-        return sqlSession.selectList("foodMapper.myRecentView", memberId);
+    public List<FoodVO> myRecentView(FoodVO foodVO) {
+        return sqlSession.selectList("foodMapper.myRecentView", foodVO);
     }
 
+    @Override
+    public int myRecentViewCnt(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.myRecentViewCnt", foodVO);
+    }
 
 //
 

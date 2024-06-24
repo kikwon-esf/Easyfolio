@@ -546,7 +546,6 @@
     </select>
 
     <select id="myRecentView" resultMap="food">
-        <![CDATA[
     SELECT
         F.FOOD_CODE,
         F.FOOD_TTL,
@@ -562,18 +561,13 @@
     INNER JOIN RECENT_VIEW RV ON F.FOOD_CODE = RV.FOOD_CODE
     WHERE RV.MEMBER_ID = #{memberId}
     ORDER BY RV.VIEW_DATE DESC
-    ]]>
+    OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
-    <select id="selectRecentViewCount" resultType="int">
-        <![CDATA[
-    SELECT COUNT(*) AS recentViewCount
-    FROM (
-        SELECT F.FOOD_CODE
-        FROM FOOD F
-        INNER JOIN RECENT_VIEW RV ON F.FOOD_CODE = RV.FOOD_CODE
+    <select id="myRecentViewCnt" resultType="int">
+        SELECT COUNT(F.FOOD_CODE)
+        FROM FOOD F, RECENT_VIEW RV
         WHERE RV.MEMBER_ID = #{memberId}
-    )
-    ]]>
+        AND F.FOOD_CODE = RV.FOOD_CODE
     </select>
 </mapper>

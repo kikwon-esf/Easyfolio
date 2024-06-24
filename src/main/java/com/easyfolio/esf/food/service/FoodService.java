@@ -66,7 +66,9 @@ public interface FoodService {
 
     public List<FoodVO> selectRecentView(String memberId);
 
-    public List<FoodVO> myRecentView(String memberId);
+    public List<FoodVO> myRecentView(FoodVO foodVO);
+
+    public int myRecentViewCnt(FoodVO foodVO);
 
     public void insertRecentView(FoodVO foodVO);
 }

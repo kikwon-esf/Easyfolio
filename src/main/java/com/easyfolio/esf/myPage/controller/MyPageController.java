@@ -277,9 +277,12 @@ public class MyPageController {
     }
 
     @GetMapping(value = "/myRecentView")
-    public String myAlarm(Principal principal, MemberVO memberVO, Model model){
-        model.addAttribute("recentViewList", foodService.myRecentView(principal.getName()));
-
+    public String myAlarm(Principal principal, Model model,FoodVO foodVO){
+        foodVO.setMemberId(principal.getName());
+        foodVO.setTotalDataCnt(foodService.myRecentViewCnt(foodVO));
+        foodVO.setPageInfo();
+        model.addAttribute("nowPage", foodVO.getNowPage());
+        model.addAttribute("recentViewList", foodService.myRecentView(foodVO));
         return "content/myPage/myPage_myRecentView";
     }
 
