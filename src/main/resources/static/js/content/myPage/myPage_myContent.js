@@ -24,7 +24,7 @@ function paging(url){
 function foodPaging(page){
     const foodURL = "/myPage/myContent/food?nowPage=";
     paging(foodURL+page);
-    // heartFill();
+    heartFill();
 }
 function commentPaging(page){
     const commentURL = "/myPage/myContent/comment?nowPage=";
