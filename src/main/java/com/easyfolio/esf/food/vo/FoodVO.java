@@ -28,4 +28,5 @@ public class FoodVO extends PageVO {
     private FoodTypeVO foodTypeVO;
     private String memberId;
     private FoodImgVO foodImgVO;
+    private int foodCommentCnt;
 }

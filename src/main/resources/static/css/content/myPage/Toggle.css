@@ -35,3 +35,8 @@
 .heartBox:hover{
     opacity: 0.6;
 }
+
+.bi-chat-dots{
+    margin-left : 5px;
+    margin-bottom: -4px;
+}

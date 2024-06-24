@@ -66,7 +66,6 @@ public class FoodController {
         }
         foodVO.setTotalDataCnt(foodService.searchFoodCnt(foodVO));
         foodVO.setPageInfo();
-
         model.addAttribute("nowPage", foodVO.getNowPage());
 
         setupFoodList(model, foodVO);
@@ -89,7 +88,17 @@ public class FoodController {
     }
 
     private void setupFoodList(Model model, FoodVO foodVO) {
-        model.addAttribute("foodList", foodService.searchFoodAll(foodVO));
+        List<FoodVO> foodList = setCommentCnt(foodService.searchFoodAll(foodVO), myPageService);
+        model.addAttribute("foodList", foodList);
+    }
+    public static List<FoodVO> setCommentCnt(List<FoodVO> list, MyPageService myPageService){
+        for(int i = 0 ; i < list.size() ; i++){
+            FoodVO foodEach = list.get(i) ;
+            String foodCode = foodEach.getFoodCode();
+            int cnt = myPageService.commentListCnt(new CommentVO().withFoodCode(foodCode));
+            foodEach.setFoodCommentCnt(cnt);
+        }
+        return list;
     }
 
     private void setupSearchDetails(Model model, FoodVO foodVO) {
@@ -365,6 +374,7 @@ public class FoodController {
         if (foodNames == null) {
             foodNames = new ArrayList<>();
         }
+
         List<FoodVO> ddabongFoodList;
         if (foodNames.isEmpty()) {
             ddabongFoodList = foodService.allRecipeList();

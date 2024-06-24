@@ -3,6 +3,7 @@ package com.easyfolio.esf.myPage.controller;
 
 import com.easyfolio.esf.config.Transfer;
 import com.easyfolio.esf.config.interceptor.PwdEditInterceptor;
+import com.easyfolio.esf.food.controller.FoodController;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodVO;
 import com.easyfolio.esf.member.service.AlarmService;
@@ -65,9 +66,19 @@ public class MyPageController {
         model.addAttribute("nowPage", favoriteVO.getNowPage());
         model.addAttribute("searchFavoriteCnt", favoriteVO.getTotalDataCnt());
         List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(favoriteVO);
+        favorite = setCommentCnt(favorite);
         model.addAttribute("myFavorite", favorite);
 
         return "content/myPage/myPage_favorite";
+    }
+    private List<FavoriteVO> setCommentCnt(List<FavoriteVO> list){
+        for(int i = 0 ; i < list.size() ; i++){
+            FoodVO each = list.get(i).getFoodVO();
+            String foodCode = each.getFoodCode();
+            int commentCnt = myPageService.commentListCnt(new CommentVO().withFoodCode(foodCode));
+            list.get(i).getFoodVO().setFoodCommentCnt(commentCnt);
+        }
+        return list;
     }
     @ResponseBody
     @PostMapping(value = "/deleteFav")
@@ -102,6 +113,7 @@ public class MyPageController {
         foodVO.setTotalDataCnt(myPageService.foodByMemberCnt(foodVO));
         foodVO.setPageInfo(8);
         List<FoodVO> foodList =  myPageService.getFoodByMember(foodVO);
+        foodList = FoodController.setCommentCnt(foodList,myPageService);
         model.addAttribute("nowPage", foodVO.getNowPage());
         model.addAttribute("foodList", foodList);
         return "content/myPage/replace/content_food";
