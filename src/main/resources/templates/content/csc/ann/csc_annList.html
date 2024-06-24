@@ -14,6 +14,7 @@
 <th:block layout:fragment="content">
     <input type="hidden" id="nowPage" th:value="${nowPage}"></input>
     <input type="hidden" class="activeCate" th:value="${annCate}">
+    <input type="hidden" th:value="${memberRole}">
 
     <div id="csc_wrap">
         <div class="csc_title">
@@ -93,7 +94,7 @@
                     </div>
                     <div class="btnForm">
                         <div>
-                            <a class="btnBox" href="/csc/insertAnnForm">
+                            <a class="btnBox" href="/csc/insertAnnForm" th:if="${memberRole == 'admin'}">
                                 <p>글쓰기</p>
                             </a>
                         </div>
