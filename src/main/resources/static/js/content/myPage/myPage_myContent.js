@@ -62,7 +62,7 @@ commentBtn.addEventListener('click', function(){
 
 
 window.addEventListener('DOMContentLoaded', ()=>{
-    let requestURL = cookieCheck() == null ? "comment" : cookieCheck();
+    let requestURL = cookieCheck() == null ? "food" : cookieCheck();
     paging(content_URL+requestURL, requestURL);
 })
 
