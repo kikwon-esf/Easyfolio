@@ -195,3 +195,54 @@ cards.forEach(function (card) {
     });
 });
 */
+
+const angle = 20;
+
+const lerp = (start, end, amount) => {
+    return (1 - amount) * start + amount * end;
+};
+
+const remap = (value, oldMax, newMax) => {
+    const newValue = ((value + oldMax) * (newMax * 2)) / (oldMax * 2) - newMax;
+    return Math.min(Math.max(newValue, -newMax), newMax);
+};
+
+window.addEventListener("DOMContentLoaded", (event) => {
+    const typeCards = document.querySelectorAll(".typeCard");
+    typeCards.forEach((e) => {
+        // 초기 설정
+        e.dataset.rotateX = 0;
+        e.dataset.rotateY = 0;
+        e.style.setProperty("--rotateY", "0deg");
+        e.style.setProperty("--rotateX", "0deg");
+
+        e.addEventListener("mousemove", (event) => {
+            const rect = e.getBoundingClientRect();
+            const centerX = (rect.left + rect.right) / 2;
+            const centerY = (rect.top + rect.bottom) / 2;
+            const posX = event.clientX - centerX;
+            const posY = event.clientY - centerY;
+            const x = remap(posX, rect.width / 2, angle);
+            const y = remap(posY, rect.height / 2, angle);
+            e.dataset.rotateX = x;
+            e.dataset.rotateY = -y;
+        });
+
+        e.addEventListener("mouseout", (event) => {
+            e.dataset.rotateX = 0;
+            e.dataset.rotateY = 0;
+        });
+    });
+
+    const update = () => {
+        typeCards.forEach((e) => {
+            let currentX = parseFloat(e.style.getPropertyValue('--rotateY')) || 0;
+            let currentY = parseFloat(e.style.getPropertyValue('--rotateX')) || 0;
+            const x = lerp(currentX, parseFloat(e.dataset.rotateX), 0.05);
+            const y = lerp(currentY, parseFloat(e.dataset.rotateY), 0.05);
+            e.style.setProperty("--rotateY", x + "deg");
+            e.style.setProperty("--rotateX", y + "deg");
+        });
+    };
+    setInterval(update, 1000 / 60);
+});
