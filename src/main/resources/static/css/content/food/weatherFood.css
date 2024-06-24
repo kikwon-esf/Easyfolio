@@ -39,6 +39,7 @@ textarea {
     height: 0;
     overflow: hidden;
 }
+
 .weatherWrap {
     width: 100%;
     border-bottom: 2px solid #f4f4f4;
@@ -50,11 +51,13 @@ textarea {
     height: auto;
     margin: 0 auto 50px auto;
 }
-.weatherBlock{
+
+.weatherBlock {
     position: relative;
     margin-bottom: 50px;
 }
-.weatherBlockInner{
+
+.weatherBlockInner {
     width: 1200px;
     position: relative;
     margin: 0 auto;
@@ -62,18 +65,23 @@ textarea {
     box-sizing: border-box;
     display: flex;
 }
-.weatherLeftBlock{
+
+.weatherLeftBlock {
     width: 400px;
 }
-.weatherTextBox{
+
+.weatherTextBox {
     width: 200px;
     height: 250px;
     overflow-y: scroll;
 }
-.regionParentBlock{
+
+.regionParentBlock {
     display: flex;
 }
-.parentBox, .regionChildBox{
+
+.parentBox,
+.regionChildBox {
     color: #666;
     cursor: pointer;
     padding: 9px 0 9px 7px;
@@ -82,11 +90,14 @@ textarea {
     background-color: #fff;
     cursor: pointer;
 }
-.parentBox:hover, .regionChildBox:hover{
+
+.parentBox:hover,
+.regionChildBox:hover {
     color: #fff;
     background: linear-gradient(180deg, #f3c053 0%, #ffd57a 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
-.regionChildBlock{
+
+.regionChildBlock {
     width: 200px;
     overflow-y: scroll;
     display: none;
@@ -95,24 +106,31 @@ textarea {
     left: 202px;
     height: 250px;
 }
+
 .regionChildBlock.on {
-    display: block; /* on 클래스가 있는 경우 보이도록 설정 */
+    display: block;
+    /* on 클래스가 있는 경우 보이도록 설정 */
 }
-.parentBox.selected, .regionChildBox.selected {
+
+.parentBox.selected,
+.regionChildBox.selected {
     color: #fff;
     background: linear-gradient(180deg, rgb(242, 146, 33) 0%, #f3c053 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
-.weatherImgBox{
+
+.weatherImgBox {
     background: linear-gradient(180deg, rgba(242, 244, 247, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
     width: 798px;
     box-sizing: border-box;
 }
-.weatherImgHeader{
+
+.weatherImgHeader {
     display: flex;
     position: relative;
     padding: 19px 93px 8px 50px;
     vertical-align: top;
 }
+
 .weatherImgHeader p {
     font-size: 26px;
     font-weight: 600;
@@ -121,57 +139,72 @@ textarea {
     color: rgba(var(--gray0), 1);
     vertical-align: top;
 }
-.parentArea{
+
+.parentArea {
     margin-right: 5px;
 }
-.weatherImgMid{
+
+.weatherImgMid {
     margin-bottom: -5px;
     display: flex;
 }
-.weatherImg{
+
+.weatherImg {
     width: 110px;
     margin-left: 277px;
 }
-.weatherImg img{
+
+.weatherImg img {
     width: 100%;
     height: auto;
 }
-.weatherTemp{
+
+.weatherTemp {
     font-size: 60px;
     font-weight: 700;
     letter-spacing: -0.95px;
     color: #202020;
     margin: 7px 0 0 -39px;
 }
-.weatherTextTop{
+
+.weatherTextTop {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
-.weatherTextTop p{
+
+.weatherTextTop p {
     font-size: 20px;
     letter-spacing: -0.7px;
     color: #222225;
 }
-.skyState{
+
+.skyState {
     margin-left: 6px;
 }
-.weatherTextBot{
+
+.weatherTextBot {
     font-size: 16px;
     justify-content: center;
     display: flex;
     letter-spacing: -0.7px;
     color: #222225;
 }
-.weatherRainLeft, .weatherRainRight{
+
+.weatherRainLeft,
+.weatherRainRight {
     display: flex;
 }
-.weatherRainLeft{
+
+.weatherRainLeft {
     margin-right: 20px;
 }
-.rainPer, .rainState{
+
+.rainPer,
+.rainState {
     margin-left: 5px;
 }
+
 /* .regionChildBlock::-webkit-scrollbar,
 .outputbox::-webkit-scrollbar {
   width: 12px;
@@ -197,36 +230,45 @@ textarea {
 
 ::-webkit-scrollbar {
 
-    width: 8px; /* 스크롤바 너비 */
+    width: 8px;
+    /* 스크롤바 너비 */
 }
 
 ::-webkit-scrollbar-track {
-    background-color: transparent; /* 스크롤바 track 배경색 */
+    background-color: transparent;
+    /* 스크롤바 track 배경색 */
 }
 
 ::-webkit-scrollbar-thumb {
     cursor: pointer;
-    background-color: #dadada; /* 스크롤바 thumb 색상 */
-    border-radius: 2px; /* 스크롤바 thumb 모서리 반경 */
+    background-color: #dadada;
+    /* 스크롤바 thumb 색상 */
+    border-radius: 2px;
+    /* 스크롤바 thumb 모서리 반경 */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #999; /* 스크롤바 thumb에 호버시 색상 */
+    background-color: #999;
+    /* 스크롤바 thumb에 호버시 색상 */
 }
-.foodTapBlock{
+
+.foodTapBlock {
     background: linear-gradient(180deg, #0000000f 0%, rgba(255, 255, 255, 0.75) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
     width: 100%;
 }
-.foodTapInner{
+
+.foodTapInner {
     position: relative;
     margin: 0 auto;
     width: 1200px;
 }
-.foodTaps{
+
+.foodTaps {
     width: 100%;
     display: flex;
 }
-.foodTap{
+
+.foodTap {
     transition: all 0.3s ease;
     cursor: pointer;
     background: linear-gradient(180deg, #0000000f 0%, rgba(255, 255, 255, 0.75) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
@@ -239,15 +281,52 @@ textarea {
     font-size: 16px;
     border-right: 3px solid #fff;
 }
-.foodTap.myRecipe{
+
+.foodTap.myRecipe {
     border: 0;
 }
-.foodTap:hover{
+
+.foodTap:hover {
     color: #fff;
     background: linear-gradient(180deg, #f3c053cf 0%, #ffd57a7d 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
-.foodTap.selected, .regionChildBox.selected {
+
+.foodTap.selected,
+.regionChildBox.selected {
     color: #fff;
     background: linear-gradient(180deg, #f29221d1 0%, #ffd57a 100%), linear-gradient(0deg, #fff, #FFFFFF);
 }
 
+.food_title {
+    display: -webkit-inline-box;
+    margin-left: 20px;
+}
+
+.food_title0 {
+    color: #333;
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.food_title1 {
+    color: #333;
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.food_title2 {
+    margin: 8px 10px 3px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #f3c053;
+}
+
+.recentViewBlock>.food_title {
+    margin: 90px 0 20px 20px;
+}
+
+.recentViewBlock {
+    margin-bottom: 150px;
+}

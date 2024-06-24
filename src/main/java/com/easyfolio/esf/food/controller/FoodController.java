@@ -66,10 +66,15 @@ public class FoodController {
         }
         foodVO.setTotalDataCnt(foodService.searchFoodCnt(foodVO));
         foodVO.setPageInfo();
+
         model.addAttribute("nowPage", foodVO.getNowPage());
 
         setupFoodList(model, foodVO);
         setupSearchDetails(model, foodVO);
+
+        if(principal != null){
+            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+        }
 
         return "/content/food/food_search";
     }
@@ -118,9 +123,17 @@ public class FoodController {
         if(foodCode.equals("") || foodCode != null){
             foodVO.setFoodCode(foodCode);
         }
+
+        if(principal != null){
+            foodVO.setMemberId(principal.getName());
+            foodService.insertRecentView(foodVO);
+
+            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+        }
+
         foodService.updateFoodInqCnt(foodVO);
-        model.addAttribute("foodDetail", foodService.getFoodDtl(foodVO));
         FoodVO detailFoodVO = foodService.getFoodDtl(foodVO);
+        model.addAttribute("foodDetail", detailFoodVO);
         model.addAttribute("foodCodeList", foodService.selectFoodCode(detailFoodVO));
         setupSearchDetails(model, foodVO);
         String mtrl = detailFoodVO.getFoodMtrlCn();
@@ -214,8 +227,10 @@ public class FoodController {
     }
 
     @GetMapping("/weatherFood")
-    public String allRegionList(RegionVO regionVO, Model model) {
-
+    public String allRegionList(RegionVO regionVO, Model model, Principal principal) {
+        if(principal != null){
+            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+        }
         model.addAttribute("regionParents", weatherService.regionParent());
         model.addAttribute("regionChilds", weatherService.regionChild());
         return "/content/food/weatherFood";
@@ -343,18 +358,19 @@ public class FoodController {
     }
 
     @GetMapping("/ddabongRecipeList")
-    public String ddabongRecipeList(@ModelAttribute("foodNames") List<String> foodNames, @ModelAttribute("urlText") String urlText, Model model) {
+    public String ddabongRecipeList(Principal principal,@ModelAttribute("foodNames") List<String> foodNames, @ModelAttribute("urlText") String urlText, Model model) {
         if (foodNames == null) {
             foodNames = new ArrayList<>();
         }
-
         List<FoodVO> ddabongFoodList;
         if (foodNames.isEmpty()) {
             ddabongFoodList = foodService.allRecipeList();
         } else {
             ddabongFoodList = foodService.ddabongRecipeList(foodNames);
         }
-
+        if(principal != null){
+            model.addAttribute("recentViewList", foodService.selectRecentView(principal.getName()));
+        }
         model.addAttribute("urlText", urlText);
         model.addAttribute("foodList", ddabongFoodList);
         return "content/food/ddabongRecipeList";

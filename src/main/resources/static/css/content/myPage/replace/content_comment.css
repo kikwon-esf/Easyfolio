@@ -50,6 +50,9 @@ a {
     text-align: center;
     margin-bottom: 70px;
 }
+.page_numBtn, .page_nextBtn, .page_prevBtn{
+    cursor: pointer;
+}
 .btnBlock{
     text-align: center;
 }

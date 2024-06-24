@@ -276,15 +276,11 @@ public class MyPageController {
         return new ResponseEntity<>("ok",HttpStatus.OK);
     }
 
-    @GetMapping(value = "/myAlarm")
+    @GetMapping(value = "/myRecentView")
     public String myAlarm(Principal principal, MemberVO memberVO, Model model){
-        String user = principal.getName();
-        memberVO.setTotalDataCnt(alarmService.alarmListCnt(memberVO.withMemberId(user)));
-        memberVO.setPageInfo();
-        List<AlarmVO> list = alarmService.alarmListPage(memberVO.withMemberId(user));
-        model.addAttribute("alarmList", list);
+        model.addAttribute("recentViewList", foodService.myRecentView(principal.getName()));
 
-        return "content/myPage/myPage_myAlarm";
+        return "content/myPage/myPage_myRecentView";
     }
 
 //테스트
