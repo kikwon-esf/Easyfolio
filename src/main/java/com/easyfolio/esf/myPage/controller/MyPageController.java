@@ -213,10 +213,7 @@ public class MyPageController {
         commentVO.setSendMemberId(principal.getName());
 
         String content = commentVO.getContent();
-        content = content.replaceAll("<","&lt;");
-        content = content.replaceAll(">","&gt;");
-        content = content.replaceAll(System.getProperty("line.separator"),"<p class='commentText'></p>");
-        commentVO.setContent(content);
+        commentVO.setContent(Transfer.contentChangeLine(content));
         if(!Transfer.reqexTest(commentVO.getContent())){
             myPageService.submitComment(commentVO); // 댓글 등록하는 코드
             alarmService.insertAlarm(commentVO);
@@ -276,9 +273,8 @@ public class MyPageController {
     @PostMapping("/updateComment")
     public ResponseEntity<String> updateComment(CommentVO commentVO){
         System.err.println("get" + commentVO.getContent());
-        String content = commentVO.getContent().replaceAll(System.getProperty("line.separator"),"<p></p>");
-
-//        content = content.replaceAll("[\n\r]","|| CHR(10) || ");
+        String content = commentVO.getContent();
+        content = Transfer.contentChangeLine(content);
         commentVO.setContent(content);
         System.err.println(content);
         if(Transfer.reqexTest(commentVO.getContent())){

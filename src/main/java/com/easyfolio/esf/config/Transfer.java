@@ -47,4 +47,10 @@ public class Transfer {
         return !(str.matches("(?s).*\\S.*"));
         //||str.matches("^\\\\s*$")
     }
+    public static String contentChangeLine(String content){
+        content = content.replaceAll("<","&lt;");
+        content = content.replaceAll(">","&gt;");
+        content = content.replaceAll(System.getProperty("line.separator"),"<p class='commentText'></p>");
+        return content;
+    }
 }
