@@ -2,13 +2,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const firstParentBox = document.querySelector('.parentBox');
     if (firstParentBox) {
-        firstParentBox.classList.add('selected'); 
+        firstParentBox.classList.add('selected');
         const firstChildBlock = firstParentBox.nextElementSibling;
         if (firstChildBlock) {
             firstChildBlock.classList.add('on');
             const firstChildBox = firstChildBlock.querySelector('.regionChildBox');
             if (firstChildBox) {
-                firstChildBox.classList.add('selected'); 
+                firstChildBox.classList.add('selected');
                 updateWeatherArea(firstChildBox);
                 callWeatherAPI(firstChildBox);
             }
@@ -185,7 +185,7 @@ function callWeatherAPI(regionChildBox) {
 function updateWeatherImage(skyCondition, precipitationType) {
     let imgSrc = "";
     const currentHour = new Date().getHours();
-    if (precipitationType !== "없음" && precipitationType !== "알 수 없음") { 
+    if (precipitationType !== "없음" && precipitationType !== "알 수 없음") {
         switch (precipitationType) {
             case "비":
                 imgSrc = "/img/weather/weather_rain.svg";
@@ -200,7 +200,7 @@ function updateWeatherImage(skyCondition, precipitationType) {
                 imgSrc = "/img/weather/weather_sunNrain.svg";
                 break;
             default:
-                imgSrc = "/img/weather/weather_sun.svg";  
+                imgSrc = "/img/weather/weather_sun.svg";
                 break;
         }
     } else {
@@ -213,7 +213,7 @@ function updateWeatherImage(skyCondition, precipitationType) {
                 }
                 break;
             case "구름많음":
-                if (currentHour >= 18 || currentHour < 6) { 
+                if (currentHour >= 18 || currentHour < 6) {
                     imgSrc = "/img/weather/weather_nightCloud.svg";
                 } else {
                     imgSrc = "/img/weather/weather_dayCloud.svg";
@@ -223,13 +223,13 @@ function updateWeatherImage(skyCondition, precipitationType) {
                 imgSrc = "/img/weather/weather_cloud.svg";
                 break;
             default:
-                imgSrc = "/img/weather/weather_sun.svg";  
+                imgSrc = "/img/weather/weather_sun.svg";
                 break;
         }
     }
 
 
-    document.querySelector('.weatherImg img').src = imgSrc; 
+    document.querySelector('.weatherImg img').src = imgSrc;
 }
 
 function updateFoodRecommendations(fcstValue, precipitationType, baseTime) {
@@ -246,32 +246,22 @@ function updateFoodRecommendations(fcstValue, precipitationType, baseTime) {
             'baseTime' : baseTime
         })
     })
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-        }
-        return response.text(); // 응답을 텍스트로 받기
-    })
-    .then((html) => {
-        // console.log(html);
-        document.querySelector('.ddabongRecipeContainer').innerHTML = html; // 지정된 컨테이너에 HTML 교체
-        heartFill();
-    })
-    .catch(err => {
-        alert('fetch error!\n' + err.message + '\n콘솔창을 확인하세요!');
-        console.error(err);
-    });
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+            }
+            return response.text(); // 응답을 텍스트로 받기
+        })
+        .then((html) => {
+            // console.log(html);
+            document.querySelector('.ddabongRecipeContainer').innerHTML = html; // 지정된 컨테이너에 HTML 교체
+            heartFill();
+        })
+        .catch(err => {
+            alert('fetch error!\n' + err.message + '\n콘솔창을 확인하세요!');
+            console.error(err);
+        });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    var currentPage = window.location.pathname;
 
-    var sideFormElements = document.querySelectorAll('.foodTap');
-    sideFormElements.forEach(function (element) {
-        var link = element.closest('a') ? element.closest('a').getAttribute('href') : null;
-        
-        if (link && currentPage === link) {
-            element.classList.add('selected'); 
-        }
-    });
-});
+Splitting();
