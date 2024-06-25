@@ -379,6 +379,38 @@
         FETCH FIRST 10 ROWS ONLY
     </select>
 
+    <select id="ddabongRecipeListPage" resultMap="food">
+        SELECT F.FOOD_CODE
+        , F.FOOD_TTL
+        , F.FOOD_DIF
+        , F.FOOD_INQ_CNT
+        , F.FOOD_RCMM_CNT
+        , F.MEMBER_ID
+        , FI.FOOD_IMG_CODE
+        , FI.ORIGIN_FILE_NAME
+        , FI.ATTACHED_FILE_NAME
+        FROM FOOD F LEFT JOIN FOOD_IMG FI
+        ON F.FOOD_CODE = FI.FOOD_CODE
+        <where>
+            <foreach item="foodName" collection="foodNames" separator="OR" open="(" close=")">
+                FOOD_TTL LIKE '%' || #{foodName} || '%'
+            </foreach>
+        </where>
+        ORDER BY FOOD_INQ_CNT DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="ddabongRecipeListPageCnt" resultType="int">
+        SELECT COUNT(F.FOOD_CODE)
+        FROM FOOD F LEFT JOIN FOOD_IMG FI
+        ON F.FOOD_CODE = FI.FOOD_CODE
+        <where>
+            <foreach item="foodName" collection="foodNames" separator="OR" open="(" close=")">
+                FOOD_TTL LIKE '%' || #{foodName} || '%'
+            </foreach>
+        </where>
+    </select>
+
     <select id="allRecipeList" resultMap="food">
         SELECT F.FOOD_CODE
         , F.FOOD_TTL

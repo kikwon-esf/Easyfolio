@@ -306,7 +306,7 @@ public class FoodController {
         String urlText = "";
         List<DdabongVO> foodList = new ArrayList<>();
         if(ddabongVO.getDdabongCode() == null || ddabongVO.getDdabongCode().equals("DDABONG_006") || ddabongVO.getDdabongCode().isEmpty()){
-             foodList = weatherService.ddabongFoodList("DDABONG_006");
+            foodList = weatherService.ddabongFoodList("DDABONG_006");
             urlText = "/img/weather/weatherBanner_normal.png";
         } else{
             switch (ddabongVO.getDdabongCode()) {

@@ -48,6 +48,10 @@ public interface FoodService {
 
     public List<FoodVO> ddabongRecipeList(List<String> foodNames);
 
+    public List<FoodVO> ddabongRecipeListPage(FoodVO foodVO);
+
+    public int ddabongRecipeListPageCnt(FoodVO foodVO);
+
     public int ddabongRecipeCount(List<String> foodNames);
 
     public int allRecipeCount();
@@ -73,4 +77,5 @@ public interface FoodService {
     public void insertRecentView(FoodVO foodVO);
 
     public void deleteFood(FoodVO foodVO);
+
 }

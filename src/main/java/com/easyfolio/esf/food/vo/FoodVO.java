@@ -3,6 +3,8 @@ package com.easyfolio.esf.food.vo;
 import com.easyfolio.esf.csc.vo.PageVO;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class FoodVO extends PageVO {
     private String foodCode;
@@ -29,4 +31,5 @@ public class FoodVO extends PageVO {
     private String memberId;
     private FoodImgVO foodImgVO;
     private int foodCommentCnt;
+    private List<String> foodNames;
 }

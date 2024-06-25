@@ -36,4 +36,5 @@
         FROM DDABONG_FOOD
         WHERE DDABONG_CODE = #{ddabongCode}
     </select>
+    
 </mapper>

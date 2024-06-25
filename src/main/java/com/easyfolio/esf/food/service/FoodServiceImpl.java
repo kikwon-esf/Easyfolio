@@ -124,6 +124,16 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
+    public List<FoodVO> ddabongRecipeListPage(FoodVO foodVO) {
+        return sqlSession.selectList("foodMapper.ddabongRecipeListPage", foodVO);
+    }
+
+    @Override
+    public int ddabongRecipeListPageCnt(FoodVO foodVO) {
+        return sqlSession.selectOne("foodMapper.ddabongRecipeListPageCnt", foodVO);
+    }
+
+    @Override
     public int ddabongRecipeCount(List<String> foodNames) {
         return sqlSession.selectOne("foodMapper.ddabongRecipeCount",foodNames);
     }
