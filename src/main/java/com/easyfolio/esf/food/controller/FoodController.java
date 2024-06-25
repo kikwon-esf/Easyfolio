@@ -342,29 +342,33 @@ public class FoodController {
                 foodNames.addAll(Arrays.asList(foodArray));
             }
         }
-
         String foodNamesString = foodNames.isEmpty() ? "" : String.join(",", foodNames);
 
-        FoodVO foodVO1 = new FoodVO();
         List<FoodVO> ddabongFoodList;
         List<String> foodNames2 = new ArrayList<>();
 
         if (foodNamesString != null && !foodNamesString.isEmpty()) {
             foodNames2 = Arrays.asList(foodNamesString.split(","));
         }
-
+        foodVO.setFoodNames(foodNames2);
         if (foodNames2.isEmpty()) {
             // foodNames가 비어있는 경우 모든 데이터를 조회하도록 처리
+            foodVO.setTotalDataCnt(foodService.allRecipeCount());
+            foodVO.setPageInfo();
             ddabongFoodList = foodService.allRecipeList();
         } else {
-            ddabongFoodList = foodService.ddabongRecipeList(foodNames2);
+            foodVO.setTotalDataCnt(foodService.ddabongRecipeListPageCnt(foodVO));
+            foodVO.setPageInfo();
+            ddabongFoodList = foodService.ddabongRecipeListPage(foodVO);
         }
+        System.err.println(foodVO.getNowPage());
+        System.err.println(foodVO);
+        model.addAttribute("ddabongCode", ddabongVO.getDdabongCode());
         model.addAttribute("foodUsageList", foodService.foodUsageList());
         model.addAttribute("foodKindList", foodService.foodKindList());
         model.addAttribute("foodMtrlList", foodService.foodMtrlList());
         model.addAttribute("foodTypeList", foodService.foodTypeList());
-        foodVO1.setPageInfo();
-        model.addAttribute("nowPage", foodVO1.getNowPage());
+        model.addAttribute("nowPage", foodVO.getNowPage());
         model.addAttribute("urlText", urlText);
         ddabongFoodList = FoodController.setCommentCnt(ddabongFoodList,myPageService);
         model.addAttribute("foodList", ddabongFoodList);

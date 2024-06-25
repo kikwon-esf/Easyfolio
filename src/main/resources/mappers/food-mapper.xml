@@ -427,6 +427,22 @@
         FETCH FIRST 10 ROWS ONLY
     </select>
 
+    <select id="allRecipeListPage" resultMap="food">
+        SELECT F.FOOD_CODE
+        , F.FOOD_TTL
+        , F.FOOD_DIF
+        , F.FOOD_INQ_CNT
+        , F.FOOD_RCMM_CNT
+        , F.MEMBER_ID
+        , FI.FOOD_IMG_CODE
+        , FI.ORIGIN_FILE_NAME
+        , FI.ATTACHED_FILE_NAME
+        FROM FOOD F LEFT JOIN FOOD_IMG FI
+        ON F.FOOD_CODE = FI.FOOD_CODE
+        ORDER BY FOOD_INQ_CNT DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
     <select id="allRecipeCount" resultType="int">
         SELECT COUNT(FOOD_CODE)
         FROM FOOD

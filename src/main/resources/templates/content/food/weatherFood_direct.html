@@ -145,7 +145,7 @@
                 <div class="btn_group">
                     <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
                         <a class="page_prevBtn"
-                           th:href="@{/food/weatherFood(nowPage=${foodVO.beginPage - 1})}"><span
+                           th:href="@{/food/ddabongcode(nowPage=${foodVO.beginPage - 1}, ddabongCode=${ddabongCode})}"><span
                                 th:if="${foodVO.prev}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -155,11 +155,11 @@
                                 </span></a>
                         <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
                             <a class="page_numBtn"
-                               th:href="@{/food/weatherFood(nowPage=${pageNum})}"><span
+                               th:href="@{/food/ddabongcode(nowPage=${pageNum}, ddabongCode=${ddabongCode})}"><span
                                     th:text="${pageNum}"></span></a>
                         </th:block>
                         <a class="page_nextBtn"
-                           th:href="@{/food/weatherFood(nowPage=${foodVO.endPage + 1})}"><span
+                           th:href="@{/food/ddabongcode(nowPage=${foodVO.endPage + 1}, ddabongCode=${ddabongCode})}"><span
                                 th:if="${foodVO.next}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-caret-right-fill" viewBox="0 0 16 16">
