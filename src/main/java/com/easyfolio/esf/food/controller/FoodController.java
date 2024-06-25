@@ -301,7 +301,7 @@ public class FoodController {
     }
 
     @GetMapping("/ddabongcode")
-    public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes, Model model, FoodVO foodVO) {
+    public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes, Model model, FoodVO foodVO, Principal principal) {
         String urlText = "";
         List<DdabongVO> foodList = new ArrayList<>();
         if(ddabongVO.getDdabongCode() == null || ddabongVO.getDdabongCode().equals("DDABONG_006") || ddabongVO.getDdabongCode().isEmpty()){
@@ -367,6 +367,10 @@ public class FoodController {
         model.addAttribute("urlText", urlText);
         ddabongFoodList = FoodController.setCommentCnt(ddabongFoodList,myPageService);
         model.addAttribute("foodList", ddabongFoodList);
+
+        if(principal != null){
+            model.addAttribute("recentViewList",FoodController.setCommentCnt(foodService.selectRecentView(principal.getName()),myPageService));
+        }
 
 
         return "content/food/weatherFood_direct";

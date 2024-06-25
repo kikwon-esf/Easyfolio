@@ -357,3 +357,23 @@ textarea {
         width: 40vw;
     }
 }
+.food_title1{
+    color: #333;
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+.food_title2{
+    margin: 8px 10px 3px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #f3c053;
+}
+.recentViewBlock >.food_title{
+    margin: 90px 0 20px 20px;
+}
+.recentViewBlock{
+    margin-bottom: 100px;
+    width: 1260px;
+    margin: 0 auto;
+}
