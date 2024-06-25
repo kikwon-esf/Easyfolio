@@ -70,8 +70,8 @@ public class CscServiceImpl implements CscService{
     }
 
     @Override
-    public List<InqVO> inqList() {
-        return sqlSession.selectList("cscMapper.inqList");
+    public List<InqVO> inqList(InqVO inqVO) {
+        return sqlSession.selectList("cscMapper.inqList",inqVO);
     }
 
     @Override

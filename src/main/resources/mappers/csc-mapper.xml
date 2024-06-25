@@ -139,6 +139,7 @@
             , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
         FROM INQUIRE INQ, INQ_CATE_LIST CATE
         WHERE INQ.INQ_CATE = CATE.CATE_CODE
+        AND INQ_WRITER = #{inqWriter}
         ORDER BY INQ_CODE DESC
         OFFSET 0 ROWS FETCH FIRST 10 ROWS ONLY
     </select>
@@ -172,6 +173,7 @@
         , INQ_CATE
         , INQ_TITLE
         , INQ_CONTENT
+        , INQ_WRITER
         )
         VALUES (
         (SELECT 'INQ_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(INQ_CODE, 5))),0) + 1, 3, '0')
@@ -179,6 +181,7 @@
         , #{inqCate}
         , #{inqTitle}
         , #{inqContent}
+        , #{inqWriter}
         )
     </insert>
 

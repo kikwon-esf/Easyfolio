@@ -32,7 +32,7 @@
                 <div class="main">
                     <div class="csc_ann">
                         <div class="annHeader">
-                            <form action="/csc/qnaListForm" method="post" class="qna_searchForm">
+                            <form action="/csc/qnaListForm" method="get" class="qna_searchForm">
                                 <div class="annSearchBlock">
                                     <input type="text" class="annSearch" name="allSearchKeyword"
                                         placeholder="자주 찾는 질문 검색" th:value="${allSearchKeyword}">
@@ -158,7 +158,7 @@
                         <div class="btn_group">
                             <div class="pageBtn" th:if="${#lists.size(qnaList) != 0}">
                                 <a class="page_prevBtn"
-                                    th:href="@{/csc/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span
+                                    th:href="@{/csc/qnaListForm(nowPage=${qnaVO.beginPage - 1},allSearchKeyword=${allSearchKeyword})}"><span
                                         th:if="${qnaVO.prev}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -167,11 +167,11 @@
                                     </svg>
                                 </span></a>
                                 <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
-                                    <a class="page_numBtn" th:href="@{/csc/qnaListForm(nowPage=${pageNum})}"><span
+                                    <a class="page_numBtn" th:href="@{/csc/qnaListForm(nowPage=${pageNum},allSearchKeyword=${allSearchKeyword})}"><span
                                             th:text="${pageNum}"></span></a>
                                 </th:block>
                                 <a class="page_nextBtn"
-                                    th:href="@{/csc/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span
+                                    th:href="@{/csc/qnaListForm(nowPage=${qnaVO.endPage + 1},allSearchKeyword=${allSearchKeyword})}"><span
                                         th:if="${qnaVO.next}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-caret-right-fill" viewBox="0 0 16 16">
@@ -182,7 +182,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="btnForm">
+                    <div th:if="${memberRole=='ADMIN'}"  class="btnForm">
                         <div>
                             <a class="btnBox" href="/csc/insertQnaForm">
                                 <p>글쓰기</p>
