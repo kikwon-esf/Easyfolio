@@ -29,10 +29,15 @@ public class MyfavoriteInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         Principal principal = request.getUserPrincipal();
-        if(principal != null){
-            String userId = principal.getName();
-            List favoriteList = myPageService.getFavoriteListString(new MemberVO().withMemberId(userId));
-            modelAndView.addObject("favoriteList",objectMapper.writeValueAsString(favoriteList));
+        try {
+            if(principal != null){
+                String userId = principal.getName();
+                List favoriteList = myPageService.getFavoriteListString(new MemberVO().withMemberId(userId));
+                modelAndView.addObject("favoriteList",objectMapper.writeValueAsString(favoriteList));
+            }
+
+        } catch (Exception e){
+
         }
         HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }

@@ -96,6 +96,7 @@ public class FoodServiceImpl implements FoodService{
         sqlSession.insert("foodMapper.insertRecentView", foodVO);
     }
 
+
     @Override
     public FoodVO selectFoodCode(FoodVO foodVO) {
         return sqlSession.selectOne("foodMapper.selectFoodCode",foodVO);
@@ -187,6 +188,16 @@ public class FoodServiceImpl implements FoodService{
         return sqlSession.selectOne("foodMapper.myRecentViewCnt", foodVO);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteFood(FoodVO foodVO) {
+        sqlSession.delete("foodMapper.deleteAlarm", foodVO);
+        sqlSession.delete("foodMapper.deleteFavorite", foodVO);
+        sqlSession.delete("foodMapper.deleteFoodImg", foodVO);
+        sqlSession.delete("foodMapper.deleteRecentView", foodVO);
+        sqlSession.delete("foodMapper.deleteFoodComment", foodVO);
+        sqlSession.delete("foodMapper.deleteFood", foodVO);
+    }
 //
 
 }
