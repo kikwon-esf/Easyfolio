@@ -2,6 +2,7 @@ package com.easyfolio.esf.food.controller;
 
 import com.easyfolio.esf.csc.vo.PageVO;
 import com.easyfolio.esf.csc.vo.inq.InqImgVO;
+import com.easyfolio.esf.csc.vo.qna.QnaVO;
 import com.easyfolio.esf.food.service.FoodService;
 import com.easyfolio.esf.food.vo.FoodImgVO;
 import com.easyfolio.esf.food.vo.FoodStepsVO;
@@ -520,6 +521,13 @@ public class FoodController {
 
         redirectAttributes.addAttribute("foodCode", foodCode);
         return "redirect:/food/detail";
+    }
+
+    @ResponseBody
+    @PostMapping("/deleteFood")
+    public String deleteFood (FoodVO foodVO){
+        foodService.deleteFood(foodVO);
+        return "성공";
     }
 
 }

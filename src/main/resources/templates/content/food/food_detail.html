@@ -17,9 +17,30 @@
         <input id="response_commentId" type="hidden" th:if="${foodCommentId != null}" th:value="${foodCommentId}">
         <input class="foodCode_hidden" type="hidden" th:value="${foodDetail.foodCode}">
         <input id="favoriteList" type="hidden" th:data-favorite-list="${favoriteList}">
-        
+
         <input type="hidden" name="memberId" class="detailMemberId" th:value="${foodDetail.memberId}">
         <div id="wrap">
+            <div class="deleteFoodCheckInner pop_blind">
+                <div class="commentCheckPopup">
+                    <div class="checkTextBox">
+                        <p class="checkText">삭제를 완료하시겠습니까?</p>
+                    </div>
+                    <div class="checkBtnBox">
+                        <button class="comCheckBtn yes" onclick="deleteFood()">확인</button>
+                        <button class="comCheckBtn no" onclick="NoDelete()">취소</button>
+                    </div>
+                </div>
+            </div>
+            <div class="commentFoodAlarmInner pop_blind">
+                <div class="commentAlarmPopup">
+                    <div class="alarmTextBox">
+                        <p class="alarmText"></p>
+                    </div>
+                    <div class="alarmBtnBox">
+                        <button class="alarmBtn yes" onclick="okFoodBtn()">확인</button>
+                    </div>
+                </div>
+            </div>
             <div class="inner">
                 <div class="header">
                     <div class="food_title">
@@ -233,6 +254,7 @@
                             <a th:href="@{/food/updateFoodForm(foodCode=${foodDetail.foodCode})}">
                                 <p>수정하기</p>
                             </a>
+                            <p onclick="deletePopUp()">삭제하기</p>
                         </div>
                     </div>
                     <div class="newComment">

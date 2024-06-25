@@ -570,4 +570,28 @@
         WHERE RV.MEMBER_ID = #{memberId}
         AND F.FOOD_CODE = RV.FOOD_CODE
     </select>
+
+    <delete id="deleteAlarm">
+        DELETE FROM ALARM WHERE FOOD_CODE = #{foodCode}
+    </delete>
+
+    <delete id="deleteFavorite">
+        DELETE FROM FAVORITE WHERE FOOD_CODE = #{foodCode}
+    </delete>
+
+    <delete id="deleteFoodImg">
+        DELETE FROM FOOD_IMG WHERE FOOD_CODE = #{foodCode}
+    </delete>
+
+    <delete id="deleteFood">
+        DELETE FROM FOOD WHERE FOOD_CODE = #{foodCode}
+    </delete>
+
+    <delete id="deleteRecentView">
+        DELETE FROM RECENT_VIEW WHERE FOOD_CODE = #{foodCode}
+    </delete>
+
+    <delete id="deleteFoodComment">
+        DELETE FROM FOOD_COMMENT WHERE FOOD_CODE = #{foodCode}
+    </delete>
 </mapper>

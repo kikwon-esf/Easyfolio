@@ -71,4 +71,6 @@ public interface FoodService {
     public int myRecentViewCnt(FoodVO foodVO);
 
     public void insertRecentView(FoodVO foodVO);
+
+    public void deleteFood(FoodVO foodVO);
 }
