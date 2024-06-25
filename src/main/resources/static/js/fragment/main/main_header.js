@@ -59,7 +59,10 @@ document.addEventListener("click", function (event) {
 
 
 });
-
+const pupu = document.querySelector('.pupu')
+pupu.addEventListener('mouseover',(e)=>{
+    e.stopPropagation();
+})
 document.addEventListener("mouseover", function (event) {
     var icon = document.querySelectorAll('.icon');
     if (!event.target.closest('.popup')) {

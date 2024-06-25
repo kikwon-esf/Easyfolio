@@ -100,21 +100,26 @@ textarea {
     text-overflow: ellipsis;
     width: 200px;
     height: 43px;
-    font-size: 15px;
+    font-size: 14px;
     color: #333;
 }
 .recipeTextBox1 p{
     font-size: 15px;
     color: #555;
-    margin: 5px 0;
 }
 .recipeTextBox11{
     margin-left: 9px;
 }
 .cartBox{
-    margin-top: 9px;
+    margin-top: 13px;
     text-align: center;
-    margin-right: 2px;
+    margin-right: -6px;
+}
+.commentCntBox{
+    display: flex;
+}
+.commentCntBox svg{
+    margin: 3px 6px 0 0;
 }
 .cartBox p{
     margin: 0;

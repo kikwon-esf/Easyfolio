@@ -79,98 +79,35 @@ $('.mainAccomSubImg').slick({
     slidesToShow: 1,
     speed: 500
 });
+// document.addEventListener('DOMContentLoaded', function() {
+//     item3.style.width = '415px';
+//     currentOpenedItem = item3;
+// });
 
-const items = {
-    items1: document.querySelectorAll('.item1'),
-    items2: document.querySelectorAll('.item2'),
-    items3: document.querySelectorAll('.item3'),
-    items4: document.querySelectorAll('.item4'),
-    items5: document.querySelectorAll('.item5'),
-};
-
-let currentOpenedItem = null; // 현재 열려있는 아이템 추적
-
-const closeItems = (exceptItem) => {
-    Object.values(items).forEach(itemList => {
-        itemList.forEach(item => {
-            if (item !== exceptItem) {
-                item.clicked = false;
-                gsap.to(item, {
-                    width: '140px',
-                    duration: 2,
-                    ease: 'elastic(1, .6)'
-                });
-            }
-        });
+const items = document.querySelectorAll('.sit_group div');
+const item1 = document.querySelector('.item1');
+const item2 = document.querySelector('.item2');
+const item3 = document.querySelector('.item3');
+const item4 = document.querySelector('.item4');
+const item5 = document.querySelector('.item5');
+items.forEach(item => {
+    item.addEventListener('mouseover', function() {
+        item.classList.add('hoverItem');
+        if(item != item3 && document.querySelector('.item3.hoverItem')){
+            item3.classList.remove('hoverItem')
+        } // item-large 클래스 추가
     });
-};
 
-const expandItem = (item) => {
-    item.clicked = true;
-    gsap.to(item, {
-        width: '415px',
-        duration: 2.5,
-        ease: 'elastic(1, .3)'
+    item.addEventListener('mouseout', function() {
+        item.classList.remove('hoverItem'); // item-large 클래스 제거
     });
-};
+});
 
-const collapseItem = (item) => {
-    item.clicked = false;
-    gsap.to(item, {
-        width: '140px',
-        duration: 2,
-        ease: 'elastic(1, .6)'
-    });
-};
+const sitGroup = document.querySelector('.sit_group');
+sitGroup.addEventListener('mouseleave', function() {
+    item3.classList.add('hoverItem');
+});
 
-const initializeItems = () => {
-    // 초기에 3번 아이템만 열기
-    expandItem(items.items3[0]);
-    currentOpenedItem = items.items3[0]; // 현재 열려있는 아이템 업데이트
-
-    // 나머지 아이템들은 닫기
-    Object.values(items).forEach(itemList => {
-        itemList.forEach(item => {
-            if (item !== items.items3[0]) {
-                collapseItem(item);
-            }
-            item.addEventListener('mouseover', handleMouseOver);
-            item.addEventListener('mouseleave', handleMouseLeave);
-        });
-    });
-};
-
-const handleMouseOver = (event) => {
-    const item = event.currentTarget;
-    if (!item.clicked) {
-        // 현재 열린 아이템이 있으면 닫기
-        if (currentOpenedItem) {
-            collapseItem(currentOpenedItem);
-        }
-
-        // 클릭된 아이템 열기
-        expandItem(item);
-        currentOpenedItem = item;
-    }
-};
-
-const handleMouseLeave = (event) => {
-    const item = event.currentTarget;
-    if (item.clicked) {
-        // 마우스가 벗어났을 때 닫기
-        collapseItem(item);
-    } else {
-        // 아이템을 오버하지 않을 때 .item3만 열기
-        if (currentOpenedItem !== item3) {
-            closeItems();
-            expandItem(item3);
-            currentOpenedItem = item3;
-        }
-    }
-};
-
-// 초기화
-initializeItems();
 
 Splitting();
 

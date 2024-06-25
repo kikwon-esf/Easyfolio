@@ -262,3 +262,70 @@ textarea {
 .inputBox.fail .inputMem::placeholder{
     color: #ff3f3f;
 }
+
+
+.pu_blind{
+    display: none;
+}
+
+.pu_inner{
+    padding: 43px 10px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 501;
+    width: 400px;
+    height: 170px;
+    margin: 15% auto;
+}
+
+.pu_text_box{
+    font-weight: 300;
+    font-size: 18px;
+    color: #666;
+}
+
+.pu_btn_box{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.pu_btn{
+    font-weight: 300;
+    color: #777;
+    border-radius: 6px;
+    margin: 20px;
+    padding: 8px 25px;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+.pu_btn:hover{
+    background-color: #ffa43b;
+    color: #fff;
+    border: 1px solid #ffd57a;
+    transition: background-color 0.3s ease;
+}
+.pu_error{
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pu_delete{
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}

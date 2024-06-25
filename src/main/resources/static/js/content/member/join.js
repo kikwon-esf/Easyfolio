@@ -48,11 +48,14 @@ function checkId() {
             })
             .then((data) => {
                 if (data) {
-                    alert('사용가능한 ID입니다.');
+                    // alert('사용가능한 ID입니다.');
+                    idCheckResult(true)
                     isIdChecked = true;
                     document.querySelector('.joinBtn').value = "회원가입";
                 } else {
-                    alert('사용 불가능한 ID입니다.');
+                    // alert('사용 불가능한 ID입니다.');
+                    idBox.classList.toggle('fail');
+                    idCheckResult(false)
                     document.querySelector('.joinBtn').value = "아이디 확인 필요";
                 }
             })
@@ -97,5 +100,24 @@ function loginGo() {
         tel.placeholder = "전화번호를 입력해 주세요";
     } else {
         document.querySelector('#joinForm').submit();
+    }
+}
+
+function idCheckResult(bool){
+    if(bool){
+        const positive = document.querySelector('.positive');
+        positive.classList.remove('pu_blind');
+    }else{
+        const negative = document.querySelector('.negative');
+        negative.classList.remove('pu_blind');
+    }
+}
+function displayOff_pu(bool){
+    if(bool){
+        const positive = document.querySelector('.positive');
+        positive.classList.add('pu_blind');
+    }else{
+        const negative = document.querySelector('.negative');
+        negative.classList.add('pu_blind');
     }
 }

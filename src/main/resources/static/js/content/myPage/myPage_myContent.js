@@ -37,7 +37,8 @@ function cookie(value){
     sessionStorage.setItem("myContentCookie",value);
 }
 function cookieCheck(){
-    return sessionStorage.getItem("myContentCookie");
+    return null;
+    // return sessionStorage.getItem("myContentCookie");
 }
 
 foodBtn.addEventListener('click', function(){

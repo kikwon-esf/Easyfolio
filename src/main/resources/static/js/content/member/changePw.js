@@ -48,10 +48,10 @@
 //     var askDelete = document.querySelector('.pwAlarmInner');
 //     askDelete.style.display = 'block';
 // }
-
+let pw = document.querySelector('#input_password');
+let pwCheck = document.querySelector('#repeat_password');
 function changePw() {
-    let pw = document.querySelector('#input_password');
-    let pwCheck = document.querySelector('#repeat_password');
+
 
     
     if (pw.value === '') {
@@ -70,3 +70,13 @@ function changePw() {
         document.querySelector('form').submit();
     }
 }
+pw.addEventListener('click',()=>{
+    pw.closest('.inputBox').classList.remove('fail');
+    pw.placeholder = "비밀번호";
+})
+pwCheck.addEventListener('click',()=>{
+    pwCheck.closest('.inputBox').classList.remove('fail');
+        pwCheck.type = "password";
+        pwCheck.value='';
+        pwCheck.placeholder = "비밀번호 확인";
+})

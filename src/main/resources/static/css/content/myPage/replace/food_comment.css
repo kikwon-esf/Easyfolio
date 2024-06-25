@@ -373,13 +373,23 @@ textarea {
     animation: rotate 2s linear infinite;
 }
 #moreComment{
-    color: #f29221;
-    width:330px;
-    margin:0 auto;
+    color: #666666;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #f4f4f4;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 1085px;
+    height: 45px;
     cursor: pointer;
+    transition: background-color 0.5s ease;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.3);
 }
 #moreComment:hover{
-    opacity: 0.3;
+    color: #F29221;
+    opacity: 0.7;
 }
 #noMoreComment{
     display: inline-block;
@@ -396,4 +406,9 @@ textarea {
 }
 .bi-arrow-counterclockwise{
     margin-bottom:-3px;
+    
+}
+
+#commentCount{
+    margin: 0 7px;
 }

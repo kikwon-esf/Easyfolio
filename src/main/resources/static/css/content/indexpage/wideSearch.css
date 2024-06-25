@@ -122,10 +122,14 @@
 
 /* 레시피 */
 .recipes{
+    padding: 8px;
+    border: 1px solid #f4f4f4;
+    border-radius: 4px;
     display: grid;
-    grid-template-columns: 220px 220px 220px 220px 220px;
-    gap: 24px;
+    grid-template-columns: 218px 218px 218px 218px 218px;
+    gap: 20px;
     margin-bottom: 50px;
+    box-shadow: 0 2px 5px 0 rgba(68, 68, 68, .04);
 }
 .recipe{
     cursor: pointer;
@@ -171,19 +175,26 @@
     text-overflow: ellipsis;
     width: 200px;
     height: 43px;
-    font-size: 15px;
+    font-size: 14px;
     color: #333;
 }
 .recipeTextBox1 p{
-    font-size: 13px;
+    font-size: 15px;
     color: #555;
-    margin: 5px 0;
+}
+.recipeTextBox11{
+    margin-left: 9px;
 }
 .cartBox{
-    width: 60px;
-    margin-right: -17px;
-    margin-top: 7px;
+    margin-top: 13px;
     text-align: center;
+    margin-right: -6px;
+}
+.commentCntBox{
+    display: flex;
+}
+.commentCntBox svg{
+    margin: 3px 6px 0 0;
 }
 .cartBox p{
     margin: 0;

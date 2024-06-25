@@ -389,69 +389,69 @@ textarea {
     white-space: nowrap;
 }
 
-.sit_inner{
+/* .sit_inner{
     padding: 0px 50px;
+} */
+
+.item1, .item2, .item3, .item4, .item5 {
+    width: 180px;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    margin: 10px;
+    border-radius: 30px;
+    display: inline-block;
+    cursor: pointer;
+    overflow: hidden; /* 요소 내의 내용이 넘칠 경우 숨김 처리 */
+    background-size: cover; /* 배경 이미지를 요소에 맞춰서 크기 조절 */
+    background-position: center; /* 배경 이미지의 위치를 가운데로 정렬 */
+    transition: width 0.3s ease-in-out;
+    animation: shrinkExpand 0.6s ease-in-out forwards; /* width 속성에 대한 변화를 0.5초간 부드럽게 처리 */
+}
+.hoverItem {
+    width: 415px;
+    background-size: 533px;
+    animation: expandShrink 0.6s ease-in-out forwards; /* 호버 시 크기를 키우고 좌측으로 이동하는 효과 */
+}
+@keyframes expandShrink {
+    0% {
+        transform: scaleX(1); /* 초기 크기 */
+    }
+    50% {
+        transform: scaleX(1.05); /* 가로로 확대 */
+    }
+    100% {
+        transform: scaleX(1); /* 다시 초기 크기로 돌아옴 */
+    }
 }
 
-.item1 {
-    width: 140px;
-    height: 300px; /* 50vh를 300px로 변경 */
+@keyframes shrinkExpand {
+    0% {
+        transform: scaleX(1); /* 초기 크기 */
+    }
+    50% {
+        transform: scaleX(0.80); /* 가로로 축소 */
+    }
+    100% {
+        transform: scaleX(1); /* 다시 초기 크기로 돌아옴 */
+    }
+}
+.item1{
     background-image: url('/img/situation/diet.jpeg');
-    background-position: center;
-    background-size: 535px; /* 50vh를 300px로 변경 */
-    margin: 10px; /* 1vw를 10px로 변경 */
-    border-radius: 30px; /* 3vw를 30px로 변경 */
-    display: inline-block;
-    cursor: pointer;
 }
-
-.item2 {
-    width: 140px;
-    height: 300px; /* 50vh를 300px로 변경 */
+.item2{
     background-image: url('/img/situation/haejang.jpg');
-    background-position: center;
-    background-size: 535px; /* 50vh를 300px로 변경 */
-    margin: 10px; /* 1vw를 10px로 변경 */
-    border-radius: 30px; /* 3vw를 30px로 변경 */
-    display: inline-block;
-    cursor: pointer;
 }
-
-.item3 {
-    width: 140px;
-    height: 300px; /* 50vh를 300px로 변경 */
+.item3{
     background-image: url('/img/situation/ilsang.jpg');
-    background-position: center;
-    background-size: 535px; /* 50vh를 300px로 변경 */
-    margin: 10px; /* 1vw를 10px로 변경 */
-    border-radius: 30px; /* 3vw를 30px로 변경 */
-    display: inline-block;
-    cursor: pointer;
 }
-
-.item4 {
-    width: 140px;
-    height: 300px; /* 50vh를 300px로 변경 */
+.item4{
     background-image: url('/img/situation/myongjeol.jpg');
-    background-position: center;
-    background-size: 535px; /* 50vh를 300px로 변경 */
-    margin: 10px; /* 1vw를 10px로 변경 */
-    border-radius: 30px; /* 3vw를 30px로 변경 */
-    display: inline-block;
-    cursor: pointer;
+}
+.item5{
+    background-image: url('/img/situation/speed.jpg');
 }
 
-.item5 {
-    width: 140px;
-    height: 300px; /* 50vh를 300px로 변경 */
-    background-image: url('/img/situation/speed.jpg');
-    background-position: center;
-    background-size: 535px; /* 50vh를 300px로 변경 */
-    margin: 10px; /* 1vw를 10px로 변경 */
-    border-radius: 30px; /* 3vw를 30px로 변경 */
-    display: inline-block;
-    cursor: pointer;
-}
 
 :root {
     --cover-timing: 0.5s;
@@ -807,7 +807,7 @@ textarea {
 }
 /* 자주 찾는 질문 */
 .csc_qna{
-    margin: 70px auto 30px auto;
+    margin: 70px auto 120px auto;
     width: 1200px;
 }
 .qnaBlock{
