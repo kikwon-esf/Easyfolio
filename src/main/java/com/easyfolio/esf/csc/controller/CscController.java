@@ -7,6 +7,7 @@ import com.easyfolio.esf.csc.vo.ann.AnnVO;
 import com.easyfolio.esf.csc.vo.inq.InqImgVO;
 import com.easyfolio.esf.csc.vo.inq.InqVO;
 import com.easyfolio.esf.csc.vo.qna.QnaVO;
+import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.util.UploadUtillInq;
 import com.easyfolio.esf.util.UploadUtillRes;
@@ -26,6 +27,7 @@ import java.util.List;
 public class CscController {
 
     private final CscService cscService;
+    private final MemberService memberService;
 
     // 고객 센터 메인 페이지
     @RequestMapping("/cscForm")
@@ -102,7 +104,12 @@ public class CscController {
     // 문의 사항 목록 페이지
     @RequestMapping("/inqListForm")
     public String inqListForm(Model model, Principal principal, InqVO inqVO){
-        inqVO.setInqWriter(principal.getName());
+        String user = principal.getName();
+        String role = memberService.findMemberById(user).getMemberRole();
+        if(!role.equals("ADMIN")){
+            inqVO.setInqWriter(principal.getName());
+
+        }
         model.addAttribute("inqList", cscService.inqList(inqVO));
         return "content/csc/inq/csc_inqList";
     }
