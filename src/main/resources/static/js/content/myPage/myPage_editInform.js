@@ -16,7 +16,6 @@ function submitFuction(e){
     }
     fetch(submitUrl, options)
     .then((resp)=>{
-        console.log(resp);
         if(resp.status==200){
             location.href="/myPage/editInform"
         }else if(resp.status==400){

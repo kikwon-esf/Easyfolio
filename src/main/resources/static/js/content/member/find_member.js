@@ -37,7 +37,6 @@ document.addEventListener("click", function (event) {
             inputMem.value = '';
         });
         inputBoxList.forEach(function (inputBox) {
-            console.log("InputMemFailList:", inputBoxList);
             inputBox.classList.remove('fail');
         });
         findResultList.forEach(function (findResult) {
@@ -115,12 +114,10 @@ function findId() {
                 return response.json();
             })
             .then((data) => {
-                console.log(data)
                 if (data.length === 0) {
                     resultFail.style.display = "block";
                 } else {
                     data.forEach(data1 => {
-                        console.log(data1)
                         let createResultBox = document.createElement('div');
                         createResultBox.className = "resultBox"
                         let findResult = document.querySelector('.findResult');
@@ -144,7 +141,7 @@ function findId() {
             })
             .catch((err) => {
                 alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                console.log(err);
+              
             });
 
     }
@@ -213,7 +210,6 @@ function findPw() {
                 return response.json();
             })
             .then((data) => {
-                console.log(data)
                 // if (data.length === 0) {
                 //     resultFail.style.display = "block";
                 // } else {
@@ -230,7 +226,6 @@ function findPw() {
             .catch((err) => {
                 resultFail.style.display = "block";
                 resultSuc.style.display = 'none';
-                console.log(err);
             });
 
     }
@@ -245,7 +240,6 @@ function authenticateForChangePw(){
     }
     fetch(authenticateForChangePwURL,options)
     .then((resp)=>{
-        console.log(resp);
         if(resp.status!=200){
             throw new Error();
         }else{

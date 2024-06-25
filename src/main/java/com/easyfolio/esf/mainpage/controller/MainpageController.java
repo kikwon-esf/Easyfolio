@@ -44,6 +44,7 @@ public class MainpageController {
         } else {
             // principal이 null이거나 getName()이 null인 경우에 대한 처리
         }
+//        System.err.println(memberService.findMemberById(principal.getName()).getMemberRole());
 
         model.addAttribute("alarmList", alarmList);
         return "content/indexpage/mainpage";

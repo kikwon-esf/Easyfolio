@@ -114,7 +114,7 @@ function deleteSelectedComments() {
         })
         .catch(err=>{
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-            console.log(err);
+           
         });
     } else {
         commentAlarmInner.querySelector('.alarmText').textContent = '삭제할 댓글을 선택해주세요.';

@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="btnBox">
-                        <input class="subBtn" type="submit" value="작성완료">
+                        <input th:if="${memberRole=='ADMIN'}" class="subBtn" type="submit" value="작성완료">
                     </div>
                 </div>
             </div>

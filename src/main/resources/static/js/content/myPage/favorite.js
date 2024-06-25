@@ -29,14 +29,12 @@ function deleteFav(){
     })
     .then((data)=>{
         if(data == "addComplete"){
-            console.log(resp)
             onOff(fillHeart,biHeart);
             onOffAnime(fillHeart,biHeart);
             rcmmCnt.innerHTML=(parseInt(rcmmCntVal)+1)
         }else if(data == "deleteComplete"){
             onOff(biHeart,fillHeart);
             onOffAnime(biHeart,fillHeart);
-            console.log(resp)
             rcmmCnt.innerHTML=(parseInt(rcmmCntVal)-1)
         }
     })

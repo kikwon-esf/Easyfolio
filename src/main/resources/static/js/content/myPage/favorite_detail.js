@@ -29,14 +29,12 @@ function deleteFav(){
     })
     .then((data)=>{
         if(data == "addComplete"){
-            console.log(resp)
             onOff(fillHeart,biHeart);
             onOffAnime(fillHeart,biHeart);
             rcmmCnt.innerHTML=(parseInt(rcmmCntVal)+1)
         }else if(data == "deleteComplete"){
             onOff(biHeart,fillHeart);
             onOffAnime(biHeart,fillHeart);
-            console.log(resp)
             rcmmCnt.innerHTML=(parseInt(rcmmCntVal)-1)
         }
     })
@@ -56,7 +54,6 @@ function heartFill(){
     let listdata = document.querySelector("#favoriteList")?.getAttribute("data-favorite-list");
     addFavBtn = document.querySelectorAll(".cartBox");
     list = JSON.parse(listdata);
-    console.log(list)
     if(list != null){
         for(i = 0 ; i < addFavBtn.length ; i++){
             const foodCode = document.querySelector(".foodCode_hidden").value;

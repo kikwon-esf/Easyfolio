@@ -43,7 +43,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         //sessionCreate interceptor
         registry.addInterceptor(createSessionInterceptor)
                 .excludePathPatterns(exceptionPath)
-                .addPathPatterns("/food/**","/mainPage/**","/member/**");
+                .addPathPatterns("/**","/mainPage/**","/member/**");
 
 //        registry.addInterceptor(editInformInterceptor)
 //                .excludePathPatterns(exceptionPath);

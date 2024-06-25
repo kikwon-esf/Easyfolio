@@ -35,7 +35,7 @@
                         </p>
                         <p class="annWriter">
                             <span>작성자 : </span>
-                            <span>관리자</span>
+                            <span>[[${inqDetail.inqWriter}]]</span>
                         </p>
                     </div>
                 </div>
@@ -73,14 +73,14 @@
             </div>
             <div class="btnBlock">
                 <div class="btnBox">
-                    <a th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}"
+                    <a   th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}"
                         th:if="${inqDetail.inqResponse == 'N'}" class="btn">
                         <p>답변하기</p>
                     </a>
                     <input type="hidden" th:value="${inqDetail.inqCode}" class="deleteInqCode">
                     <input type="hidden" th:value="${inqDetail.inqResponse}" class="deleteIsRes">
                     <input th:if="${inqDetail.inqResponse == 'Y'}" type="hidden" th:value="${resInq.resCode}" class="deleteResCode">
-                    <div class="btn deleteinqBtn" onclick="deletePopUp()">삭제하기</div>
+                    <div th:if="${user==inqDetail.inqWriter}" class="btn deleteinqBtn" onclick="deletePopUp()">삭제하기</div>
                 </div>
             </div>
             <div class="bigImgBlock">

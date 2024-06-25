@@ -61,7 +61,7 @@ function checkId() {
             })
             .catch((err) => {
                 alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                console.log(err);
+               
             });
     }
 

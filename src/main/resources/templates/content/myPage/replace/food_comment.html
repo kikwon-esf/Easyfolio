@@ -52,7 +52,7 @@
                                         th:value="${commentVO.foodCommentId}">
                                     <textarea type="text" class="input_textarea" id="inputUpdateComment"
                                         name="inputUpdateComment"></textarea>
-                                    <button class="comment_submit" type="button" onclick="updateCheck(this)">댓글
+                                    <button th:if="${memberRole=='ADMIN'||user==commentVO.memberId}" class="comment_submit" type="button" onclick="updateCheck(this)">댓글
                                         수정</button>
                                 </div>
 
@@ -64,10 +64,10 @@
                                 </p>
                                 <div class="commentBtns">
                                     <div class="updelBtn">
-                                        <p class="commentBtn" onclick="updateCommentBtn(this)">수정</p>
-                                        <p class="commentBtn" onclick="deleteCheck(this)">삭제</p>
+                                        <p th:if="${memberRole=='ADMIN'||user==commentVO.memberId}" class="commentBtn" onclick="updateCommentBtn(this)">수정</p>
+                                        <p th:if="${memberRole=='ADMIN'||user==commentVO.memberId}" class="commentBtn" onclick="deleteCheck(this)">삭제</p>
                                     </div>
-                                    <p class="commentBtn" onclick="insertComment(this)">답글</p>
+                                    <p sec:authorize="isAuthenticated()" class="commentBtn" onclick="insertComment(this)">답글</p>
                                 </div>
                             </div>
                             <div class="deleteCom" th:if="${commentVO.delCheck == 'Y'}">
@@ -107,7 +107,7 @@
                                                 th:value="${reComment.foodCommentId}">
                                             <textarea type="text" class="input_textarea" id="inputUpdateComment" placeholder="댓글을 입력해주세요."
                                                 name="inputUpdateComment"></textarea>
-                                            <button class="comment_submit" type="button" onclick="updateCheck(this)">댓글
+                                            <button th:if="${memberRole=='ADMIN'||user==reComment.memberId}" class="comment_submit" type="button" onclick="updateCheck(this)">댓글
                                                 수정</button>
                                         </div>
                                         <p class="commentDate">
@@ -119,10 +119,10 @@
                                         </p>
                                         <div class="commentBtns">
                                             <div class="updelBtn">
-                                                <p class="commentBtn" onclick="updateCommentBtn(this)">수정</p>
+                                                <p th:if="${memberRole=='ADMIN'||user==reComment.memberVO.memberId}" class="commentBtn" onclick="updateCommentBtn(this)">수정</p>
 
                                             </div>
-                                            <p class="commentBtn" onclick="deleteCheck(this)">삭제</p>
+                                            <p th:if="${memberRole=='ADMIN'||user==reComment.memberId}" class="commentBtn" onclick="deleteCheck(this)">삭제</p>
                                         </div>
                                     </div>
                                     <div class="deleteCom" th:if="${reComment.delCheck == 'Y'}">

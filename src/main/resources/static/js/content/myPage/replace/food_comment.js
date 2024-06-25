@@ -188,7 +188,6 @@ function updateComment(element) {
             })
         })
             .then((response) => {
-                console.log(response)
                 if (!response.ok) {
                     // alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
                     
@@ -225,7 +224,6 @@ function updateComment(element) {
                 // alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
                 // alert('부정확한 값입니다!!');
                 pu_error();
-                console.log(err);
             });
     }
    
@@ -268,7 +266,7 @@ function deleteComment(element) {
         
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-            console.log(err);
+        
         });
 }
 
@@ -276,8 +274,6 @@ function deleteComment(element) {
 function findScrollValue(commentNode){
 
     let rect = commentNode.getBoundingClientRect();
-    console.log(rect.top)
-    console.log(window.scrollY)
     return rect.top;
 }
 // function pagingCount(){

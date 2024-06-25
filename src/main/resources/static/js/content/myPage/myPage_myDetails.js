@@ -23,7 +23,6 @@ function submitSecondPasswordChk(ele) {
         }
         fetch(secondPasswordChkUrl, options)
             .then((resp) => {
-                console.log(resp.status)
                 if (resp.status != 200) {
                     inputMemId.placeholder = "비밀번호 불일치";
                     inputMemId.value = '';

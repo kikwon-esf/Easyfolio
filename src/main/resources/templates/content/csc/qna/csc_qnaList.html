@@ -128,10 +128,10 @@
                                     </div>
                                     <div class="dnuBtnBox disNo">
                                         <div class="qnaBtnBox update_Delete">
-                                            <div class="dnuBtn" onclick="updateStart(this)">
+                                            <div th:if="${memberRole=='ADMIN'}" class="dnuBtn" onclick="updateStart(this)">
                                                 <p>수정</p>
                                             </div>
-                                            <div class="dnuBtn" onclick="deletePopUp(this)">
+                                            <div th:if="${memberRole=='ADMIN'}" class="dnuBtn" onclick="deletePopUp(this)">
                                                 <p>삭제</p>
                                             </div>
                                         </div>

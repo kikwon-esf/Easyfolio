@@ -94,7 +94,7 @@
                     </div>
                     <div class="btnForm">
                         <div>
-                            <a class="btnBox" href="/csc/insertAnnForm">
+                            <a th:if="${memberRole=='ADMIN'}" class="btnBox" href="/csc/insertAnnForm">
                                 <p>글쓰기</p>
                             </a>
                         </div>
