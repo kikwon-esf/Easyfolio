@@ -72,9 +72,9 @@
 
             </div>
             <div class="btnBlock">
-                <div class="btnBox">
-                    <a   th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}"
-                        th:if="${inqDetail.inqResponse == 'N'}" class="btn">
+                <div th:if="${memberRole=='ADMIN'}"  class="btnBox">
+                    <a   th:href="@{/csc/responseInqForm(inqCode=${inqDetail.inqCode})}" 
+                    th:if="${inqDetail.inqResponse == 'N'}" class="btn">
                         <p>답변하기</p>
                     </a>
                     <input type="hidden" th:value="${inqDetail.inqCode}" class="deleteInqCode">

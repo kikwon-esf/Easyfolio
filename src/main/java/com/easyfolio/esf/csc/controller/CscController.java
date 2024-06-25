@@ -7,6 +7,7 @@ import com.easyfolio.esf.csc.vo.ann.AnnVO;
 import com.easyfolio.esf.csc.vo.inq.InqImgVO;
 import com.easyfolio.esf.csc.vo.inq.InqVO;
 import com.easyfolio.esf.csc.vo.qna.QnaVO;
+import com.easyfolio.esf.member.service.MemberService;
 import com.easyfolio.esf.member.vo.MemberVO;
 import com.easyfolio.esf.util.UploadUtillInq;
 import com.easyfolio.esf.util.UploadUtillRes;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -25,6 +27,7 @@ import java.util.List;
 public class CscController {
 
     private final CscService cscService;
+    private final MemberService memberService;
 
     // 고객 센터 메인 페이지
     @RequestMapping("/cscForm")
@@ -69,7 +72,8 @@ public class CscController {
     
     // 공지 사항 작성 후 목록 이동
     @PostMapping("/insertAnn")
-    public String insertAnn(AnnVO annVO){
+    public String insertAnn(AnnVO annVO, Principal principal){
+        annVO.setAnnWriter(principal.getName());
         cscService.insertAnn(annVO);
         return "redirect:/csc/annListForm";
     }
@@ -99,8 +103,14 @@ public class CscController {
 
     // 문의 사항 목록 페이지
     @RequestMapping("/inqListForm")
-    public String inqListForm(Model model){
-        model.addAttribute("inqList", cscService.inqList());
+    public String inqListForm(Model model, Principal principal, InqVO inqVO){
+        String user = principal.getName();
+        String role = memberService.findMemberById(user).getMemberRole();
+        if(!role.equals("ADMIN")){
+            inqVO.setInqWriter(principal.getName());
+
+        }
+        model.addAttribute("inqList", cscService.inqList(inqVO));
         return "content/csc/inq/csc_inqList";
     }
 
@@ -129,8 +139,9 @@ public class CscController {
 
     // 문의 사항 작성 후 목록 페이지 이동
     @PostMapping("/insertInq")
-    public String insertInq(InqVO inqVO,  @RequestParam("inqImg") MultipartFile[] inqImg){
+    public String insertInq(Principal principal,InqVO inqVO,  @RequestParam("inqImg") MultipartFile[] inqImg){
         //--- 상품 이미지 등록 ---//
+        inqVO.setInqWriter(principal.getName());
         //0. 다음에 들어가야 할 ITEM_CODE를 조회
         String inqCode = cscService.nextInqCode();
 

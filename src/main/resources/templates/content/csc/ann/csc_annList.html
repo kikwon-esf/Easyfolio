@@ -32,7 +32,7 @@
                                 <input type="hidden" class="activeCateEach" th:value="${annCate}">
                             </p>
                         </div>
-                        <form action="/csc/annListForm" method="post" class="ann_searchForm">
+                        <form action="/csc/annListForm" method="get" class="ann_searchForm">
                             <div class="annSearchBlock">
                                 <input type="text" class="annSearch" placeholder="공지사항 검색" name="allSearchKeyword" th:value="${allSearchKeyword}">
                                 <input type="hidden" name="annCate" id="annCateNum" th:value="${annCate}">
@@ -70,7 +70,7 @@
                         <div class="btn_group">
                             <div class="pageBtn" th:if="${#lists.size(annList) != 0}">
                                 <a class="page_prevBtn"
-                                    th:href="@{/csc/annListForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">
+                                    th:href="@{/csc/annListForm(nowPage=${annVO.beginPage - 1},allSearchKeyword=${allSearchKeyword},annCate=${annCate})}"><span th:if="${annVO.prev}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                         <path
@@ -79,10 +79,10 @@
                                     </span></a>
                                 <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
                                     <a class="page_numBtn"
-                                        th:href="@{/csc/annListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                                        th:href="@{/csc/annListForm(nowPage=${pageNum},allSearchKeyword=${allSearchKeyword},annCate=${annCate})}"><span th:text="${pageNum}"></span></a>
                                 </th:block>
                                 <a class="page_nextBtn"
-                                    th:href="@{/csc/annListForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">
+                                    th:href="@{/csc/annListForm(nowPage=${annVO.endPage + 1},allSearchKeyword=${allSearchKeyword},annCate=${annCate})}"><span th:if="${annVO.next}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                         <path

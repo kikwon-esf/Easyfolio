@@ -35,7 +35,7 @@ public interface CscService {
 
     // INQ
 
-    public List<InqVO> inqList();
+    public List<InqVO> inqList(InqVO inqVO);
 
     public InqVO inqDetail(InqVO inqVO);
 

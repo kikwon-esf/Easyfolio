@@ -198,4 +198,15 @@ public class MemberController {
 
     }
 
+
+    @PostMapping("/deleteMember")
+    public String deleteMember(Principal principal, MemberVO memberVO){
+        System.err.println(memberVO);
+        if(principal.getName().equals(memberVO.getMemberId())){
+
+            System.err.println(memberService.deleteMember(memberVO));
+        }
+        return "redirect:/logout";
+    }
+
 }
