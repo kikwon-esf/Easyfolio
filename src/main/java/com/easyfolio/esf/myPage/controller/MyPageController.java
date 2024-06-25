@@ -1,6 +1,7 @@
 package com.easyfolio.esf.myPage.controller;
 
 
+import ch.qos.logback.core.joran.event.SaxEventRecorder;
 import com.easyfolio.esf.config.Transfer;
 import com.easyfolio.esf.config.interceptor.PwdEditInterceptor;
 import com.easyfolio.esf.food.controller.FoodController;
@@ -171,6 +172,7 @@ public class MyPageController {
     public String secondPasswordChk(HttpServletRequest request, HttpServletResponse response, Principal principal, Model model, MemberVO memberVO){
         String user = principal.getName();
         UserDetails userDetails = loginService.loadUserByUsername(user);
+        System.err.println(userDetails);
         if(chkUser(userDetails, memberVO)) {
             System.err.println("참");
             PwdEditInterceptor.set.add(request.getRequestedSessionId());

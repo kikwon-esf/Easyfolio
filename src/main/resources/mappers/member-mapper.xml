@@ -11,6 +11,7 @@
         <result column="MEMBER_ROLE"    property="memberRole"/>
         <result column="NICKNAME"    property="nickName"/>
         <result column="ALAM_CNT"    property="alamCnt"/>
+        <result column="RESIGN"    property="resign"/>
     </resultMap>
 
     <resultMap id="alarm" type="com.easyfolio.esf.member.vo.AlarmVO">
@@ -46,7 +47,7 @@
         SELECT *
         FROM DISH_MEMBER
         WHERE MEMBER_ID = #{memberId}
-
+        AND RESIGN = 'N'
     </select>
 <!--수정-->
     <select id="update">
@@ -200,4 +201,8 @@
         WHERE ALARM_CHECK = 'N'
         AND RECIVE_MEMBER_ID = #{reciveMemberId}
     </select>
+    <update id="deleteMember">
+        UPDATE DISH_MEMBER
+        SET RESIGN='Y' WHERE MEMBER_ID = #{memberId}
+    </update>
 </mapper>

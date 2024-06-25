@@ -144,6 +144,11 @@
                     </div>
                     
                 </form>
+                <form action="/member/deleteMember" method="POST" id="memberDown">
+                    <input type="hidden" name="memberId" th:value="${user}">
+                    <button type="button" onclick="memberDown(true)">회원 탈퇴하기</button>
+
+                </form>
 
                 <div class="pwAlarmInner">
                     <div class="pwAlarmPopup">
@@ -172,6 +177,17 @@
                         </div>
                         <div class="alarmBtnBox">
                             <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="areYouSure pwAlarmInner">
+                    <div class="pwAlarmPopup">
+                        <div class="alarmTextBox">
+                            <p class="alarmText">경고! 정말로 회원탈퇴를 하시겠습니까?</p>
+                        </div>
+                        <div class="alarmBtnBox">
+                            <button class="alarmBtn yes" onclick="doMemberDown()">확인</button>
+                            <button class="alarmBtn yes" onclick="memberDown(false)">취소</button>
                         </div>
                     </div>
                 </div>

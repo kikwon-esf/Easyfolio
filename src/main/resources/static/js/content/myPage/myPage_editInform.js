@@ -67,3 +67,18 @@ function internerServerError(){
 function okBtn(element){
     element.closest('.pwAlarmInner').style.display = 'none';
 }
+
+const memberDownForm = document.querySelector('#memberDown');
+
+function memberDown(bool){
+    const areYouSure = document.querySelector('.areYouSure');
+    if(bool){
+        areYouSure.classList.add('popUpblock');
+    }else{
+        areYouSure.classList.remove('popUpblock');
+    }
+
+}
+function doMemberDown(){
+    memberDownForm.submit();
+}

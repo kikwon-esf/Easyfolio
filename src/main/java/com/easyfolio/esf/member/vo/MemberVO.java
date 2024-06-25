@@ -15,7 +15,7 @@ public class MemberVO extends PageVO {
     private String memberRole;
     private String alamCnt;
     private String nickName;
-
+    private String resign;
     public MemberVO withMemberId(String memberId){
         this.memberId = memberId;
         return this;
