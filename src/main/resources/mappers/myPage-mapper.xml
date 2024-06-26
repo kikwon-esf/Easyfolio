@@ -36,7 +36,7 @@
         JOIN FAVORITE FA ON FA.FOOD_CODE = F.FOOD_CODE
         WHERE FA.MEMBER_ID = #{memberId}
         <if test="searchFavoriteValue != null and not searchFavoriteValue.isEmpty()">
-            AND F.FOOD_TTL LIKE CONCAT('%', #{searchFavoriteValue}, '%')
+            AND F.FOOD_TTL LIKE '%'|| #{searchFavoriteValue}|| '%'
         </if>
         ORDER BY FA.FAVORITE_DATE DESC
         OFFSET ((#{nowPage} - 1) * #{displayDataCnt8}) ROWS FETCH FIRST #{displayDataCnt8} ROWS ONLY

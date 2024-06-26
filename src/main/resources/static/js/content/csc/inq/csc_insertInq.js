@@ -56,3 +56,4 @@ function loginGo() {
         document.querySelector('#joinForm').submit();
     }
 }
+
