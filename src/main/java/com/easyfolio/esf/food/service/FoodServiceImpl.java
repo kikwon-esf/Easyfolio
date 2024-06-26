@@ -144,6 +144,11 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
+    public List<FoodVO> allRecipeListPage(FoodVO foodVO) {
+        return sqlSession.selectList("foodMapper.allRecipeListPage", foodVO);
+    }
+
+    @Override
     public String nextFoodCode() {
         return sqlSession.selectOne("foodMapper.nextFoodCode");
     }

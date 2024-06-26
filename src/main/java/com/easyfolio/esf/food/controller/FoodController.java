@@ -304,6 +304,9 @@ public class FoodController {
     @GetMapping("/ddabongcode")
     public String ddabongCodeFoodList(DdabongVO ddabongVO, RedirectAttributes redirectAttributes, Model model, FoodVO foodVO, Principal principal) {
         String urlText = "";
+//        if(ddabongVO.getDdabongCode() == null || ddabongVO.getDdabongCode().isEmpty()){
+//            ddabongVO.setDdabongCode("DDABONG_006");
+//        }
         List<DdabongVO> foodList = new ArrayList<>();
         if(ddabongVO.getDdabongCode() == null || ddabongVO.getDdabongCode().equals("DDABONG_006") || ddabongVO.getDdabongCode().isEmpty()){
             foodList = weatherService.ddabongFoodList("DDABONG_006");
@@ -324,6 +327,9 @@ public class FoodController {
                     break;
                 case "DDABONG_005":
                     urlText = "/img/weather/weatherBanner_night.png";
+                    break;
+                case "DDABONG_006":
+                    urlText = "/img/weather/weatherBanner_normal.png";
                     break;
                 default:
                     urlText = "/img/weather/weatherBanner_normal.png";
@@ -355,7 +361,7 @@ public class FoodController {
             // foodNames가 비어있는 경우 모든 데이터를 조회하도록 처리
             foodVO.setTotalDataCnt(foodService.allRecipeCount());
             foodVO.setPageInfo();
-            ddabongFoodList = foodService.allRecipeList();
+            ddabongFoodList = foodService.allRecipeListPage(foodVO);
         } else {
             foodVO.setTotalDataCnt(foodService.ddabongRecipeListPageCnt(foodVO));
             foodVO.setPageInfo();

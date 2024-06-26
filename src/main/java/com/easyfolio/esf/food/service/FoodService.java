@@ -56,6 +56,8 @@ public interface FoodService {
 
     public int allRecipeCount();
 
+    public List<FoodVO> allRecipeListPage(FoodVO foodVO);
+
     public String nextFoodCode();
 
     public void insertFood(FoodVO foodVO, FoodStepsVO foodStepsVO, FoodImgVO foodImgVO);
