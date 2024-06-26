@@ -67,7 +67,10 @@
                     </div>
                 </div>
             </div>
-            </a>
+        </th:block>
+        <div th:if="${#lists.size(commentList) != 0}">
+            <p>내용이 없습니다.</p>
+        </div>
     </div>
     <div class="deleteBtnBlock">
         <button type="button" onclick="deletePopUp()">선택한 댓글 삭제</button>
