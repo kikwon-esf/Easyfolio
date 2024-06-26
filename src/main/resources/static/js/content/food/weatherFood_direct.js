@@ -267,7 +267,6 @@ function updateFoodRecommendations(fcstValue, precipitationType, baseTime) {
 Splitting();
 
 document.addEventListener("DOMContentLoaded", function() {
-    var urlParams = new URLSearchParams(window.location.search);
     var nowPage = document.querySelector('#nowPage').value;
 
     var pageButtons = document.querySelectorAll('.page_numBtn');
