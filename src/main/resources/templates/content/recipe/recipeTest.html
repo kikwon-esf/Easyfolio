@@ -12,7 +12,7 @@
 </head>
 <body>
 <th:block layout:fragment="content">
-    <div class="wrap">
+    <div id="wrap">
         <div class="inner">
             <div th:each="recipe : ${recipeTest}">
                 <div th:text="${recipe.recipeTitle}"></div>
