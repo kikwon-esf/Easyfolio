@@ -328,7 +328,7 @@
                 <div class="main3">
                     <div class="m2_title">
                         <p class="m2_title1">종류별</p>
-                        <p class="m2_title2">Type</p>
+                        <p class="m2_title2">Recipe</p>
                     </div>
                     <div class="mainImgSlide-inner">
                         <div class="mainAccomSubImg">
@@ -388,7 +388,7 @@
                 <div class="main4">
                     <div class="m2_title">
                         <p class="m2_title1">상황별</p>
-                        <p class="m2_title2">Type</p>
+                        <p class="m2_title2">Recipe</p>
                     </div>
                     <div class="sit_wrap">
                         <div class="sit_inner">
@@ -421,7 +421,7 @@
                     <div class="main5">
                         <div class="m2_title">
                             <p class="m2_title1">방법별</p>
-                            <p class="m2_title2">Type</p>
+                            <p class="m2_title2">Recipe</p>
                         </div>
                         <div>
                             <div class="typeWrap">
@@ -476,7 +476,7 @@
                 <div class="main6">
                     <div class="m2_title">
                         <p class="m2_title1">날씨별</p>
-                        <p class="m2_title2">Type</p>
+                        <p class="m2_title2">Recipe</p>
                     </div>
                     <div class="weatherWrap">
                         <div class="weatherInner">
@@ -514,7 +514,10 @@
             </div>
             <div class="csc_ann">
                 <div class="csc_annTitle">
-                    <p class="csc_annTitle1">공지사항</p>
+                    <div class="m2_title">
+                        <p class="m2_title1">공지사항</p>
+                        <p class="m2_title2">Notice</p>
+                    </div>
                     <div class="csc_annPlus">
                         <a href="/csc/annListForm"><p class="csc_annPlus1">더보기</p></a>
                         <p class="csc_annPlus2">
@@ -544,14 +547,17 @@
                     </a>
                     <div class="csc_annBox" th:if="${#lists.size(annList) == 0}">
                         <div>
-                            내용이없스무니다
+                            내용이 없습니다.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="csc_qna">
                 <div class="csc_annTitle">
-                    <p class="csc_annTitle1">자주 찾는 질문</p>
+                    <div class="m2_title">
+                        <p class="m2_title1">자주 찾는 질문</p>
+                        <p class="m2_title2">QnA</p>
+                    </div>
                     <div class="csc_annPlus">
                         <a href="/csc/qnaListForm"><p class="csc_annPlus1">더보기</p></a>
                         <p class="csc_annPlus2">
