@@ -130,6 +130,7 @@ public class MyPageController {
         commentVO.setPageInfo();
         List<CommentVO> commentList = myPageService.selectMyComment(commentVO);
         int nowPage = commentVO.getNowPage();
+//        model.addAttribute("commentList",null);
         model.addAttribute("commentList",commentList);
         model.addAttribute("nowPage", nowPage);
         return "content/myPage/replace/content_comment";

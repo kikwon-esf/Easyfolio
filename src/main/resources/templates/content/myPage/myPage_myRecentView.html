@@ -86,14 +86,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="noContentView" th:if="${#lists.size(recentViewList) == 0}">
+                <div class="noContentView" th:if="${recentViewList==null||#lists.size(recentViewList) == 0}">
                     <p>내용이 없습니다.</p>
                 </div>
             </div>
             <th:block>
                 <div class="pageBtnBox">
                     <div class="btn_group">
-                        <div class="pageBtn" th:if="${#lists.size(recentViewList) != 0}">
+                        <div class="pageBtn" th:if="${recentViewList==null||#lists.size(recentViewList) != 0}">
                             <a class="page_prevBtn"
                                 th:href="@{/myPage/myRecentView(nowPage=${foodVO.beginPage - 1})}"><span th:if="${foodVO.prev}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

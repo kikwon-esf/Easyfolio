@@ -48,7 +48,7 @@
                         </div>
                         <div class="qnaWrap">
                             <div class="qnaBlock" th:each="qna, state : ${qnaList}"
-                                th:if="${#lists.size(qnaList) != 0}">
+                                th:if="${qnaList!=null&&#lists.size(qnaList) != 0}">
                                 <div class="qnaInner">
                                     <input type="hidden" th:value="${qna.qnaCode}" class="textCode">
                                     <div class="commentCheckInner pop_blind">
@@ -148,7 +148,7 @@
                                 </div>
 
                             </div>
-                            <div class="noText" th:if="${#lists.size(qnaList) == 0}">
+                            <div class="noText" th:if="${qnaList==null||#lists.size(qnaList) == 0}">
                                 내용이 없습니다.
                             </div>
                         </div>

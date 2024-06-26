@@ -68,7 +68,7 @@
                 </div>
             </div>
         </th:block>
-        <div class="noContentView" th:if="${#lists.size(commentList) == 0}">
+        <div class="noContentView" th:if="${commentList==null||#lists.size(commentList) == 0}">
             <p>내용이 없습니다.</p>
         </div>
     </div>
@@ -77,7 +77,7 @@
     </div>
     <div class="pageBtnBox">
         <div class="btn_group">
-            <div class="pageBtn" th:if="${#lists.size(commentList) != 0}">
+            <div class="pageBtn" th:if="${commentList!=null &&#lists.size(commentList) != 0}">
                 <a class="page_prevBtn"><span th:attr="onclick=|commentPaging(${commentVO.beginPage - 1})|"
                         th:if="${commentVO.prev}">이전</span></a>
                 <th:block th:each="pageNum : ${#numbers.sequence(commentVO.beginPage, commentVO.endPage)}">

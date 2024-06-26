@@ -64,7 +64,7 @@
                             <form action="/myPage/favorite" method="GET" class="searchFavoriteForm">
                                 <div class="foodSearchBlock">
                                 
-                                    <th:block th:if="${searchFavoriteValue != null}">
+                                    <th:block th:if="${ searchFavoriteValue != null}">
                                         <input type="text" name="searchFavoriteValue" class="searchFavoriteValue"
                                             th:placeholder="${searchFavoriteValue}">
                                     </th:block>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="recipeBox">
                         <div class="recipes">
-                            <div th:each="favorite, status:${myFavorite}" class="recipe" th:if="${#lists.size(myFavorite) != 0}">
+                            <div th:each="favorite, status:${myFavorite}" class="recipe" th:if="${myFavorite==null|| #lists.size(myFavorite) != 0}">
                                 <a th:href="@{/food/detail(foodCode=${favorite.foodCode})}">
                                     <div class="recipeImgBox">
                                         <img src="/img/food/examImg.jpg" alt="">
@@ -143,13 +143,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="noContentView" th:if="${#lists.size(myFavorite) == 0}">
+                        <div class="noContentView" th:if="${myFavorite==null || #lists.size(myFavorite) == 0}">
                             <p>내용이 없습니다.</p>
                         </div>
                     </div>
                     <div class="btnBox">
                         <div class="btn_group">
-                            <div class="pageBtn" th:if="${#lists.size(myFavorite) != 0}">
+                            <div class="pageBtn" th:if="${myFavorite==null|| #lists.size(myFavorite) != 0}">
                                 <a class="page_prevBtn"
                                     th:href="@{/myPage/favorite(nowPage=${favoriteVO.beginPage - 1} , searchFavoriteValue=${searchFavoriteValue})}"><span
                                         th:if="${favoriteVO.prev}">

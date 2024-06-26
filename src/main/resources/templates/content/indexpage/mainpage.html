@@ -527,7 +527,7 @@
                     </div>
                 </div>
                 <div class="csc_annBlock">
-                    <a th:href="@{/csc/annDetailForm(annCode=${ann.annCode})}" th:each="ann, state : ${annList}" class="csc_annLink" th:if="${(#lists.size(annList) != 0) && (state.index lt 6)}">
+                    <a th:href="@{/csc/annDetailForm(annCode=${ann.annCode})}" th:each="ann, state : ${annList}" class="csc_annLink" th:if="${(annList != null)&&(#lists.size(annList) != 0) && (state.index lt 6)}">
                         <div class="csc_annBox">
                             <div class="annTypeBox">
                                 <p class="slash">[</p>
@@ -542,7 +542,7 @@
                             </div>
                         </div>
                     </a>
-                    <div class="csc_annBox" th:if="${#lists.size(annList) == 0}">
+                    <div class="csc_annBox" th:if="${annList==null ||#lists.size(annList) == 0}">
                         <div>
                             내용이없스무니다
                         </div>
@@ -564,7 +564,7 @@
                     </div>
                 </div>
                 <div class="qnaBlock">
-                    <a class="qnaBox" th:href="@{/csc/qnaListForm(qnaCode=${qna.qnaCode})}" th:each="qna, state :  ${qnaList}" th:if="${(#lists.size(qnaList) != 0) && (state.index lt 6)}">
+                    <a class="qnaBox" th:href="@{/csc/qnaListForm(qnaCode=${qna.qnaCode})}" th:each="qna, state :  ${qnaList}" th:if="${(qnaList!=null)&&(#lists.size(qnaList) != 0) && (state.index lt 6)}">
                         <div class="qnaTextBox">
                                 <span class="qnaIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
@@ -589,7 +589,7 @@
                             </p>
                         </div>
                     </a>
-                    <div class="qnaBox" th:if="${#lists.size(qnaList) == 0}">
+                    <div class="qnaBox" th:if="${qnaList==null ||#lists.size(qnaList) == 0}">
                         내용이 없습니다.
                     </div>
                 </div>

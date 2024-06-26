@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="recipeBox">
-                        <div class="recipes" th:if="${not #lists.isEmpty(asFoodList)}">
+                        <div class="recipes" th:if="${asFoodList!=null && not #lists.isEmpty(asFoodList)}">
                             <div  th:each="asfood, state : ${asFoodList}">
                                 <div class="recipe">
                                     <a th:href="@{/food/detail(foodCode=${asfood.foodCode})}">
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="noSearchText" th:if="${#lists.isEmpty(asFoodList)}">일치하는 검색결과가 없습니다.</p>
+                        <p class="noSearchText" th:if="${asFoodList==null || #lists.isEmpty(asFoodList)}">일치하는 검색결과가 없습니다.</p>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="csc_annBlock">
-                    <div th:if="${!#lists.isEmpty(asAnnList)}">
+                    <div th:if="${asAnnList !=null && !#lists.isEmpty(asAnnList)}">
                         <a th:href="@{/csc/annDetailForm(annCode=${asAnn.annCode})}" th:each="asAnn, state : ${asAnnList}"
                             class="csc_annLink">
                             <div class="csc_annBox">
@@ -210,7 +210,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="noSearch" th:if="${#lists.isEmpty(asQnaList)}">일치하는 검색결과가 없습니다.</p>
+                        <p class="noSearch" th:if="${asQnaList==null || #lists.isEmpty(asQnaList)}">일치하는 검색결과가 없습니다.</p>
                     </div>
                 </div>
             </div>

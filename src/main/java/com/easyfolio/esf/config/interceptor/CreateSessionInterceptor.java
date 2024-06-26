@@ -50,6 +50,7 @@ public class CreateSessionInterceptor implements HandlerInterceptor {
             user = request.getUserPrincipal().getName();
             System.err.println(memberService.findMemberById(user).getMemberRole());
             modelAndView.addObject("memberRole",memberService.findMemberById(user).getMemberRole());
+//            modelAndView.addObject("memberRole",null);
             modelAndView.addObject("user",user);
         }catch (Exception e){
 
