@@ -87,9 +87,11 @@ public class CscController {
 
     // 공지 사항 수정 후 목록 상세 페이지 이동
     @PostMapping("/updateAnn")
-    public String updateAnn(AnnVO annVO){
+    public String updateAnn(AnnVO annVO, Model model){
         cscService.updateAnn(annVO);
-        return "redirect:/csc/annListForm?annCode=" + annVO.getAnnCode();
+        model.addAttribute("annDetail", cscService.annDetail(annVO));
+
+        return "content/csc/ann/csc_annDetail";
     }
 
     // 공지 사항 삭제 후 목록 페이지 이동
