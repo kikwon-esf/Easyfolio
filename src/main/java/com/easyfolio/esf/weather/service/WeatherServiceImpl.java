@@ -34,4 +34,5 @@ public class WeatherServiceImpl implements WeatherService {
     public List<DdabongVO> ddabongFoodList(String ddabongCode) {
         return sqlSession.selectList("weatherMapper.ddabongFoodList", ddabongCode);
     }
+
 }

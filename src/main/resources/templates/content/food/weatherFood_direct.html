@@ -80,6 +80,7 @@
                 </div>
                 <div class="recipeBox">
                     <div class="recipes">
+                        <input type="hidden" id="nowPage" th:value="${nowPage}">
                         <div th:each="food, state : ${foodList}" class="recipe">
                             <a th:href="@{/food/detail(foodCode=${food.foodCode})}">
                                 <div class="recipeImgBox">
@@ -144,7 +145,7 @@
                 <div class="btn_group">
                     <div class="pageBtn" th:if="${#lists.size(foodList) != 0}">
                         <a class="page_prevBtn"
-                           th:href="@{/food/searchFoodPage(nowPage=${foodVO.beginPage - 1} , searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                           th:href="@{/food/ddabongcode(nowPage=${foodVO.beginPage - 1}, ddabongCode=${ddabongCode})}"><span
                                 th:if="${foodVO.prev}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -154,11 +155,11 @@
                                 </span></a>
                         <th:block th:each="pageNum : ${#numbers.sequence(foodVO.beginPage, foodVO.endPage)}">
                             <a class="page_numBtn"
-                               th:href="@{/food/searchFoodPage(nowPage=${pageNum}, searchFoodValue=${searchFoodValue}, foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                               th:href="@{/food/ddabongcode(nowPage=${pageNum}, ddabongCode=${ddabongCode})}"><span
                                     th:text="${pageNum}"></span></a>
                         </th:block>
                         <a class="page_nextBtn"
-                           th:href="@{/food/searchFoodPage(nowPage=${foodVO.endPage + 1}, searchFoodValue=${searchFoodValue},foodKindCode=${foodKindCode}, foodUsageCode=${foodUsageCode}, foodMtrlCode=${foodMtrlCode})}"><span
+                           th:href="@{/food/ddabongcode(nowPage=${foodVO.endPage + 1}, ddabongCode=${ddabongCode})}"><span
                                 th:if="${foodVO.next}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-caret-right-fill" viewBox="0 0 16 16">
