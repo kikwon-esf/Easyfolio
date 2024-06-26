@@ -411,6 +411,8 @@ textarea {
 }
 .rcmmCntBox{
     font-size: 17px;
+    margin-top: 3px;
+    margin-right: -6px;
 }
 .stepsTextBox{
     display: flex;

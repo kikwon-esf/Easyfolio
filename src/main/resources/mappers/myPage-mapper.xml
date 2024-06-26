@@ -23,23 +23,25 @@
 
 
     <select id="favoriteList" resultMap="favoriteEach">
-        SELECT FA.FOOD_CODE
-        , FA.MEMBER_ID
-        , FO.FOOD_TTL
-        , FO.FOOD_NAME
-        , FO.FOOD_DIF
-        , FO.FOOD_INQ_CNT
-        , FO.FOOD_RCMM_CNT
-        , TO_CHAR(FAVORITE_DATE,'YYYY-MM-DD') AS FAVORITE_DATE
-        FROM FAVORITE FA, FOOD FO
+        SELECT FA.FOOD_CODE,
+        F.FOOD_TTL,
+        F.FOOD_DIF,
+        F.FOOD_INQ_CNT,
+        F.FOOD_RCMM_CNT,
+        FI.FOOD_IMG_CODE,
+        FI.ORIGIN_FILE_NAME,
+        FI.ATTACHED_FILE_NAME
+        FROM FOOD F
+        LEFT JOIN FOOD_IMG FI ON F.FOOD_CODE = FI.FOOD_CODE
+        JOIN FAVORITE FA ON FA.FOOD_CODE = F.FOOD_CODE
         WHERE FA.MEMBER_ID = #{memberId}
         <if test="searchFavoriteValue != null and not searchFavoriteValue.isEmpty()">
-            AND FOOD_TTL LIKE '%' || #{searchFavoriteValue} || '%'
+            AND F.FOOD_TTL LIKE CONCAT('%', #{searchFavoriteValue}, '%')
         </if>
-        AND FA.FOOD_CODE = FO.FOOD_CODE
         ORDER BY FA.FAVORITE_DATE DESC
         OFFSET ((#{nowPage} - 1) * #{displayDataCnt8}) ROWS FETCH FIRST #{displayDataCnt8} ROWS ONLY
     </select>
+
 
     <select id="favoriteCnt" resultType="int">
         SELECT COUNT (FA.FOOD_CODE)

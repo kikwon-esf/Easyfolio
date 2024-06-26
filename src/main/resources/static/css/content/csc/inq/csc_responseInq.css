@@ -62,7 +62,7 @@ textarea {
     color: #f3c053;
 }
 .csc_inner{
-    margin: -5px auto 30px auto;
+    margin: -5px auto 100px auto;
     width: 900px;
     height: auto;
     box-sizing: border-box;
@@ -204,7 +204,8 @@ textarea {
 .inqImgBlock img{
     border-radius: 4px;
     width: 100%;
-    height: auto;
+    height: 150px;
+    object-fit: cover;
 }
 .bigImgBlock{
     display: none; 
@@ -235,49 +236,7 @@ textarea {
     border-radius: 50%;
     padding: 2px 5px;
 }
-@charset "UTF-8";
 
-/* 기본셋팅, 공통값 */
-body,
-input {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #121212;
-}
-
-img,
-input,
-button {
-    vertical-align: top;
-}
-
-input,
-button {
-    padding: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
-textarea {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #121212;
-    resize: none;
-}
-
-.hide {
-    position: fixed;
-    top: -99999px;
-    left: -99999px;
-    display: block;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-}
 #csc_wrap{
     width: 1000px;
 }
@@ -297,59 +256,6 @@ textarea {
     font-size: 21px;
     font-weight: 700;
     color: #f3c053;
-}
-.csc_inner{
-    width: 900px;
-    height: auto;
-    box-sizing: border-box;
-}
-.inq_checkBlock{
-    background-color: rgba(244,244,244,.5);
-    width: 650px;
-    height: 222px;
-    box-sizing: border-box;
-    border-radius: 20px;
-    padding: 20px 24px;
-    margin: 30px auto 50px auto;
-    box-shadow: 0 2px 5px 0 rgba(68,68,68,.04);
-}
-.inqStop{
-    display: flex;
-    margin-bottom: 20px;
-}
-.inqStopText{
-    font-size: 30px;
-    font-weight: 700;
-    color: #f29221;
-    margin-right: 10px;
-    margin: 0 10px 0 17px;
-}
-.inqStopText1{
-    font-size: 21px;
-    color: #666;
-    margin-top: 13px;
-}
-.inq_stopTextBox{
-    display: ruby-text;
-}
-.inq_stopTextBox p{
-    color: #666;
-    font-size: 18px;
-    margin: 15px 0;
-}
-.inq_stopTextBox span{
-    color: #555;
-    font-size: 20px;
-    font-weight: 700;
-}
-.qnaGo:hover{
-    font-weight: 700;
-    color: #333;
-    border-bottom: 2px solid #555;
-}
-.inq_stopTextBox > .qnaGo{
-    cursor: pointer;
-    color: #555;
 }
 .inqBlock{
     width: 100%;
@@ -404,7 +310,7 @@ select:focus, select:hover{
     line-height: 300px;
 }
 .inputBox.content textarea{
-    width: 690px;
+    width: 1000px;
     font-size: 17px;
     padding: 10px;
     box-sizing: border-box;
@@ -450,7 +356,7 @@ select:focus, select:hover{
     padding: 0 10px;
     vertical-align: middle;
     border: 1px solid #dddddd;
-    width: 585px;
+    width: 800px;
     color: #999999;
     margin: 16px 10px;
 }
@@ -484,9 +390,10 @@ select:focus, select:hover{
 }
 
 .imgSlideList{
-    width: 120px;
-    height: 120px;
-    margin: 10px 5px;
+    object-fit: cover;
+    width: 200px;
+    height: 150px;
+    margin: 10px;
 }
 .imgSlideList:first-child{
     margin-left: 10px;
@@ -499,4 +406,44 @@ select:focus, select:hover{
     height: 140px;
     box-sizing: border-box;
     padding: 40px 0;
+}
+.inputBox.imgLook{
+    padding: 20px 0;
+}
+.bigImgBlock{
+    display: none; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 9999; 
+    overflow: auto;
+}
+.bigImgBox{
+    position: relative;
+    width: 700px;
+    margin: 20vh auto;
+}
+.bigImg{
+    width: 100%;
+    height: auto;
+    margin-right: -20vh;
+}
+.close{
+    position: absolute;
+    right: -42px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 2px 5px;
+}
+.resBox{
+    margin: -5px auto 100px auto;
+    width: 900px;
+    height: auto;
+    box-sizing: border-box;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
 }

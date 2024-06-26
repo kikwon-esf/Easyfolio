@@ -26,6 +26,7 @@
     fill : #dd8c8c
 }
 .heartBox{
+    margin: 0 auto;
     position : relative;
     width: 25px;
     height: 25px;
