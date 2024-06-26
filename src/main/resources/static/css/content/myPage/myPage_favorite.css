@@ -199,7 +199,7 @@
 }
 /* 페이지버튼 */
 .btnBox{
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     text-align: center;
     width: 100%;
 }
@@ -338,4 +338,19 @@
     color: #fff;
     border: 1px solid #fff;
     transition: background-color 0.3s ease;
+}
+
+.noContentView{
+    height: 100px;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    padding: 50px;
+    text-align: center;
+    color: #666;
+    box-shadow: 0 2px 5px 0 rgba(68, 68, 68, .04);
+}
+
+.noContentView p{
+    margin-top: 36px;
+    font-size: 18px;
 }

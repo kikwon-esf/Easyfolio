@@ -207,3 +207,16 @@ a {
 .deleteBtnBlock button:hover{
     background-color: #f29221;
 }
+
+.noContentView{
+    margin-bottom: 50px;
+    height: 100px;
+    padding: 50px;
+    text-align: center;
+    color: #666;
+}
+
+.noContentView p{
+    margin-top: 50px;
+    font-size: 18px;
+}

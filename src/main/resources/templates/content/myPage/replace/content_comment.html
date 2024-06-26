@@ -68,7 +68,7 @@
                 </div>
             </div>
         </th:block>
-        <div th:if="${#lists.size(commentList) != 0}">
+        <div class="noContentView" th:if="${#lists.size(commentList) == 0}">
             <p>내용이 없습니다.</p>
         </div>
     </div>

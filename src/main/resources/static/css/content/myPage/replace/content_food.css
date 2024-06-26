@@ -174,3 +174,16 @@ textarea {
 .page_numBtn, .page_nextBtn, .page_prevBtn{
     cursor: pointer;
 }
+
+.noContentView{
+    margin-bottom: 50px;
+    height: 100px;
+    padding: 50px;
+    text-align: center;
+    color: #666;
+}
+
+.noContentView p{
+    margin-top: 50px;
+    font-size: 18px;
+}

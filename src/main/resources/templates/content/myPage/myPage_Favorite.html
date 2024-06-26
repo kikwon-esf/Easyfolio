@@ -89,7 +89,7 @@
                     </div>
                     <div class="recipeBox">
                         <div class="recipes">
-                            <div th:each="favorite, status:${myFavorite}" class="recipe" th:if="${#lists.size(myFavorite == 0)}">
+                            <div th:each="favorite, status:${myFavorite}" class="recipe" th:if="${#lists.size(myFavorite) != 0}">
                                 <a th:href="@{/food/detail(foodCode=${favorite.foodCode})}">
                                     <div class="recipeImgBox">
                                         <img src="/img/food/examImg.jpg" alt="">
@@ -140,13 +140,11 @@
                                         </p>
                                     </div>
                                 </div>
-                                
-                            </div>
-                            <div th:if="${#lists.size(myFavorite) != 0}">
-                                <p>내용이 없습니다.</p>
                             </div>
                         </div>
-
+                        <div class="noContentView" th:if="${#lists.size(myFavorite) == 0}">
+                            <p>내용이 없습니다.</p>
+                        </div>
                     </div>
                     <div class="btnBox">
                         <div class="btn_group">
