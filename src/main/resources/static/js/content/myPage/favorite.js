@@ -171,3 +171,6 @@ function okBtn(element){
     element.closest('.commentAlarmInner').style.display = 'none';
 }
 
+function searchFavorite(){
+    document.querySelector('.searchFavoriteForm').submit();
+}
