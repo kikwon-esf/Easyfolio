@@ -48,10 +48,13 @@ window.addEventListener('DOMContentLoaded', () => {
     
 })
 function commentTotalCountRender(){
-    const renderPosition = document.querySelector('#commentCount');
-    commentTotalCount = document.querySelector('#commentTotalCount').value;
-    nowCommentCount = document.querySelectorAll('.mother').length;
-    renderPosition.innerHTML=nowCommentCount +"/" +commentTotalCount;
+    const renderPosition = document?.querySelector('#commentCount');
+    commentTotalCount = document?.querySelector('#commentTotalCount').value;
+    nowCommentCount = document?.querySelectorAll('.mother').length;
+    if(renderPosition!=undefined){
+        renderPosition.innerHTML=nowCommentCount +"/" +commentTotalCount;
+    }
+    
 
 }
 
