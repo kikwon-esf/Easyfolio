@@ -48,23 +48,41 @@
                             <img th:src="${'/img/csc/inq/'+ inqImg.attachedFileName}" alt="">
                         </div>
                     </div>
+                    
+                </div>
+                <div class="resInner">
+                    <div class="csc_title">
+                        <p class="csc_title1">답변하기</p>
+                        <p class="csc_title2">RESPONSE</p>
+                    </div>
                     <div class="resBox">
+                        <div class="annDetailHeader">
+                            <div class="annHeader1">
+                                <p class="annCate">
+                                    <span class="cateText">[</span>
+                                    <span class="cateText">[[${inqDetail.inqCateList.cateName}]]</span>
+                                    <span class="cateText">]</span>
+                                </p>
+                                <p class="annTitle">
+                                    <span>RE : </span>
+                                    <span>[[${inqDetail.inqTitle}]]</span>
+                                </p>
+                            </div>
+                        </div>
                         <div class="inputBox content">
-                            <div class="label">내용</div>
                             <textarea name="resContent" id="" cols="60" rows="10"></textarea>
                         </div>
                         <div class="inputBox img">
-                            <div class="label">사진</div>
                             <input class="upload-name" value="첨부파일" placeholder="첨부파일">
                             <label for="file">파일찾기</label>
                             <input type="file" id="file" name="resImg" onchange="readURL(this);" multiple>
                         </div>
                         <div class="inputBox imgLook">
-                            <div class="label imgLook">사진<br>미리보기</div>
                             <div class="imgLookBox"></div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="bigImgBlock">
                     <div class="bigImgBox">
                         <img class="bigImg" id="img01">

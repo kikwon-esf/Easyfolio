@@ -54,10 +54,25 @@
             </div>
             <div class="csc_inner"  th:if="${inqDetail.inqResponse == 'Y'}">
                 <div class="annDetailHeader">
+                    <div class="annHeader1">
+                        <p class="annCate">
+                            <span class="cateText">[</span>
+                            <span class="cateText">[[${inqDetail.inqCateList.cateName}]]</span>
+                            <span class="cateText">]</span>
+                        </p>
+                        <p class="annTitle">
+                            <span>RE : </span>
+                            <span>[[${inqDetail.inqTitle}]]</span>
+                        </p>
+                    </div>
                     <div class="annHeader2">
                         <p class="annDate">
                             <span>작성일 : </span>
-                            <span>[[${resInq.resDate}]]</span>
+                            <span>[[${inqDetail.inqDate}]]</span>
+                        </p>
+                        <p class="annWriter">
+                            <span>작성자 : </span>
+                            <span>[[${inqDetail.inqWriter}]]</span>
                         </p>
                     </div>
                 </div>

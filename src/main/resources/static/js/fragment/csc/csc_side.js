@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentPage.includes('/csc/inqDetailForm')) {
             document.querySelector('.sideForm.inquireList').classList.add('active-sideForm'); 
         }
+        if (currentPage.includes('/csc/responseInqForm')) {
+            document.querySelector('.sideForm.inquireList').classList.add('active-sideForm'); 
+        }
+        
     });
 
 });

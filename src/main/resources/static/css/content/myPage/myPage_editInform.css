@@ -66,7 +66,7 @@ textarea {
     padding: 40px 50px 16px 50px;
     position: relative;
     z-index: 1;
-    margin: 15px auto 100px auto;
+    margin: 15px auto 200px auto;
     width: 700px;
     border: 1px solid #dadada;
     border-radius: 6px;
@@ -292,4 +292,25 @@ input.pw_input{
 
 .popUpblock{
     display: block;
+}
+.goToHell{
+    background-color: #ffa43b;
+    border: 1px solid transparent;
+    width: 500px;
+    height: 50px;
+    border-radius: 4px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    margin-left: -248px;
+}
+.goToHell:hover{
+    transition: background-color 0.3s ease;
+    background-color: #ff3f3f;
+}
+#memberDown{
+    position: relative;
+    text-align: center;
 }
