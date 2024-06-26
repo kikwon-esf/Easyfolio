@@ -69,6 +69,7 @@ public class MyPageController {
         model.addAttribute("searchFavoriteValue",searchFavoriteValue);
         List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(favoriteVO);
         favorite = setCommentCnt(favorite);
+        System.err.println(favorite);
         model.addAttribute("myFavorite", favorite);
 
         return "content/myPage/myPage_favorite";
