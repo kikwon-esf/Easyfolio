@@ -67,7 +67,6 @@ function submitComment(target) {
     }
     fetch(submitURL, options)
         .then((resp) => {
-            console.log(resp);
             if(!resp.ok){
                 throw new Error();
                 return;
