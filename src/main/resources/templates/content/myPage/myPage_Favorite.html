@@ -64,11 +64,11 @@
                             <form action="/myPage/favorite" method="GET" class="searchFavoriteForm">
                                 <div class="foodSearchBlock">
                                 
-                                    <th:block th:if="${ searchFavoriteValue != null}">
+                                    <th:block th:if="${ searchFavoriteValue != null&&searchFavoriteValue !=''}">
                                         <input type="text" name="searchFavoriteValue" class="searchFavoriteValue"
                                             th:placeholder="${searchFavoriteValue}">
                                     </th:block>
-                                    <th:block th:if="${searchFavoriteValue == null or searchFavoriteValue.isEmpty()}">
+                                    <th:block th:if="${searchFavoriteValue == null or searchFavoriteValue.isEmpty() ||searchFavoriteValue==''}">
                                         <input type="text" name="searchFavoriteValue" class="searchFavoriteValue"
                                             placeholder="즐겨찾기 검색">
                                     </th:block>
