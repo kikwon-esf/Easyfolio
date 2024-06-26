@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
             button.classList.add('active'); // 여기서 'active'는 원하는 클래스명입니다.
         }
     });
-
+    heartFill();
     var currentPageUrl = window.location.href;
     if (currentPageUrl.endsWith("/food/searchFoodPage")) {
         var numBtnSpans = document.querySelectorAll(".page_numBtn span");

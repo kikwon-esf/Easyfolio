@@ -551,3 +551,8 @@ textarea {
 .updateBtnBox a{
     margin-right: 20px;
 }
+.noComment{
+    width: 240px;
+    margin: 0 auto;
+    font-size: large;
+}

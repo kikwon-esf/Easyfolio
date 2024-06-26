@@ -19,7 +19,7 @@
             </div>
             
             <div class="commentList">
-                <div id="moreCommentReplace">
+                <div th:if="${totalCount>10}" id="moreCommentReplace">
                     
                     <div  onclick="newReplaceFunction()" id="moreComment">
                         <span>이전 댓글 보기</span><span id="commentCount"></span>
@@ -137,6 +137,11 @@
 
                         </th:block>
 
+                    </div>
+                </th:block>
+                <th:block th:if="${commentList.size == 0}">
+                    <div class="commentBlock">
+                        <p class="noComment">아직 등록된 댓글이 없습니다!!</p>
                     </div>
                 </th:block>
 

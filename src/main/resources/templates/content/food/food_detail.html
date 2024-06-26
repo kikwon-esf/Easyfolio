@@ -249,7 +249,7 @@
                         </div>
                     </div>
                     <div class="updateBtnBlock"
-                        th:if="${memberIdCheck != null and foodDetail.memberId == memberIdCheck}">
+                        th:if="${memberIdCheck != null and foodDetail.memberId == memberIdCheck ||memberRole=='ADMIN' }">
                         <div class="updateBtnBox">
                             <a th:href="@{/food/updateFoodForm(foodCode=${foodDetail.foodCode})}">
                                 <p>수정하기</p>

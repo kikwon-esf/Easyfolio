@@ -66,6 +66,7 @@ public class MyPageController {
         favoriteVO.setPageInfo(8);
         model.addAttribute("nowPage", favoriteVO.getNowPage());
         model.addAttribute("searchFavoriteCnt", favoriteVO.getTotalDataCnt());
+        model.addAttribute("searchFavoriteValue",searchFavoriteValue);
         List<FavoriteVO> favorite = myPageService.getFavoriteListByMember(favoriteVO);
         favorite = setCommentCnt(favorite);
         model.addAttribute("myFavorite", favorite);

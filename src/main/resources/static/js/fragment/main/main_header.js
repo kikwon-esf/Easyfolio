@@ -127,7 +127,7 @@ function deleteAlarmAll() {
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             // pu_error();
-            console.log(err);
+            // console.log(err);
         });
 }
 function deleteAlarms() {
@@ -178,7 +178,7 @@ function deleteAlarm(icon) {
             })
             .catch(err => {
                 alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                console.log(err);
+                // console.log(err);
             });
     }
 }
@@ -282,7 +282,7 @@ function alarmListRander(){
         },
         body: JSON.stringify(alarmList == null ? [] : alarmList)
     }
-    console.log("alarmlistRender : " + data)
+    // console.log("alarmlistRender : " + data)
     fetch(getAlarmPageurl,data)
     .then((resp)=>{
         return resp.text();
@@ -331,6 +331,6 @@ function alarmListStatus(){
 function pu_error (){
     
     const popUp = document.querySelector('.pu_error');
-    console.log(popUp)
+    // console.log(popUp)
     popUp.classList.remove('pu_blind');
 }
