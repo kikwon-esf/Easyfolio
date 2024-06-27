@@ -317,3 +317,14 @@ textarea {
 .qnaBox:hover .qnaGoIcon svg{
     fill: #000;
 }
+.csc_annBlock.non > .csc_annBox{
+    display: flow;
+    text-align: center;
+}
+.qnaBlock.non{
+    grid-template-columns: 868px;
+    text-align: center;
+}
+.qnaBlock.non > .qnaBox{
+    padding: 65px 20px;
+}
