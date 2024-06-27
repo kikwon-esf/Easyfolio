@@ -38,9 +38,9 @@
                         <div class="searchTips">
                             <p class="searchTip" onclick="searchTip(this)">아이디 찾기/변경</p>
                             <p class="searchTip" onclick="searchTip(this)">비밀번호 찾기/변경</p>
-                            <p class="searchTip" onclick="searchTip(this)">람쥐썬더</p>
+                            <p class="searchTip" onclick="searchTip(this)">레시피</p>
                             <p class="searchTip" onclick="searchTip(this)">제목</p>
-                            <p class="searchTip" onclick="searchTip(this)">내용</p>
+                            <p class="searchTip" onclick="searchTip(this)">없습니다</p>
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="csc_annBlock">
-                        <a th:href="@{/csc/annDetailForm(annCode=${ann.annCode})}" th:each="ann, state : ${annList}" class="csc_annLink" th:if="${(annList!=null)&&(#lists.size(annList) != 0) && (state.index lt 6)}">
+                    <div class="csc_annBlock"  th:if="${(annList!=null)&&(#lists.size(annList) != 0)}">
+                        <a th:href="@{/csc/annDetailForm(annCode=${ann.annCode})}" th:each="ann, state : ${annList}" class="csc_annLink" th:if="${state.index lt 6}">
                             <div class="csc_annBox">
                                 <div class="annTypeBox">
                                     <p class="slash">[</p>
@@ -74,9 +74,11 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="csc_annBox" th:if="${annList==null|| #lists.size(annList) == 0}">
+                    </div>
+                    <div class="csc_annBlock non" th:if="${annList==null|| #lists.size(annList) == 0}">
+                        <div class="csc_annBox">
                             <div>
-                                내용이없스무니다
+                                내용이 없습니다.
                             </div>
                         </div>
                     </div>
@@ -95,8 +97,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="qnaBlock">
-                        <a class="qnaBox" th:href="@{/csc/qnaListForm(qnaCode=${qna.qnaCode})}" th:each="qna, state :  ${qnaList}" th:if="${(qnaList !=null )&&(#lists.size(qnaList) != 0) && (state.index lt 6)}">
+                    <div class="qnaBlock"  th:if="${(qnaList !=null )&&(#lists.size(qnaList) != 0)}">
+                        <a class="qnaBox" th:href="@{/csc/qnaListForm(qnaCode=${qna.qnaCode})}" th:each="qna, state :  ${qnaList}" th:if="${state.index lt 6}">
                             <div class="qnaTextBox">
                                 <span class="qnaIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#f3c053"
@@ -121,9 +123,11 @@
                                 </p>
                             </div>
                         </a>
-                        <div class="qnaBox" th:if="${qnaList ==null || #lists.size(qnaList) == 0}">
-                            내용이 없습니다.
-                        </div>
+                    </div>
+                    <div class="qnaBlock non"  th:if="${qnaList ==null || #lists.size(qnaList) == 0}">
+                            <div class="qnaBox">
+                                내용이 없습니다.
+                            </div>
                     </div>
                 </div>
             </div>

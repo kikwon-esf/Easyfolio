@@ -128,13 +128,19 @@ textarea {
     outline: 0;
     font-size: 16px;
     font-weight: 300;
-    margin-bottom: 7px;
+    margin-bottom: 14px;
+    transition: border 0.3s ease;
     border: 2px solid #f4f4f4;
+}
+.content:hover{
+    transition: border 0.3s ease;
+    border: 2px solid #f3c053;
 }
 
 .content:focus {
+    transition: border 0.3s ease;
     background-color: #fff;
-    border: 2px solid #666;
+    border: 2px solid #F29221;
 }
 
 .content::-webkit-scrollbar,

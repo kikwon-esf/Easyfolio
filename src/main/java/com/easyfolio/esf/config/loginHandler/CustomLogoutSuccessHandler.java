@@ -21,7 +21,10 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
     private final SseService sseService;
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        sseService.deleteId(authentication.getName());
+        if(authentication != null){
+            sseService.deleteId(authentication.getName());
+        }
+
 
         removeSessionId(request.getRequestedSessionId());
 

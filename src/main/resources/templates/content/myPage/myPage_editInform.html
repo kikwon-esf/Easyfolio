@@ -117,20 +117,11 @@
                             </path>
                         </svg>
                     </div>
-                    
+
                     <p>비밀번호</p>
                     <div class="defaultBox">
-                        <!-- <p></p>
-                        <button type="button" class="updateBtn" onclick="updateFormGo(this)">수정하기</button>
-                    </div>-->
-                    <!-- <div class="pw updateForm off"> -->
-                        <!-- <input class="pw_input" type="password" name="memberPw">
-                        <input class="pw_input" type="password" id="password_repeat"> -->
-                    <!-- </div> -->
-                    <!-- <button id="pw_submit" type="submit" class="submit pw_btn off">수정완료</button> -->
                         <p class="checkPw">
-                            <a
-                            th:href="@{/member/changePw}">
+                            <a th:href="@{/member/changePw}">
                                 <span class="checkIcon">*</span>
                                 <span class="checkText">비밀번호 찾기 페이지로 이동</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="#666"
@@ -142,7 +133,7 @@
                             </a>
                         </p>
                     </div>
-                    
+
                 </form>
                 <form action="/member/deleteMember" method="POST" id="memberDown">
                     <input type="hidden" name="memberId" th:value="${user}">
@@ -150,45 +141,46 @@
 
                 </form>
 
-                <div class="pwAlarmInner">
-                    <div class="pwAlarmPopup">
-                        <div class="alarmTextBox">
-                            <p class="alarmText">비밀번호가 일치하지 않습니다.</p>
-                        </div>
-                        <div class="alarmBtnBox">
-                            <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
-                        </div>
+
+            </div>
+            <div class="pwAlarmInner">
+                <div class="pwAlarmPopup">
+                    <div class="alarmTextBox">
+                        <p class="alarmText">비밀번호가 일치하지 않습니다.</p>
+                    </div>
+                    <div class="alarmBtnBox">
+                        <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
                     </div>
                 </div>
-                <div class="badGateWay pwAlarmInner">
-                    <div class="pwAlarmPopup">
-                        <div class="alarmTextBox">
-                            <p class="alarmText">사용자의 입력값에 문제가 있습니다.</p>
-                        </div>
-                        <div class="alarmBtnBox">
-                            <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
-                        </div>
+            </div>
+            <div class="badGateWay pwAlarmInner">
+                <div class="pwAlarmPopup">
+                    <div class="alarmTextBox">
+                        <p class="alarmText">사용자의 입력값에 문제가 있습니다.</p>
+                    </div>
+                    <div class="alarmBtnBox">
+                        <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
                     </div>
                 </div>
-                <div class="internerServerError pwAlarmInner">
-                    <div class="pwAlarmPopup">
-                        <div class="alarmTextBox">
-                            <p class="alarmText">알 수 없는 오류! 페이지를 새로고침해주세요.</p>
-                        </div>
-                        <div class="alarmBtnBox">
-                            <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
-                        </div>
+            </div>
+            <div class="internerServerError pwAlarmInner">
+                <div class="pwAlarmPopup">
+                    <div class="alarmTextBox">
+                        <p class="alarmText">사용 중인 닉네임입니다.</p>
+                    </div>
+                    <div class="alarmBtnBox">
+                        <button class="alarmBtn yes" onclick="okBtn(this)">확인</button>
                     </div>
                 </div>
-                <div class="areYouSure pwAlarmInner">
-                    <div class="pwAlarmPopup">
-                        <div class="alarmTextBox">
-                            <p class="alarmText">경고! 정말로 회원탈퇴를 하시겠습니까?</p>
-                        </div>
-                        <div class="alarmBtnBox">
-                            <button class="alarmBtn yes" onclick="doMemberDown()">확인</button>
-                            <button class="alarmBtn yes" onclick="memberDown(false)">취소</button>
-                        </div>
+            </div>
+            <div class="areYouSure pwAlarmInner">
+                <div class="pwAlarmPopup">
+                    <div class="alarmTextBox">
+                        <p class="alarmText">경고! 정말로 회원탈퇴를 하시겠습니까?</p>
+                    </div>
+                    <div class="alarmBtnBox">
+                        <button class="alarmBtn yes" onclick="doMemberDown()">확인</button>
+                        <button class="alarmBtn yes" onclick="memberDown(false)">취소</button>
                     </div>
                 </div>
                 <div class="editCommite pwAlarmInner">
@@ -202,8 +194,6 @@
                         </div>
                     </div>
                 </div>
-               
-
             </div>
         </div>
         <script src="/js/content/myPage/myPage_editInform.js"></script>

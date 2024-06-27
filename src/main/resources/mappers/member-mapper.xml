@@ -34,12 +34,16 @@
         , MEMBER_NAME
         , MEMBER_TEL
         , MEMBER_GENDER
+            , NICKNAME
+            , RESIGN
         ) VALUES (
         #{memberId}
         , #{memberPw}
         , #{memberName}
         , #{memberTel}
         , #{memberGender}
+            , #{memberId}
+            , 'N'
         )
     </insert>
 <!--로그인-->

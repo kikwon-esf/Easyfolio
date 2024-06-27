@@ -34,11 +34,11 @@
                                             <p>레시피</p>
                                         </div>
                                         <div class="popupBoxContent">
-                                            <p><a th:href="@{/food/searchFoodPage}" class="recipeAll">전체</a></p>
-                                            <p>종류별</p>
-                                            <p>상황별</p>
-                                            <p>재료별</p>
-                                            <p>방법별</p>
+                                            <p><a class="popupContent" href="/food/searchFoodPage">모든 레시피</a></p>
+                                            <p><a class="popupContent" href="/food/weatherFood">현재 날씨 추천 레시피</a></p>
+                                            <p><a class="popupContent" href="/food/ddabongcode">날씨별 레시피</a></p>
+                                            <p><a sec:authorize="isAuthenticated()" class="popupContent" href="/food/insertFoodForm">나만의 레시피 등록</a></p>
+                                            <p><a class="popupContent" onclick="popup(askFrame)" sec:authorize="isAnonymous()">나만의 레시피 등록</a></p>
                                         </div>
                                     </div>
                                     <div class="popupBlock">
@@ -46,9 +46,11 @@
                                             <p>마이페이지</p>
                                         </div>
                                         <div class="popupBoxContent">
-                                            <p><a class="popupContent" href="/csc/annListForm">즐겨찾기</a></p>
-                                            <p><a class="popupContent" href="/csc/annListForm">내가 쓴 글</a></p>
-                                            <p><a class="popupContent" href="/csc/annListForm">회원 정보 수정</a></p>
+                                            <p><a sec:authorize="isAuthenticated()" class="popupContent" href="/myPage/favorite">즐겨찾기</a></p>
+                                            <p><a class="popupContent" onclick="popup(askFrame)" sec:authorize="isAnonymous()">즐겨찾기</a></p><p><a sec:authorize="isAuthenticated()" class="popupContent" href="/myPage/myContent">내가 쓴 글</a></p>
+                                            <p><a class="popupContent" onclick="popup(askFrame)" sec:authorize="isAnonymous()">내가 쓴 글</a></p><p><a sec:authorize="isAuthenticated()" class="popupContent" href="/myPage/myDetails">개인정보 수정</a></p>
+                                            <p><a class="popupContent" onclick="popup(askFrame)" sec:authorize="isAnonymous()">개인정보 수정</a></p><p><a sec:authorize="isAuthenticated()" class="popupContent" href="/myPage/myRecentView">최근 본 레시피</a></p>
+                                            <p><a class="popupContent" onclick="popup(askFrame)" sec:authorize="isAnonymous()">최근 본 레시피</a></p>
                                         </div>
                                     </div>
                                     <div class="popupBlock">
