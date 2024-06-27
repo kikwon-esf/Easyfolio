@@ -1,10 +1,31 @@
 const btns = document.querySelectorAll('.submit');
 const submitUrl = "/myPage/submitInform";
 const pw_submit = document.querySelector('#pw_submit');
+const editCommit = document.querySelector('.editCommite');
+let currentEventTarget = null;
+let currentEvent = null;
+
+document.querySelector('#commitOk').addEventListener('click',()=>{
+    submitFuction(currentEvent);
+    commitForm(null, false);
+})
+document.querySelector('#commitNo').addEventListener('click', ()=>{
+    commitForm(null, false);
+})
+
+function commitForm(e,bool){
+    currentEvent = e;
+    if(bool){
+        editCommit.style.display='block';
+    }else{
+        editCommit.style.display='none';
+    }
+    
+}
 
 for(let i = 0 ; i < btns.length ; i++){
     btns[i].addEventListener("click",(e)=>{
-        submitFuction(e)
+        commitForm(e,true)
     })
 }
 function submitFuction(e){

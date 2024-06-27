@@ -71,7 +71,7 @@ function loginGo() {
     let pwCheck = document.querySelector('#memberPwch');
     let name = document.querySelector('#memberName');
     let tel = document.querySelector('#memberTel');
-
+    console.log("gogo")
     if (inputMemId.value.trim() == "") {
         idBox.classList.toggle('fail');
         inputMemId.placeholder = "아이디를 입력해주세요";
