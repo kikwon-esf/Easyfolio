@@ -149,7 +149,7 @@ function deleteAlarmCheck() {
 
     commentAlarmInner.style.display = "block";
 
-    document.querySelector('.alarmBtn.yes').onclick = function () {
+    document.querySelector('#alarmBtnYeap').onclick = function () {
         commentAlarmInner.style.display = "none";
     };
 }
@@ -162,12 +162,12 @@ function deleteCheck(element) {
 
     commentCheckInner.style.display = "block";
 
-    document.querySelector('.comCheckBtn.yes').onclick = function () {
+    document.querySelector('#commentUpdateYes').onclick = function () {
         deleteComment(element)
         commentCheckInner.style.display = "none";
     };
 
-    document.querySelector('.comCheckBtn.no').onclick = function () {
+    document.querySelector('#commentUpdateNo').onclick = function () {
         commentCheckInner.style.display = "none";
     };
 }
