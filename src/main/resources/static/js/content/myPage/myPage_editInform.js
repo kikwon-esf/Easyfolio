@@ -15,6 +15,8 @@ document.querySelector('#commitNo').addEventListener('click', ()=>{
 
 function commitForm(e,bool){
     currentEvent = e;
+    console.log(e)
+    console.log(bool)
     if(bool){
         editCommit.style.display='block';
     }else{
