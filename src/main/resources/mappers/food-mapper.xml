@@ -623,6 +623,10 @@
         DELETE FROM ALARM WHERE FOOD_CODE = #{foodCode}
     </delete>
 
+    <delete id="deleteFoodSteps">
+        DELETE FROM FOOD_STEPS WHERE FOOD_CODE = #{foodCode}
+    </delete>
+
     <delete id="deleteFavorite">
         DELETE FROM FAVORITE WHERE FOOD_CODE = #{foodCode}
     </delete>
