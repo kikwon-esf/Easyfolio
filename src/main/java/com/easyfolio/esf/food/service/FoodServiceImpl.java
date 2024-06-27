@@ -208,6 +208,7 @@ public class FoodServiceImpl implements FoodService{
     public void deleteFood(FoodVO foodVO) {
         sqlSession.delete("foodMapper.deleteAlarm", foodVO);
         sqlSession.delete("foodMapper.deleteFavorite", foodVO);
+        sqlSession.delete("foodMapper.deleteFoodSteps", foodVO);
         sqlSession.delete("foodMapper.deleteFoodImg", foodVO);
         sqlSession.delete("foodMapper.deleteRecentView", foodVO);
         sqlSession.delete("foodMapper.deleteFoodComment", foodVO);
