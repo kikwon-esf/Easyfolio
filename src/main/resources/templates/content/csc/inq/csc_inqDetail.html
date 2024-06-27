@@ -95,7 +95,7 @@
                     <input type="hidden" th:value="${inqDetail.inqCode}" class="deleteInqCode">
                     <input type="hidden" th:value="${inqDetail.inqResponse}" class="deleteIsRes">
                     <input th:if="${inqDetail.inqResponse == 'Y'}" type="hidden" th:value="${resInq.resCode}" class="deleteResCode">
-                    <div th:if="${user==inqDetail.inqWriter}" class="btn deleteinqBtn" onclick="deletePopUp()">삭제하기</div>
+                    <div th:if="${memberRole=='ADMIN'||user==inqDetail.inqWriter}" class="btn deleteinqBtn" onclick="deletePopUp()">삭제하기</div>
                 </div>
             </div>
             <div class="bigImgBlock">

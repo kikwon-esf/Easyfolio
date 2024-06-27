@@ -14,6 +14,7 @@ import com.easyfolio.esf.util.UploadUtillRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -166,9 +167,10 @@ public class CscController {
     }
 
     // 문의 사항 삭제 후 목록 페이지 이동
+    @Transactional
     @GetMapping("/deleteInq")
     public String deleteInq(InqVO inqVO, ResVO resVO){
-        if (inqVO.inqResponse.equals("Y")){
+        if (resVO.resCode!=null ||inqVO.inqResponse.equals("Y")){
             cscService.deleteResImg(resVO);
             cscService.deleteResponse(resVO);
         }
