@@ -16,6 +16,7 @@
     
     <link rel="stylesheet" href="/css/content/member/login.css">
     <input type="hidden" th:value="${loginError}" id="login_error">
+    <input type="hidden" th:value="${changeSuc}" id="changeSuc">
     <div id="wrap">
         <div class="logoutError hide">
             <p>로그인 정보를 확인해주세요</p>
@@ -69,7 +70,16 @@
             </div>
 
             <div class="footerBlock">
-
+                <div class="pwChange pwAlarmInner">
+                    <div class="pwAlarmPopup">
+                        <div class="alarmTextBox">
+                            <p class="alarmText">변경이 완료되었습니다.</p>
+                        </div>
+                        <div class="alarmBtnBox">
+                            <button class="alarmBtn yes" id="changePwYeap">확인</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

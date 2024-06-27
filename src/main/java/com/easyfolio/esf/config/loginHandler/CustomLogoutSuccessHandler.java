@@ -29,8 +29,9 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
         removeSessionId(request.getRequestedSessionId());
 
         String referer = request.getHeader("Referer");
+        System.err.println(referer);
         if(referer.equals("http://localhost:8081/member/changePw")){
-            response.sendRedirect("http://localhost:8081/member/loginForm");
+            response.sendRedirect("http://localhost:8081/member/loginForm/pwChange");
         }else{
             request.setAttribute("logoutSuccess","logoutSuccess");
             response.sendRedirect(referer);

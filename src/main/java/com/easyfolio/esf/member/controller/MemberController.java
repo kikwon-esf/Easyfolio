@@ -48,6 +48,14 @@ public class MemberController {
         }
         return "content/member/login";
     }
+    @GetMapping("/loginForm/pwChange")
+    public String loginFormPwChange(Model model, Principal principal, HttpServletRequest request){
+        model.addAttribute("changeSuc",true);
+        if(principal != null && principal.getName() !=null){
+            return "redirect:/";
+        }
+        return "content/member/login";
+    }
 
     //로그인 에러
     @GetMapping("/loginForm/error")
@@ -145,9 +153,10 @@ public class MemberController {
         return passwordEncoder.encode(inputPassWord).matches(originalPw);
     }
     @PostMapping(value = "/changePw")
-    public String changePw(Principal principal ,MemberVO memberVO,HttpServletResponse response, HttpServletRequest request){
+    public String changePw(Principal principal ,MemberVO memberVO,HttpServletResponse response, HttpServletRequest request, Model model){
         MemberVO updateMember = new MemberVO();
         updateMember.setMemberPw(memberVO.getMemberPw());
+
         if(!PwdEditInterceptor.set.contains(request.getRequestedSessionId())){
             return "redirect:/";
         }

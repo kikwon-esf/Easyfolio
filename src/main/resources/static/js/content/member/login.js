@@ -26,6 +26,8 @@ const logoutErrorDisplay = document.querySelector('.logoutError');
 document.addEventListener('DOMContentLoaded',()=>{
     if(errInput.value != ''){
         logoutErrorDisplay.classList.remove('hide')
+    }else if(changeSuc == "true"){
+        document.querySelector('.pwChange').style.display='block'
     }
 })
 function closePopup(ele){
@@ -74,3 +76,10 @@ for(let i = 0 ; i < chkList.length ; i++){
 //         return;
 //     }
 // });
+
+
+//비밀번호 변경후
+let changeSuc = document.querySelector('#changeSuc').value;
+document.querySelector('#changePwYeap').addEventListener('click',()=>{
+    document.querySelector('.pwChange').style.display='none';
+})
