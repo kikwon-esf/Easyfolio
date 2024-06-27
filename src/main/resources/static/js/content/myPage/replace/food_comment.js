@@ -115,13 +115,16 @@ function updateCheck(element) {
     checkText.textContent = '댓글을 수정하시겠습니까?';
 
     commentCheckInner.style.display = "block";
-
-    document.querySelector('.comCheckBtn.yes').onclick = function () {
+    console.log("!")
+    console.log(document.querySelector('.comCheckBtn.yes'))
+    document.querySelector('#commentUpdateYes').onclick = function () {
+        console.log("!!")
         updateComment(element)
+        console.log("!!!")
         commentCheckInner.style.display = "none";
     };
 
-    document.querySelector('.comCheckBtn.no').onclick = function () {
+    document.querySelector('#commentUpdateNo').onclick = function () {
         commentCheckInner.style.display = "none";
     };
 }
@@ -134,7 +137,7 @@ function updateAlarmCheck() {
 
     commentAlarmInner.style.display = "block";
 
-    document.querySelector('.alarmBtn.yes').onclick = function () {
+    document.querySelector('#alarmBtnYeap').onclick = function () {
         commentAlarmInner.style.display = "none";
     };
 }
@@ -170,6 +173,7 @@ function deleteCheck(element) {
 }
 
 function updateComment(element) {
+    console.log(element)
     var commentEach = element.closest('.commentEach');
     var foodCommentId = commentEach.querySelector('.foodCommentId').value;
     var inputUpdateComment = commentEach.querySelector('.input_textarea').value;
