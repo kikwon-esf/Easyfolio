@@ -19,6 +19,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     private final EditInformInterceptor editInformInterceptor;
     private final SecondPasswordInterceptor secondPasswordInterceptor;
     private final PwdEditInterceptor pwdEditInterceptor;
+    private final LoginFormInterceptor loginFormInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -55,6 +56,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(pwdEditInterceptor)
                 .excludePathPatterns(exceptionPath)
                 .addPathPatterns("/member/changePw");
+
+        //로그인폼
+        registry.addInterceptor(loginFormInterceptor)
+                .excludePathPatterns(exceptionPath)
+                .addPathPatterns("/member/loginForm/pwChange");
     }
 
 
